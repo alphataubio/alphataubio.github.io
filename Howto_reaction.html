@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemical reactions &mdash; LAMMPS documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx-design.min.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/lammps.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/lammps.ico"/>
+    <link rel="canonical" href="https://docs.lammps.org/Howto_reaction.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=68d122f4"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="_static/design-tabs.js?v=f930bc37"></script>
+        <script async="async" src="_static/mathjax/es5/tex-mml-chtml.js?v=cadf963e"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="Manual.html">
+            
+              <img src="_static/lammps-logo.png" class="logo" alt="Logo"/>
+          </a>
+            <div class="lammps_version">Version: <b>27 Jun 2024</b></div>
+            <div class="lammps_release">git info: 27Jun2024-917-g6dcfcbc193</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Intro.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Install.html">2. Install LAMMPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Build.html">3. Build LAMMPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Run_head.html">4. Run LAMMPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Commands.html">5. Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Packages.html">6. Optional packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Speed.html">7. Accelerate performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Howto.html">8. Howto discussions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Examples.html">9. Example scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tools.html">10. Auxiliary tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Errors.html">11. Errors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Programmer Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Library.html">1. LAMMPS Library Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python_head.html">2. Use Python with LAMMPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modify.html">3. Modifying &amp; extending LAMMPS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Developer.html">4. Information for Developers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Command Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="commands_list.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fixes.html">Fixes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computes.html">Computes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pairs.html">Pair Styles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bonds.html">Bond Styles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="angles.html">Angle Styles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dihedrals.html">Dihedral Styles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impropers.html">Improper Styles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dumps.html">Dump Styles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fix_modify_atc_commands.html">fix_modify AtC commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bibliography.html">Bibliography</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="Manual.html">LAMMPS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="Manual.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Chemical reactions</li>
+      <li class="wy-breadcrumbs-aside">
+          <a href="https://www.lammps.org"><img src="_static/lammps-logo.png" width="64" height="16" alt="LAMMPS Homepage"></a> | <a href="Commands_all.html">Commands</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><span class="math notranslate nohighlight">\(\renewcommand{\AA}{\text{Å}}\)</span></p>
+<section id="chemical-reactions">
+<h1>Chemical reactions<a class="headerlink" href="#chemical-reactions" title="Link to this heading"></a></h1>
+<section id="elementary-reaction">
+<h2>Elementary reaction<a class="headerlink" href="#elementary-reaction" title="Link to this heading"></a></h2>
+<p>An elementary reaction is a single step reaction with a single transition state and no intermediates. Elementary reactions add up to complex reactions; non-elementary reactions can be described by multiple elementary reaction steps. A set of elementary reactions comprises a reaction mechanism.</p>
+<section id="unimolecular-reaction">
+<h3>Unimolecular reaction<a class="headerlink" href="#unimolecular-reaction" title="Link to this heading"></a></h3>
+<p>An elementary unimolecular reaction occurs when a molecule rearranges itself to produce one or more products</p>
+</section>
+<section id="bimolecular-reaction">
+<h3>Bimolecular reaction<a class="headerlink" href="#bimolecular-reaction" title="Link to this heading"></a></h3>
+<p>An elementary bimolecular reaction involves the collision of two particles. Bimolecular reactions are common in organic reactions such as nucleophilic substitution. There are two types of bimolecular elementary reactions, either the two reactants are different:</p>
+<div class="math notranslate nohighlight">
+\[A + B  \rightarrow  products\]</div>
+<p>or the two reactants are the same:</p>
+<div class="math notranslate nohighlight">
+\[2 A  \rightarrow  products\]</div>
+<p>An example is the gas-phase (g) reaction of 1,3-butadiene with ethene to form cyclohexene. In the transition state, bonds that are breaking (three π bonds) are shown in orange and bonds that are forming (one π bond and two σ bonds) are shown in cyan.</p>
+<div class="math notranslate nohighlight">
+\[C_4H_6(g) + C_2H_4(g) \rightarrow C_6H_{10}(g)\]</div>
+<img alt="_images/diels_alder_pes.png" class="align-center" src="_images/diels_alder_pes.png" />
+<p>source: <a class="reference external" href="https://chem.libretexts.org/Bookshelves/General_Chemistry/Interactive_Chemistry_(Moore_Zhou_and_Garand)/03%3A_Unit_Three/3.05%3A_Day_22-_Elementary_Reactions">https://chem.libretexts.org/Bookshelves/General_Chemistry/Interactive_Chemistry_(Moore_Zhou_and_Garand)/03%3A_Unit_Three/3.05%3A_Day_22-_Elementary_Reactions</a></p>
+</section>
+<section id="termolecular-reaction">
+<h3>Termolecular reaction<a class="headerlink" href="#termolecular-reaction" title="Link to this heading"></a></h3>
+<p>An elementary <em>termolecular reaction</em> requires the collision of three particles at the same place and time. This type of reaction is extremely rare because all three reactants must simultaneously collide with each other, with sufficient energy and correct orientation, to produce a reaction. When a reaction involves three reactant molecules, it is much more likely for it to proceed via multiple steps known as a <em>reaction mechanism</em> involving elementary unimolecular and/or bimolecular reaction steps.</p>
+</section>
+</section>
+<section id="reaction-mechanism">
+<h2>Reaction mechanism<a class="headerlink" href="#reaction-mechanism" title="Link to this heading"></a></h2>
+<p>A valid multi-step <em>reaction mechanism</em> consist of a series of unimolecular and/or bimolecular elementary reaction steps. The sum of the reaction steps should agree with the overall balanced reaction equation. A reaction intermediate is transient species within a multi-step reaction mechanism that is produced in the preceding step and consumed in a subsequent step to ultimately generate the final reaction product. Intermediate reactions are common in the biological world; a prime example can be seen in the metabolism of metabolites and nutrients.</p>
+<section id="combustion-reaction">
+<h3>Combustion reaction<a class="headerlink" href="#combustion-reaction" title="Link to this heading"></a></h3>
+<p>A <em>combustion reaction</em>, which also qualifies as a combination reaction, is a reaction in which a substance reacts with oxygen gas, releasing energy in the form of light and heat. Combustion reactions must involve O<sub>2</sub> as one reactant. The combustion of hydrogen gas produces water vapor</p>
+<div class="math notranslate nohighlight">
+\[2 H_2 + O_2 \rightarrow 2 H_2O\]</div>
+<p>However this combustion reaction is actualy more complicated than 2 diatomic hydrogen molecules simply colliding with a diatomic oxygen to form 2 water molecules. It actually proceeds as a series of steps in the reaction mechanism:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H + O_2 \rightarrow O + OH \\
+H_2 + O \rightarrow H + OH \\
+H_2 + OH \rightarrow H_2O + H \\\end{split}\]</div>
+<div class="video_wrapper align-center" style="text-align: center">
+<iframe allowfullscreen="true" src="https://www.youtube.com/embed/YuqA_uojSJ4" style="border: 0; height: 345px; width: 560px">
+</iframe></div><hr class="docutils" />
+<p>A suggested workflow for using fix bond/react is:</p>
+<p><strong>(1) identify a reaction to be simulated</strong></p>
+<p>The five basic types of chemical reactions are combination, decomposition, single-replacement, double-replacement, and combustion <a class="reference internal" href="#howto-reaction-libretexts"><span class="std std-ref">(LibreTexts)</span></a>. A combination reaction, also known as a synthesis reaction, is a reaction in which two or more substances combine to form a single new substance. One combination reaction is two elements combining to form a compound. The general form of a combination reaction is</p>
+<div class="math notranslate nohighlight">
+\[A + B \rightarrow AB\]</div>
+<p>For example, solid sodium metal reacts with chlorine gas to product solid sodium chloride</p>
+<div class="math notranslate nohighlight">
+\[2 Na + Cl_2 \rightarrow 2 NaCl\]</div>
+<p>Using standard reference data on hydrogen, oxygen, and water <a class="reference internal" href="#howto-reaction-nist-webbook"><span class="std std-ref">(NIST WebBook)</span></a></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Hydrogen, ID: C1333740
+  NIST    23112819112D 1   1.00000     0.00000
+Copyright by the U.S. Sec. Commerce on behalf of U.S.A. All rights reserved.
+  2  1  0     0  0              1 V2000
+    0.0000    0.0000    0.0000 H   0  0  0  0  0  0           0  0  0
+    1.0000    0.0000    0.0000 H   0  0  0  0  0  0           0  0  0
+  1  2  1  0     0  0
+M  END
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Oxygen, ID: C7782447
+  NIST    23112607342D 1   1.00000     0.00000
+Copyright by the U.S. Sec. Commerce on behalf of U.S.A. All rights reserved.
+  2  1  0     0  0              1 V2000
+    0.0000    0.0000    0.0000 O   0  0  0  0  0  0           0  0  0
+    1.0000    0.0000    0.0000 O   0  0  0  0  0  0           0  0  0
+  1  2  2  0     0  0
+M  END
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Water, ID: C7732185
+  NIST    23112607382D 1   1.00000     0.00000
+Copyright by the U.S. Sec. Commerce on behalf of U.S.A. All rights reserved.
+  3  2  0     0  0              1 V2000
+    0.0000    0.0000    0.0000 H   0  0  0  0  0  0           0  0  0
+    0.8638    0.4573    0.0000 O   0  0  0  0  0  0           0  0  0
+    1.7785    0.0000    0.0000 H   0  0  0  0  0  0           0  0  0
+  1  2  1  0     0  0
+  2  3  1  0     0  0
+M  END
+</pre></div>
+</div>
+<p>we can write the molecule template files:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># REACTION PACKAGE COMBUSTION EXAMPLE - Hydrogen molecule template (combustion_H2.molecule_template)
+
+    2 atoms
+    1 bonds
+    2.01588 mass
+
+Coords
+
+    1    0.0000    0.0000    0.0000
+    2    1.0000    0.0000    0.0000
+
+Types
+
+    1 H
+    2 H
+
+Bonds
+
+    1 1 1 2
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># REACTION PACKAGE COMBUSTION EXAMPLE - Oxygen molecule template (combustion_O2.molecule_template)
+
+    2 atoms
+    1 bonds
+    31.9988 mass
+
+Coords
+
+    1    0.0000    0.0000    0.0000
+    2    1.0000    0.0000    0.0000
+
+Types
+
+    1 O
+    2 O
+
+Bonds
+
+    1 2 1 2
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># REACTION PACKAGE COMBUSTION EXAMPLE - Water molecule template (combustion_H2O.molecule_template)
+
+    3 atoms
+    2 bonds
+    1 angles
+    18.0153 mass
+
+Coords
+
+    1    0.0000    0.0000    0.0000
+    2    0.8638    0.4573    0.0000
+    3    1.7785    0.0000    0.0000
+
+Types
+
+    1 H
+    2 O
+    3 H
+
+Bonds
+
+    1 1 1 2
+    2 1 2 3
+
+Angles
+
+    1 1 1 2 3
+</pre></div>
+</div>
+<p><strong>(2) build a molecule template of the reaction site before the reaction has occurred</strong></p>
+<p>The pre-reacted molecule template is specified by a molecule command. This molecule template file contains a sample reaction site and its surrounding topology. All atom types in the pre-reacted template must be the same as those of a potential reaction site in the simulation. The initiator atom pairs of the pre-reacted template are specified by atom ID in the map file.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>REACTION PACKAGE COMBUSTION EXAMPLE - molecule template pre-reaction 2 H2 and O2 (combustion_pre.molecule_template)
+
+6 atoms
+3 bonds
+
+Coords
+
+    1    0.0000    0.0000    0.0000
+    2    1.0000    0.0000    0.0000
+    3    ???      ???     ???
+    4    ???      ???     ???
+    5    ???      ???     ???
+    6    ???      ???     ???
+
+Types
+
+    1 H
+    2 H
+    3 H
+    4 H
+    5 O
+    6 O
+
+Bonds
+
+    1 H-H      1      2
+    2 H-H      3      4
+    3 O-O      5      6
+</pre></div>
+</div>
+<p><strong>(3) build a molecule template of the reaction site after the reaction has occurred</strong></p>
+<p>The post-reacted molecule template contains a sample of the reaction site and its surrounding topology after the reaction has occurred. It must contain the same number of atoms as the pre-reacted template, unless there are created or deleted atoms (see examples/PACKAGES/reaction for details). A one-to-one correspondence between the atom IDs in the pre- and post-reacted templates is specified in the map file described below (4).</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>REACTION PACKAGE COMBUSTION EXAMPLE - molecule template post-reaction 2 H2O (combustion_post.molecule_template)
+
+6 atoms
+4 bonds
+2 angles
+
+Coords
+
+    1    0.0000    0.0000    0.0000
+    2    0.8638    0.4573    0.0000
+    3    1.7785    0.0000    0.0000
+    4    ???    ???    ???
+    5    ???    ???    ???
+    6    ???    ???    ???
+
+Types
+
+    1 H
+    2 O
+    3 H
+    4 H
+    5 O
+    6 H
+
+Molecules
+
+    1      1
+    2      1
+    3      1
+    4      2
+    5      2
+    6      2
+
+Bonds
+
+    1 H-O      1      2
+    2 O-H      2      3
+    3 H-O      4      5
+    4 O-H      5      6
+
+Angles
+
+    1 H-O-H    1   2   3
+    2 H-O-H    4   5   6
+</pre></div>
+</div>
+<p><strong>(4) create a map that relates the template-atom-IDs of each atom between pre- and post-reaction molecule templates</strong></p>
+<p>The header of map file contains one mandatory keyword <em>equivalences</em>, which is the number of atoms in the pre- and post-reaction  molecule templates.</p>
+<p>The body of the map file contains two mandatory sections. The first mandatory section begins with the keyword <em>InitiatorIDs</em> listing the two atom IDs of the initiator atom pair in the pre-reacted molecule template. The second mandatory section begins with the keyword <em>Equivalences</em> listing a one-to-one correspondence between atom IDs of the pre- and post-reacted templates. The first column is an atom ID of the pre-reacted molecule template, and the second column is the corresponding atom ID of the post-reacted molecule template.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>REACTION PACKAGE COMBUSTION EXAMPLE - map file (combustion.map)
+
+6 equivalences
+
+InitiatorIDs
+
+    ???
+    ???
+
+Equivalences
+
+    1  1
+    2  3
+    3  4
+    4  5
+    5  2
+    6  6
+</pre></div>
+</div>
+<p><strong>(5) fill a simulation box with molecules and run a simulation with fix bond/react</strong></p>
+<div class="highlight-LAMMPS notranslate"><div class="highlight"><pre><span></span><span class="c"># REACTION PACKAGE COMBUSTION EXAMPLE - input script (combustion.in)</span>
+
+<span class="k">units</span><span class="w"> </span><span class="n">real</span>
+<span class="k">dimension</span><span class="w"> </span><span class="m">3</span>
+<span class="k">boundary</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="n">p</span>
+<span class="k">atom_style</span><span class="w"> </span><span class="n">full</span>
+
+<span class="k">region </span><span class="nv nv-Identifier">combustion_region</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="m">0.0</span><span class="w"> </span><span class="m">10.0</span><span class="w"> </span><span class="m">0.0</span><span class="w"> </span><span class="m">10.0</span><span class="w"> </span><span class="m">0.0</span><span class="w"> </span><span class="m">10.0</span>
+<span class="k">create_box </span><span class="nv nv-Identifier">2</span><span class="w"> </span><span class="nv nv-Identifier">combustion_region</span><span class="w"> </span><span class="n">bond</span><span class="o">/</span><span class="n">types</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="n">angle</span><span class="o">/</span><span class="n">types</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">extra</span><span class="o">/</span><span class="n">special</span><span class="o">/</span><span class="n">per</span><span class="o">/</span><span class="n">atom</span><span class="w"> </span><span class="m">2</span>
+
+<span class="k">labelmap</span><span class="w"> </span><span class="n">atom</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">H</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="n">O</span>
+<span class="k">mass</span><span class="w"> </span><span class="n">H</span><span class="w"> </span><span class="m">1.008</span>
+<span class="k">mass</span><span class="w"> </span><span class="n">O</span><span class="w"> </span><span class="m">15.999</span>
+<span class="k">molecule</span><span class="w"> </span><span class="n">H2</span><span class="w"> </span><span class="n">combustion_H2.molecule_template</span>
+<span class="k">molecule</span><span class="w"> </span><span class="n">O2</span><span class="w"> </span><span class="n">combustion_O2.molecule_template</span>
+<span class="k">molecule</span><span class="w"> </span><span class="n">H2O</span><span class="w"> </span><span class="n">combustion_H2O.molecule_template</span>
+
+<span class="k">create_atoms</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">12345</span><span class="w"> </span><span class="n">NULL</span><span class="w"> </span><span class="n">overlap</span><span class="w"> </span><span class="m">2.0</span><span class="w"> </span><span class="n">maxtry</span><span class="w"> </span><span class="m">50</span>
+<span class="k">create_atoms</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="n">random</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12345</span><span class="w"> </span><span class="n">NULL</span><span class="w"> </span><span class="n">overlap</span><span class="w"> </span><span class="m">2.0</span><span class="w"> </span><span class="n">maxtry</span><span class="w"> </span><span class="m">50</span>
+<span class="k">velocity </span><span class="nv nv-Identifier">all</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="m">310.0</span><span class="w"> </span><span class="m">12345</span>
+
+<span class="k">pair_style</span><span class="w"> </span><span class="n">lj</span><span class="o">/</span><span class="n">cut</span><span class="w"> </span><span class="m">2.5</span>
+<span class="k">pair_coeff</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">1.0</span><span class="w"> </span><span class="m">1.0</span><span class="w"> </span><span class="m">2.5</span>
+
+<span class="k">fix </span><span class="nv nv-Identifier">combustion_fix1</span><span class="w"> </span><span class="nv nv-Identifier">all</span><span class="w"> </span><span class="n">langevin</span><span class="w"> </span><span class="m">310.0</span><span class="w"> </span><span class="m">310.0</span><span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">12345</span>
+<span class="k">fix </span><span class="nv nv-Identifier">combustion_fix2</span><span class="w"> </span><span class="nv nv-Identifier">all</span><span class="w"> </span><span class="n">nve</span>
+
+<span class="k">dump </span><span class="nv nv-Identifier">combustion_movie</span><span class="w"> </span><span class="nv nv-Identifier">all</span><span class="w"> </span><span class="n">movie</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">combustion.mpg</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="m">512</span><span class="w"> </span><span class="m">512</span>
+<span class="c">#dump modify combustion_movie acolor H white</span>
+<span class="c">#dump modify combustion_movie acolor O red</span>
+
+<span class="c">#molecule combustion_pre combustion_pre.molecule_template</span>
+<span class="c">#molecule combustion_post combustion_post.molecule_template</span>
+<span class="c">#fix combustion_map all bond/react react myrxn1 all 1 0 3.25 combustion_pre combustion_post combustion.map</span>
+
+<span class="k">run</span><span class="w"> </span><span class="m">1000</span>
+
+<span class="k">undump </span><span class="nv nv-Identifier">combustion_movie</span>
+</pre></div>
+</div>
+</section>
+<section id="enzyme-substrate-reaction">
+<h3>Enzyme-substrate reaction<a class="headerlink" href="#enzyme-substrate-reaction" title="Link to this heading"></a></h3>
+<p>A reaction mechanism found in living systems is the <em>enzyme-substrate reaction</em>. In this type of reaction, an enzyme binds to a substrate to produce an enzyme-substrate intermediate, which then forms the final product.</p>
+<hr class="docutils" />
+<section id="reaction-package">
+<h4>REACTION package<a class="headerlink" href="#reaction-package" title="Link to this heading"></a></h4>
+<p>This package implements the REACTER protocol (reacter.org) as <a class="reference internal" href="fix_bond_react.html"><span class="doc">fix bond/react</span></a>. This fix allows for complex topology changes during a running MD simulation, when using classical force fields. Topology changes are defined in pre- and post-reaction molecule templates and can include creation and deletion of bonds, angles, dihedrals, impropers, atom types, bond types, angle types, dihedral types, improper types, and/or atomic charges.</p>
+<p>The REACTER protocol is a method for modeling chemical reactions in classical molecular dynamics simulations. It was developed to build physically-realistic initial configurations for amorphous or crosslinked materials. Any number of competing or reversible reaction pathways can be specified, and reacting sites can be stabilized. Other advanced options currently available include reaction constraints (e.g. angle and Arrhenius constraints), deletion of reaction byproducts or other small molecules, creation of new atoms or molecules bonded to existing atoms, and using LAMMPS variables for input parameters.</p>
+<p>The REACTER methodology is detailed in: <a class="reference internal" href="#howto-reaction-gissinger-2017"><span class="std std-ref">(Gissinger, 2017)</span></a> and <a class="reference internal" href="#howto-reaction-gissinger-2020"><span class="std std-ref">(Gissinger, 2020)</span></a>. This package was created by Jacob Gissinger at the NASA Langley Research Center.</p>
+<hr class="docutils" />
+<dl class="simple" id="howto-reaction-gissinger-2017">
+<dt><strong>(Gissinger, 2017)</strong> Gissinger et al., Modeling chemical reactions in classical molecular dynamics simulations. Polymer 128, 211-217 (2017)</dt><dd><p><a class="reference external" href="https://doi.org/10.1016/j.polymer.2017.09.038">https://doi.org/10.1016/j.polymer.2017.09.038</a></p>
+</dd>
+</dl>
+<dl class="simple" id="howto-reaction-gissinger-2020">
+<dt><strong>(Gissinger, 2020)</strong> Gissinger et al., REACTER: A Heuristic Method for Reactive Molecular Dynamics. Macromolecules 53, 22, 9953-9961 (2020).</dt><dd><p><a class="reference external" href="https://doi.org/10.1021/acs.macromol.0c02012">https://doi.org/10.1021/acs.macromol.0c02012</a></p>
+</dd>
+</dl>
+<dl class="simple" id="howto-reaction-libretexts">
+<dt><strong>(LibreTexts)</strong> Valley City State University, Chem 121.</dt><dd><p><a class="reference external" href="https://chem.libretexts.org/Courses/Valley_City_State_University/Chem_121/Chapter_5%3A_Introduction_to_Redox_Chemistry/5.3%3A_Types_of_Chemical_Reactions">https://chem.libretexts.org/Courses/Valley_City_State_University/Chem_121/Chapter_5%3A_Introduction_to_Redox_Chemistry/5.3%3A_Types_of_Chemical_Reactions</a></p>
+</dd>
+</dl>
+<dl id="howto-reaction-nist-webbook">
+<dt><strong>(NIST WebBook)</strong></dt><dd><p>Hydrogen: <a class="reference external" href="https://webbook.nist.gov/cgi/inchi/InChI%3D1S/H2/h1H">https://webbook.nist.gov/cgi/inchi/InChI%3D1S/H2/h1H</a></p>
+<p>Oxygen: <a class="reference external" href="https://webbook.nist.gov/cgi/inchi/InChI%3D1S/O2/c1-2">https://webbook.nist.gov/cgi/inchi/InChI%3D1S/O2/c1-2</a></p>
+<p>Water: <a class="reference external" href="https://webbook.nist.gov/cgi/inchi/InChI%3D1S/H2O/h1H2">https://webbook.nist.gov/cgi/inchi/InChI%3D1S/H2O/h1H2</a></p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2003-2024 Sandia Corporation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

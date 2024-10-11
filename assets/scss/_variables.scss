@@ -1,0 +1,85 @@
+// Typography
+
+$title-font: 'Roboto', sans-serif;
+$primary-font: 'Roboto', sans-serif;
+$secondary-font: 'Roboto Slab', serif;
+$light: 300;
+$regular: 400;
+$bold: 700;
+$lsp: 0.02rem;
+$lsp-2x: 0.04rem;
+$lsp-big: 0.06rem;
+$lsp-extra: 0.2rem;
+$input-height: 48px;
+
+// Color Palette
+
+$primary: #1976d2;
+$primary-dark: #125ca6;
+$primary-gradient: linear-gradient(120deg, #28a7dc 0%, $primary 100%);
+$primary-transparent: rgba(25,118,210,0.5);
+$primary-transparent-dark: rgba(25,118,210,0.75);
+$secondary: #cfd8dc;
+$secondary-dark: #b4bcc0;
+$secondary-gradient: linear-gradient(120deg, #f6f4f9 0%, $secondary 100%);
+$success: #4caf50;
+$success-dark: #388e3c;
+$success-gradient: linear-gradient(120deg, #4de3a2 0%, $success 100%);
+$info: #009688;
+$info-dark: #00796b;
+$info-gradient: linear-gradient(120deg, #00Bcd4 0%, $info 100%);
+$warning: #ff5722;
+$warning-dark: #e64a19;
+$warning-gradient: linear-gradient(120deg, #e9d54e 0%, $warning 100%);
+$danger: #c62828;
+$danger-dark: #8e0000;
+$danger-gradient: linear-gradient(120deg, #eb7349 0%, $danger 100%);
+$light-body: #fafafa;
+$dark-body: #222;
+$light-grey: #f3f3f3;
+$light-grey-dark: #ddd;
+$grey: #d0d2d3;
+$grey-dark: #8e9294;
+$grey-gradient: linear-gradient(120deg, $light-grey-dark 0%, $grey 100%);
+$dark-grey: #505254;
+$dark-grey-dark: #303132;
+$inverse-color: #131618;
+$title-color: #171819;
+$text-color: #515253;
+$white: #fff;
+$white-gradient: linear-gradient(120deg, $white 0%, $secondary 100%);
+$black: #000;
+$black-gradient: linear-gradient(120deg, $dark-grey 0%, $black 100%);
+$dark: #374046;
+$dark-gradient: linear-gradient(120deg, #575770 0%, $dark 100%);
+
+// Social Colors
+
+$facebook: #4e68a1;
+$facebook-dark: #3b4f7a;
+$twitter: #65b5f2;
+$twitter-dark: #5294c6;
+$linkedin: #2083bc;
+$linkedin-dark: #186592;
+$pinterest: #d2373b;
+$pinterest-dark: #ad2c2f;
+$dribbble: #ec5f94;
+$dribbble-dark: #b4446e;
+$instagram: #4c5fd7;
+$instagram-dark: #4252ba;
+$vimeo: #1ab7ea;
+$vimeo-dark: #0d91bc;
+$youtube: #e52d27;
+$youtube-dark: #b31217;
+$dropbox: #3d9ae8;
+$dropbox-dark: #2777bb;
+$behance: #053eff;
+$behance-dark: #062fbb;
+$skype: #00aff0;
+$skype-dark: #068bbd;
+$tumblr: #34526f;
+$tumblr-dark: #172635;
+$github: #333;
+$github-dark: #111;
+$reddit: #ff4500;
+$reddit-dark: #c13400;

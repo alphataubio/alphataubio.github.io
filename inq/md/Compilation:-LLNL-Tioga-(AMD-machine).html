@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; INQ 0.95 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/lammps.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/inq_favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=1c4172e4"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/inq_logo.png" class="logo" alt="Logo"/>
+          </a>
+            <div class="lammps_version">Version: <b></b></div>
+            <div class="lammps_release">git info: 0.95</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. README</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#components">1.1. Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#basic-installation">1.2. Basic installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#reference">1.3. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#introductory-material">1.4. Introductory material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#release-information">1.5. Release information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#acknowledgment">1.6. Acknowledgment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html">2. Install dependencies and setup environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#clone-repository">3. Clone repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#for-cpu-only-system">4. For CPU-only system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#for-an-nvidia-gpu-system-with-nvcc-11-x">5. For an Nvidia-GPU system (with NVCC 11.x)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#specific-computers">6. Specific computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#mac-os-14">7. Mac OS 14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#recover-from-nvidia-device-error">8. Recover from Nvidia device error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">9. Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#total-energy">9.1. Total energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#pseudopotential-application">9.2. Pseudopotential application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#k-points">9.3. k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#hartree-fock-with-k-points">9.4. Hartree-Fock with k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#electric-fields-and-gauges">9.5. Electric fields and gauges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#coordinates">9.6. Coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../theory.html#mini-cell-circumscribing-a-sphere">9.6.1. Mini cell circumscribing a sphere</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#preconditioner">9.7. Preconditioner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#exact-factorization">9.8. Exact factorization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../theory.html#nuclear-eom">9.8.1. Nuclear EOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../theory.html#electronic-equation-of-motion">9.8.2. Electronic equation of motion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#self-consistency-acceleration">9.9. Self-consistency acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#magnetization">9.10. Magnetization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_shell_python.html">10. Tutorial (Shell and Python)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_shell_python.html#nitrogen">10.1. Nitrogen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#setting-up-the-run-directory">10.1.1. Setting up the run directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#defining-the-simulation-parameters">10.1.2. Defining the simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#running-the-simulation">10.1.3. Running the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#querying-the-ground-state-results">10.1.4. Querying the ground-state results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#changing-the-ion-positions">10.1.5. Changing the ion positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#scripting-the-potential-energy-surface-of-n2">10.1.6. Scripting: the potential energy surface of N2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_shell_python.html#benzene-optical-absorption-spectrum">10.2. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#simulation-parameters">10.2.1. Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#ground-state-calculation">10.2.2. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#first-time-propagation-finding-the-optimal-time-step">10.2.3. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#adding-a-perturbation">10.2.4. Adding a perturbation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#defining-the-observables">10.2.5. Defining the observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#run-the-propagation">10.2.6. Run the propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#analyzing-the-results-and-obtaining-the-spectrum">10.2.7. Analyzing the results and obtaining the spectrum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_cpp.html">11. Tutorial (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_cpp.html#nitrogen">11.1. Nitrogen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developers_guide.html">12. Developers Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developers_guide.html#repository">12.1. Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers_guide.html#coding">12.2. Coding</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference_magnitude.html">inq::magnitude</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference_magnitude.html#inq-magnitude-energy">inq::magnitude::energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_magnitude.html#inq-magnitude-length">inq::magnitude::length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_magnitude.html#inq-magnitude-time">inq::magnitude::time</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference_systems.html">inq::systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference_systems.html#inq-systems-cell">inq::systems::cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_systems.html#inq-systems-electrons">inq::systems::electrons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_systems.html#inq-systems-ions">inq::systems::ions</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">INQ</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+          <a href="https://gitlab.com/npneq/inq"><img src="_static/gitlab.png" width="100" alt="gitlab"> </a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>https://hpc.llnl.gov/hardware/compute-platforms/tioga</p>
+<p>https://lc.llnl.gov/confluence/display/ELCAPEA</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">module</span><span class="w"> </span><span class="n">reset</span>
+<span class="k">module</span><span class="w"> </span><span class="n">load</span><span class="w"> </span><span class="n">cce</span><span class="o">/</span><span class="mf">16.0.1</span>
+<span class="k">module</span><span class="w"> </span><span class="n">load</span><span class="w"> </span><span class="n">rocm</span><span class="o">/</span><span class="mf">5.6.0</span>
+<span class="k">module</span><span class="w"> </span><span class="n">load</span><span class="w"> </span><span class="n">python</span><span class="o">/</span><span class="mf">3.10.8</span>
+
+<span class="k">export</span><span class="w"> </span><span class="n">LD_LIBRARY_PATH</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">cray</span><span class="o">/</span><span class="n">pe</span><span class="o">/</span><span class="n">cce</span><span class="o">/</span><span class="mf">16.0.1</span><span class="o">/</span><span class="n">cce</span><span class="o">-</span><span class="n">clang</span><span class="o">/</span><span class="n">x86_64</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">unknown</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/:</span><span class="n">$CRAY_LD_LIBRARY_PATH</span><span class="o">:</span><span class="n">$LD_LIBRARY_PATH</span>
+
+<span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">fr</span><span class="w"> </span><span class="n">CMakeCache</span><span class="p">.</span><span class="n">txt</span><span class="w">  </span><span class="n">CMakeFiles</span>
+<span class="n">cmake</span><span class="w"> </span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="w">  </span><span class="o">--</span><span class="n">install</span><span class="o">-</span><span class="n">prefix</span><span class="o">=</span><span class="n">$HOME</span><span class="w"> </span>\
+<span class="o">-</span><span class="n">DENABLE_HIP</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span>\
+<span class="o">-</span><span class="n">DCMAKE_SYSTEM_NAME</span><span class="o">=</span><span class="n">CrayLinuxEnvironment</span><span class="w"> </span>\
+<span class="o">-</span><span class="n">DCMAKE_HIP_ARCHITECTURES</span><span class="o">=</span><span class="n">gfx90a</span><span class="w"> </span>\
+<span class="o">-</span><span class="n">DMPI_CXX_COMPILER</span><span class="o">=</span><span class="n">$MPICH_DIR</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">mpicxx</span><span class="w"> </span>\
+<span class="o">-</span><span class="n">DMPI_CXX_LINK_FLAGS</span><span class="o">=</span><span class="s">&quot;$PE_MPICH_GTL_DIR_amd_gfx90a $PE_MPICH_GTL_LIBS_amd_gfx90a&quot;</span><span class="w"> </span>
+</pre></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2025 Lawrence Livermore National Security, LLC., Xavier Andrade, Alfredo A. Correa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

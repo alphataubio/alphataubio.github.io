@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>inq::systems &mdash; INQ 0.95 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/lammps.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/inq_favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=1c4172e4"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="inq::magnitude" href="reference_magnitude.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/inq_logo.png" class="logo" alt="Logo"/>
+          </a>
+            <div class="lammps_version">Version: <b></b></div>
+            <div class="lammps_release">git info: 0.95</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. README</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#components">1.1. Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#basic-installation">1.2. Basic installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#reference">1.3. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#introductory-material">1.4. Introductory material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#release-information">1.5. Release information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#acknowledgment">1.6. Acknowledgment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compilation.html">2. Compilation and installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-and-running-on-a-local-computer">2.1. Compiling and running on a local computer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-dependencies-and-setup-environment">2.1.1. Install dependencies and setup environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#clone-repository">2.1.2. Clone repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#for-cpu-only-system">2.1.3. For CPU-only system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#for-an-nvidia-gpu-system-with-nvcc-11-x">2.1.4. For an Nvidia-GPU system (with NVCC 11.x)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#specific-computers">2.1.5. Specific computers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#manually-setting-utilization-of-multiple-gpu-with-mpi">2.1.6. Manually setting utilization of multiple GPU with MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#installing-gcc-for-cuda">2.1.7. Installing GCC for CUDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#mac-os-14">2.1.8. Mac OS 14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#recover-from-nvidia-device-error">2.1.9. Recover from Nvidia device error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-inq-on-supercomputing-clusters">2.2. Compiling INQ on Supercomputing Clusters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-perlmutter-at-nersc">2.2.1. Compiling on Perlmutter at NERSC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-lbnl-generic-linux-supercluster">2.2.2. Compiling on LBNL Generic Linux Supercluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-frontera-at-tacc-fhj-9-26-22">2.2.3. Compiling on Frontera at TACC (FHJ, 9/26/22)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-test-jobs">Running test jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#compiling-and-running-on-frontier">Compiling and running on Frontier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#alcf-polaris">2.2.4. ALCF Polaris</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#llnl-sierra-lassen">2.2.5. LLNL Sierra/Lassen</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#environment">Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#build-install-and-test">Build, Install and Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#open-a-shell-in-a-node">Open a shell in a node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-interactively">Running interactively</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#llnl-tioga-amd">2.2.6. LLNL Tioga (AMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#olcf-frontier-amd">2.2.7. OLCF Frontier (AMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#nersc-perlmutter-nvidia">2.2.8. NERSC Perlmutter (NVIDIA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#quartz">2.2.9. Quartz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#environment">Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#build-install-and-test">Build, Install and Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#open-a-shell-in-a-node">Open a shell in a node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-interactively">Running interactively</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-parallel-mpi-hdf5-for-inq">2.3. Compiling Parallel (MPI) HDF5 for INQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#cmake">2.4. CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#boost">2.5. BOOST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-boost-libraries">2.5.1. Install BOOST libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-boost">2.5.2. Install BOOST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">3. Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#total-energy">3.1. Total energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#pseudopotential-application">3.2. Pseudopotential application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#k-points">3.3. k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#hartree-fock-with-k-points">3.4. Hartree-Fock with k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#electric-fields-and-gauges">3.5. Electric fields and gauges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#coordinates">3.6. Coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#mini-cell-circumscribing-a-sphere">3.6.1. Mini cell circumscribing a sphere</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#preconditioner">3.7. Preconditioner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#exact-factorization">3.8. Exact factorization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#nuclear-eom">3.8.1. Nuclear EOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#electronic-equation-of-motion">3.8.2. Electronic equation of motion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#self-consistency-acceleration">3.9. Self-consistency acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#magnetization">3.10. Magnetization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_shell_python.html">4. Tutorial (Shell and Python)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#nitrogen-molecule">4.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#setting-up-the-run-directory">4.1.1. Setting up the run directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-simulation-parameters">4.1.2. Defining the simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#running-the-simulation">4.1.3. Running the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#querying-the-ground-state-results">4.1.4. Querying the ground-state results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#changing-the-ion-positions">4.1.5. Changing the ion positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#scripting-the-potential-energy-surface-of-n2">4.1.6. Scripting: the potential energy surface of N2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#benzene-optical-absorption-spectrum">4.2. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#simulation-parameters">4.2.1. Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#ground-state-calculation">4.2.2. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#first-time-propagation-finding-the-optimal-time-step">4.2.3. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#adding-a-perturbation">4.2.4. Adding a perturbation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-observables">4.2.5. Defining the observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#run-the-propagation">4.2.6. Run the propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#analyzing-the-results-and-obtaining-the-spectrum">4.2.7. Analyzing the results and obtaining the spectrum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_cpp.html">5. Tutorial (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#nitrogen-molecule">5.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#header">5.1.1. Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#electronic-system">5.1.2. Electronic system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#single-point-energy-calculation">5.1.3. Single point energy calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#potential-energy-surface">5.1.4. Potential energy surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#finding-the-minimum-energy-advanced">5.1.5. Finding the minimum energy (advanced)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#hydrogen-fluoride-molecule">5.2. Hydrogen fluoride molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#partial-charges">5.2.1. Partial charges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#hartee-fock">5.2.2. Hartee-Fock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#parallelization">5.2.3. Parallelization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#benzene-optical-absorption-spectrum">5.3. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#first-time-propagation-finding-the-optimal-time-step">5.3.1. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-perturbation-and-observables">5.3.2. Adding a perturbation and observables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#electronic-stopping">5.4. Electronic stopping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#aluminum-supercell">5.4.1. Aluminum supercell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-proton">5.4.2. Adding a proton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#ground-state-calculation">5.4.3. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#time-propagation">5.4.4. Time propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#results">5.4.5. Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers_guide.html">6. Developers Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#repository">6.1. Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#coding">6.2. Coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#debugging-code">6.3. Debugging code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="reference_magnitude.html">inq::magnitude</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-energy">inq::magnitude::energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-length">inq::magnitude::length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-time">inq::magnitude::time</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">inq::systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#inq-systems-cell">inq::systems::cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inq-systems-electrons">inq::systems::electrons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inq-systems-ions">inq::systems::ions</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">INQ</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">inq::systems</li>
+      <li class="wy-breadcrumbs-aside">
+          <a href="https://gitlab.com/npneq/inq"><img src="_static/gitlab.png" width="100" alt="gitlab"> </a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="reference_magnitude.html" class="btn btn-neutral float-left" title="inq::magnitude" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="inq-systems">
+<h1>inq::systems<a class="headerlink" href="#inq-systems" title="Permalink to this heading"></a></h1>
+<section id="inq-systems-cell">
+<h2>inq::systems::cell<a class="headerlink" href="#inq-systems-cell" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N3inq7systems4cellE">
+<span id="_CPPv3N3inq7systems4cellE"></span><span id="_CPPv2N3inq7systems4cellE"></span><span id="inq::systems::cell"></span><span class="target" id="classinq_1_1systems_1_1cell"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cell</span></span></span><a class="headerlink" href="#_CPPv4N3inq7systems4cellE" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N3inq7systems4cell5cubicE8quantityIN9magnitude6lengthEE">
+<span id="_CPPv3N3inq7systems4cell5cubicE8quantityIN9magnitude6lengthEE"></span><span id="_CPPv2N3inq7systems4cell5cubicE8quantityIN9magnitude6lengthEE"></span><span id="inq::systems::cell::cubic__quantity:magnitude::length:"></span><span class="target" id="classinq_1_1systems_1_1cell_1ac97940e8d14aaf43bc6b000fd796e8df"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">auto</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cubic</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">quantity</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">magnitude</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lat_par</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N3inq7systems4cell5cubicE8quantityIN9magnitude6lengthEE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Create a cubic cell. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lat_par</strong> – lattice parameter with units </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>cell </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N3inq7systems4cell11cell_metricE">
+<span id="_CPPv3N3inq7systems4cell11cell_metricE"></span><span id="_CPPv2N3inq7systems4cell11cell_metricE"></span><span id="inq::systems::cell::cell_metric"></span><span class="target" id="classinq_1_1systems_1_1cell_1_1cell__metric"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cell_metric</span></span></span><a class="headerlink" href="#_CPPv4N3inq7systems4cell11cell_metricE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="inq-systems-electrons">
+<h2>inq::systems::electrons<a class="headerlink" href="#inq-systems-electrons" title="Permalink to this heading"></a></h2>
+<p>Electrons are represented by the class <cite>systems::electrons</cite>.</p>
+<table class="docutils align-center" id="id1" style="width: 90%">
+<caption><span class="caption-text">options for <cite>options::electrons{}</cite></span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>System charge</p></td>
+<td><p><cite>.extra_electrons(N)</cite></p></td>
+<td><p>Adds <cite>N</cite> electrons to the system, on top of the ones included from the atoms. The value can be a decimal number and can be negative (to remove electrons). The default value is 0.0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Number of states</p></td>
+<td><p><cite>.extra_states(N)</cite></p></td>
+<td><p>Adds <cite>N</cite> extra states to the calculation, on top of the ones required for the electrons present. <cite>N</cite> must be an integer. The default is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>Temperature</p></td>
+<td><p><cite>.temperature(T)</cite></p></td>
+<td><p>Sets the temperature of the electrons to <cite>T</cite>. It must units of energy and must be positive. The default is 0.0_Ha. In inq Kelvin is a unit of energy, so for example you can use <cite>1000.0_K</cite> or <cite>1.0_eV</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spin polarization</p></td>
+<td><p><cite>.spin_unpolarized()</cite></p></td>
+<td><p>This function specifies that the electrons do not have spin polarization. This is the default.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p><cite>.spin_polarized()</cite></p></td>
+<td><p>(Experimental) Specifies collinear spin polarization.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><cite>.spin_non_collinear()</cite></p></td>
+<td><p>(Not implemented) Non collinear spin polarization.</p></td>
+</tr>
+<tr class="row-even"><td><p>Discretization</p></td>
+<td><p><cite>.cutoff(E)</cite></p></td>
+<td><p>Sets the energy cutoff for the Fourier space grid to <cite>E</cite>. It must be given in units of energy. There is no default, this value xor <cite>.spacing</cite> must be given.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p><cite>.spacing(h)</cite></p></td>
+<td><p>Set the spacing to <cite>h</cite>. It must be given in units of length. There is no default, this value xor <cite>.cutoff</cite> must be set. Note that the spacing will be changed to make it commensurable with the cell size in each dimension.</p></td>
+</tr>
+<tr class="row-even"><td><p>Double grid</p></td>
+<td><p><cite>.double_grid()</cite></p></td>
+<td><p>(Experimental) Uses the Double Grid method for the discretization of the pseudopotentials. This increases the convergence with the cutoff/spacing.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N3inq7systems9electronsE">
+<span id="_CPPv3N3inq7systems9electronsE"></span><span id="_CPPv2N3inq7systems9electronsE"></span><span id="inq::systems::electrons"></span><span class="target" id="classinq_1_1systems_1_1electrons"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">electrons</span></span></span><a class="headerlink" href="#_CPPv4N3inq7systems9electronsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="inq-systems-ions">
+<h2>inq::systems::ions<a class="headerlink" href="#inq-systems-ions" title="Permalink to this heading"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N3inq7systems4ionsE">
+<span id="_CPPv3N3inq7systems4ionsE"></span><span id="_CPPv2N3inq7systems4ionsE"></span><span id="inq::systems::ions"></span><span class="target" id="classinq_1_1systems_1_1ions"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ions</span></span></span><a class="headerlink" href="#_CPPv4N3inq7systems4ionsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reference_magnitude.html" class="btn btn-neutral float-left" title="inq::magnitude" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2025 Lawrence Livermore National Security, LLC., Xavier Andrade, Alfredo A. Correa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

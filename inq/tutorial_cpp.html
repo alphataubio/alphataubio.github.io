@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. Tutorial (C++) &mdash; INQ 0.95 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/lammps.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/inq_favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=1c4172e4"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Developers Guide" href="developers_guide.html" />
+    <link rel="prev" title="4. Tutorial (Shell and Python)" href="tutorial_shell_python.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/inq_logo.png" class="logo" alt="Logo"/>
+          </a>
+            <div class="lammps_version">Version: <b></b></div>
+            <div class="lammps_release">git info: 0.95</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. README</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#components">1.1. Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#basic-installation">1.2. Basic installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#reference">1.3. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#introductory-material">1.4. Introductory material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#release-information">1.5. Release information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#acknowledgment">1.6. Acknowledgment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compilation.html">2. Compilation and installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-and-running-on-a-local-computer">2.1. Compiling and running on a local computer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-dependencies-and-setup-environment">2.1.1. Install dependencies and setup environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#clone-repository">2.1.2. Clone repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#for-cpu-only-system">2.1.3. For CPU-only system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#for-an-nvidia-gpu-system-with-nvcc-11-x">2.1.4. For an Nvidia-GPU system (with NVCC 11.x)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#specific-computers">2.1.5. Specific computers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#manually-setting-utilization-of-multiple-gpu-with-mpi">2.1.6. Manually setting utilization of multiple GPU with MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#installing-gcc-for-cuda">2.1.7. Installing GCC for CUDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#mac-os-14">2.1.8. Mac OS 14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#recover-from-nvidia-device-error">2.1.9. Recover from Nvidia device error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-inq-on-supercomputing-clusters">2.2. Compiling INQ on Supercomputing Clusters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-perlmutter-at-nersc">2.2.1. Compiling on Perlmutter at NERSC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-lbnl-generic-linux-supercluster">2.2.2. Compiling on LBNL Generic Linux Supercluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-frontera-at-tacc-fhj-9-26-22">2.2.3. Compiling on Frontera at TACC (FHJ, 9/26/22)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-test-jobs">Running test jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#compiling-and-running-on-frontier">Compiling and running on Frontier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#alcf-polaris">2.2.4. ALCF Polaris</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#llnl-sierra-lassen">2.2.5. LLNL Sierra/Lassen</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#environment">Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#build-install-and-test">Build, Install and Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#open-a-shell-in-a-node">Open a shell in a node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-interactively">Running interactively</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#llnl-tioga-amd">2.2.6. LLNL Tioga (AMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#olcf-frontier-amd">2.2.7. OLCF Frontier (AMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#nersc-perlmutter-nvidia">2.2.8. NERSC Perlmutter (NVIDIA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#quartz">2.2.9. Quartz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#environment">Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#build-install-and-test">Build, Install and Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#open-a-shell-in-a-node">Open a shell in a node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-interactively">Running interactively</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-parallel-mpi-hdf5-for-inq">2.3. Compiling Parallel (MPI) HDF5 for INQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#cmake">2.4. CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#boost">2.5. BOOST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-boost-libraries">2.5.1. Install BOOST libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-boost">2.5.2. Install BOOST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">3. Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#total-energy">3.1. Total energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#pseudopotential-application">3.2. Pseudopotential application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#k-points">3.3. k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#hartree-fock-with-k-points">3.4. Hartree-Fock with k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#electric-fields-and-gauges">3.5. Electric fields and gauges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#coordinates">3.6. Coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#mini-cell-circumscribing-a-sphere">3.6.1. Mini cell circumscribing a sphere</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#preconditioner">3.7. Preconditioner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#exact-factorization">3.8. Exact factorization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#nuclear-eom">3.8.1. Nuclear EOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#electronic-equation-of-motion">3.8.2. Electronic equation of motion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#self-consistency-acceleration">3.9. Self-consistency acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#magnetization">3.10. Magnetization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_shell_python.html">4. Tutorial (Shell and Python)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#nitrogen-molecule">4.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#setting-up-the-run-directory">4.1.1. Setting up the run directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-simulation-parameters">4.1.2. Defining the simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#running-the-simulation">4.1.3. Running the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#querying-the-ground-state-results">4.1.4. Querying the ground-state results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#changing-the-ion-positions">4.1.5. Changing the ion positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#scripting-the-potential-energy-surface-of-n2">4.1.6. Scripting: the potential energy surface of N2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#benzene-optical-absorption-spectrum">4.2. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#simulation-parameters">4.2.1. Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#ground-state-calculation">4.2.2. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#first-time-propagation-finding-the-optimal-time-step">4.2.3. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#adding-a-perturbation">4.2.4. Adding a perturbation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-observables">4.2.5. Defining the observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#run-the-propagation">4.2.6. Run the propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#analyzing-the-results-and-obtaining-the-spectrum">4.2.7. Analyzing the results and obtaining the spectrum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Tutorial (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nitrogen-molecule">5.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#header">5.1.1. Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electronic-system">5.1.2. Electronic system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#single-point-energy-calculation">5.1.3. Single point energy calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#potential-energy-surface">5.1.4. Potential energy surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#finding-the-minimum-energy-advanced">5.1.5. Finding the minimum energy (advanced)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hydrogen-fluoride-molecule">5.2. Hydrogen fluoride molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#partial-charges">5.2.1. Partial charges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hartee-fock">5.2.2. Hartee-Fock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parallelization">5.2.3. Parallelization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#benzene-optical-absorption-spectrum">5.3. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#first-time-propagation-finding-the-optimal-time-step">5.3.1. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-a-perturbation-and-observables">5.3.2. Adding a perturbation and observables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#electronic-stopping">5.4. Electronic stopping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#aluminum-supercell">5.4.1. Aluminum supercell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-a-proton">5.4.2. Adding a proton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ground-state-calculation">5.4.3. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-propagation">5.4.4. Time propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">5.4.5. Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers_guide.html">6. Developers Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#repository">6.1. Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#coding">6.2. Coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#debugging-code">6.3. Debugging code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference_magnitude.html">inq::magnitude</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-energy">inq::magnitude::energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-length">inq::magnitude::length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-time">inq::magnitude::time</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference_systems.html">inq::systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-cell">inq::systems::cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-electrons">inq::systems::electrons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-ions">inq::systems::ions</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">INQ</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>Tutorial (C++)</li>
+      <li class="wy-breadcrumbs-aside">
+          <a href="https://gitlab.com/npneq/inq"><img src="_static/gitlab.png" width="100" alt="gitlab"> </a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="tutorial_shell_python.html" class="btn btn-neutral float-left" title="4. Tutorial (Shell and Python)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="developers_guide.html" class="btn btn-neutral float-right" title="6. Developers Guide" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorial-c">
+<h1><span class="section-number">5. </span>Tutorial (C++)<a class="headerlink" href="#tutorial-c" title="Permalink to this heading"></a></h1>
+<p>This sections explains how to download and compile inq_template.</p>
+<p>INQ is a C++ library, to run calculation you write a C++ source code that calls INQ functions. This might be cumbersome at the beginning but it gives the user a lot of power to get the code to whatever they want or need.</p>
+<p>To simplify the process of compiling INQ files we have created a project called <cite>inq_template</cite>.  It is a simple CMake project that automatically downloads Inq and many of its dependencies and compiles input files, so you don’t need to worry about the details of calling the compiler with all the correct flags.</p>
+<p>We will start by downloading <cite>inq_template</cite> using git with the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://gitlab.com/npneq/inq_template.git
+</pre></div>
+</div>
+<p>(Alternatively instead of using git, you can download a tarball from <a class="reference external" href="https://gitlab.com/npneq/inq_template/-/archive/main/inq_template-main.tar.gz">https://gitlab.com/npneq/inq_template/-/archive/main/inq_template-main.tar.gz</a> .)</p>
+<p>Once downloaded you will have a directory called <cite>inq_template/</cite>, enter the directory.</p>
+<p>We first need to create a directory where we will store the compiled files, call it <cite>build/</cite>. Enter into it. Now we need to configure <cite>inq_template</cite> using CMake.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--fresh<span class="w"> </span>../<span class="w"> </span>--install-prefix<span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/../install
+</pre></div>
+</div>
+<p>CMake is a tool that configures the code and creates all the build files. It has <a class="reference internal" href="compilation.html#cmake"><span class="std std-ref">several options related to INQ</span></a>. In particular GPU compilation needs some extra parameters.</p>
+<p>Some supercomputers (ie. Perlmutter, Polaris, Sierra, Frontier, …) might have more <a class="reference internal" href="compilation.html#supercomputers"><span class="std std-ref">sophisticated instructions</span></a>.</p>
+<p>Once the configuration is done you can compile and install with the commands</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>-j8
+make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>Note that the <cite>make install</cite> part is very important. INQ uses several files that have to be installed in the right location before running.</p>
+<p>We can test the compilation by running the nitrogen example included with <cite>inq_template</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>runs
+./nitrogen
+</pre></div>
+</div>
+<p>If you are working in a cluster or supercomputer you might need some machine-specific command to execute the program.</p>
+<p>With this done we are ready to go into the next, and more interesting, parts of the tutorial.</p>
+<section id="nitrogen-molecule">
+<h2><span class="section-number">5.1. </span>Nitrogen molecule<a class="headerlink" href="#nitrogen-molecule" title="Permalink to this heading"></a></h2>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">examples/nitrogen.cpp</span><a class="headerlink" href="#id1" title="Permalink to this code"></a></div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cm">/* -*- indent-tabs-mode: t -*- */</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1">// Copyright (C) 2019-2023 Lawrence Livermore National Security, LLC.,</span>
+<span class="linenos"> 4</span><span class="c1">// Xavier Andrade, Alfredo A. Correa</span>
+<span class="linenos"> 5</span><span class="c1">//</span>
+<span class="linenos"> 6</span><span class="c1">// This Source Code Form is subject to the terms of the Mozilla Public</span>
+<span class="linenos"> 7</span><span class="c1">// License, v. 2.0. If a copy of the MPL was not distributed with this</span>
+<span class="linenos"> 8</span><span class="c1">// file, You can obtain one at https://mozilla.org/MPL/2.0/.</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;inq/inq.hpp&gt;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">argv</span><span class="p">){</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">	</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">inq</span><span class="p">;</span>
+<span class="linenos">15</span><span class="w">	</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">inq</span><span class="o">::</span><span class="nn">input</span><span class="p">;</span>
+<span class="linenos">16</span><span class="w">	</span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">inq</span><span class="o">::</span><span class="nn">magnitude</span><span class="p">;</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">  </span><span class="n">inq</span><span class="o">::</span><span class="n">environment</span><span class="w"> </span><span class="nf">env</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+<span class="linenos">19</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">comm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpi3</span><span class="o">::</span><span class="n">environment</span><span class="o">::</span><span class="n">get_world_instance</span><span class="p">();</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.06</span><span class="w"> </span><span class="n">_angtrom</span><span class="p">;</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">atom</span><span class="o">&gt;</span><span class="w"> </span><span class="n">geo</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">  </span><span class="n">geo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;N&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">coord</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">distance</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">  </span><span class="n">geo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;N&quot;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">coord</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="n">distance</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">  </span><span class="n">systems</span><span class="o">::</span><span class="n">ions</span><span class="w"> </span><span class="nf">ions</span><span class="p">(</span><span class="n">systems</span><span class="o">::</span><span class="n">cell</span><span class="o">::</span><span class="n">cubic</span><span class="p">(</span><span class="mf">10.0</span><span class="w"> </span><span class="n">_bohr</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">cell</span><span class="o">::</span><span class="n">finite</span><span class="p">(),</span><span class="w"> </span><span class="n">geo</span><span class="p">);</span>
+<span class="linenos">28</span><span class="w">  </span><span class="n">systems</span><span class="o">::</span><span class="n">electrons</span><span class="w"> </span><span class="nf">electrons</span><span class="p">(</span><span class="n">comm</span><span class="p">,</span><span class="w"> </span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">basis</span><span class="o">::</span><span class="n">cutoff_energy</span><span class="p">(</span><span class="mf">80.0</span><span class="w"> </span><span class="n">_Ry</span><span class="p">));</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span><span class="w">  </span><span class="n">ground_state</span><span class="o">::</span><span class="n">initialize</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">);</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_state</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">,</span><span class="w"> </span><span class="n">interaction</span><span class="o">::</span><span class="n">pbe</span><span class="p">());</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="s">&quot;N2 energy = &quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">energy</span><span class="p">.</span><span class="n">total</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hartree</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>We will start by using, modifying and expanding the nitrogen molecule example included with <cite>inq_template</cite>.</p>
+<p>With the text editor of your choice (emacs, vim, or gedit are good options) go to the <cite>runs/</cite> directory in the inq_template source and open the <cite>nitrogen.cpp</cite> file. Be mindful that you have to <cite>runs/</cite> directories, one is <cite>inq_template/runs/</cite> that contains the source and the other one is <cite>inq_template/build/runs/</cite> that contains the compiled executable. Don’t confuse them.</p>
+<p>Let’s analyze the <cite>nitrogen.cpp</cite> file by sections to understand what it does.</p>
+<section id="header">
+<h3><span class="section-number">5.1.1. </span>Header<a class="headerlink" href="#header" title="Permalink to this heading"></a></h3>
+<p>The first lines of the file starting with <cite>//</cite> are comments. The first line instructs the editor to indent the code using tabs (just a convention we use in Inq). The next few lines are the copyright and license. The files of <cite>inq_template</cite> are licensed under the BSD 0-clause license, that imposes no restrictions on how to use the code. This is on purpose so you can use any part of <cite>inq_template</cite> in your project without worries of license infringement.</p>
+<p>Note, however, that INQ itself is licensed under the [Mozilla Public License 2.0](<a class="reference external" href="https://www.mozilla.org/en-US/MPL/2.0/">https://www.mozilla.org/en-US/MPL/2.0/</a>), this means that there are some [rules](<a class="reference external" href="https://www.mozilla.org/en-US/MPL/2.0/FAQ/">https://www.mozilla.org/en-US/MPL/2.0/FAQ/</a>) on how you can use Inq code. In particular any code, commercial or free, should be able link against Inq license issues.</p>
+<p>The first line of actual code is <cite>line 10</cite> that loads the INQ interface into the file, so the compiler knows how to call INQ. (This is equivalent to Python import command.)</p>
+<p>C++ implements the concept of _namespaces_, that allows to encapsulate a set of functions and types under a certain name to avoid name clases. All INQ objects are included under the <cite>inq</cite> namespace. So <cite>line 14</cite> tells the compiler we will call directly INQ objects without having to append <cite>inq::</cite> to each one of them.</p>
+<p><cite>Line 16</cite> allows the use of literal quantities with explicit units. These are not strictly necessary but make the code easier to type and understand.</p>
+<p><cite>Line 18</cite> creates an INQ environment variable <cite>env</cite> that takes care of the initialization of MPI and other components that might need it.</p>
+<p>Note that in the previous code we rely on a very useful feature of C++: the <cite>auto</cite> keyword. C++ needs that all variables are declared with an explicit type. But in some cases the compiler can figure out what type the variable is, for example when the value is returned by a function. We use <cite>auto</cite> extensively in INQ because it makes coding easier and more flexible.</p>
+</section>
+<section id="electronic-system">
+<h3><span class="section-number">5.1.2. </span>Electronic system<a class="headerlink" href="#electronic-system" title="Permalink to this heading"></a></h3>
+<p>As with most electronic structures codes, the main input for the program is the atoms that constitute the system and their positions. Since this is a diatomic molecule, the main parameter is the interatomic distance that we will set to 1.09 Angstrom and that we store in a variable called <cite>distance</cite> on <cite>Line 21</cite>:</p>
+<p>Note that in the INQ interface all dimensional variables must have explicit units, there is no default units.
+Check the [units supported by INQ](<a class="reference external" href="https://gitlab.com/npneq/inq/-/wikis/Units-supported-by-inq">https://gitlab.com/npneq/inq/-/wikis/Units-supported-by-inq</a>) to see if we have your favorites (sorry no nanoinches or Fahrenheit).</p>
+<p>Now we have to define the actual ions by created an <cite>ions</cite> variable.  As you might have guessed, this is the inq object that describes the ionic degrees of freedom of our system.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">ions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">systems</span><span class="o">::</span><span class="n">ions</span><span class="p">(</span><span class="n">systems</span><span class="o">::</span><span class="n">cell</span><span class="o">::</span><span class="n">orthorhombic</span><span class="p">(</span><span class="mf">10.0</span><span class="n">_b</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="n">_b</span><span class="p">,</span><span class="w"> </span><span class="mf">12.0</span><span class="n">_b</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>To create the ions we need to pass as an argument the cell where those atoms will be contained.
+In this case we use an orthorhombic (parallelepipedic) cell with dimensions 10x10x12 bohr.
+(You can also use the functions <cite>cubic</cite> and <cite>lattices</cite> to generate a cubic or non-orthogonal cell respectively.)</p>
+<p>Next we insert the two nitrogen atoms at positions (0, 0,-distance/2) and (0, 0,distance/2) with</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ions</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0</span><span class="n">_b</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="n">_b</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">distance</span><span class="o">/</span><span class="mi">2</span><span class="p">});</span>
+<span class="n">ions</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">0.0</span><span class="n">_b</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="n">_b</span><span class="p">,</span><span class="w">  </span><span class="n">distance</span><span class="o">/</span><span class="mi">2</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Note that zero is given as <cite>0.0_b</cite> or zero Bohr. Unfortunately we need to specify units for zero as well (due to C++ limitations).</p>
+<p>And once we have our system of ions, we should focus on the most important particle of the standard model: the electron. To create the <cite>electrons</cite> object we need the ions (so we know how many electrons are) and the plane wave cutoff energy, to determine the basis were we are going to describe the electrons. This is the code:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">electrons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">systems</span><span class="o">::</span><span class="n">electrons</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">par</span><span class="p">(),</span><span class="w"> </span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">electrons</span><span class="p">{}.</span><span class="n">cutoff</span><span class="p">(</span><span class="mf">30.0</span><span class="n">_Ha</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>We also pass the object env.par(), this object contains the information about the parallelization (essentially a communicator) so the electrons are distributed in parallel.</p>
+</section>
+<section id="single-point-energy-calculation">
+<h3><span class="section-number">5.1.3. </span>Single point energy calculation<a class="headerlink" href="#single-point-energy-calculation" title="Permalink to this heading"></a></h3>
+<p>Now that we have defined our electronic system, we want to calculate its energy by calculating the electronic ground state.</p>
+<p>We start by obtaining an initial guess for the orbitals and the density with</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ground_state</span><span class="o">::</span><span class="n">initial_guess</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This function gets an initial approximation for the density from atomic orbitals and generates random wave-functions for the electrons.</p>
+<p>Now that we have an initial guess, we call the function <cite>ground_state::calculate</cite> to run the self-consistency procedure and obtain the ground state:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_state</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">theory</span><span class="p">{}.</span><span class="n">pbe</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>The first two arguments are the ions and the electrons. The third argument is the theory we use for the electron-electron interaction, in this case density functional theory (DFT). There are other possibilities like <cite>non_interacting()</cite> or <cite>hartree_fock()</cite>, for example. The fourth argument are the options for the self-consistency cycle (SCF) used to calculate the ground state. In this particular case we select the conjugate gradient eigensolver and set the mixing parameter to 0.1.</p>
+<p>The <cite>ground_state::calculate</cite> function returns a value that we can use to get the properties of the ground state. So we have to “capture” it into a variable.</p>
+<p>Finally, as we get the result of calculation, we can do something with it. So, for example, we print the energy to the screen with</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">par</span><span class="p">().</span><span class="n">comm</span><span class="p">().</span><span class="n">root</span><span class="p">())</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The total energy is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">energy</span><span class="p">.</span><span class="n">total</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; Hartree &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <cite>if</cite> in front only makes sure that a single node prints the result when running in parallel.</p>
+<p>Now that we understand the program, let’s run it once more. It will take a bit of time to run, print a lot of stuff to the terminal and finally print the value of the energy using the line of code above. You should get something around <cite>-20.7743</cite>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is very likely that when you write a program you type things the compiler won’t understand, so your code won’t compile. We suggest you to recompile your code periodically as you add more instructions. That way you can easily detect where the errors are, as compiler error messages are not always easy to understand. Also, always read compiler error messages from the top, and fix the first error first.</p>
+</div>
+</section>
+<section id="potential-energy-surface">
+<h3><span class="section-number">5.1.4. </span>Potential energy surface<a class="headerlink" href="#potential-energy-surface" title="Permalink to this heading"></a></h3>
+<p>We calculated the energy for one interatomic distance, however this is not very useful since we just used an arbitrary value for that distance. One possibility is to calculate the energy for a range of distances so we obtain the potential energy (1D) surface for the nitrogen molecule.</p>
+<p>Using a standalone electronic structure package, generating a potential energy surface most likely would require you to do a run for each distance, by generating input files by hand or use a scripting language to generate them for you. Since we are already working on C++ it is straight forward to do it with INQ.</p>
+<p>Our code for this section is based on the code we provide with inq_template before.
+Since we are going to do multiple single point energy calculations, the first change we are going to do to the code is to define a new function called <cite>nitrogen_energy</cite>. This function will receive a distance as an argument and return the energy corresponding for that distance.</p>
+<p>First we create the function, telling the compiler the name of the new function, that it take two arguments. First the environment object (that we called <cite>env</cite>) and the distance we want to calculate</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">EnvType</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">DistanceType</span><span class="o">&gt;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">nitrogen_energy</span><span class="p">(</span><span class="n">EnvType</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="n">DistanceType</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">distance</span><span class="p">){</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We use <cite>template</cite> so we do not need to worry about the specific types of the arguments, the compiler will set the type automatic based on the arguments you pass.</p>
+<p>Note that you should add this line <em>before</em> the <cite>main</cite> function that we defined above.
+(C++ requires that functions are declared or defined before being used).</p>
+<p>Next, we move the code that we wrote to do the calculation, that up to now was inside main, inside the new function. There are some modifications we have to do, however. First, make sure that the line</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input</span><span class="o">::</span><span class="n">environment</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>stays inside main, since this code should be called once.
+Second. before we declared the <cite>distance</cite> variable. You have to remove that line, because the distance is now passed as an argument to the function and it is not fixed.</p>
+<p>Finally, we need to return the value of the energy that we calculated so it can be seen by the code that calls our function, this is done using the <cite>return</cite> statement. So at the end of the function we add <cite>return result.energy.total();</cite>.</p>
+<p>Before, we were printing the value of the energy to the terminal. You can remove the line that did that or if you prefer modify it so that it prints also the distance in the same line.</p>
+<p>Okay, so we have defined or new and shiny <cite>nitrogen_energy</cite> function. As you might have already realized, this function <em>is the potential energy surface</em> for nitrogen.</p>
+<p>We can do many things with this function. For example, we are going to print it to a file so we can plot it.</p>
+<p>To access the file input/output capabilities of C++ we need to load the proper include. In this case <cite>fstream</cite>. This is done with</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+</pre></div>
+</div>
+<p>at the beginning of the file, where the other includes are.</p>
+<p>Now we can use the <cite>ofstream</cite> object that opens a file for writing. As argument we have to pass the name of the file we want to open. For example:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">ofs</span><span class="p">{</span><span class="s">&quot;nitrogen_e_vs_d.dat&quot;</span><span class="p">};</span>
+</pre></div>
+</div>
+<p>This you have to do in the <cite>main</cite> function.</p>
+<p>Now that we have the file opened, let’s iterate over some distances and store the resulting energy to the file. This is the code:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">d_0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.8</span><span class="n">_A</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">del</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.025</span><span class="n">_A</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">n_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">n_max</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">){</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d_0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="o">*</span><span class="n">del</span><span class="p">;</span>
+<span class="w">        </span><span class="n">ofs</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">distance</span><span class="o">/</span><span class="mf">1.0</span><span class="n">_A</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\t&#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">nitrogen_energy</span><span class="p">(</span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="n">distance</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We first define the values that determine how we are going to scan the distances. We use 20 values starting from 0.8 angstrom with uniform increments of 0.025 atomic units. Note that this is the simplest approach but we can use any distances we want, and we could even use some adaptive scheme, using the previous results to refine the energy surface in the areas near the minimum, for example.</p>
+<p>Then we do the loop, iterating over the distances. For each iteration of the loop we print the distance and the energy of the nitrogen molecule for that distance. And that’s it.</p>
+<p>Now compile the code and run it. This time we are doing 20 calculations so it will take longer than before.</p>
+<p>Once the calculation is done, you should have the file <cite>nitrogen_e_vs_d.dat</cite> in your directory. Have a look at the file, you should have two columns data. Now use your favorite plotting program to plot the file and look at the curve. Does it look reasonable. Is it what you expected?</p>
+<p><strong>SPOILER ALERT</strong>, it should look something like this (hopefully prettier, unless you used excel):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mf">-20.2</span><span class="w"> </span><span class="o">+-------------------------------------------------------------------+</span>
+<span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">+</span><span class="w">      </span><span class="o">+</span><span class="w">     </span><span class="o">+</span><span class="w">      </span><span class="o">+</span><span class="w">      </span><span class="o">+</span><span class="w">      </span><span class="o">+</span><span class="w">      </span><span class="o">+</span><span class="w">     </span><span class="o">+</span><span class="w">      </span><span class="o">+</span><span class="w">      </span><span class="o">|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">                                     </span><span class="s">&quot;nitrogen_e_vs_d.dat&quot;</span><span class="w"> </span><span class="o">*******</span><span class="w"> </span><span class="o">|</span>
+<span class="mf">-20.3</span><span class="w"> </span><span class="o">|*+</span><span class="w">                                                               </span><span class="o">+-|</span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="o">*</span><span class="w">                                                                 </span><span class="o">|</span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="o">*</span><span class="w">                                                                 </span><span class="o">|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">  </span><span class="o">*</span><span class="w">                                                                </span><span class="o">|</span>
+<span class="mf">-20.4</span><span class="w"> </span><span class="o">|-+</span><span class="w"> </span><span class="o">*</span><span class="w">                                                             </span><span class="o">+-|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">    </span><span class="o">**</span><span class="w">                                                             </span><span class="o">|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">*</span><span class="w">                                                            </span><span class="o">|</span>
+<span class="mf">-20.5</span><span class="w"> </span><span class="o">|-+</span><span class="w">     </span><span class="o">**</span><span class="w">                                                        </span><span class="o">+-|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">         </span><span class="o">*</span><span class="w">                                                         </span><span class="o">|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">          </span><span class="o">**</span><span class="w">                                                       </span><span class="o">|</span>
+<span class="mf">-20.6</span><span class="w"> </span><span class="o">|-+</span><span class="w">          </span><span class="o">**</span><span class="w">                                                   </span><span class="o">+-|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">              </span><span class="o">**</span><span class="w">                                                   </span><span class="o">|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">                </span><span class="o">**</span><span class="w">                                                 </span><span class="o">|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">                  </span><span class="o">***</span><span class="w">                                              </span><span class="o">|</span>
+<span class="mf">-20.7</span><span class="w"> </span><span class="o">|-+</span><span class="w">                   </span><span class="o">****</span><span class="w">                                        </span><span class="o">+-|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">                         </span><span class="o">***</span><span class="w">                           </span><span class="o">**********</span><span class="w">  </span><span class="o">|</span>
+<span class="w">      </span><span class="o">|</span><span class="w">      </span><span class="o">+</span><span class="w">      </span><span class="o">+</span><span class="w">     </span><span class="o">+</span><span class="w">      </span><span class="o">+</span><span class="w"> </span><span class="o">***************************</span><span class="w">     </span><span class="o">+</span><span class="w">      </span><span class="o">|</span>
+<span class="mf">-20.8</span><span class="w"> </span><span class="o">+-------------------------------------------------------------------+</span>
+<span class="w">      </span><span class="mf">0.8</span><span class="w">    </span><span class="mf">0.85</span><span class="w">   </span><span class="mf">0.9</span><span class="w">   </span><span class="mf">0.95</span><span class="w">    </span><span class="mi">1</span><span class="w">     </span><span class="mf">1.05</span><span class="w">   </span><span class="mf">1.1</span><span class="w">    </span><span class="mf">1.15</span><span class="w">  </span><span class="mf">1.2</span><span class="w">    </span><span class="mf">1.25</span><span class="w">   </span><span class="mf">1.3</span>
+</pre></div>
+</div>
+</section>
+<section id="finding-the-minimum-energy-advanced">
+<h3><span class="section-number">5.1.5. </span>Finding the minimum energy (advanced)<a class="headerlink" href="#finding-the-minimum-energy-advanced" title="Permalink to this heading"></a></h3>
+<p>As we mentioned before, we don’t need to do a simple uniform sampling of the potential energy surface. For example, we can use the standalone function <cite>nitrogen_energy</cite> to run an optimization algorithm to find the equilibrium interatomic distance. While a specialized algorithm will not give the information about the whole of the potential energy surface, it can be more efficient if we are only interested in the minimum energy point.</p>
+<p>We can take advantage of the programmability of the inq library to do that. Since this is a one-dimensional problem we can bracket a (local) minimum with three points and work our way inwards to find the exact location of the minimum.</p>
+<p>Among the minimization methods in one dimension [Golden-ratio search](<a class="reference external" href="https://en.wikipedia.org/wiki/Golden-section_search">https://en.wikipedia.org/wiki/Golden-section_search</a>) is among the most robust and it is <em>guaranteed</em> to converge to the solution at a quadratic rate.</p>
+<p>Suppose we have already a function called <cite>golden_search(Function f, double a, double mid, double b)</cite> that can iteratively find a local minimum of the function <cite>f</cite> if the internval <cite>a</cite>, <cite>b</cite> and an internal point <cite>mid</cite> define a minimum ( <cite>f(a) &gt; f(mid)</cite> and <cite>f(mid) &lt; f(b)</cite> ).
+This function can be also programmed easily following well known implementations, for example [here](<a class="reference external" href="https://en.wikipedia.org/wiki/Golden-section_search#Termination_condition">https://en.wikipedia.org/wiki/Golden-section_search#Termination_condition</a>) or in the Numerical Recipes book.</p>
+<p>This would be an example usage of such function:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iomanip&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;limits&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w">       </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">golden_search</span><span class="p">(</span><span class="n">F</span><span class="w"> </span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">tol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-2</span><span class="p">){</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fxmin</span><span class="p">;</span><span class="w"> </span><span class="c1">// return variable</span>
+
+<span class="w">  </span><span class="c1">// golden ratios</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.61803399</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">R</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">f1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f1</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">while</span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">tol</span><span class="o">*</span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fabs</span><span class="p">(</span><span class="n">x2</span><span class="p">))){</span>
+
+<span class="w">    </span><span class="n">fxmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">f1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">f2</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">)</span><span class="o">:</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">setprecision</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">fxmin</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="s">&quot; &quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">fxmin</span><span class="p">.</span><span class="n">first</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;, exact bracket =[&quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="s">&quot;, &quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="s">&quot;]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">f2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">f1</span><span class="p">){</span>
+<span class="w">      </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x2</span><span class="p">;</span>
+<span class="w">      </span><span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="o">*</span><span class="n">x2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">C</span><span class="o">*</span><span class="n">b</span><span class="p">;</span>
+<span class="w">      </span><span class="n">f1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f2</span><span class="p">;</span>
+<span class="w">      </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x2</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x2</span><span class="p">;</span>
+<span class="w">      </span><span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">x1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="o">*</span><span class="n">x1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">C</span><span class="o">*</span><span class="n">a</span><span class="p">;</span>
+<span class="w">      </span><span class="n">f2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">f1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">fxmin</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="n">parabola</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">){</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">2.</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(){</span>
+<span class="w">  </span><span class="n">boost</span><span class="o">::</span><span class="n">mpi3</span><span class="o">::</span><span class="n">environment</span><span class="w"> </span><span class="n">env</span><span class="p">;</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">fx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">golden_search</span><span class="p">(</span><span class="w"> </span><span class="n">parabola</span><span class="p">,</span><span class="w"> </span><span class="mf">-1.</span><span class="p">,</span><span class="w"> </span><span class="mf">3.</span><span class="p">,</span><span class="w"> </span><span class="mf">6.</span><span class="p">,</span><span class="w"> </span><span class="mf">1e-2</span><span class="w"> </span><span class="p">);</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fx</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fx</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;min found at x = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; with value f = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that the function returns a pair of values, representing the minimum value achieved and the abscissas value (in that order) and that the first input parameter is a function itself (C++ allows passing a function to a function). This program should output a converged values near <cite>2.</cite> and <cite>0.</cite>, which is off course the minimum of the parabola <span class="math notranslate nohighlight">\((x - 2)^2\)</span>.</p>
+<p>The interesting fact is that <cite>golden_search</cite> is a function that can be written only once and used in different contexts, for example, to find the minimum of energy with respect to atomic distance in the nitrogen molecule. <cite>golden_search</cite> doesn’t need to know any particular detail about DFT or about atoms.</p>
+<p>Can you guess a minimal change to the main function above to determine the minimum for our problem of the nitrogen molecule instead of the toy function?</p>
+<p>Each iteration inside <cite>golden_search</cite> uses the previous calculation values to further bracket the minimum. Since the algorithm converges very fast, after only 8 calculation the minimum (distance) can be bracketed to several digits of precision.</p>
+<p>This precision would need a very fine <em>uniform</em> grid and many more calculations to determine the minimum without resorting to a model (e.g. quadratic or Morse expansion).</p>
+</section>
+</section>
+<section id="hydrogen-fluoride-molecule">
+<h2><span class="section-number">5.2. </span>Hydrogen fluoride molecule<a class="headerlink" href="#hydrogen-fluoride-molecule" title="Permalink to this heading"></a></h2>
+<p>We are going to continue with another diatomic molecule, this case is a tiny bit more interesting because is heteroatomic.</p>
+<p>Let’s calcule the ground state for the HF molecule. Your program should look very similar to the [nitrogen one](<a class="reference external" href="https://gitlab.com/npneq/inq/-/wikis/Tutorial:-nitrogen-molecule">https://gitlab.com/npneq/inq/-/wikis/Tutorial:-nitrogen-molecule</a>), except for the type of atoms, of course, and the distance that we can set at the experimental value of 1.795 atomic units.</p>
+<p>Also, for this case we are going to use a <span class="math notranslate nohighlight">\(8x8x8\)</span> bohr cell with finite boundary conditions. This can be defined as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">systems</span><span class="o">::</span><span class="n">cell</span><span class="o">::</span><span class="n">cubic</span><span class="p">(</span><span class="mf">8.0</span><span class="n">_b</span><span class="p">).</span><span class="n">finite</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>(this is what is passed as an argument to the ions).</p>
+<p>For this file we are going to need a new source file, and compile it. This is easy to do with <cite>inq_template</cite> by modifying the CMake compilation instructions. Edit the file <cite>inq_template/runs/CMakeLists.txt</cite>, you should see a line that reads:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">set</span><span class="p">(</span><span class="n">SOURCE_FILE_LIST</span><span class="w"> </span><span class="n">nitrogen</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That’s a list (of size one) of the source files that will be compiled. To add your new source file, just add it separated by spaces to the list, like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">set</span><span class="p">(</span><span class="n">SOURCE_FILE_LIST</span><span class="w"> </span><span class="n">nitrogen</span><span class="p">.</span><span class="n">cpp</span><span class="w"> </span><span class="n">my_shiny_new_file</span><span class="p">.</span><span class="n">cpp</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Save, and close the file. Now when you do <cite>make</cite> the new file will be compiled into a binary with the same name minus the <cite>.cpp</cite> extension.</p>
+<p>Now you can compile and (after fixing the compilation errors) run your example.</p>
+<section id="partial-charges">
+<h3><span class="section-number">5.2.1. </span>Partial charges<a class="headerlink" href="#partial-charges" title="Permalink to this heading"></a></h3>
+<p>Now comes the interesting part. What we are going to do an example of how we can calculate our own observable in inq. Something in other codes might be difficult since you cannot do that from the code input file. But now you can.</p>
+<p>HF has a polar bond, so we are going to calculate the charge state of the atoms in the molecule using a very simple approach: anything on the side of the cell where H is we will assume it belongs to its charge. And the same for F on the other side.</p>
+<p>So, in you code, after the ground state calculation add the following:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">density</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">electrons</span><span class="p">.</span><span class="n">density</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">basis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">density</span><span class="p">.</span><span class="n">basis</span><span class="p">();</span>
+
+<span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">h_charge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">f_charge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+
+<span class="w">      </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">basis</span><span class="p">.</span><span class="n">sizes</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span><span class="w"> </span><span class="n">ix</span><span class="o">++</span><span class="p">){</span>
+<span class="w">              </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">iy</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">basis</span><span class="p">.</span><span class="n">sizes</span><span class="p">()[</span><span class="mi">1</span><span class="p">];</span><span class="w"> </span><span class="n">iy</span><span class="o">++</span><span class="p">){</span>
+<span class="w">                      </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">iz</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">basis</span><span class="p">.</span><span class="n">sizes</span><span class="p">()[</span><span class="mi">2</span><span class="p">];</span><span class="w"> </span><span class="n">iz</span><span class="o">++</span><span class="p">){</span>
+
+<span class="w">                              </span><span class="k">auto</span><span class="w"> </span><span class="n">rr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">basis</span><span class="p">.</span><span class="n">point_op</span><span class="p">().</span><span class="n">rvector_cartesian</span><span class="p">(</span><span class="n">ix</span><span class="p">,</span><span class="w"> </span><span class="n">iy</span><span class="p">,</span><span class="w"> </span><span class="n">iz</span><span class="p">);</span>
+
+<span class="w">                              </span><span class="k">if</span><span class="p">(</span><span class="n">rr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w">  </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="n">h_charge</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">density</span><span class="p">.</span><span class="n">cubic</span><span class="p">()[</span><span class="n">ix</span><span class="p">][</span><span class="n">iy</span><span class="p">][</span><span class="n">iz</span><span class="p">];</span>
+<span class="w">                              </span><span class="k">if</span><span class="p">(</span><span class="n">rr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="n">f_charge</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">density</span><span class="p">.</span><span class="n">cubic</span><span class="p">()[</span><span class="n">ix</span><span class="p">][</span><span class="n">iy</span><span class="p">][</span><span class="n">iz</span><span class="p">];</span>
+<span class="w">                      </span><span class="p">}</span>
+<span class="w">              </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="n">h_charge</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">basis</span><span class="p">.</span><span class="n">volume_element</span><span class="p">();</span>
+<span class="w">      </span><span class="n">f_charge</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">basis</span><span class="p">.</span><span class="n">volume_element</span><span class="p">();</span>
+
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;H charge = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">h_charge</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;F charge = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">f_charge</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">7.0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Let’s analyze this code. First, we need to access the density. This is obtained from <cite>electrons</cite> using the a a member function called <cite>density()</cite>. The type of <cite>electrons.density()</cite> is a <cite>field</cite>, a type in inq that represents a mathematical field (or a mathematical 3-dimensional function). It contains a basis and an array of coefficients in that basis. In this case, the basis is a real-space grid but it can also be a Fourier space basis.</p>
+<p>Note that we assign the value of <cite>density()</cite> to a local variable, this is done because the actual density stored in <cite>electrons</cite> is the spin density that can have multiple components in spin polarized calculations.</p>
+<p>By storing in a local variable we avoid the total density to be recalculated every time.</p>
+<p>The first thing we do with the field is to make a copy of the basis object in a variable called <cite>basis</cite>. This is not strictly necessary, but we do it to make our code simpler and easier to read.</p>
+<p>Then we initialize to zero the variables <cite>h_charge</cite> and <cite>f_charge</cite> where we will hold each charge.</p>
+<p>Next we iterate over the three dimensions of the grid using three loops. For each point we call the function <cite>rvector_cartesian</cite>, that is a member of the basis, to obtain the vector <cite>rr</cite> that contains the real space position of each point. You should always use this function, since the position of each point it is <em>not</em> its coordinates multiplied by the spacing.</p>
+<p>To calculate the <em>z</em> coordinate of the point we simply access component <em>2</em> of <cite>rr</cite>. (Array indices start from 0 in C++). Based on the value of the <span class="math notranslate nohighlight">\(z\)</span> coordinate we sum the density to the charge of one atom or the other. To access the density we use the <cite>cubic</cite> member function of the <cite>field</cite> type, that returns an array representation of a field.</p>
+<p>After the loop, since we are doing an integral, we multiply by the volume element of the grid to obtain the charge with the proper normalization.</p>
+<p>Finally, we print the results subtracting the charge of each ion.</p>
+<p>Now run your code (warning, you have to do that in serial for now).
+What results do you get? Is this what you expected? How does it compare with better methods of obtaining partial charges?</p>
+</section>
+<section id="hartee-fock">
+<h3><span class="section-number">5.2.2. </span>Hartee-Fock<a class="headerlink" href="#hartee-fock" title="Permalink to this heading"></a></h3>
+<p>Since we are studying the HF molecule, let’s add another HF to the mix: Hartee-Fock.</p>
+<p>To do this we only need to switch the approach to calculate exchange we are using.
+Before we passed <cite>theory{}.pbe()</cite> to the <cite>ground_state::calculate()</cite> function, which instruct inq to do a DFT calculation with the PBE functiona;.
+We just need to change it to <cite>theory{}.hartree_fock()</cite> to do a Hartree-Fock.</p>
+<p>How do the partial charges change with HF with respect to PBE?
+Can you find a simple explanation for that difference?
+Note that you can use hybrid functionals like <cite>pbe0()</cite> or <cite>b3lyp()</cite> too.</p>
+</section>
+<section id="parallelization">
+<h3><span class="section-number">5.2.3. </span>Parallelization<a class="headerlink" href="#parallelization" title="Permalink to this heading"></a></h3>
+<p>The function we wrote so far only works in serial. When running in parallel, inq will assign different regions of space to different processors so we won’t have access to the full density from one processors.</p>
+<p>Let’s modify the code to make it work in parallel. Fortunately this is very simple to in INQ.</p>
+<p>The first change is in the loop. We iterate over the whole real space grid given by the <cite>basis.sizes()</cite> function. In parallel the <cite>density</cite> object doesn’t have that full range of values, only a partial range. To avoid this problems we simply use the <cite>basis.local_sizes()</cite> instead.</p>
+<p>Once we do the previous change each processor will calculate a part of the integral.
+To obtain the total integral value we need to sum all the partial contributions from each processor, this is a parallel operation known as _reduction_. This is how we can do that reduction in INQ:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">h_charge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">basis</span><span class="p">.</span><span class="n">comm</span><span class="p">().</span><span class="n">all_reduce_value</span><span class="p">(</span><span class="n">h_charge</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Inq uses a library called B.MPI3 for parallel communication, this is an interface to the standard MPI parallel programming library. The first thing we need to do communication operation is a communicator, an object that allows to pass messages between a group of processors. The particular communicator <cite>basis.comm()</cite> groups all processors that share the space distributed by INQ. Then we call the function <cite>all_reduce_value</cite> that will take the <cite>h_charge</cite> from all processors, sum it and return that sum to all nodes. We put the result back into the <cite>h_charge</cite> variable. Include this code and the equivalent for <cite>f_charge</cite> in your code.</p>
+<p>The last parallelization modification we need to do is cosmetic. Make sure that the partial charges are printed only by a single node (as it is done for the total energy in the nitrogen example).</p>
+<p>Now compile your code and run it. You can check that is correct by running with different number of processors and check that you get the same result as the serial version.</p>
+</section>
+</section>
+<section id="benzene-optical-absorption-spectrum">
+<h2><span class="section-number">5.3. </span>Benzene optical absorption spectrum<a class="headerlink" href="#benzene-optical-absorption-spectrum" title="Permalink to this heading"></a></h2>
+<p>Now we are going to move to the domain of time-dependent density functional theory (TDDFT) to calculate excited states properties. We will start by a simple case, the optical absorption of a molecule, in this case benzene.</p>
+<p>Create a new source code file <cite>benzene.cpp</cite> for this case (you start from the previous files you already have).</p>
+<p>This time, instead of passing the geometry in the input file we will load it from an XYZ file. Copy the following text to a file called <cite>benzene.xyz</cite> that should go in the source directory  (typically <cite>inq_template/runs</cite>):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span>
+<span class="n">Geometry</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">benzene</span><span class="w"> </span><span class="p">(</span><span class="n">in</span><span class="w"> </span><span class="n">Angstrom</span><span class="p">)</span>
+<span class="n">C</span><span class="w">  </span><span class="mf">0.000</span><span class="w">  </span><span class="mf">1.396</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">C</span><span class="w">  </span><span class="mf">1.209</span><span class="w">  </span><span class="mf">0.698</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">C</span><span class="w">  </span><span class="mf">1.209</span><span class="w"> </span><span class="mf">-0.698</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">C</span><span class="w">  </span><span class="mf">0.000</span><span class="w"> </span><span class="mf">-1.396</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">C</span><span class="w"> </span><span class="mf">-1.209</span><span class="w"> </span><span class="mf">-0.698</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">C</span><span class="w"> </span><span class="mf">-1.209</span><span class="w">  </span><span class="mf">0.698</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">H</span><span class="w">  </span><span class="mf">0.000</span><span class="w">  </span><span class="mf">2.479</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">H</span><span class="w">  </span><span class="mf">2.147</span><span class="w">  </span><span class="mf">1.240</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">H</span><span class="w">  </span><span class="mf">2.147</span><span class="w"> </span><span class="mf">-1.240</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">H</span><span class="w">  </span><span class="mf">0.000</span><span class="w"> </span><span class="mf">-2.479</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">H</span><span class="w"> </span><span class="mf">-2.147</span><span class="w"> </span><span class="mf">-1.240</span><span class="w">  </span><span class="mf">0.000</span>
+<span class="n">H</span><span class="w"> </span><span class="mf">-2.147</span><span class="w">  </span><span class="mf">1.240</span><span class="w">  </span><span class="mf">0.000</span>
+</pre></div>
+</div>
+<p>To load the XYZ into an ions object use the following code:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">ions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">systems</span><span class="o">::</span><span class="n">ions</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;../../runs/benzene.xyz&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="n">_b</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This simply tells inq to generate an ions object from the contents of an XYZ file. Since a standard XYZ does not contain information about the cell, we need to give this information as an extra argument. We could pass a full cell definition as before, but for convenience inq can also take a distance argument. This automatically creates a finite orthorhombic cell where no atom is closer than this distance to the cell boundaries. This is practical for molecular simulation where you need to converge the size of the cell.</p>
+<p>The electrons can be generated as usual from the ions. This time, however, instead of specifying the energy cutoff we will use the real-space grid spacing as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">electrons</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">systems</span><span class="o">::</span><span class="n">electrons</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">par</span><span class="p">(),</span><span class="w"> </span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">electrons</span><span class="p">{}.</span><span class="n">spacing</span><span class="p">(</span><span class="mf">0.43</span><span class="n">_b</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The first step in a TDDFT calculation is to calculate the ground state, that will set initial condition for our real-time simulation. Since we don’t want to repeat this calculation each time we do a real-time simulation we will save the contents of the electron object. The electrons object has a set of functions to do this: <cite>save</cite>, <cite>load</cite> and <cite>try_load</cite> that take a directory name as argument.</p>
+<p>The first thing we will do is to try to load the electrons from a previous calculation using <cite>try_load</cite>. If this is not found we run the ground state calculation and store the electrons for future runs using the <cite>save</cite> function. The code would look something like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">restart_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;benzene_restart&quot;</span><span class="p">;</span>
+
+<span class="k">if</span><span class="p">(</span><span class="k">not</span><span class="w"> </span><span class="n">electrons</span><span class="p">.</span><span class="n">try_load</span><span class="p">(</span><span class="n">restart_dir</span><span class="p">)){</span>
+
+<span class="w">  </span><span class="c1">// insert ground-state calculation here</span>
+
+<span class="w">  </span><span class="n">electrons</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">restart_dir</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that we used the <cite>try_load</cite> function. This function returns <cite>true</cite> if loading the electrons was successful and <cite>false</cite> otherwise. There is also the <cite>load</cite> function that will fail (throw a C++ exception) if the electrons can’t be loaded.</p>
+<section id="first-time-propagation-finding-the-optimal-time-step">
+<h3><span class="section-number">5.3.1. </span>First time propagation, finding the optimal time-step<a class="headerlink" href="#first-time-propagation-finding-the-optimal-time-step" title="Permalink to this heading"></a></h3>
+<p>Now that we have a ground state we can do a real-time calculation. This is done by the <cite>real_time::propagate</cite> function. That we will call like this to start:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">real_time</span><span class="o">::</span><span class="n">propagate</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">auto</span><span class="p">){},</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">theory</span><span class="p">{}.</span><span class="n">pbe</span><span class="p">(),</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">real_time</span><span class="p">{}.</span><span class="n">num_steps</span><span class="p">(</span><span class="mi">100</span><span class="p">).</span><span class="n">dt</span><span class="p">(</span><span class="mf">0.06</span><span class="n">_atomictime</span><span class="p">),</span><span class="w"> </span><span class="n">ions</span><span class="o">::</span><span class="n">propagator</span><span class="o">::</span><span class="n">fixed</span><span class="p">{});</span>
+</pre></div>
+</div>
+<p>The first two arguments are the ions and electrons, as you might have expected. The next argument is a function object that takes care of the output. More on this later, for the moment we will pass a C++ lambda that does nothing. The next argument is the theory level we will use, in this case PBE (note that this should match the ground-state). The following argument is an options object that specifies the simulation parameters. In this case the number of steps, 100, and the time-step for the integration of the real-time integration of the equations. The last argument is the propagator for the ions, in this case we just keep them fixed.</p>
+<p>The time step is a crucial quantity in a real-time propagation. If the time step is too large the simulation is unstable, if it is too small the calculation would be slower than necessarily. The time-step depends on the energy cutoff/spacing used for the simulation and possibly other parameters, so we should optimize it for each case.</p>
+<p>So our first task will be to find the optimal time-step for this case. After you add the propagation line above to your file, compile it and run it. If this is the first time you run the calculation will run the ground state first and then start the time propagation that looks something like this:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mf">37.422</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">trace</span><span class="p">]</span><span class="w"> </span><span class="n">initializing</span><span class="w"> </span><span class="n">real</span><span class="o">-</span><span class="n">time</span><span class="w"> </span><span class="n">propagation</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mf">38.291</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">trace</span><span class="p">]</span><span class="w"> </span><span class="n">starting</span><span class="w"> </span><span class="n">real</span><span class="o">-</span><span class="n">time</span><span class="w"> </span><span class="n">propagation</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mf">38.291</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="n">step</span><span class="w">         </span><span class="mi">0</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.000</span><span class="w">  </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-39.547750046526</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mf">44.393</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="n">step</span><span class="w">         </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.070</span><span class="w">  </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-39.547748358955</span><span class="w">  </span><span class="n">wtime</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="mf">6.102</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mf">50.494</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="n">step</span><span class="w">         </span><span class="mi">2</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.140</span><span class="w">  </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-39.547744602062</span><span class="w">  </span><span class="n">wtime</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="mf">6.101</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">11</span><span class="o">:</span><span class="mi">59</span><span class="o">:</span><span class="mf">56.653</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="n">step</span><span class="w">         </span><span class="mi">3</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.210</span><span class="w">  </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-39.547740102704</span><span class="w">  </span><span class="n">wtime</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="mf">6.158</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">12</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mf">02.766</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="n">step</span><span class="w">         </span><span class="mi">4</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.280</span><span class="w">  </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-39.547736828841</span><span class="w">  </span><span class="n">wtime</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="mf">6.113</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">12</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mf">08.904</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="n">step</span><span class="w">         </span><span class="mi">5</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.350</span><span class="w">  </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-39.547731719913</span><span class="w">  </span><span class="n">wtime</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="mf">6.138</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">12</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mf">15.007</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="n">step</span><span class="w">         </span><span class="mi">6</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.420</span><span class="w">  </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-39.547725301627</span><span class="w">  </span><span class="n">wtime</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="mf">6.103</span>
+<span class="p">[</span><span class="mi">2023</span><span class="mo">-06</span><span class="mi">-29</span><span class="w"> </span><span class="mi">12</span><span class="o">:</span><span class="mo">00</span><span class="o">:</span><span class="mf">21.133</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">electrons</span><span class="o">:</span><span class="n">X9Dt3Q</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="n">info</span><span class="p">]</span><span class="w"> </span><span class="n">step</span><span class="w">         </span><span class="mi">7</span><span class="w"> </span><span class="o">:</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w">      </span><span class="mf">0.490</span><span class="w">  </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-39.547719146148</span><span class="w">  </span><span class="n">wtime</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="mf">6.126</span>
+<span class="p">...</span>
+</pre></div>
+</div>
+<p>We are interested in the energy values that start with <cite>e = …</cite>. Since our system does not have any (time-dependent) perturbation yet the energy should be conserved. But in this case we have deliberately chosen a too-large time step that will make the energy increase rapidly because the simulation is unstable. Let it run for some steps to convince your self that is the case.</p>
+<p>Now modify the time-step in your input and see what happens with the energy values. Repeat this until you find the largest value of the time-step that give you a stable energy. Note that we are looking for stability rather than exact energy conservation, with a proper time-step the energy will oscillate around a value instead of exploding.</p>
+</section>
+<section id="adding-a-perturbation-and-observables">
+<h3><span class="section-number">5.3.2. </span>Adding a perturbation and observables<a class="headerlink" href="#adding-a-perturbation-and-observables" title="Permalink to this heading"></a></h3>
+<p>Now that you have found the optimal step, let’s do some more physically interesting. Up to now our propagation doesn’t have any perturbation, so it stays in the ground-state just changing the phase of the orbitals. We also don’t observe any quantities during the propagation. Let’s change that.</p>
+<p>INQ defines the concept of a perturbation, a code object that is applied during the propagation. Note that a perturbation does not necessarily have to be small, real-time TDDFT can give the response to strongly driven systems as well.</p>
+<p>We will start by defining a kick, this is an electric field perturbation of the form <span class="math notranslate nohighlight">\(\vec{E}(r, t)=\vec{\kappa}\delta(t\)\)</span>. The advantage of a kick is that it is flat in Fourier space, so it excites all frequencies equally, making it useful for linear response calculations.</p>
+<p>In INQ we define a kick as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">kick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">perturbations</span><span class="o">::</span><span class="n">kick</span><span class="p">(</span><span class="n">ions</span><span class="p">.</span><span class="n">cell</span><span class="p">(),</span><span class="w"> </span><span class="p">{</span><span class="mf">0.01</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>where the two arguments are the cell and a vector defining the amplitude and direction of the electric field.</p>
+<p>The other object we are going to define is a function that takes care of the output of the dipole and the calculation of the absorption spectrum. This code is a bit more sophisticated:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">timestep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.02</span><span class="n">_atomictime</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">nsteps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="n">_fs</span><span class="o">/</span><span class="n">timestep</span><span class="p">;</span>
+
+<span class="n">gpu</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">time</span><span class="p">(</span><span class="n">nsteps</span><span class="p">);</span>
+<span class="n">gpu</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dip</span><span class="p">(</span><span class="n">nsteps</span><span class="p">);</span>
+
+<span class="k">auto</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="p">){</span>
+
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">iter</span><span class="p">();</span>
+<span class="w">  </span><span class="n">time</span><span class="p">[</span><span class="n">iter</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">time</span><span class="p">();</span>
+<span class="w">  </span><span class="n">dip</span><span class="p">[</span><span class="n">iter</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">dipole</span><span class="p">()[</span><span class="mi">0</span><span class="p">];</span>
+
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">root</span><span class="p">()</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">every</span><span class="p">(</span><span class="mi">100</span><span class="p">)){</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">spectrum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">observables</span><span class="o">::</span><span class="n">spectrum</span><span class="p">(</span><span class="mf">20.0</span><span class="n">_eV</span><span class="p">,</span><span class="w"> </span><span class="mf">0.01</span><span class="n">_eV</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">}),</span><span class="w"> </span><span class="n">dip</span><span class="p">({</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">}));</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">file</span><span class="p">(</span><span class="s">&quot;spectrum.dat&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ifreq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ifreq</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">spectrum</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">ifreq</span><span class="o">++</span><span class="p">){</span>
+<span class="w">      </span><span class="n">file</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ifreq</span><span class="o">*</span><span class="mf">0.01</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\t&#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">real</span><span class="p">(</span><span class="n">spectrum</span><span class="p">[</span><span class="n">ifreq</span><span class="p">])</span><span class="w">  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\t&#39;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">imag</span><span class="p">(</span><span class="n">spectrum</span><span class="p">[</span><span class="n">ifreq</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Let’s analyze this. The first thing we do is create constants for the time step and number of time steps (through defining a propagation time), we have to pass this in the time propagation. Once we do this we can define a set of array where we will store the propagation data.</p>
+<p>The next part can be a bit tricky for C++ beginners. We create a lambda function called <cite>output</cite> that will be called each time-step by the time propagation code. This function has access to many observables during the propagation by accessing the argument <cite>data</cite>. In this case we obtain the iteration iteration number <cite>data.iter()</cite>, the real-time <cite>data.time()</cite>, and the <span class="math notranslate nohighlight">\(x\)</span> component of the dipole, <cite>data.dipole()</cite>.</p>
+<p>The rest of the function calculates the Fourier transform of the dipole. Since we perturbed our system with an electric field, the Fourier transform of the time-dependent dipole function is the polarizability. In this particular case we will calculate <span class="math notranslate nohighlight">\(\alpha_{11}\)</span>, the <span class="math notranslate nohighlight">\(xx\)</span> component of the polarizabilty tensor, as we perturbed the system in the <span class="math notranslate nohighlight">\(x\)</span> direction and we are looking at the <span class="math notranslate nohighlight">\(x\)</span> component of the dipole. To calculate the full tensor we would need 3 different time propagation with perturbations in each direction.</p>
+<p>The <cite>if</cite> statements make sure we only calculate and write the file in the first node in parallel and that we only do it every 100 iterations (<cite>data.every(N)</cite> is true for all iterations that are multiples of <cite>N</cite>, except iteration 0, and also true for the last iteration). Then we use the <cite>observables::spectrum</cite> function to calculate the windowed Fourier transform of the dipole time-series that has been calculated so far. It receives as argument the maximum energy, the energy spacing, and the arrays containing the time and the function to be transformed. We finally open a file and write the spectrum to it.</p>
+<p>Note that we could include the calculation of the spectrum at the end of the simulation, however by continuously generating it we can closely monitor the simulation and what is the effect of the length of the simulation in the spectrum resolution.</p>
+<p>The last thing to do is to include these changes in the call to the propagation functions:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">real_time</span><span class="o">::</span><span class="n">propagate</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">theory</span><span class="p">{}.</span><span class="n">pbe</span><span class="p">(),</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">real_time</span><span class="p">{}.</span><span class="n">num_steps</span><span class="p">(</span><span class="n">nsteps</span><span class="p">).</span><span class="n">dt</span><span class="p">(</span><span class="n">timestep</span><span class="p">),</span><span class="w"> </span><span class="n">ions</span><span class="o">::</span><span class="n">propagator</span><span class="o">::</span><span class="n">fixed</span><span class="p">{},</span><span class="w"> </span><span class="n">kick</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>We have added <cite>output</cite> instead of an empty function as the third argument, used the new <cite>nsteps</cite> and <cite>timestep</cite> variables as options and added an extra argument with the <cite>kick</cite> object.</p>
+<p>Now we can compile and run again. Since we specified a very short simulation time, 0.1 fs, this should be very quick. If you plot the <cite>spectrum.dat</cite> file you will see that the spectrum doesn’t make much sense because this time is too short as the energy resolution is of the order of <span class="math notranslate nohighlight">\(\hbar\)</span> over the simulation time, in this case <span class="math notranslate nohighlight">\(\hbar/0.1\mathrm{fs} \sim 1 eV\)</span>.</p>
+<p>So we need to increase the simulation time to something reasonable like <span class="math notranslate nohighlight">\(5\)</span> or <span class="math notranslate nohighlight">\(10\)</span> fs. Can you estimate how long it will take to run in your machine? (Note that inq prints the time it take for each iteration.)</p>
+<p>Since this will be a long simulation, there are things we should consider:</p>
+<ul class="simple">
+<li><p>It will be useful to have the time-dependent dipole stored into a file, so we can plot it or do some other post-processing. Maybe you can try doing it. (Note that our lambda can access all the variables defined outside in the code.)</p></li>
+<li><p>You might want to implement is to name label each spectrum file with the iteration or time, so you can see how the simulation time affect the spectrum. The [<cite>std::to_string</cite>](<a class="reference external" href="https://en.cppreference.com/w/cpp/string/basic_string/to_string">https://en.cppreference.com/w/cpp/string/basic_string/to_string</a>) function might be useful for that.</p></li>
+<li><p>The experimentally relevant quantity is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[S(\omega) = \frac{2\omega}{\pi}\Im\left(\alpha(\omega)\right)\]</div>
+<p>so it would be interesting to plot that. Remember that the response should be properly normalized by the intensity of the perturbation.
+* The Thomas-Reiche-Kuhn <span class="math notranslate nohighlight">\(f\)</span>-sum rule for the number of electrons, states that</p>
+<div class="math notranslate nohighlight">
+\[N=\int \mathrm{d}\omega S(\omega)\ ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of (valence) electrons.</p>
+<p>All of these imply additional calculations we might want to do.
+Do you think it would be better to do them on-the-fly when you run the calculation, or save the data and write a post-processing utility?</p>
+<p>Write your code with the changes you consider interesting and plot the resulting spectrum.
+Is the sum rule fulfilled?</p>
+</section>
+</section>
+<section id="electronic-stopping">
+<h2><span class="section-number">5.4. </span>Electronic stopping<a class="headerlink" href="#electronic-stopping" title="Permalink to this heading"></a></h2>
+<p>In this tutorial we will be simulating a particle, a proton in this case, entering a material, Aluminum. As the particle moves through the material, it feels a drag force. At low speed, this force is caused by the interaction with the ions of the material. At high speeds, however, the force is caused by the interaction of the particle with the electrons of the material. This process is known as electronic stopping.</p>
+<p>In order to accurately simulate the interaction of the proton with the electrons, we need to use non-adiabatic dynamics where we allow the electrons to get excited. So in this example we will be using TDDFT to model the electrons.</p>
+<section id="aluminum-supercell">
+<h3><span class="section-number">5.4.1. </span>Aluminum supercell<a class="headerlink" href="#aluminum-supercell" title="Permalink to this heading"></a></h3>
+<p>To properly simulate the stopping process in a periodic simulation we need to use a supercell to avoid the interaction of the proton with its periodic replicas.</p>
+<p>To generate the supercell we will use the following code:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">alat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7.6524459</span><span class="n">_bohr</span><span class="p">;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">reps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector3</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">contravariant</span><span class="o">&gt;</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector3</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">contravariant</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">cell</span><span class="p">;</span>
+
+<span class="n">cell</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+<span class="n">cell</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">cell</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span>
+<span class="n">cell</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+
+<span class="n">systems</span><span class="o">::</span><span class="n">ions</span><span class="w"> </span><span class="nf">ions</span><span class="p">(</span><span class="n">systems</span><span class="o">::</span><span class="n">cell</span><span class="o">::</span><span class="n">orthorhombic</span><span class="p">(</span><span class="n">reps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">alat</span><span class="p">,</span><span class="w"> </span><span class="n">reps</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">alat</span><span class="p">,</span><span class="w"> </span><span class="n">reps</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">alat</span><span class="p">));</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">ix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ix</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">reps</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"> </span><span class="n">ix</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">iy</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">reps</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="w"> </span><span class="n">iy</span><span class="o">++</span><span class="p">){</span>
+<span class="w">                </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">iz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">iz</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">reps</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"> </span><span class="n">iz</span><span class="o">++</span><span class="p">){</span>
+<span class="w">                        </span><span class="k">auto</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vector3</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="n">contravariant</span><span class="o">&gt;</span><span class="p">{</span><span class="kt">double</span><span class="p">(</span><span class="n">ix</span><span class="p">),</span><span class="w"> </span><span class="kt">double</span><span class="p">(</span><span class="n">iy</span><span class="p">),</span><span class="w"> </span><span class="kt">double</span><span class="p">(</span><span class="n">iz</span><span class="p">)};</span>
+<span class="w">                        </span><span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">iatom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">iatom</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cell</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">iatom</span><span class="o">++</span><span class="p">){</span>
+<span class="w">                                </span><span class="n">ions</span><span class="p">.</span><span class="n">insert_fractional</span><span class="p">(</span><span class="s">&quot;Al&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">base</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cell</span><span class="p">[</span><span class="n">iatom</span><span class="p">])</span><span class="o">/</span><span class="n">reps</span><span class="p">);</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Let’s analyze this code. We first define <cite>alat</cite> that is the lattice parameter for aluminum. Then a 3d vector of integers called <cite>reps</cite> initialized as {2, 2, 2}. This vector defines the repetitions of the cells for each dimension, by adjusting it we can easily define the size of our supercell without changing the rest of the code. For the tutorial we will keeps this 2x2x2 size, however for actual production calculations you certainly need a larger supercell.</p>
+<p>The next part is creating an C++ array (of type <cite>std::vector</cite>) with the positions of the Al atoms in the conventional cell, this is the pattern we will repeat to create the supercell.</p>
+<p>We then create the <cite>ions</cite> object with an orthorhombic cell whose size is determined by the repetitions for each dimension. Finally we insert all the ions, to do this we loop for each repetition of the cell in each dimension. The key line of code here is:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ions</span><span class="p">.</span><span class="n">insert_fractional</span><span class="p">(</span><span class="s">&quot;Al&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">base</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cell</span><span class="p">[</span><span class="n">iatom</span><span class="p">])</span><span class="o">/</span><span class="n">reps</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>As you might remember from previous tutorials we used the <cite>ions.insert</cite> function. We now use <cite>ions.insert_fractional</cite> that takes inserts an atom with the position given in reduces coordinates. The <cite>base</cite> 3D vector determines the offset of each repetition of the conventional cell, that we add to the coordinates of each atom. Finally, we have to divide the relative coordinates by the number of repetitions in each dimension so we get the fractionary coordinates properly normalized to the supercell.</p>
+</section>
+<section id="adding-a-proton">
+<h3><span class="section-number">5.4.2. </span>Adding a proton<a class="headerlink" href="#adding-a-proton" title="Permalink to this heading"></a></h3>
+<p>The next step is to add the proton, a hydrogen atom, that is the one that will be stopped. We need to put in a position of the cell where it is not close to any of the Al atoms. Finally we need to give it a velocity for the molecular dynamics simulation. We do all that with the following code:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ions</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">alat</span><span class="o">/</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="n">alat</span><span class="o">/</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="n">alat</span><span class="o">/</span><span class="mf">4.0</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Since we will need to access the data for this ion several times, we put it first in the cell so it has 0 index in the ions. This means you must insert the code above before the loop that insert the Al atoms.</p>
+</section>
+<section id="ground-state-calculation">
+<h3><span class="section-number">5.4.3. </span>Ground state calculation<a class="headerlink" href="#ground-state-calculation" title="Permalink to this heading"></a></h3>
+<p>We are now ready to create the electrons, there are a few parameters that we need to add. This is the code:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">systems</span><span class="o">::</span><span class="n">electrons</span><span class="w"> </span><span class="nf">electrons</span><span class="p">(</span><span class="n">env</span><span class="p">.</span><span class="n">par</span><span class="p">(),</span><span class="w"> </span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">electrons</span><span class="p">{}.</span><span class="n">spacing</span><span class="p">(</span><span class="n">alat</span><span class="o">/</span><span class="mi">16</span><span class="p">).</span><span class="n">extra_states</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">product</span><span class="p">(</span><span class="n">reps</span><span class="p">)).</span><span class="n">temperature</span><span class="p">(</span><span class="mf">1000.0</span><span class="n">_K</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>We first set the grid spacing to the lattice parameter divided by 16, this value might be a bit too big for production calculations but it works for this tutorial.</p>
+<p>Since the system is a metal we add some extra states, 2 per repetition of the cell, and set the electronic temperature to 1000 Kelvin. Note that in inq Kelvin is a unit of energy (technically Kelvin times the Boltzmann constant.)</p>
+<p>Now we can do the ground state calculation, as before we avoid recalculating the ground state each time by saving it to disk and reloading it. The only new thing is we use a smaller mixing (0.1) than the default (0.3):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">restart_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;aluminum_restart&quot;</span><span class="p">;</span>
+
+<span class="k">if</span><span class="p">(</span><span class="k">not</span><span class="w"> </span><span class="n">electrons</span><span class="p">.</span><span class="n">try_load</span><span class="p">(</span><span class="n">restart_dir</span><span class="p">)){</span>
+<span class="w">        </span><span class="n">ground_state</span><span class="o">::</span><span class="n">initial_guess</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">);</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ground_state</span><span class="o">::</span><span class="n">calculate</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">,</span><span class="w"> </span><span class="n">functional</span><span class="p">,</span><span class="w"> </span><span class="n">inq</span><span class="o">::</span><span class="n">options</span><span class="o">::</span><span class="n">ground_state</span><span class="p">{}.</span><span class="n">mixing</span><span class="p">(</span><span class="mf">0.1</span><span class="p">));</span>
+<span class="w">        </span><span class="n">electrons</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">restart_dir</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="time-propagation">
+<h3><span class="section-number">5.4.4. </span>Time propagation<a class="headerlink" href="#time-propagation" title="Permalink to this heading"></a></h3>
+<p>We are ready now to do the time propagation. The first thing we should do is to give the proton a velocity. We will start with a value of 0.5 atomic units in the z direction:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span><span class="w"> </span><span class="n">vel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="p">;</span>
+<span class="w">      </span><span class="n">ions</span><span class="p">.</span><span class="n">velocities</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vel</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>INQ doesn’t use defined units for velocity at the moment.</p>
+</div>
+<p>For a stopping simulation we simulate a time long enough for the ion to go through the whole unit cell one time. So we set the number as simulations as:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.06</span><span class="n">_atomictime</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">nsteps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">alat</span><span class="p">.</span><span class="n">in_atomic_units</span><span class="p">()</span><span class="o">*</span><span class="n">reps</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="n">vel</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">.</span><span class="n">in_atomic_units</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Take a couple of minutes to understand this last line.</p>
+<p>Now we have to set the output. The quantity we want to calculate is the stopping “power”, which can be understood as the drag force that the proton feels as it moves through the material. So can calculate the force over the proton, in the z direction for each time to get an idea of the stopping. We will also output the total energy:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">gpu</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">time</span><span class="p">(</span><span class="n">nsteps</span><span class="p">);</span>
+<span class="n">gpu</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">force</span><span class="p">(</span><span class="n">nsteps</span><span class="p">);</span>
+<span class="n">gpu</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">energy</span><span class="p">(</span><span class="n">nsteps</span><span class="p">);</span>
+
+<span class="k">auto</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">obs</span><span class="p">){</span>
+
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">iter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obs</span><span class="p">.</span><span class="n">iter</span><span class="p">();</span>
+
+<span class="w">        </span><span class="n">time</span><span class="p">[</span><span class="n">iter</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obs</span><span class="p">.</span><span class="n">time</span><span class="p">();</span>
+<span class="w">        </span><span class="n">force</span><span class="p">[</span><span class="n">iter</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obs</span><span class="p">.</span><span class="n">forces</span><span class="p">(</span><span class="mi">0</span><span class="p">)[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">        </span><span class="n">energy</span><span class="p">[</span><span class="n">iter</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obs</span><span class="p">.</span><span class="n">energy</span><span class="p">().</span><span class="n">total</span><span class="p">();</span>
+
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Finally we are ready to set up the propagation:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">real_time</span><span class="o">::</span><span class="n">propagate</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">ions</span><span class="p">,</span><span class="w"> </span><span class="n">electrons</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="n">functional</span><span class="p">,</span><span class="w"> </span><span class="n">options</span><span class="o">::</span><span class="n">real_time</span><span class="p">{}.</span><span class="n">num_steps</span><span class="p">(</span><span class="n">nsteps</span><span class="p">).</span><span class="n">dt</span><span class="p">(</span><span class="n">dt</span><span class="p">),</span><span class="w"> </span><span class="n">ions</span><span class="o">::</span><span class="n">propagator</span><span class="o">::</span><span class="n">impulsive</span><span class="p">{});</span>
+</pre></div>
+</div>
+<p>Instead of using regular molecular dynamics for the ions we are going to use impulsive dynamics. This forces the ions to move without changing their velocities. Since electronic stopping is a very fast process we can neglect the loss of speed of the proton, or the movement of the ions of the material.</p>
+<p>After the calculation we calculate the average stopping power and print it:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">average_force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">ii</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">time</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">ii</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">average_force</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">force</span><span class="p">[</span><span class="n">ii</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="n">average_force</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">time</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Average force = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">average_force</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="results">
+<h3><span class="section-number">5.4.5. </span>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h3>
+<p>We are now ready to compile and run the calculation.</p>
+<p>Now go to a plotting tool and have a look at minus the force in the x direction as a function of time. This is the instantaneous stopping power. Why do you think there are oscillations in the force?</p>
+<p>Does the number you get looks reasonable? What is the sign of the force? Compare it with the plot you just made.</p>
+<p>Have a look at the value of total energy during your propagation. You will see that the energy is not conserved. Can you explain why? You can also get the electronic stopping from the slope of this curve.</p>
+<p>Now, we want to see how the electronic stopping changes with respect to the velocity of the particle. So repeat your calculations for larger velocities, I suggest you do calculations for the values 0.5, 1, 1.5, 2, 3, 4, and 5 a.u.. If the calculations run fast in your system, you can add more points. You can also consider that for 0 velocity the stopping power is 0. Note that you have to adjust the simulation time for each velocity so that in each case the particle travels through the unit cell once.</p>
+<p>Plot the stopping power as a function of the velocity. What is the location of the maximum? Can you guess why the curve has that shape?</p>
+<p>In order to make things run quickly, the parameters we use in this tutorial are not converged. If you want to make predictions you should properly converge the calculation with respect to the energy cutoff and supercell size. You might also need to include semicore states in your aluminum pseudopotential, specially for high electronic velocities.</p>
+<p>If you want to know more details about electronic stopping calculations, you can check the following [paper](<a class="reference external" href="https://doi.org/10.1016/j.commatsci.2018.03.064">https://doi.org/10.1016/j.commatsci.2018.03.064</a>).</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tutorial_shell_python.html" class="btn btn-neutral float-left" title="4. Tutorial (Shell and Python)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="developers_guide.html" class="btn btn-neutral float-right" title="6. Developers Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2025 Lawrence Livermore National Security, LLC., Xavier Andrade, Alfredo A. Correa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

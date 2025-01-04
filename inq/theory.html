@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3. Theory &mdash; INQ 0.95 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/lammps.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/inq_favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=1c4172e4"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Tutorial (Shell and Python)" href="tutorial_shell_python.html" />
+    <link rel="prev" title="2. Compilation and installation" href="compilation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/inq_logo.png" class="logo" alt="Logo"/>
+          </a>
+            <div class="lammps_version">Version: <b></b></div>
+            <div class="lammps_release">git info: 0.95</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. README</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#components">1.1. Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#basic-installation">1.2. Basic installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#reference">1.3. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#introductory-material">1.4. Introductory material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#release-information">1.5. Release information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#acknowledgment">1.6. Acknowledgment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compilation.html">2. Compilation and installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-and-running-on-a-local-computer">2.1. Compiling and running on a local computer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-dependencies-and-setup-environment">2.1.1. Install dependencies and setup environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#clone-repository">2.1.2. Clone repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#for-cpu-only-system">2.1.3. For CPU-only system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#for-an-nvidia-gpu-system-with-nvcc-11-x">2.1.4. For an Nvidia-GPU system (with NVCC 11.x)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#specific-computers">2.1.5. Specific computers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#manually-setting-utilization-of-multiple-gpu-with-mpi">2.1.6. Manually setting utilization of multiple GPU with MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#installing-gcc-for-cuda">2.1.7. Installing GCC for CUDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#mac-os-14">2.1.8. Mac OS 14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#recover-from-nvidia-device-error">2.1.9. Recover from Nvidia device error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-inq-on-supercomputing-clusters">2.2. Compiling INQ on Supercomputing Clusters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-perlmutter-at-nersc">2.2.1. Compiling on Perlmutter at NERSC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-lbnl-generic-linux-supercluster">2.2.2. Compiling on LBNL Generic Linux Supercluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-frontera-at-tacc-fhj-9-26-22">2.2.3. Compiling on Frontera at TACC (FHJ, 9/26/22)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-test-jobs">Running test jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#compiling-and-running-on-frontier">Compiling and running on Frontier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#alcf-polaris">2.2.4. ALCF Polaris</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#llnl-sierra-lassen">2.2.5. LLNL Sierra/Lassen</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#environment">Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#build-install-and-test">Build, Install and Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#open-a-shell-in-a-node">Open a shell in a node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-interactively">Running interactively</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#llnl-tioga-amd">2.2.6. LLNL Tioga (AMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#olcf-frontier-amd">2.2.7. OLCF Frontier (AMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#nersc-perlmutter-nvidia">2.2.8. NERSC Perlmutter (NVIDIA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#quartz">2.2.9. Quartz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#environment">Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#build-install-and-test">Build, Install and Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#open-a-shell-in-a-node">Open a shell in a node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-interactively">Running interactively</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-parallel-mpi-hdf5-for-inq">2.3. Compiling Parallel (MPI) HDF5 for INQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#cmake">2.4. CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#boost">2.5. BOOST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-boost-libraries">2.5.1. Install BOOST libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-boost">2.5.2. Install BOOST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#total-energy">3.1. Total energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pseudopotential-application">3.2. Pseudopotential application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#k-points">3.3. k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hartree-fock-with-k-points">3.4. Hartree-Fock with k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#electric-fields-and-gauges">3.5. Electric fields and gauges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coordinates">3.6. Coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mini-cell-circumscribing-a-sphere">3.6.1. Mini cell circumscribing a sphere</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#preconditioner">3.7. Preconditioner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exact-factorization">3.8. Exact factorization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nuclear-eom">3.8.1. Nuclear EOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#electronic-equation-of-motion">3.8.2. Electronic equation of motion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#self-consistency-acceleration">3.9. Self-consistency acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#magnetization">3.10. Magnetization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_shell_python.html">4. Tutorial (Shell and Python)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#nitrogen-molecule">4.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#setting-up-the-run-directory">4.1.1. Setting up the run directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-simulation-parameters">4.1.2. Defining the simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#running-the-simulation">4.1.3. Running the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#querying-the-ground-state-results">4.1.4. Querying the ground-state results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#changing-the-ion-positions">4.1.5. Changing the ion positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#scripting-the-potential-energy-surface-of-n2">4.1.6. Scripting: the potential energy surface of N2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#benzene-optical-absorption-spectrum">4.2. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#simulation-parameters">4.2.1. Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#ground-state-calculation">4.2.2. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#first-time-propagation-finding-the-optimal-time-step">4.2.3. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#adding-a-perturbation">4.2.4. Adding a perturbation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-observables">4.2.5. Defining the observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#run-the-propagation">4.2.6. Run the propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#analyzing-the-results-and-obtaining-the-spectrum">4.2.7. Analyzing the results and obtaining the spectrum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_cpp.html">5. Tutorial (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#nitrogen-molecule">5.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#header">5.1.1. Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#electronic-system">5.1.2. Electronic system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#single-point-energy-calculation">5.1.3. Single point energy calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#potential-energy-surface">5.1.4. Potential energy surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#finding-the-minimum-energy-advanced">5.1.5. Finding the minimum energy (advanced)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#hydrogen-fluoride-molecule">5.2. Hydrogen fluoride molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#partial-charges">5.2.1. Partial charges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#hartee-fock">5.2.2. Hartee-Fock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#parallelization">5.2.3. Parallelization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#benzene-optical-absorption-spectrum">5.3. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#first-time-propagation-finding-the-optimal-time-step">5.3.1. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-perturbation-and-observables">5.3.2. Adding a perturbation and observables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#electronic-stopping">5.4. Electronic stopping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#aluminum-supercell">5.4.1. Aluminum supercell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-proton">5.4.2. Adding a proton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#ground-state-calculation">5.4.3. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#time-propagation">5.4.4. Time propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#results">5.4.5. Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers_guide.html">6. Developers Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#repository">6.1. Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#coding">6.2. Coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#debugging-code">6.3. Debugging code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference_magnitude.html">inq::magnitude</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-energy">inq::magnitude::energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-length">inq::magnitude::length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-time">inq::magnitude::time</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference_systems.html">inq::systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-cell">inq::systems::cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-electrons">inq::systems::electrons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-ions">inq::systems::ions</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">INQ</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3. </span>Theory</li>
+      <li class="wy-breadcrumbs-aside">
+          <a href="https://gitlab.com/npneq/inq"><img src="_static/gitlab.png" width="100" alt="gitlab"> </a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="compilation.html" class="btn btn-neutral float-left" title="2. Compilation and installation" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial_shell_python.html" class="btn btn-neutral float-right" title="4. Tutorial (Shell and Python)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="theory">
+<h1><span class="section-number">3. </span>Theory<a class="headerlink" href="#theory" title="Permalink to this heading"></a></h1>
+<section id="total-energy">
+<h2><span class="section-number">3.1. </span>Total energy<a class="headerlink" href="#total-energy" title="Permalink to this heading"></a></h2>
+<p>The total energy in Kohn-Sham DFT is</p>
+<div class="math notranslate nohighlight">
+\[E_\mathrm{total} = E_\mathrm{kin} + E_\mathrm{classical}[n_\mathrm{el}] - E_\mathrm{ion-self-interaction}+E_\mathrm{xc}[n_\mathrm{el}]\ ,\]</div>
+<p>where <span class="math notranslate nohighlight">\(E_\mathrm{classical}\)</span> is the classical interaction energy involving ions and electrons (ion-ion, ion-electron and electron-electron), given by</p>
+<div class="math notranslate nohighlight">
+\[E_\mathrm{classical}[n_\mathrm{el}] = \frac12\int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{\left(n_\mathrm{el}(\vec{r})+n_\mathrm{ion}(\vec{r})\right)\left(n_\mathrm{el}(\vec{r}')+n_\mathrm{ion}(\vec{r}')\right)}{\left|\vec{r}-\vec{r'}\right|}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n_\mathrm{el}\)</span> is the electronic density and <span class="math notranslate nohighlight">\(n_\mathrm{ion}\)</span> is the charge density generated by the ions at positions <span class="math notranslate nohighlight">\(\vec{R}_I\)</span>, namely</p>
+<div class="math notranslate nohighlight">
+\[n_\mathrm{ion}(\vec{r})=\sum_I Z_I\delta(\vec{r} - \vec{R}_I)\ .\]</div>
+<p>This density we split it in two parts</p>
+<div class="math notranslate nohighlight">
+\[n_\mathrm{ion}(\vec{r})=n_\mathrm{LR}(\vec{r}) + n_\mathrm{SR}(\vec{r})\ .\]</div>
+<p>The first part is</p>
+<div class="math notranslate nohighlight">
+\[n_\mathrm{LR}(\vec{r})=\sum_I\frac{Z_I}{\left(\sqrt{2\pi}\sigma\right)^3}\exp{\left(-\frac12\left(\frac {\left|\vec{r} - \vec{R}_I\right|}{\sigma}\right)^2\right)}\]</div>
+<p>that produces a long range potential. The second part produces a short term potential that will be different for the interaction with the ions and electrons (the non-local pseudopotential).</p>
+<p>Using this split the second term of the total energy can be written as</p>
+<div class="math notranslate nohighlight">
+\[E_\mathrm{classical}[n_\mathrm{el}] =\frac12\int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{\left(n_\mathrm{el}(\vec{r})+n_\mathrm{LR}(\vec{r})\right)\left(n_\mathrm{el}(\vec{r}')+n_\mathrm{LR}(\vec{r}')\right)}{\left|\vec{r}-\vec{r'}\right|}
++ \frac12\int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{n_\mathrm{SR}(\vec{r})n_\mathrm{SR}(\vec{r}')}{\left|\vec{r}-\vec{r'}\right|}
++ \int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{n_\mathrm{SR}(\vec{r})n_\mathrm{LR}(\vec{r}')}{\left|\vec{r}-\vec{r'}\right|}
++ \int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{n_\mathrm{SR}(\vec{r})n_\mathrm{el}(\vec{r}')}{\left|\vec{r}-\vec{r'}\right|}\]</div>
+<p>rearranging</p>
+<div class="math notranslate nohighlight">
+\[E_\mathrm{classical}[n_\mathrm{el}]=\frac12\int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{\left(n_\mathrm{el}(\vec{r})+n_\mathrm{LR}(\vec{r})\right)\left(n_\mathrm{el}(\vec{r}')+n_\mathrm{LR}(\vec{r}')\right)}{\left|\vec{r}-\vec{r'}\right|}
++ \frac12\int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{n_\mathrm{SR}(\vec{r})(n_\mathrm{SR}(\vec{r}')+n_\mathrm{LR}(\vec{r}'))}{\left|\vec{r}-\vec{r'}\right|}
++ \frac12\int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{n_\mathrm{SR}(\vec{r})n_\mathrm{LR}(\vec{r}')}{\left|\vec{r}-\vec{r'}\right|}
++ \int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{n_\mathrm{SR}(\vec{r})n_\mathrm{el}(\vec{r}')}{\left|\vec{r}-\vec{r'}\right|}\]</div>
+<p>The first term of this last identity we can simplify it by defining <span class="math notranslate nohighlight">\(n_\mathrm{tot}=n_\mathrm{LR}+n_\mathrm{el}\)</span>, such that it becomes</p>
+<div class="math notranslate nohighlight">
+\[\frac12\int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{n_\mathrm{tot}(\vec{r})n_\mathrm{tot}(\vec{r}')}{\left|\vec{r}-\vec{r'}\right|}\ .\]</div>
+<p>Since the integral of <span class="math notranslate nohighlight">\(n_\mathrm{tot}\)</span> is charge of the system, there is no problem for neutral periodic systems.</p>
+<p>The second term of the identity is the short range interaction of the ions that we can calculate directly (THIS IS WRONG)</p>
+<div class="math notranslate nohighlight">
+\[\frac12\int\mathrm{d}\vec{r}\,\mathrm{d}\vec{r}'\frac{n_\mathrm{SR}(\vec{r})n_\mathrm{SR}(\vec{r}')}{\left|\vec{r}-\vec{r'}\right|}=\frac12\sum_{I\,J}Z_I Z_J v^{(I)}_{SR}\left(\left|\vec{R}_I - \vec{R}_J\right|\right)\ ,\]</div>
+<p>this last sum does not include the <span class="math notranslate nohighlight">\(I\neq J\)</span> term to avoid self-interaction.</p>
+<p>The third term is the interactions between the short range and long range densities. Because they are both localized, we will neglect it for the moment.</p>
+<p>The last term is the interaction of the short range part of the ionic interaction and the electronic density, which includes the non-local pseudopotentials. We will write it as</p>
+<div class="math notranslate nohighlight">
+\[\int \mathrm{d}\vec{r} v_\mathrm{ext-SR}n_\mathrm{el}(\vec{r})\ .\]</div>
+<p>We now calculate the potential associated to the classical interaction as</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\frac{\delta E_\mathrm{classical}}{\delta n_\mathrm{el}(\vec{r})}=\int\mathrm{d}\vec{r}\frac{n_\mathrm{tot}(\vec{r}')}{\left|\vec{r}-\vec{r}'\right|} + v_\mathrm{ext-SR}(\vec{r})\ =v_\mathrm{tot}(\vec{r}) + v_\mathrm{ext-SR}(\vec{r})\ .\\E_\mathrm{kin} = \sum_i\varepsilon_i - \int\mathrm{d}\vec{r}\,n_\mathrm{el}v_\mathrm{tot}(\vec{r}) -\int\mathrm{d}\vec{r}\,n_\mathrm{el}v_\mathrm{ext-SR}(\vec{r}) - \int\mathrm{d}\vec{r}\,n_\mathrm{el}v_\mathrm{xc}(\vec{r})\end{aligned}\end{align} \]</div>
+</section>
+<section id="pseudopotential-application">
+<h2><span class="section-number">3.2. </span>Pseudopotential application<a class="headerlink" href="#pseudopotential-application" title="Permalink to this heading"></a></h2>
+<p><a class="reference external" href="http://www.tcm.phy.cam.ac.uk/~jry20/gipaw/tutorial_pp.pdf">http://www.tcm.phy.cam.ac.uk/~jry20/gipaw/tutorial_pp.pdf</a></p>
+<p>In real space:</p>
+<div class="math notranslate nohighlight">
+\[(\hat V_{nl}\phi)(r) = \sum_I\int\,dr\,d_I \beta_I(\vec{r} - \vec{R}_I)\beta_I(\vec{r}'- \vec{R}_I)\phi(r')\]</div>
+<p>with <span class="math notranslate nohighlight">\(\beta(r)=0\)</span> for <span class="math notranslate nohighlight">\(r &gt; r_c\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[(\hat V_{nl}\phi)(\vec{G}) = \sum_I \int\int d\vec r'd\vec r d_I \beta_I(\vec r-\vec R_I)\beta_I(\vec r-\vec R_I)\phi(\vec r') e^{-i\vec r\cdot\vec G}\]</div>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\beta_I(\vec r)=\int d\vec G' \tilde\beta_I(\vec G') e^{+i\vec r\cdot\vec G'}\\\tilde\beta_I(\vec G) = \int d\vec r'\beta_I(\vec r') e^{-i\vec r'\cdot \vec G}\end{aligned}\end{align} \]</div>
+</section>
+<section id="k-points">
+<h2><span class="section-number">3.3. </span>k-points<a class="headerlink" href="#k-points" title="Permalink to this heading"></a></h2>
+<div class="math notranslate nohighlight">
+\[\nabla^2\phi(r) = \nabla^2\left(\exp(i\vec{k}\cdot{\vec{r}})u(r)\right) =\exp(i\vec{k}\cdot{\vec{r}})\left(\nabla^2 + 2i\vec{k}\cdot\vec{\nabla} - \vec{k}\cdot\vec{k}\right)u(r)\]</div>
+<div class="math notranslate nohighlight">
+\[\nabla \rightarrow i\vec{g}\]</div>
+<div class="math notranslate nohighlight">
+\[\left(-g^2 - 2\vec{k}\cdot\vec{g} - k^2\right)u(r)\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{v}_{nl}\phi(\vec{r}) = \int d\vec{r}' v_{nl}(\vec{r}, \vec{r}')\phi(\vec{r})\]</div>
+<div class="math notranslate nohighlight">
+\[\hat{v}_{nl}f(\vec{r}) = \sum_{lm}\epsilon_{lm}\beta_{lm}(\vec{r})\int d\vec{r}' \beta_{lm}(\vec{r}')\phi(\vec{r}')\]</div>
+<div class="math notranslate nohighlight">
+\[H\phi(r) = \varepsilon\phi(r)\]</div>
+<div class="math notranslate nohighlight">
+\[\phi(r) = \exp(i\vec{k}\cdot\vec{r}) \, u(r)\]</div>
+<div class="math notranslate nohighlight">
+\[\exp(-i\vec{k}\cdot\vec{r}) H\phi(r) = \varepsilon\exp(-i\vec{k}\cdot\vec{r})\phi(r)\]</div>
+<div class="math notranslate nohighlight">
+\[H_{\vec{k}} u(r) = \varepsilon u(r)\]</div>
+<div class="math notranslate nohighlight">
+\[H_{\vec{k}} = \exp(-i\vec{k}\cdot\vec{r}) H \exp(i\vec{k}\cdot\vec{r})\]</div>
+<p>Generalized coordinates</p>
+<div class="math notranslate nohighlight">
+\[\partial_\alpha\partial^\alpha\phi(r) = \partial_\alpha\partial^\alpha\left(\exp(ik_\beta r^\beta)u(r)\right) =\exp(ik_\beta r^\beta)\left(\partial_\alpha\partial^\alpha + 2ik_\alpha\partial^\alpha - k_\alpha k^\alpha\right)u(r)\]</div>
+</section>
+<section id="hartree-fock-with-k-points">
+<h2><span class="section-number">3.4. </span>Hartree-Fock with k-points<a class="headerlink" href="#hartree-fock-with-k-points" title="Permalink to this heading"></a></h2>
+<p>The exchange operator</p>
+<div class="math notranslate nohighlight">
+\[V_x\varphi_{j\vec{q}}(\vec{r})=\sum_{i\vec{k}}\varphi_{i\vec{k}}(\vec{r}) \int \mathrm{d}\vec{r}' \frac{\varphi^*_{i\vec{k}}(\vec{r}')\varphi_{j\vec{q}}(\vec{r}')}{\left|\vec{r}-\vec{r}'\right|}\]</div>
+<p>in terms of u</p>
+<div class="math notranslate nohighlight">
+\[\int \mathrm{d}\vec{r}'
+\frac{\varphi^*_{i\vec{k}}(\vec{r}')\varphi_{j\vec{q}}(\vec{r}')}{\left|\vec{r}-\vec{r}'\right|} = \int \mathrm{d}\vec{r}'
+\frac{\exp(i(\vec{q}-\vec{k})\cdot\vec{r'})\,u^*_{i\vec{k}}(\vec{r}')u_{j\vec{q}}(\vec{r}')}{\left|\vec{r}-\vec{r}'\right|}\]</div>
+<div class="math notranslate nohighlight">
+\[= \int \mathrm{d}\vec{r}'
+\frac{\exp(i(\vec{q}-\vec{k})\cdot\vec{r'})\,\rho_{i\vec{k}j\vec{q}}(\vec{r}')}{\left|\vec{r}-\vec{r}'\right|}\]</div>
+<p><a class="reference external" href="https://journals.aps.org/prb/abstract/10.1103/PhysRevB.75.205126">https://journals.aps.org/prb/abstract/10.1103/PhysRevB.75.205126</a></p>
+<p><a class="reference external" href="https://doi.org/10.1063/1.476307">https://doi.org/10.1063/1.476307</a></p>
+<p><a class="reference external" href="http://163.13.111.54/sX-LDA_papers/SC-HF-sX_in_solid.pdf">http://163.13.111.54/sX-LDA_papers/SC-HF-sX_in_solid.pdf</a></p>
+<p><a class="reference external" href="https://arxiv.org/pdf/1801.09263.pdf">https://arxiv.org/pdf/1801.09263.pdf</a></p>
+<p><a class="reference external" href="https://arxiv.org/pdf/0909.1648.pdf">https://arxiv.org/pdf/0909.1648.pdf</a></p>
+<p><a class="reference external" href="https://psi-k.net/download/highlights/Highlight_108.pdf">https://psi-k.net/download/highlights/Highlight_108.pdf</a></p>
+<p>EXX in Quantum Espresso (variable <cite>exx_treatment = …</cite>):</p>
+<p><a class="reference external" href="https://gitlab.com/QEF/q-e/-/blob/master/PW/examples/EXX_example/README">https://gitlab.com/QEF/q-e/-/blob/master/PW/examples/EXX_example/README</a></p>
+</section>
+<section id="electric-fields-and-gauges">
+<h2><span class="section-number">3.5. </span>Electric fields and gauges<a class="headerlink" href="#electric-fields-and-gauges" title="Permalink to this heading"></a></h2>
+<p>The electric field is defined from the potentials A and V</p>
+<div class="math notranslate nohighlight">
+\[\vec{E} = -\frac{\partial\vec{A}}{\partial t} -\vec{\nabla}V\]</div>
+</section>
+<section id="coordinates">
+<h2><span class="section-number">3.6. </span>Coordinates<a class="headerlink" href="#coordinates" title="Permalink to this heading"></a></h2>
+<p>The basis is <span class="math notranslate nohighlight">\(a_i^j\)</span>, we define the reciprocal basis <span class="math notranslate nohighlight">\(b_i^j\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[a_i^jb_j^k = \delta_i^k \ .\]</div>
+<p>Given a vector <span class="math notranslate nohighlight">\(v^i = c^ja_j^i\)</span> with <span class="math notranslate nohighlight">\(c^j = b_i^jv^i\)</span>.</p>
+<section id="mini-cell-circumscribing-a-sphere">
+<h3><span class="section-number">3.6.1. </span>Mini cell circumscribing a sphere<a class="headerlink" href="#mini-cell-circumscribing-a-sphere" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="_images/mini_cell_sphere.png"><img alt="_images/mini_cell_sphere.png" class="align-center" src="_images/mini_cell_sphere.png" style="width: 40%;" /></a>
+</section>
+</section>
+<section id="preconditioner">
+<h2><span class="section-number">3.7. </span>Preconditioner<a class="headerlink" href="#preconditioner" title="Permalink to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">// A better version by Zhou, Chelikowsky, Gao and Zhou, Commun. Comput. Phys. 18 167 (2015)</span>
+
+<span class="cm">// I won&#39;t use it for the moment, since it doesn&#39;t seem to</span>
+<span class="cm">// change the results and it might have numerical issues. XA</span>
+
+<span class="cm">auto num = ((((32.0*x + 48.0)*x + 72.0)*x + 108.0)*x + 162)*x + 243.0;</span>
+<span class="cm">auto den = (((((64.0*x + 32.0)*x + 48.0)*x + 72.0)*x + 108.0)*x + 162)*x + 243.0;</span>
+
+<span class="cm">*/</span>
+</pre></div>
+</div>
+</section>
+<section id="exact-factorization">
+<h2><span class="section-number">3.8. </span>Exact factorization<a class="headerlink" href="#exact-factorization" title="Permalink to this heading"></a></h2>
+<p>The solution of the complete electron-nuclear wave function can be written as a single product</p>
+<div class="math notranslate nohighlight">
+\[\Psi(r,R,t)=\chi(R,t)\phi_R(r,t)\]</div>
+<p>Nuclear wave function <span class="math notranslate nohighlight">\(\chi\)</span>: exact time-dependent nuclear density, and where <span class="math notranslate nohighlight">\(\phi_R(r,t)\)</span> satisfies the normalization condition</p>
+<div class="math notranslate nohighlight">
+\[\int |\phi_R(r,t)|^2dr =1\]</div>
+<p>for any fixed nuclear configuration, <span class="math notranslate nohighlight">\(R\)</span> at any time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>The wave function <span class="math notranslate nohighlight">\(\phi_R(r,t)\)</span> and <span class="math notranslate nohighlight">\(\chi(R,t)\)</span> satisfy</p>
+<div class="math notranslate nohighlight">
+\[\left(H_{el}(r,R,t)-\epsilon(R,t)\right)\phi_R(r,t)=i\partial_t\phi_R(r,t)\]</div>
+<section id="nuclear-eom">
+<h3><span class="section-number">3.8.1. </span>Nuclear EOM<a class="headerlink" href="#nuclear-eom" title="Permalink to this heading"></a></h3>
+<div class="math notranslate nohighlight">
+\[i\hbar\frac{\partial \chi(R,t)}{\partial t}=\left(\sum_v \frac{[-i\hbar\nabla_v+A_v(R,t)]^2}{2M_v}+\epsilon(R,t)\right)\chi(R,t)\]</div>
+<p>where a potential energy surface <span class="math notranslate nohighlight">\(\epsilon\)</span></p>
+<div class="math notranslate nohighlight">
+\[\epsilon(R,t)=\left&lt;\phi_R(t)|H_{BO}+U^{coup}_{en}-i\hbar\partial_t|\phi_R(t)\right&gt;\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[H_{BO}=T_e+W_{ee}(r)+V_{en}(r,R)+W_{nn}(R)\]</div>
+<p>and a vector potential <span class="math notranslate nohighlight">\(A\)</span></p>
+<div class="math notranslate nohighlight">
+\[A_v(R,t)=\left&lt;\phi_R(t)|-i\hbar\nabla_v\phi_R(t)\right&gt;_r\]</div>
+<p>The nuclear equation of motion can be written in the polar form, <span class="math notranslate nohighlight">\(\chi(R,t)=|\chi(R,t)|e^{i/\hbar S(R,t)}\)</span>. Then the real part of the nuclear EOM is</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial S}{\partial t}=-\sum_v \frac{[\nabla S(R,t)+A(R,t)]^2}{2M_v}-\epsilon(R,t)+\hbar^2\sum_v\frac{1}{2M_v}\frac{\nabla^2|\chi(R,t)|}{|\chi(R,t)|}\]</div>
+<p>a Hamilton-Jacobi equation.</p>
+</section>
+<section id="electronic-equation-of-motion">
+<h3><span class="section-number">3.8.2. </span>Electronic equation of motion<a class="headerlink" href="#electronic-equation-of-motion" title="Permalink to this heading"></a></h3>
+<div class="math notranslate nohighlight">
+\[i\hbar\partial_t\phi_R(r,t)=\left(H_{BO}(r,R)+U^{coup}_{en}[\phi_R,\chi]-\epsilon(R,t)\right)\phi_R(r,t)\]</div>
+<p>where the electron-nuclear correlation operator is</p>
+<div class="math notranslate nohighlight">
+\[U^{coup}_{en}[\phi_R,\chi]=\sum_v\frac{1}{M_v}\left[\frac{[-i\hbar\nabla_v-A_v(R,t)]^2}{2}+\left(\frac{-i\hbar\nabla_v\chi}{\chi}+A_v(R,t)\right)\cdot \left(-i\hbar\nabla_v-A_v(R,t)\right)\right]\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\sum_v\frac{1}{M_v}\left[\frac{[-i\hbar\nabla_v-A_v(R,t)]^2}{2}\right]\)</span> generates a potential corresponding to the diagonal BO correction(DBOC).</p>
+<div class="math notranslate nohighlight">
+\[\frac{-i\hbar\nabla_v\chi}{\chi}+A_v(R,t)=P_{cl}-\frac{i\hbar\nabla|\chi|}{|\chi|}.\]</div>
+<p>Here <span class="math notranslate nohighlight">\(P_{cl}\)</span> is a classical momentum provides Ehrenfest equation with trajectories, and <span class="math notranslate nohighlight">\(-\frac{i\hbar\nabla|\chi|}{|\chi|}\)</span> is a quantum momentum provides additional correlation toward quantum (de)coherence.</p>
+<p>The main step to derive MQC is to introduce classical nuclear trajectories <span class="math notranslate nohighlight">\(R^I(t)\)</span>, where the electronic wave function <span class="math notranslate nohighlight">\(\phi_R^I(r,t)\)</span> varies along <span class="math notranslate nohighlight">\(R^I(t)\)</span>, where <span class="math notranslate nohighlight">\(I\)</span> is the index for the classical nuclear trajectory.  Two approximation are applied:</p>
+<ol class="arabic simple">
+<li><p>Neglect a quantum potential <span class="math notranslate nohighlight">\(\frac{\nabla^2|\chi(R,t)|}{|\chi(R,t)|}\)</span></p></li>
+<li><p>Neglect the first term of <span class="math notranslate nohighlight">\(U_{en}\)</span></p></li>
+</ol>
+<p>As a result, we obtained the coupled equation:</p>
+<div class="math notranslate nohighlight">
+\[F_v^l(t)=-\left&lt;\phi_R^I(t)|\nabla_v H_{BO}^I| \phi_R^I(t) \right&gt;_r-\sum_u\frac{2P^I_u}{\hbar M_u}\cdot \left(A_u^I(t)A_v^I(t)-\hbar^2\mathrm{Re}\left&lt;\nabla_u\phi_R^l|\nabla_v\phi_R^I(t)\right&gt;_r\right)\]</div>
+<p>for a classical nuclear trajectory and</p>
+<div class="math notranslate nohighlight">
+\[i\hbar \frac{d}{dt}\phi_R^I(r,t)=H_{BO}\phi_R(r,t)-\sum_v\frac{iP_v^I(t)}{M_v}\cdot\left(A_v(t)+i\hbar\nabla_v\right)\phi_R(r,t)\]</div>
+<p>for the electronic wave function along the nuclear trajectory, where <span class="math notranslate nohighlight">\(P_v=-\hbar\frac{\nabla_v|\chi|}{|\chi|}\)</span> is the quantum momentum. Here, the superscript <span class="math notranslate nohighlight">\(I\)</span> indicates the corresponding quantity that is evaluated at the <span class="math notranslate nohighlight">\(I\)</span> classical nuclear trajectory. In practice, we need approximation for <span class="math notranslate nohighlight">\(P_v\)</span> and <span class="math notranslate nohighlight">\(A_v\)</span>.</p>
+<p><strong>Ehrenfest dynamics based on exact factorization</strong> really ehrenfest?
+<a class="reference external" href="https://doi.org/10.1063/5.0084493">https://doi.org/10.1063/5.0084493</a></p>
+</section>
+</section>
+<section id="self-consistency-acceleration">
+<h2><span class="section-number">3.9. </span>Self-consistency acceleration<a class="headerlink" href="#self-consistency-acceleration" title="Permalink to this heading"></a></h2>
+<p>Starting from a density <span class="math notranslate nohighlight">\(n\)</span>, we want to calculate <span class="math notranslate nohighlight">\(\Delta n\)</span> such that <span class="math notranslate nohighlight">\(E[n + \Delta n]\)</span> is minimal. The energy is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E &amp;= &lt;\phi|H[n + \Delta n]|\phi&gt;\\
+  &amp;= &lt;\phi|H[n]|\phi&gt; + \int \mathrm{d}\vec{r}f_\mathrm{hxc}(\vec{r})\Delta n(\vec{r})|\phi&gt; + &lt;\phi|H[n + \Delta n]|\phi&gt;\end{split}\]</div>
+<p>and its derivative</p>
+<div class="math notranslate nohighlight">
+\[\frac{\delta E}{\delta \Delta n(\vec{r})} = &lt;\phi|H[n] + \int \mathrm{d}\vec{r}f_\mathrm{hxc}\Delta n]|\phi&gt; + &lt;\phi|H[n + \Delta n]|\phi&gt;\]</div>
+<p>nonsense</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E &amp;= \int \mathrm{d}\vec{r}\,(n(\vec{r}) + \Delta n(\vec{r}))V_\mathrm{eff}[n(\vec{r}) + \Delta n(\vec{r})](\vec{r})\\
+  &amp;= \int \mathrm{d}\vec{r}\,(n(\vec{r}) + \Delta n(\vec{r}))V_\mathrm{eff}[n(\vec{r})](\vec{r}) + \int \mathrm{d}\vec{r}\mathrm{d}\vec{r'}\,(n(\vec{r}) + \Delta n(\vec{r}))\frac{\delta V_\mathrm{eff}[n(\vec{r})]}{\delta n(\vec{r'})}\Delta n(\vec{r'}) + 0 \\
+  &amp;= V_\mathrm{eff}[n(\vec{r})](\vec{r}) + \int \mathrm{d}\vec{r'}\,n(\vec{r'})\frac{V_\mathrm{eff}[n(\vec{r'})]}{\delta n(\vec{r})}\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}E &amp;= \int \mathrm{d}\vec{r}\,n(\vec{r})V[n(\vec{r})](\vec{r})\\
+  &amp;= \int \mathrm{d}\vec{r}\,(n_\mathrm{gs}(\vec{r}) + \delta n(\vec{r}))V_\mathrm{eff}[n_\mathrm{gs}(\vec{r}) + \delta n(\vec{r})](\vec{r})\\
+  &amp;= \int \mathrm{d}\vec{r}\,n_\mathrm{gs}(\vec{r})V_\mathrm{eff}(\vec{r})[n_\mathrm{gs}(\vec{r}) + \delta n(\vec{r})]+\int \mathrm{d}\vec{r}\,\delta n(\vec{r})V_\mathrm{eff}(\vec{r})[n_\mathrm{gs}(\vec{r}) + \delta n(\vec{r})]\\
+  &amp;= \int \mathrm{d}\vec{r}\,n_\mathrm{gs}(\vec{r})V_\mathrm{eff}[n_\mathrm{gs}(\vec{r})](\vec{r})+\int \mathrm{d}\vec{r}\mathrm{d}\vec{r}'\,n_\mathrm{gs}(\vec{r})\frac{V_\mathrm{eff}[n_\mathrm{gs}(\vec{r})](\vec{r})}{\delta n(\vec{r})}\delta n(\vec{r})+\int \mathrm{d}\vec{r}\,\delta n(\vec{r})V_\mathrm{eff}(\vec{r})[n_\mathrm{gs}(\vec{r})]\end{split}\]</div>
+</section>
+<section id="magnetization">
+<h2><span class="section-number">3.10. </span>Magnetization<a class="headerlink" href="#magnetization" title="Permalink to this heading"></a></h2>
+<p>The magnetization is defined as</p>
+<div class="math notranslate nohighlight">
+\[\vec{m}(\vec{r}, t) = \sum_{ss',n}f_n\varphi^*_{s'\,n}(\vec{r}, t)\vec{\sigma}_{s's}\varphi_{sn}(\vec{r}, t)\]</div>
+<p>Given the density</p>
+<div class="math notranslate nohighlight">
+\[n_{ss'}(\vec{r}, t) = \sum_{n}f_n\varphi^*_{s\,n}(\vec{r}, t)\varphi_{s'\,n}(\vec{r}, t)\]</div>
+<p>with the property</p>
+<div class="math notranslate nohighlight">
+\[n_{ss'}(\vec{r}, t) = n^*_{s's}(\vec{r}, t)\]</div>
+<p>We can use the Pauli matrices to derive the magnetization from the density:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}m_x(\vec{r}, t) &amp;= \sum_{n}f_n\left[\varphi^*_{0n}(\vec{r}, t)\varphi_{1n}(\vec{r}, t) + \varphi^*_{1n}(\vec{r}, t)\varphi_{0\,n}(\vec{r}, t)\right]\\
+&amp;= n_{01}(\vec{r}, t) + n_{10}(\vec{r}, t)\\
+&amp;= 2\Re\left[n_{01}(\vec{r}, t)\right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}m_y(\vec{r}, t) &amp;= -i\sum_{n}f_n\left[\varphi^*_{0n}(\vec{r}, t)\varphi_{1n}(\vec{r}, t) - \varphi^*_{1n}(\vec{r}, t)\varphi_{0\,n}(\vec{r}, t)\right]\\
+&amp;= -i\left[n_{01}(\vec{r}, t) - n_{10}(\vec{r}, t)\right]\\
+&amp;= 2\Im\left[n_{01}(\vec{r}, t)\right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}m_z(\vec{r}, t) &amp;= \sum_{n}f_n\left[\varphi^*_{0\,n}(\vec{r}, t)\varphi_{0\,n}(\vec{r}, t) - \varphi^*_{1\,n}(\vec{r}, t)\varphi_{1n}(\vec{r}, t)\right]\\
+&amp;=n_{00}(\vec{r}, t)-n_{11}(\vec{r}, t)\end{split}\]</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="compilation.html" class="btn btn-neutral float-left" title="2. Compilation and installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial_shell_python.html" class="btn btn-neutral float-right" title="4. Tutorial (Shell and Python)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2025 Lawrence Livermore National Security, LLC., Xavier Andrade, Alfredo A. Correa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

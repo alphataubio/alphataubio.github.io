@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Install dependencies and setup environment &mdash; INQ 0.95 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/lammps.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/inq_favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=1c4172e4"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/inq_logo.png" class="logo" alt="Logo"/>
+          </a>
+            <div class="lammps_version">Version: <b></b></div>
+            <div class="lammps_release">git info: 0.95</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. README</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#components">1.1. Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#basic-installation">1.2. Basic installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#reference">1.3. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#introductory-material">1.4. Introductory material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#release-information">1.5. Release information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html#acknowledgment">1.6. Acknowledgment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html">2. Install dependencies and setup environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#clone-repository">3. Clone repository</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#for-cpu-only-system">4. For CPU-only system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#for-an-nvidia-gpu-system-with-nvcc-11-x">5. For an Nvidia-GPU system (with NVCC 11.x)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#specific-computers">6. Specific computers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#mac-os-14">7. Mac OS 14</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compilation.html#recover-from-nvidia-device-error">8. Recover from Nvidia device error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">9. Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#total-energy">9.1. Total energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#pseudopotential-application">9.2. Pseudopotential application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#k-points">9.3. k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#hartree-fock-with-k-points">9.4. Hartree-Fock with k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#electric-fields-and-gauges">9.5. Electric fields and gauges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#coordinates">9.6. Coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../theory.html#mini-cell-circumscribing-a-sphere">9.6.1. Mini cell circumscribing a sphere</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#preconditioner">9.7. Preconditioner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#exact-factorization">9.8. Exact factorization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../theory.html#nuclear-eom">9.8.1. Nuclear EOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../theory.html#electronic-equation-of-motion">9.8.2. Electronic equation of motion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#self-consistency-acceleration">9.9. Self-consistency acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../theory.html#magnetization">9.10. Magnetization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_shell_python.html">10. Tutorial (Shell and Python)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_shell_python.html#nitrogen">10.1. Nitrogen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#setting-up-the-run-directory">10.1.1. Setting up the run directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#defining-the-simulation-parameters">10.1.2. Defining the simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#running-the-simulation">10.1.3. Running the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#querying-the-ground-state-results">10.1.4. Querying the ground-state results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#changing-the-ion-positions">10.1.5. Changing the ion positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#scripting-the-potential-energy-surface-of-n2">10.1.6. Scripting: the potential energy surface of N2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_shell_python.html#benzene-optical-absorption-spectrum">10.2. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#simulation-parameters">10.2.1. Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#ground-state-calculation">10.2.2. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#first-time-propagation-finding-the-optimal-time-step">10.2.3. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#adding-a-perturbation">10.2.4. Adding a perturbation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#defining-the-observables">10.2.5. Defining the observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#run-the-propagation">10.2.6. Run the propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorial_shell_python.html#analyzing-the-results-and-obtaining-the-spectrum">10.2.7. Analyzing the results and obtaining the spectrum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial_cpp.html">11. Tutorial (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial_cpp.html#nitrogen">11.1. Nitrogen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developers_guide.html">12. Developers Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developers_guide.html#repository">12.1. Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers_guide.html#coding">12.2. Coding</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference_magnitude.html">inq::magnitude</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference_magnitude.html#inq-magnitude-energy">inq::magnitude::energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_magnitude.html#inq-magnitude-length">inq::magnitude::length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_magnitude.html#inq-magnitude-time">inq::magnitude::time</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference_systems.html">inq::systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference_systems.html#inq-systems-cell">inq::systems::cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_systems.html#inq-systems-electrons">inq::systems::electrons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference_systems.html#inq-systems-ions">inq::systems::ions</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">INQ</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Install dependencies and setup environment</li>
+      <li class="wy-breadcrumbs-aside">
+          <a href="https://gitlab.com/npneq/inq"><img src="_static/gitlab.png" width="100" alt="gitlab"> </a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>[[<em>TOC</em>]]</p>
+<section id="install-dependencies-and-setup-environment">
+<h1>Install dependencies and setup environment<a class="headerlink" href="#install-dependencies-and-setup-environment" title="Permalink to this heading"></a></h1>
+<p>For example in Ubuntu 22.04:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>cmake<span class="w"> </span>libblas-dev<span class="w"> </span>libboost-filesystem-dev<span class="w"> </span>libboost-serialization-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>libopenmpi-dev<span class="w"> </span>pybind11-dev<span class="w"> </span><span class="c1"># or libmpich-dev</span>
+</pre></div>
+</div>
+<p>For example, in Fedora 37, systemwide:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>hdf5-devel<span class="w"> </span>lapack-devel<span class="w"> </span>...
+</pre></div>
+</div>
+<p>and for the session:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>mpi
+</pre></div>
+</div>
+</section>
+<section id="clone-repository">
+<h1>Clone repository<a class="headerlink" href="#clone-repository" title="Permalink to this heading"></a></h1>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>git@gitlab.com:npneq/inq.git<span class="w">  </span><span class="c1"># or https://gitlab.com/npneq/inq.git without account</span>
+<span class="nb">cd</span><span class="w"> </span>inq
+</pre></div>
+</div>
+</section>
+<section id="for-cpu-only-system">
+<h1>For CPU-only system<a class="headerlink" href="#for-cpu-only-system" title="Permalink to this heading"></a></h1>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>..<span class="w"> </span>--install-prefix<span class="o">=</span><span class="nv">$HOME</span>/.local<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+make<span class="w"> </span>-j<span class="w"> </span><span class="m">12</span>
+make<span class="w"> </span>install
+ctest<span class="w"> </span>-j<span class="w"> </span><span class="m">6</span><span class="w"> </span>--output-on-failure
+</pre></div>
+</div>
+<p>If you prefer to compile with another C++ compiler, prefix the command with <code class="docutils literal notranslate"><span class="pre">CXX=clang++</span> <span class="pre">...</span></code>, for example.</p>
+</section>
+<section id="for-an-nvidia-gpu-system-with-nvcc-11-x">
+<h1>For an Nvidia-GPU system (with NVCC 11.x)<a class="headerlink" href="#for-an-nvidia-gpu-system-with-nvcc-11-x" title="Permalink to this heading"></a></h1>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build.cuda<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build.cuda
+cmake<span class="w"> </span>..<span class="w"> </span>--install-prefix<span class="o">=</span><span class="nv">$HOME</span>/.local<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>-DCMAKE_CUDA_COMPILER<span class="o">=</span>/usr/local/cuda/bin/nvcc<span class="w"> </span>-DENABLE_CUDA<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DCMAKE_CUDA_ARCHITECTURES<span class="o">=</span><span class="m">75</span><span class="w"> </span><span class="c1"># -DCMAKE_CUDA_HOST_COMPILER=g++-12.2 if necessary</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--parallel<span class="w"> </span><span class="m">10</span>
+ctest<span class="w"> </span>-j<span class="w"> </span><span class="m">10</span><span class="w"> </span>--output-on-failure
+</pre></div>
+</div>
+<p>For Pascal architecture 6.1, (e.g. <a class="reference external" href="https://www.techpowerup.com/gpu-specs/geforce-gtx-1060-mobile.c3016">NVIDIA GeForce GTX 1060 Mobile</a>) use <code class="docutils literal notranslate"><span class="pre">-DCMAKE_CUDA_ARCHITECTURES=61</span></code>.</p>
+<p>For Volta architecture 7.2 (e.g. <a class="reference external" href="https://www.techpowerup.com/gpu-specs/quadro-gv100.c3066">Quadro GV100</a>) use <code class="docutils literal notranslate"><span class="pre">-DCMAKE_CUDA_ARCHITECTURES=72</span></code>.</p>
+<p>For Turing architecture 7.5 use <code class="docutils literal notranslate"><span class="pre">-DCMAKE_CUDA_ARCHITECTURES=75</span></code>.</p>
+<p>See [[Table of relevant GPU models]] for more details.</p>
+</section>
+<section id="specific-computers">
+<h1>Specific computers<a class="headerlink" href="#specific-computers" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>god: <code class="docutils literal notranslate"><span class="pre">CUDACXX=/usr/local/cuda/bin/nvcc</span> <span class="pre">../configure</span> <span class="pre">--prefix=$HOME</span> <span class="pre">--enable-cuda</span> <span class="pre">--disable-debug</span> <span class="pre">-DCMAKE_CUDA_ARCHITECTURES=72</span></code></p></li>
+<li><p>(2023) cuk (Ubuntu): <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span> <span class="pre">--install-prefix=$HOME</span> <span class="pre">-DENABLE_CUDA=1</span> <span class="pre">-DCMAKE_CUDA_ARCHITECTURES=61</span> <span class="pre">-DCMAKE_CUDA_HOST_COMPILER=g++-11</span> <span class="pre">-DCMAKE_CUDA_COMPILER_LAUNCHER=ccache</span></code></p></li>
+<li><p>(2023) pro (PopOS!): <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span> <span class="pre">--install-prefix=$HOME</span> <span class="pre">-DENABLE_CUDA=1</span> <span class="pre">-DCMAKE_CUDA_ARCHITECTURES=75</span> <span class="pre">-DCMAKE_CUDA_HOST_COMPILER=g++-10</span> <span class="pre">-DCMAKE_CUDA_COMPILER_LAUNCHER=ccache</span></code></p></li>
+<li><p>(2023) pro:</p>
+<ul>
+<li><p>Fedora 38: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">mpi</span> <span class="pre">;</span> <span class="pre">cmake</span> <span class="pre">..</span> <span class="pre">--install-prefix=$HOME/.local</span> <span class="pre">-DCMAKE_BUILD_TYPE=Release</span> <span class="pre">-DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc</span> <span class="pre">-DENABLE_CUDA=1</span> <span class="pre">-DCMAKE_CUDA_ARCHITECTURES=75</span> <span class="pre">-DCMAKE_CUDA_HOST_COMPILER=g++-12.2</span></code></p></li>
+<li><p>Fedora 38 CPU/MKL: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">mpi</span> <span class="pre">;</span> <span class="pre">cmake</span> <span class="pre">..</span> <span class="pre">--install-prefix=$HOME/.local</span> <span class="pre">-DCMAKE_BUILD_TYPE=Release</span> <span class="pre">-DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc</span> <span class="pre">-DENABLE_CUDA=1</span> <span class="pre">-DCMAKE_CUDA_ARCHITECTURES=75</span> <span class="pre">-DCMAKE_CUDA_HOST_COMPILER=g++-12.2</span> <span class="pre">-DBLA_VENDOR=Intel10_64lp</span></code></p></li>
+<li><p>Ubuntu 23.10 with NVHPC 23.7</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>module load /opt/nvidia/hpc_sdk/modulefiles/nvhpc/23.7
+CC=gcc CXX=g++ FC=gfortran cmake ../ --install-prefix=$HOME -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=yes -DCMAKE_CUDA_HOST_COMPILER=g++-11 -DCMAKE_CUDA_ARCHITECTURES=&quot;70&quot;
+
+* (2024) studiobook
+  - Ubuntu 24.04: `cmake .. -G &quot;Ninja Multi-Config&quot; --install-prefix=$HOME/.local -DENABLE_CUDA=1 -DCMAKE_CUDA_ARCHITECTURES=75 --fresh`
+
+# Manually setting utilization of multiple GPU with MPI
+
+Although a professionally maintained cluster should set process-gpu affinity correctly, this is not the case for home brewed boxes with multiple GPUs.
+
+See slide 53: https://on-demand.gputechconf.com/gtc/2018/presentation/s8314-multi-gpu-programming-with-mpi.pdf
+
+# Installing GCC for CUDA
+
+Specific versions of CUDA requires specific versions of GCC.
+For example, CUDA 12 requires at most GCC 12 (i.e. GCC 13 will not work) and CUDA 11 requires at most GCC 11.
+
+If the default GCC compiler is not the correct one you can choose a different version if it is available, -DCMAKE_CUDA_HOST_COMPILER=g++-12.2
+To force the utilization of newer versions of GCC pass the option -DCMAKE_CUDA_FLAGS=&quot;--allow-unsupported-compiler&quot;
+Alternatively you can install the correct version of gcc with a package manager, or manually 
+
+(Fedora doesn&#39;t provide alternative GCC compilers).
+This is a recipe using Spack package manager:
+
+Install Spack:
+
+```shell
+git clone -c feature.manyFiles=true https://github.com/spack/spack.git
+source spack/share/spack/setup-env.sh
+</pre></div>
+</div>
+<p>Install GCC from Spack</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>info<span class="w"> </span>gcc
+spack<span class="w"> </span>install<span class="w"> </span>gcc@11.3.0
+</pre></div>
+</div>
+<p>Use g++ from the spack version</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>spack<span class="w"> </span>load<span class="w"> </span>gcc@11
+which<span class="w"> </span>g++
+gcc<span class="w"> </span>--version
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>~/spack/opt/spack/linux-fedora38-skylake/gcc-13.1.1/gcc-11.3.0-4dacqeva26v3hkjuv6j7ia2wqiet5eq4/bin/g++
+<span class="o">[</span>correaa@proart<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>g++<span class="w"> </span>--version
+g++<span class="w"> </span><span class="o">(</span>Spack<span class="w"> </span>GCC<span class="o">)</span><span class="w"> </span><span class="m">11</span>.3.0
+</pre></div>
+</div>
+<p>Fedora 38 and 39 ship with GCC 13 which is not supported by CUDA 12 (that requires GCC 12).
+In that case GCC can be installed from Fedora 37</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>--releasever<span class="o">=</span><span class="m">37</span><span class="w"> </span>--installroot<span class="o">=</span>/fc37<span class="w"> </span>install<span class="w"> </span>gcc<span class="w"> </span>g++
+
+/fc37/bin/g++<span class="w"> </span>--version
+
+cmake<span class="w"> </span>...<span class="w"> </span>-DBoost_ROOT<span class="o">=</span>/fc37/usr<span class="w"> </span>-DCMAKE_CUDA_HOST_COMPILER<span class="o">=</span>/fc37/bin/g++<span class="w"> </span>-DCMAKE_CUDA_COMPILER<span class="o">=</span>/opt/nvidia/hpc_sdk/Linux_x86_64/2023/cuda/bin/nvcc<span class="w"> </span>
+</pre></div>
+</div>
+</section>
+<section id="mac-os-14">
+<h1>Mac OS 14<a class="headerlink" href="#mac-os-14" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>In principle there is no GPU support for INQ in Mac, INQ will use the default Apple linear algebra libraries.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>cmake<span class="w"> </span>gfortran<span class="w"> </span>open-mpi<span class="w"> </span>pkg-config<span class="w"> </span>fftw<span class="w"> </span>boost<span class="w"> </span>dumpy
+
+git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>git@gitlab.com:npneq/inq.git<span class="w">  </span><span class="c1"># or https://gitlab.com/npneq/inq.git</span>
+<span class="nb">cd</span><span class="w"> </span>inq
+mkdir<span class="w"> </span>build
+cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>--install-prefix<span class="o">=</span><span class="nv">$HOME</span>
+
+cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--parallel<span class="w"> </span>--target<span class="w"> </span>install
+<span class="nv">OMPI_MCA_btl</span><span class="o">=</span>^tcp<span class="w"> </span>ctest<span class="w"> </span>--test-dir<span class="w"> </span>build<span class="w"> </span>--output-on-failure
+</pre></div>
+</div>
+</section>
+<section id="recover-from-nvidia-device-error">
+<h1>Recover from Nvidia device error<a class="headerlink" href="#recover-from-nvidia-device-error" title="Permalink to this heading"></a></h1>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>fuser<span class="w"> </span>--kill<span class="w"> </span>/dev/nvidia-uvm
+sudo<span class="w"> </span><span class="k">while</span><span class="w"> </span>fuser<span class="w"> </span>--silent<span class="w"> </span>/dev/nvidia-uvm<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+sudo<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2"> </span><span class="nv">$@</span><span class="s2">: reload nvidia_uvm&quot;</span>
+sudo<span class="w"> </span>modprobe<span class="w"> </span>-r<span class="w"> </span>nvidia_uvm<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>modprobe<span class="w"> </span>nvidia_uvm
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2025 Lawrence Livermore National Security, LLC., Xavier Andrade, Alfredo A. Correa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

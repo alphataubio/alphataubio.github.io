@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6. Developers Guide &mdash; INQ 0.95 documentation</title>
+  <title>7. Developers Guide &mdash; INQ 0.95 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/lammps.css" type="text/css" />
     <link rel="shortcut icon" href="_static/inq_favicon.ico"/>
@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="inq::magnitude" href="reference_magnitude.html" />
-    <link rel="prev" title="5. Tutorial (C++)" href="tutorial_cpp.html" /> 
+    <link rel="prev" title="6. Tutorial (C++)" href="tutorial_cpp.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -129,62 +129,84 @@
 <li class="toctree-l2"><a class="reference internal" href="theory.html#magnetization">3.10. Magnetization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial_shell_python.html">4. Tutorial (Shell and Python)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#nitrogen-molecule">4.1. Nitrogen molecule</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#setting-up-the-run-directory">4.1.1. Setting up the run directory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-simulation-parameters">4.1.2. Defining the simulation parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#running-the-simulation">4.1.3. Running the simulation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#querying-the-ground-state-results">4.1.4. Querying the ground-state results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#changing-the-ion-positions">4.1.5. Changing the ion positions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#scripting-the-potential-energy-surface-of-n2">4.1.6. Scripting: the potential energy surface of N2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">4. Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-cell-command">4.1. The ‘cell’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-clear-command">4.2. The ‘clear’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-electrons-command">4.3. The ‘electrons’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-ground-state-command">4.4. The ‘ground-state’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-history-command">4.5. The ‘history’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-ions-command">4.6. The ‘ions’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-kpoints-command">4.7. The ‘kpoints’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-perturbations-command">4.8. The ‘perturbations’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-real-time-command">4.9. The ‘real-time’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#results">4.10. Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-results-ground-state-command">4.11. The ‘results ground-state’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-results-real-time-command">4.12. The ‘results real-time’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-run-command">4.13. The ‘run’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-species-command">4.14. The ‘species’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-spectrum-command">4.15. The ‘spectrum’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-status-command">4.16. The ‘status’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-theory-command">4.17. The ‘theory’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#units-in-inq">4.18. Units in inq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-util-command">4.19. The ‘util’ command</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#benzene-optical-absorption-spectrum">4.2. Benzene optical absorption spectrum</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#simulation-parameters">4.2.1. Simulation parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#ground-state-calculation">4.2.2. Ground state calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#first-time-propagation-finding-the-optimal-time-step">4.2.3. First time propagation, finding the optimal time-step</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#adding-a-perturbation">4.2.4. Adding a perturbation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-observables">4.2.5. Defining the observables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#run-the-propagation">4.2.6. Run the propagation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#analyzing-the-results-and-obtaining-the-spectrum">4.2.7. Analyzing the results and obtaining the spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_shell_python.html">5. Tutorial (Shell and Python)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#nitrogen-molecule">5.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#setting-up-the-run-directory">5.1.1. Setting up the run directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-simulation-parameters">5.1.2. Defining the simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#running-the-simulation">5.1.3. Running the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#querying-the-ground-state-results">5.1.4. Querying the ground-state results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#changing-the-ion-positions">5.1.5. Changing the ion positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#scripting-the-potential-energy-surface-of-n2">5.1.6. Scripting: the potential energy surface of N2</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial_cpp.html">5. Tutorial (C++)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#nitrogen-molecule">5.1. Nitrogen molecule</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#header">5.1.1. Header</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#electronic-system">5.1.2. Electronic system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#single-point-energy-calculation">5.1.3. Single point energy calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#potential-energy-surface">5.1.4. Potential energy surface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#finding-the-minimum-energy-advanced">5.1.5. Finding the minimum energy (advanced)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#hydrogen-fluoride-molecule">5.2. Hydrogen fluoride molecule</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#partial-charges">5.2.1. Partial charges</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#hartee-fock">5.2.2. Hartee-Fock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#parallelization">5.2.3. Parallelization</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#benzene-optical-absorption-spectrum">5.3. Benzene optical absorption spectrum</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#first-time-propagation-finding-the-optimal-time-step">5.3.1. First time propagation, finding the optimal time-step</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-perturbation-and-observables">5.3.2. Adding a perturbation and observables</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#electronic-stopping">5.4. Electronic stopping</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#aluminum-supercell">5.4.1. Aluminum supercell</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-proton">5.4.2. Adding a proton</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#ground-state-calculation">5.4.3. Ground state calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#time-propagation">5.4.4. Time propagation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#results">5.4.5. Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#benzene-optical-absorption-spectrum">5.2. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#simulation-parameters">5.2.1. Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#ground-state-calculation">5.2.2. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#first-time-propagation-finding-the-optimal-time-step">5.2.3. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#adding-a-perturbation">5.2.4. Adding a perturbation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-observables">5.2.5. Defining the observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#run-the-propagation">5.2.6. Run the propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#analyzing-the-results-and-obtaining-the-spectrum">5.2.7. Analyzing the results and obtaining the spectrum</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Developers Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#repository">6.1. Repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#coding">6.2. Coding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#debugging-code">6.3. Debugging code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_cpp.html">6. Tutorial (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#nitrogen-molecule">6.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#header">6.1.1. Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#electronic-system">6.1.2. Electronic system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#single-point-energy-calculation">6.1.3. Single point energy calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#potential-energy-surface">6.1.4. Potential energy surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#finding-the-minimum-energy-advanced">6.1.5. Finding the minimum energy (advanced)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#hydrogen-fluoride-molecule">6.2. Hydrogen fluoride molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#partial-charges">6.2.1. Partial charges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#hartee-fock">6.2.2. Hartee-Fock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#parallelization">6.2.3. Parallelization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#benzene-optical-absorption-spectrum">6.3. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#first-time-propagation-finding-the-optimal-time-step">6.3.1. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-perturbation-and-observables">6.3.2. Adding a perturbation and observables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#electronic-stopping">6.4. Electronic stopping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#aluminum-supercell">6.4.1. Aluminum supercell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-proton">6.4.2. Adding a proton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#ground-state-calculation">6.4.3. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#time-propagation">6.4.4. Time propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#results">6.4.5. Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Developers Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#repository">7.1. Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coding">7.2. Coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-code">7.3. Debugging code</a></li>
 </ul>
 </li>
 </ul>
@@ -218,12 +240,12 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">6. </span>Developers Guide</li>
+      <li class="breadcrumb-item active"><span class="section-number">7. </span>Developers Guide</li>
       <li class="wy-breadcrumbs-aside">
           <a href="https://gitlab.com/npneq/inq"><img src="_static/gitlab.png" width="100" alt="gitlab"> </a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="tutorial_cpp.html" class="btn btn-neutral float-left" title="5. Tutorial (C++)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial_cpp.html" class="btn btn-neutral float-left" title="6. Tutorial (C++)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="reference_magnitude.html" class="btn btn-neutral float-right" title="inq::magnitude" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -232,9 +254,9 @@
            <div itemprop="articleBody">
              
   <section id="developers-guide">
-<h1><span class="section-number">6. </span>Developers Guide<a class="headerlink" href="#developers-guide" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">7. </span>Developers Guide<a class="headerlink" href="#developers-guide" title="Permalink to this heading"></a></h1>
 <section id="repository">
-<h2><span class="section-number">6.1. </span>Repository<a class="headerlink" href="#repository" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">7.1. </span>Repository<a class="headerlink" href="#repository" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Inq uses git for development, the main repository is hosted in Gitlab: <a class="reference external" href="https://gitlab.com/npneq/inq/">https://gitlab.com/npneq/inq/</a>. Cloning the repository is achieved via <cite>git clone –recurse-submodules git&#64;gitlab.com:npneq/inq.git</cite>. We are not going enter into details on how to use <cite>git</cite> or GitLab here, only in things that are particular to how inq works. Something important to have in mind is that <cite>git</cite> is not <cite>svn</cite>, trying to use it like that will lead to more pain in the long run.</p></li>
 <li><p>It is important that before contributing to inq, you check that your git push mode is set to <cite>current</cite> (or <cite>simple</cite>), and <strong>not</strong> <cite>matching</cite> (it can lead developers to do things they don’t intend to). To set your push mode to <cite>current</cite> use the following command:</p></li>
@@ -276,7 +298,7 @@
 Furthermore you can locally link <cite>ln -s ../../pre-push .git/hooks/pre-push</cite> to automatically execute this script before pushing changes.</p>
 </section>
 <section id="coding">
-<h2><span class="section-number">6.2. </span>Coding<a class="headerlink" href="#coding" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">7.2. </span>Coding<a class="headerlink" href="#coding" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Minimize the use of comments, make the code more clear instead of writing and maintaining comments.</p></li>
 <li><p>Whitespace (spaces, tabs and line breaks) should be used to help convey the meaning visually as best as possible for most text editors.</p></li>
@@ -291,7 +313,7 @@ Furthermore you can locally link <cite>ln -s ../../pre-push .git/hooks/pre-push<
 </ul>
 </section>
 <section id="debugging-code">
-<h2><span class="section-number">6.3. </span>Debugging code<a class="headerlink" href="#debugging-code" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">7.3. </span>Debugging code<a class="headerlink" href="#debugging-code" title="Permalink to this heading"></a></h2>
 <p>In order to debug the code you can use gdb. To debug in parallel use the following command</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">2</span><span class="w"> </span>gnome-terminal<span class="w"> </span>--wait<span class="w"> </span>--<span class="w"> </span>gdb<span class="w"> </span>-ex<span class="w"> </span>run<span class="w"> </span>--args<span class="w"> </span>./tests/executable
 </pre></div>
@@ -304,7 +326,7 @@ Furthermore you can locally link <cite>ln -s ../../pre-push .git/hooks/pre-push<
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="tutorial_cpp.html" class="btn btn-neutral float-left" title="5. Tutorial (C++)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial_cpp.html" class="btn btn-neutral float-left" title="6. Tutorial (C++)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="reference_magnitude.html" class="btn btn-neutral float-right" title="inq::magnitude" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

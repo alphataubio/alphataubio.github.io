@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Interface &mdash; INQ 0.95 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/lammps.css" type="text/css" />
+      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/inq_favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=1c4172e4"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="_static/tabs.js?v=3030b3cb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Tutorial (Shell and Python)" href="tutorial_shell_python.html" />
+    <link rel="prev" title="3. Theory" href="theory.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/inq_logo.png" class="logo" alt="Logo"/>
+          </a>
+            <div class="lammps_version">Version: <b></b></div>
+            <div class="lammps_release">git info: 0.95</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. README</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#components">1.1. Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#basic-installation">1.2. Basic installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#reference">1.3. Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#introductory-material">1.4. Introductory material</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#release-information">1.5. Release information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#acknowledgment">1.6. Acknowledgment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compilation.html">2. Compilation and installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-and-running-on-a-local-computer">2.1. Compiling and running on a local computer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-dependencies-and-setup-environment">2.1.1. Install dependencies and setup environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#clone-repository">2.1.2. Clone repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#for-cpu-only-system">2.1.3. For CPU-only system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#for-an-nvidia-gpu-system-with-nvcc-11-x">2.1.4. For an Nvidia-GPU system (with NVCC 11.x)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#specific-computers">2.1.5. Specific computers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#manually-setting-utilization-of-multiple-gpu-with-mpi">2.1.6. Manually setting utilization of multiple GPU with MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#installing-gcc-for-cuda">2.1.7. Installing GCC for CUDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#mac-os-14">2.1.8. Mac OS 14</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#recover-from-nvidia-device-error">2.1.9. Recover from Nvidia device error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-inq-on-supercomputing-clusters">2.2. Compiling INQ on Supercomputing Clusters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-perlmutter-at-nersc">2.2.1. Compiling on Perlmutter at NERSC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-lbnl-generic-linux-supercluster">2.2.2. Compiling on LBNL Generic Linux Supercluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#compiling-on-frontera-at-tacc-fhj-9-26-22">2.2.3. Compiling on Frontera at TACC (FHJ, 9/26/22)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-test-jobs">Running test jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#compiling-and-running-on-frontier">Compiling and running on Frontier</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#alcf-polaris">2.2.4. ALCF Polaris</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#llnl-sierra-lassen">2.2.5. LLNL Sierra/Lassen</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#environment">Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#build-install-and-test">Build, Install and Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#open-a-shell-in-a-node">Open a shell in a node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-interactively">Running interactively</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#llnl-tioga-amd">2.2.6. LLNL Tioga (AMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#olcf-frontier-amd">2.2.7. OLCF Frontier (AMD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#nersc-perlmutter-nvidia">2.2.8. NERSC Perlmutter (NVIDIA)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#quartz">2.2.9. Quartz</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#environment">Environment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#build-install-and-test">Build, Install and Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#open-a-shell-in-a-node">Open a shell in a node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="compilation.html#running-interactively">Running interactively</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#compiling-parallel-mpi-hdf5-for-inq">2.3. Compiling Parallel (MPI) HDF5 for INQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#cmake">2.4. CMake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compilation.html#boost">2.5. BOOST</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-boost-libraries">2.5.1. Install BOOST libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="compilation.html#install-boost">2.5.2. Install BOOST</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theory.html">3. Theory</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#total-energy">3.1. Total energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#pseudopotential-application">3.2. Pseudopotential application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#k-points">3.3. k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#hartree-fock-with-k-points">3.4. Hartree-Fock with k-points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#electric-fields-and-gauges">3.5. Electric fields and gauges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#coordinates">3.6. Coordinates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#mini-cell-circumscribing-a-sphere">3.6.1. Mini cell circumscribing a sphere</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#preconditioner">3.7. Preconditioner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#exact-factorization">3.8. Exact factorization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#nuclear-eom">3.8.1. Nuclear EOM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="theory.html#electronic-equation-of-motion">3.8.2. Electronic equation of motion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#self-consistency-acceleration">3.9. Self-consistency acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html#magnetization">3.10. Magnetization</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-cell-command">4.1. The ‘cell’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-clear-command">4.2. The ‘clear’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-electrons-command">4.3. The ‘electrons’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-ground-state-command">4.4. The ‘ground-state’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-history-command">4.5. The ‘history’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-ions-command">4.6. The ‘ions’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-kpoints-command">4.7. The ‘kpoints’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-perturbations-command">4.8. The ‘perturbations’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-real-time-command">4.9. The ‘real-time’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">4.10. Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-results-ground-state-command">4.11. The ‘results ground-state’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-results-real-time-command">4.12. The ‘results real-time’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-run-command">4.13. The ‘run’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-species-command">4.14. The ‘species’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-spectrum-command">4.15. The ‘spectrum’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-status-command">4.16. The ‘status’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-theory-command">4.17. The ‘theory’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#units-in-inq">4.18. Units in inq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-util-command">4.19. The ‘util’ command</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_shell_python.html">5. Tutorial (Shell and Python)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#nitrogen-molecule">5.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#setting-up-the-run-directory">5.1.1. Setting up the run directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-simulation-parameters">5.1.2. Defining the simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#running-the-simulation">5.1.3. Running the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#querying-the-ground-state-results">5.1.4. Querying the ground-state results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#changing-the-ion-positions">5.1.5. Changing the ion positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#scripting-the-potential-energy-surface-of-n2">5.1.6. Scripting: the potential energy surface of N2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_shell_python.html#benzene-optical-absorption-spectrum">5.2. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#simulation-parameters">5.2.1. Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#ground-state-calculation">5.2.2. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#first-time-propagation-finding-the-optimal-time-step">5.2.3. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#adding-a-perturbation">5.2.4. Adding a perturbation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#defining-the-observables">5.2.5. Defining the observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#run-the-propagation">5.2.6. Run the propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_shell_python.html#analyzing-the-results-and-obtaining-the-spectrum">5.2.7. Analyzing the results and obtaining the spectrum</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_cpp.html">6. Tutorial (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#nitrogen-molecule">6.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#header">6.1.1. Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#electronic-system">6.1.2. Electronic system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#single-point-energy-calculation">6.1.3. Single point energy calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#potential-energy-surface">6.1.4. Potential energy surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#finding-the-minimum-energy-advanced">6.1.5. Finding the minimum energy (advanced)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#hydrogen-fluoride-molecule">6.2. Hydrogen fluoride molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#partial-charges">6.2.1. Partial charges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#hartee-fock">6.2.2. Hartee-Fock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#parallelization">6.2.3. Parallelization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#benzene-optical-absorption-spectrum">6.3. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#first-time-propagation-finding-the-optimal-time-step">6.3.1. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-perturbation-and-observables">6.3.2. Adding a perturbation and observables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#electronic-stopping">6.4. Electronic stopping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#aluminum-supercell">6.4.1. Aluminum supercell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-proton">6.4.2. Adding a proton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#ground-state-calculation">6.4.3. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#time-propagation">6.4.4. Time propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#results">6.4.5. Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers_guide.html">7. Developers Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#repository">7.1. Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#coding">7.2. Coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#debugging-code">7.3. Debugging code</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reference_magnitude.html">inq::magnitude</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-energy">inq::magnitude::energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-length">inq::magnitude::length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_magnitude.html#inq-magnitude-time">inq::magnitude::time</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reference_systems.html">inq::systems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-cell">inq::systems::cell</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-electrons">inq::systems::electrons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference_systems.html#inq-systems-ions">inq::systems::ions</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">INQ</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Interface</li>
+      <li class="wy-breadcrumbs-aside">
+          <a href="https://gitlab.com/npneq/inq"><img src="_static/gitlab.png" width="100" alt="gitlab"> </a>
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="theory.html" class="btn btn-neutral float-left" title="3. Theory" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial_shell_python.html" class="btn btn-neutral float-right" title="5. Tutorial (Shell and Python)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="interface">
+<h1><span class="section-number">4. </span>Interface<a class="headerlink" href="#interface" title="Permalink to this heading"></a></h1>
+<section id="the-cell-command">
+<h2><span class="section-number">4.1. </span>The ‘cell’ command<a class="headerlink" href="#the-cell-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-0-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>The ‘cell’ command defines the inq simulation cell. There are different variations of the command depending on the type of cell you want to define.</p>
+<p>In all cases you must include the units for the cell. For the moment note you can use ‘bohr’ (or ‘b’) and ‘angstrom’ (or ‘A’).  See <cite>inq help units</cite> for other supported units.</p>
+<p>An optional last argument defines the periodicity of the cell. The periodicity can be specified as a number from 0 (or ‘0d’) to 3 (‘3d’), or as ‘finite’, ‘wire’, ‘slab’ and ‘periodic’. If the periodicity is not given, the system is considered periodic. For Python either a integer or a string can be given.</p>
+<p>Note that defining the cell is not necessary if you are going to read it from a file (using the <cite>inq ion file</cite> command).</p>
+<p>The following are the accepted forms of the cell command:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">inq</span> <span class="pre">cell</span></code></p>
+<p>Without any arguments (or the status function in python), <cite>cell</cite>   prints the cell currently defined in the system.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inq</span> <span class="pre">cell</span> <span class="pre">cubic</span> <span class="pre">&lt;a&gt;</span> <span class="pre">&lt;units&gt;</span> <span class="pre">[periodicity]</span></code></p>
+<p>Defines a cubic cell of side &lt;a&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell<span class="w"> </span>cubic<span class="w"> </span><span class="m">5</span>.0<span class="w"> </span>A<span class="w"> </span>finite
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inq</span> <span class="pre">cell</span> <span class="pre">orthorhombic</span> <span class="pre">&lt;a&gt;</span> <span class="pre">&lt;b&gt;</span> <span class="pre">&lt;c&gt;</span> <span class="pre">&lt;units&gt;</span> <span class="pre">[periodicity]</span></code></p>
+<p>Defines a orthorhombic cell of sides a, b and c.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell<span class="w"> </span>orthorhombic<span class="w"> </span><span class="m">10</span>.0<span class="w"> </span><span class="m">10</span>.0<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span>bohr
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inq</span> <span class="pre">cell</span>&#160; <span class="pre">&lt;a1&gt;</span> <span class="pre">&lt;a2&gt;</span> <span class="pre">&lt;a3&gt;</span>&#160; <span class="pre">&lt;b1&gt;</span> <span class="pre">&lt;b2&gt;</span> <span class="pre">&lt;b3&gt;</span>&#160; <span class="pre">&lt;c1&gt;</span> <span class="pre">&lt;c2&gt;</span> <span class="pre">&lt;c3&gt;</span>&#160; <span class="pre">&lt;units&gt;</span> <span class="pre">[periodicity]</span></code></p>
+<p>Creates a general cell defined by the lattice vectors a, b, and c   (given by components). The units are applied to all the vector   components.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell<span class="w">  </span><span class="m">4</span>.6478<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w">  </span>-2.3239<span class="w"> </span><span class="m">4</span>.02512<span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">10</span>.0<span class="w"> </span>b<span class="w"> </span>2d
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inq</span> <span class="pre">cell</span>&#160; <span class="pre">&lt;a1&gt;</span> <span class="pre">&lt;a2&gt;</span> <span class="pre">&lt;a3&gt;</span>&#160; <span class="pre">&lt;b1&gt;</span> <span class="pre">&lt;b2&gt;</span> <span class="pre">&lt;b3&gt;</span>&#160; <span class="pre">&lt;c1&gt;</span> <span class="pre">&lt;c2&gt;</span> <span class="pre">&lt;c3&gt;</span>&#160; <span class="pre">scale</span> <span class="pre">&lt;s&gt;</span> <span class="pre">&lt;units&gt;</span> <span class="pre">[periodicity]</span></code></p>
+<p>Like the previous case, creates a general cell defined by the lattice vectors a, b, and c   (given by components). However in this case a general scale factor is applied to all the vectors.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell<span class="w">  </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="m">0</span>.5<span class="w">  </span><span class="m">0</span>.5<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.5<span class="w">  </span><span class="m">0</span>.5<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span><span class="m">0</span>.0<span class="w">  </span>scale<span class="w"> </span><span class="m">3</span>.57<span class="w"> </span>angstrom
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>The ‘cell’ command defines the inq simulation cell. There are different variations of the command depending on the type of cell you want to define.</p>
+<p>In all cases you must include the units for the cell. For the moment note you can use ‘bohr’ (or ‘b’) and ‘angstrom’ (or ‘A’).  See <cite>inq help units</cite> for other supported units.</p>
+<p>An optional last argument defines the periodicity of the cell. The periodicity can be specified as a number from 0 (or ‘0d’) to 3 (‘3d’), or as ‘finite’, ‘wire’, ‘slab’ and ‘periodic’. If the periodicity is not given, the system is considered periodic. For Python either a integer or a string can be given.</p>
+<p>Note that defining the cell is not necessary if you are going to read it from a file (using the <cite>inq ion file</cite> command).</p>
+<p>The following are the accepted forms of the cell command:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinq.cell.status()</span></code></p>
+<p>Without any arguments (or the status function in python), <cite>cell</cite>   prints the cell currently defined in the system.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinq.cell.cubic(a,</span> <span class="pre">units,</span> <span class="pre">periodicity</span> <span class="pre">=</span> <span class="pre">3)</span></code></p>
+<p>Defines a cubic cell of side &lt;a&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.cubic<span class="o">(</span><span class="m">5</span>.0,<span class="w"> </span><span class="s2">&quot;A&quot;</span>,<span class="w"> </span><span class="s2">&quot;finite&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinq.cell.orthorhombic(a,</span> <span class="pre">b,</span> <span class="pre">c,</span> <span class="pre">units,</span> <span class="pre">periodicity</span> <span class="pre">=</span> <span class="pre">3)</span></code></p>
+<p>Defines a orthorhombic cell of sides a, b and c.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.orthorhombic<span class="o">(</span><span class="m">10</span>.0,<span class="w"> </span><span class="m">10</span>.0,<span class="w"> </span><span class="m">12</span>.0,<span class="w"> </span><span class="s2">&quot;bohr&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inq.cell.lattice([a1,</span> <span class="pre">a2,</span> <span class="pre">a3],</span> <span class="pre">[b1,</span> <span class="pre">b2,</span> <span class="pre">b3],</span> <span class="pre">[c1,</span> <span class="pre">c2,</span> <span class="pre">c3],</span> <span class="pre">units,</span> <span class="pre">periodicity)</span></code></p>
+<p>Creates a general cell defined by the lattice vectors a, b, and c   (given by components). The units are applied to all the vector   components.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.lattice<span class="o">([</span><span class="m">4</span>.6478,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">]</span>,<span class="w"> </span><span class="o">[</span>-2.3239,<span class="w"> </span><span class="m">4</span>.02512,<span class="w"> </span><span class="m">0</span><span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">10</span>.0<span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;b&quot;</span>,<span class="w"> </span><span class="s2">&quot;2d&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inq.cell.lattice([a1,</span> <span class="pre">a2,</span> <span class="pre">a3],</span> <span class="pre">[b1,</span> <span class="pre">b2,</span> <span class="pre">b3],</span> <span class="pre">[c1,</span> <span class="pre">c2,</span> <span class="pre">c3],</span> <span class="pre">scale,</span> <span class="pre">units,</span> <span class="pre">periodicity)</span></code></p>
+<p>Like the previous case, creates a general cell defined by the lattice vectors a, b, and c   (given by components). However in this case a general scale factor is applied to all the vectors.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.lattice<span class="o">([</span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.5<span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.5<span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.0<span class="o">]</span>,<span class="w"> </span><span class="m">3</span>.57,<span class="w"> </span><span class="s2">&quot;angstrom&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-clear-command">
+<h2><span class="section-number">4.2. </span>The ‘clear’ command<a class="headerlink" href="#the-clear-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-1-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>The ‘clear’ command removes all inq information from the current directory. It doesn’t take any arguments.</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq<span class="w"> </span>clear
+</pre></div>
+</div>
+</div></blockquote>
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>The ‘clear’ command removes all inq information from the current directory. It doesn’t take any arguments.</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.clear<span class="o">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div></div>
+</section>
+<section id="the-electrons-command">
+<h2><span class="section-number">4.3. </span>The ‘electrons’ command<a class="headerlink" href="#the-electrons-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-2-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command defines the electrons that are in the system and how they are going to be represented through several values that can be set by the user.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons</span></code></p>
+<p>When no arguments are given (or the <cite>status</cite> function in Python),   <cite>electrons</cite> will just print the currently defined options (including   default values).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons</span> <span class="pre">cutoff</span> <span class="pre">&lt;value&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
+<p>Sets the energy cutoff for the simulation grid. A higher cutoff   implies a more precise, but more costly, simulation. The value must   be followed by its units, check <cite>inq help units</cite> for details on what   units are available.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>cutoff<span class="w"> </span><span class="m">30</span>.0<span class="w"> </span>Ry
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons</span> <span class="pre">spacing</span> <span class="pre">&lt;value&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
+<p>As an alternative to the cutoff, you can sets the spacing for the   simulation grid. A lower spacing implies a more precise, but more   costly, simulation. The value must be followed by its length units,   check <cite>inq help units</cite> for details on what units are available.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>spacing<span class="w"> </span><span class="m">0</span>.23<span class="w"> </span>A
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons</span> <span class="pre">spin</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>Sets the spin configuration used in the simulation. In the command   line interface this is selected by an argument whose values can be   ‘unpolarized’ (the default), ‘polarized’ and ‘non-collinear’. For   Python there are different functions for each value.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>spin<span class="w"> </span>polarized
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons</span> <span class="pre">extra-electrons</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>Inq determines the number of electrons from the ions present in the   system. Using this variable you can add or remove electrons from the   simulation. Positive values add electrons and negative values remove   them. The number of electrons does not have to be an integer, you   can add fractions of an electrons (given as a decimal number).</p>
+<p>Note that in first principles simulations the electrons are not   associated a priory to a certain atom. So when you add an electron   there is no concept of ‘where’ you put it. This will be determined   by the ground-state optimization.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>extra-electrons<span class="w"> </span>-0.5
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons</span> <span class="pre">extra-states</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>Inq automatically selects a number of states (orbitals, bands) that is   enough to represent all the electrons in the system. In many cases   you want additional states, and you do that using this command. The   value must be a positive integer.</p>
+<p>Extra-states are necessary when setting an electronic temperature   and to improve ground-state convergence.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>extra-states<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons</span> <span class="pre">temperature</span> <span class="pre">&lt;value&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
+<p>This command sets the temperature of the electrons in the   ground-state optimization. The value must be positive and the units   must be given. Check <cite>inq help units</cite> for details on what units are   available. Most likely you want to use ‘eV’ or ‘K’.</p>
+<p>Note that when you add a temperature you also need to specify   extra-states.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>temperature<span class="w"> </span><span class="m">273</span>.15<span class="w"> </span>Kelvin
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command defines the electrons that are in the system and how they are going to be represented through several values that can be set by the user.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons.status()</span></code></p>
+<p>When no arguments are given (or the <cite>status</cite> function in Python),   <cite>electrons</cite> will just print the currently defined options (including   default values).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons.cutoff(value,</span> <span class="pre">units)</span></code></p>
+<p>Sets the energy cutoff for the simulation grid. A higher cutoff   implies a more precise, but more costly, simulation. The value must   be followed by its units, check <cite>inq help units</cite> for details on what   units are available.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.cutoff<span class="o">(</span><span class="m">30</span>.0,<span class="w"> </span><span class="s2">&quot;Ry&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons.spacing(value,</span> <span class="pre">units)</span></code></p>
+<p>As an alternative to the cutoff, you can sets the spacing for the   simulation grid. A lower spacing implies a more precise, but more   costly, simulation. The value must be followed by its length units,   check <cite>inq help units</cite> for details on what units are available.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.spacing<span class="o">(</span><span class="m">0</span>.23,<span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons.spin_unpolarized()`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">`electrons.spin_polarized()`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">`electrons.spin_non_collinear()</span></code></p>
+<p>Sets the spin configuration used in the simulation. In the command   line interface this is selected by an argument whose values can be   ‘unpolarized’ (the default), ‘polarized’ and ‘non-collinear’. For   Python there are different functions for each value.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.spin_polarized<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons.extra_electrons(value)</span></code></p>
+<p>Inq determines the number of electrons from the ions present in the   system. Using this variable you can add or remove electrons from the   simulation. Positive values add electrons and negative values remove   them. The number of electrons does not have to be an integer, you   can add fractions of an electrons (given as a decimal number).</p>
+<p>Note that in first principles simulations the electrons are not   associated a priory to a certain atom. So when you add an electron   there is no concept of ‘where’ you put it. This will be determined   by the ground-state optimization.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.extra_electrons<span class="o">(</span>-0.5<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons.extra_states(value)</span></code></p>
+<p>Inq automatically selects a number of states (orbitals, bands) that is   enough to represent all the electrons in the system. In many cases   you want additional states, and you do that using this command. The   value must be a positive integer.</p>
+<p>Extra-states are necessary when setting an electronic temperature   and to improve ground-state convergence.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.extra_states<span class="o">(</span><span class="m">2</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">electrons.temperature(value,</span> <span class="pre">units)</span></code></p>
+<p>This command sets the temperature of the electrons in the   ground-state optimization. The value must be positive and the units   must be given. Check <cite>inq help units</cite> for details on what units are   available. Most likely you want to use ‘eV’ or ‘K’.</p>
+<p>Note that when you add a temperature you also need to specify   extra-states.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.temperature<span class="o">(</span><span class="m">273</span>.15,<span class="w"> </span><span class="s2">&quot;Kelvin&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-ground-state-command">
+<h2><span class="section-number">4.4. </span>The ‘ground-state’ command<a class="headerlink" href="#the-ground-state-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-3-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command defines the options for ground-state self-consistency calculations. These are the available options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ground-state</span></code></p>
+<p>When no arguments are given, <cite>ground-state</cite> will just print the   currently defined options (including default values).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ground-state
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ground-state</span> <span class="pre">max-steps</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>Sets the maximum number of self-consistency steps that will be   done. The default value is 200.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ground-state<span class="w"> </span>max-steps<span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ground-state</span> <span class="pre">tolerance</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>The tolerance used to consider that the self-consistency iteration   is converged. The default value is 1e-6.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ground-state<span class="w"> </span>tolerance<span class="w"> </span>1e-9
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ground-state</span> <span class="pre">mixing</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>Set the mixing factor for the self-consistency. The default value is 0.3.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ground-state<span class="w"> </span>mixing<span class="w"> </span><span class="m">0</span>.1
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command defines the options for ground-state self-consistency calculations. These are the available options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ground_state.status()</span></code></p>
+<p>When no arguments are given, <cite>ground-state</cite> will just print the   currently defined options (including default values).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ground_state.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ground_state.max_steps(value)</span></code></p>
+<p>Sets the maximum number of self-consistency steps that will be   done. The default value is 200.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ground_state.max_steps<span class="o">(</span><span class="m">100</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ground_state.tolerance(value)</span></code></p>
+<p>The tolerance used to consider that the self-consistency iteration   is converged. The default value is 1e-6.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ground_state.tolerance<span class="o">(</span>1e-9<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ground_state.mixing(value)</span></code></p>
+<p>Set the mixing factor for the self-consistency. The default value is 0.3.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq.ground_state.mixing<span class="o">(</span><span class="m">0</span>.1<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-history-command">
+<h2><span class="section-number">4.5. </span>The ‘history’ command<a class="headerlink" href="#the-history-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button></div><div aria-labelledby="tab-4-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-4-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command provides access to the history of the inq commands executed in the current directory. This command is only available for the shell interface.</p>
+<p>These are the available subcommands:</p>
+<ul class="simple">
+<li><p><cite>history</cite></p></li>
+</ul>
+<p>Prints a full list of the inq commands that have been executed in the       current directory.</p>
+<p>Shell example: <cite>inq history</cite></p>
+<ul class="simple">
+<li><p><cite>history clear</cite></p></li>
+</ul>
+<p>Clears the list of saved commands.</p>
+<p>Shell example: <cite>inq history clear</cite></p>
+<ul class="simple">
+<li><p><cite>history script</cite></p></li>
+</ul>
+<p>Prints a bash script containing the list of commands that reproduce         the calculation in the current directory. The recommended script        headers are included. Any command issues before <cite>inq clear</cite> will not    be included.</p>
+<p>Shell example: <cite>inq history script &gt; my_calculation.sh</cite></p>
+</div></div>
+</section>
+<section id="the-ions-command">
+<h2><span class="section-number">4.6. </span>The ‘ions’ command<a class="headerlink" href="#the-ions-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-5-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command defines the ions present in the system and its coordinates. These can be given one by one using <cite>insert</cite> or from a file using <cite>file</cite>.</p>
+<p>If you are adding ions one by one or reading an XYZ file, you must first declare the cell for system (see <cite>inq help cell</cite> or <cite>help(pinq.cell)</cite>).</p>
+<p>These are the uses for the command:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions</span></code></p>
+<p>Without any arguments (or status() in python), <cite>ions</cite> prints a list of   the ions currently in the system.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions</span> <span class="pre">clear</span></code></p>
+<p>Removes any ions present in the system. Does not change the cell.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>clear
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions</span> <span class="pre">insert</span> <span class="pre">&lt;symbol&gt;</span> <span class="pre">&lt;x&gt;</span> <span class="pre">&lt;y&gt;</span> <span class="pre">&lt;z&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
+<p>Add an ion of type _symbol_ at coordinates _x_, _y_, and _z_. The   units for the coordinates must be specified (check <cite>inq help units</cite>   for details).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>He<span class="w">  </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>angstrom
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions</span> <span class="pre">insert</span> <span class="pre">fractional</span> <span class="pre">&lt;symbol&gt;</span> <span class="pre">&lt;x&gt;</span> <span class="pre">&lt;y&gt;</span> <span class="pre">&lt;z&gt;</span></code></p>
+<p>Insert an ion of type _symbol_ at fractional coordinates _x_, _y_,   and _z_.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>fractional<span class="w"> </span>Si<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="m">0</span>.25
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions</span> <span class="pre">remove</span> <span class="pre">&lt;index&gt;</span></code></p>
+<p>Removes the ion given by _index_. Note that the ions indices start   from 0, not 1.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>remove<span class="w"> </span><span class="m">3</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions</span> <span class="pre">file</span> <span class="pre">&lt;filename&gt;</span></code></p>
+<p>Read a coordinate file given by &lt;filename&gt;. The supported formats   are POSCAR, CIF and XYZ. For POSCAR and CIF both the ions and the   cell information will be read. For XYZ only the atomic positions are   read, so the cell must be defined before reading the file.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>file<span class="w"> </span>diamond.cif
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions</span> <span class="pre">file</span> <span class="pre">&lt;filename&gt;</span> <span class="pre">radius</span> <span class="pre">&lt;r&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
+<p>Reads a coordinate file from &lt;filename&gt; and define a cell around the ions. The cell   is orthorhombic and finite. The cell has the smallest possible size   so that walls are at least distance ‘r’ from any atom. This is   useful for molecular systems where you need to converge the size of   the cell.  The units for the radius value must be specified (check   <cite>inq help units</cite> for details).</p>
+<p>Note: right now this functionality is only implemented for XYZ files.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>file<span class="w"> </span>glucose.xyz<span class="w"> </span>radius<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>A
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(not</span> <span class="pre">available)</span></code></p>
+<p>Imports the cell and ions from an Atomic Simulation Environment   (ASE) object. This is only available for the Python interface.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>not<span class="w"> </span>available<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command defines the ions present in the system and its coordinates. These can be given one by one using <cite>insert</cite> or from a file using <cite>file</cite>.</p>
+<p>If you are adding ions one by one or reading an XYZ file, you must first declare the cell for system (see <cite>inq help cell</cite> or <cite>help(pinq.cell)</cite>).</p>
+<p>These are the uses for the command:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions.status()</span></code></p>
+<p>Without any arguments (or status() in python), <cite>ions</cite> prints a list of   the ions currently in the system.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions.clear()</span></code></p>
+<p>Removes any ions present in the system. Does not change the cell.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.clear<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions.insert(symbol,</span> <span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z],</span> <span class="pre">units)</span></code></p>
+<p>Add an ion of type _symbol_ at coordinates _x_, _y_, and _z_. The   units for the coordinates must be specified (check <cite>inq help units</cite>   for details).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.insert<span class="o">(</span><span class="s2">&quot;He&quot;</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">2</span>.0<span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;Angstrom&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions.insert_fractional(symbol,</span> <span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z])</span></code></p>
+<p>Insert an ion of type _symbol_ at fractional coordinates _x_, _y_,   and _z_.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.insert_fractional<span class="o">(</span><span class="s2">&quot;Si&quot;</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>.25,<span class="w"> </span><span class="m">0</span>.25,<span class="w"> </span><span class="m">0</span>.25<span class="o">])</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions.remove(index)</span></code></p>
+<p>Removes the ion given by _index_. Note that the ions indices start   from 0, not 1.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.remove<span class="o">(</span><span class="m">3</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions.file(filename)</span></code></p>
+<p>Read a coordinate file given by &lt;filename&gt;. The supported formats   are POSCAR, CIF and XYZ. For POSCAR and CIF both the ions and the   cell information will be read. For XYZ only the atomic positions are   read, so the cell must be defined before reading the file.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.file<span class="o">(</span><span class="s2">&quot;diamond.cif&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions.file(filename,</span> <span class="pre">radius,</span> <span class="pre">units)</span></code></p>
+<p>Reads a coordinate file from &lt;filename&gt; and define a cell around the ions. The cell   is orthorhombic and finite. The cell has the smallest possible size   so that walls are at least distance ‘r’ from any atom. This is   useful for molecular systems where you need to converge the size of   the cell.  The units for the radius value must be specified (check   <cite>inq help units</cite> for details).</p>
+<p>Note: right now this functionality is only implemented for XYZ files.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.file<span class="o">(</span><span class="s2">&quot;glucose.xyz&quot;</span>,<span class="w"> </span><span class="m">2</span>.0,<span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ions.from_ase(atoms)</span></code></p>
+<p>Imports the cell and ions from an Atomic Simulation Environment   (ASE) object. This is only available for the Python interface.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.from_ase<span class="o">(</span>atoms<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-kpoints-command">
+<h2><span class="section-number">4.7. </span>The ‘kpoints’ command<a class="headerlink" href="#the-kpoints-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-6-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-6-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-6-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command defines the kpoints to be used in the simulation. Kpoints have to be given after the ions are defined.</p>
+<p>Note that right now inq doesn’t use symmetries to reduce the kpoint grid.</p>
+<p>These are the options available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints</span></code></p>
+<p>Prints a list of the current kpoints in the simulation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>kpoints
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints</span> <span class="pre">gamma</span></code></p>
+<p>Tells the system to only use the 0 0 0 point. This is the default.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>kpoints<span class="w"> </span>gamma
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints</span> <span class="pre">grid</span> <span class="pre">&lt;nx&gt;</span> <span class="pre">&lt;ny&gt;</span> <span class="pre">&lt;nz&gt;</span></code></p>
+<p>Define a uniform grid to sample the Brillouin zone with sizes _nx_,    _ny_ and _nz_. This generates a non-shifted grid that will include    gamma.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>kpoints<span class="w"> </span>grid<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="m">8</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints</span> <span class="pre">shifted</span> <span class="pre">grid</span> <span class="pre">&lt;nx&gt;</span> <span class="pre">&lt;ny&gt;</span> <span class="pre">&lt;nz&gt;</span></code></p>
+<p>Define a shifted uniform grid to sample the Brillouin zone with sizes _nx_,    _ny_ and _nz_. This grid doesn’t include gamma.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>kpoints<span class="w"> </span>shifted<span class="w"> </span>grid<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints</span> <span class="pre">insert</span> <span class="pre">&lt;kx&gt;</span> <span class="pre">&lt;ky&gt;</span> <span class="pre">&lt;kz&gt;</span> <span class="pre">&lt;w&gt;</span></code></p>
+<p>Add a kpoint to the grid with coordinates _kx_, _ky_, _kz_, and    weight _w_. The kpoint must be given in covariant coordinates in the    range [-0.5, 0.5).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>kpoints<span class="w"> </span>insert<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="m">0</span>.25<span class="w"> </span><span class="m">1</span>.0
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints</span> <span class="pre">clear</span></code></p>
+<p>Removes all the kpoints defined in the grid.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>kpoints<span class="w"> </span>clear
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-6-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-6-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command defines the kpoints to be used in the simulation. Kpoints have to be given after the ions are defined.</p>
+<p>Note that right now inq doesn’t use symmetries to reduce the kpoint grid.</p>
+<p>These are the options available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints.status()</span></code></p>
+<p>Prints a list of the current kpoints in the simulation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints.gamma()</span></code></p>
+<p>Tells the system to only use the 0 0 0 point. This is the default.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.gamma<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints.grid(nx,</span> <span class="pre">ny,</span> <span class="pre">nz)</span></code></p>
+<p>Define a uniform grid to sample the Brillouin zone with sizes _nx_,    _ny_ and _nz_. This generates a non-shifted grid that will include    gamma.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.grid<span class="o">(</span><span class="m">8</span>,<span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="m">8</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints.shifted_grid(nx,</span> <span class="pre">ny,</span> <span class="pre">nz)</span></code></p>
+<p>Define a shifted uniform grid to sample the Brillouin zone with sizes _nx_,    _ny_ and _nz_. This grid doesn’t include gamma.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.shifted_grid<span class="o">(</span><span class="m">4</span>,<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="m">4</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints.insert(kx,</span> <span class="pre">ky,</span> <span class="pre">kz,</span> <span class="pre">w)</span></code></p>
+<p>Add a kpoint to the grid with coordinates _kx_, _ky_, _kz_, and    weight _w_. The kpoint must be given in covariant coordinates in the    range [-0.5, 0.5).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.insert<span class="o">(</span><span class="m">0</span>.25,<span class="w"> </span><span class="m">0</span>.25,<span class="w"> </span><span class="m">0</span>.25,<span class="w"> </span><span class="m">1</span>.0<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpoints.clear()</span></code></p>
+<p>Removes all the kpoints defined in the grid.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.clear<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-perturbations-command">
+<h2><span class="section-number">4.8. </span>The ‘perturbations’ command<a class="headerlink" href="#the-perturbations-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-7-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-7-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-7-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command defines the perturbations applied to the system in a real-time simulations.</p>
+<p>Note that the perturbations can be applied in different ways depending on the periodicity of the system. The gauge selection is done automatically by the code.</p>
+<p>These are the uses for the command:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturbations</span></code></p>
+<p>Without any arguments (or with the status() function in Python),   <cite>perturbations</cite> prints a the perturbations that are currently   defined.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbations
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturbations</span> <span class="pre">clear</span></code></p>
+<p>Removes any perturbations currently defined in the system.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbations<span class="w"> </span>clear
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturbations</span> <span class="pre">kick</span> <span class="pre">&lt;px&gt;</span> <span class="pre">&lt;py&gt;</span> <span class="pre">&lt;pz&gt;</span></code></p>
+<p>Specifies a kick perturbation. This corresponds of a uniform   time-dependent electric field. The time profile is a delta function   at time 0. The direction and intensity of the field is given by the   values _px_, _py_ and _pz_ (these values are in cartesian units and   always considered in atomic units).</p>
+<p>A kick has a flat profile in frequency space, so it will excite all   frequencies equally. This is useful to obtain linear response   properties.</p>
+<p>For finite systems this kick is applied in the length gauge as a   phase to the orbitals (this avoid time-discretization errors). For   periodic systems, the kick is applied in the velocity gauge as a   uniform vector potential.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbations<span class="w"> </span>kick<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.1
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturbations</span> <span class="pre">laser</span> <span class="pre">&lt;px&gt;</span> <span class="pre">&lt;py&gt;</span> <span class="pre">&lt;pz&gt;</span> <span class="pre">&lt;frequency|wavelength&gt;</span> <span class="pre">&lt;f&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
+<p>Adds a laser perturbation. The laser is approximated by a   monochromatic electric field (the magnetic part is ignored). The   direction and intensity of the field is given by the values _px_,   _py_ and _pz_ (in cartesian coordinated and always in atomic units).</p>
+<p>You also have to specify the frequency of the laser using the   keyword ‘frequency’ followed by its value and its units (you can use   ‘eV’ or ‘THz’ for example, check <cite>inq help units</cite> for a full list of   the energy units available).</p>
+<p>Alternative you can use the keyword ‘wavelength’ followed by the   wavelength of the laser and its units (typically ‘nm’).</p>
+<p>For finite systems the laser is applied in the length gauge as a   potential. For periodic systems, the laser is applied in the   velocity gauge as a uniform vector potential.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbations<span class="w"> </span>laser<span class="w">  </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">    </span><span class="m">0</span>.5<span class="w"> </span>frequency<span class="w">  </span><span class="m">300</span><span class="w"> </span>THz
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbations<span class="w"> </span>laser<span class="w"> </span>-0.01<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span><span class="w">   </span>wavelength<span class="w"> </span><span class="m">880</span><span class="w"> </span>nm
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-7-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-7-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command defines the perturbations applied to the system in a real-time simulations.</p>
+<p>Note that the perturbations can be applied in different ways depending on the periodicity of the system. The gauge selection is done automatically by the code.</p>
+<p>These are the uses for the command:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturbations.status()</span></code></p>
+<p>Without any arguments (or with the status() function in Python),   <cite>perturbations</cite> prints a the perturbations that are currently   defined.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.perturbations.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturbations.clear()</span></code></p>
+<p>Removes any perturbations currently defined in the system.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.perturbations.clear<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">perturbations.kick([px,</span> <span class="pre">py,</span> <span class="pre">pz])</span></code></p>
+<p>Specifies a kick perturbation. This corresponds of a uniform   time-dependent electric field. The time profile is a delta function   at time 0. The direction and intensity of the field is given by the   values _px_, _py_ and _pz_ (these values are in cartesian units and   always considered in atomic units).</p>
+<p>A kick has a flat profile in frequency space, so it will excite all   frequencies equally. This is useful to obtain linear response   properties.</p>
+<p>For finite systems this kick is applied in the length gauge as a   phase to the orbitals (this avoid time-discretization errors). For   periodic systems, the kick is applied in the velocity gauge as a   uniform vector potential.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.perturbations.kick<span class="o">([</span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.1<span class="o">])</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">currently</span> <span class="pre">not</span> <span class="pre">implemented</span></code></p>
+<p>Adds a laser perturbation. The laser is approximated by a   monochromatic electric field (the magnetic part is ignored). The   direction and intensity of the field is given by the values _px_,   _py_ and _pz_ (in cartesian coordinated and always in atomic units).</p>
+<p>You also have to specify the frequency of the laser using the   keyword ‘frequency’ followed by its value and its units (you can use   ‘eV’ or ‘THz’ for example, check <cite>inq help units</cite> for a full list of   the energy units available).</p>
+<p>Alternative you can use the keyword ‘wavelength’ followed by the   wavelength of the laser and its units (typically ‘nm’).</p>
+<p>For finite systems the laser is applied in the length gauge as a   potential. For periodic systems, the laser is applied in the   velocity gauge as a uniform vector potential.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>currently<span class="w"> </span>not<span class="w"> </span>implemented<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>currently<span class="w"> </span>not<span class="w"> </span>implemented<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-real-time-command">
+<h2><span class="section-number">4.9. </span>The ‘real-time’ command<a class="headerlink" href="#the-real-time-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-8-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-8-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-8-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-8-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-8-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command defines the options for real-time electron dynamics simulations. These are the available options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">real-time</span></code></p>
+<p>When no arguments are given (or “status” in python), <cite>real-time</cite> will   just print the currently defined options (including default values).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real-time</span> <span class="pre">time-step</span> <span class="pre">&lt;value&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
+<p>Sets the time step for the real-time integration. In most cases you   want to pick the largest value that gives you a stable   propagation. Note you need to pass the units, you can use “atu” (or   “atomictimeunits”), “as” or “fs” among others. The default value is   0.01 atu.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>time-step<span class="w"> </span><span class="m">0</span>.1<span class="w"> </span>atu
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real-time</span> <span class="pre">num-steps</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>The number of time-steps to do in the time propagation. The default   value is 100.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>num-steps<span class="w"> </span><span class="m">10000</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real-time</span> <span class="pre">propagation-time</span> <span class="pre">&lt;value&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
+<p>Sets the number of step so that the total propagation time is   (slightly larger than) <cite>value</cite>. You need to pass the units as a   second argument, you can use “atu” (or “atomictimeunits”), “as” or   “fs” among others.</p>
+<p>Note that this variable directly calculates the number of steps   based on the currently defined time-step. If the time-step is later   changed the number of steps will remain unchanged and the   propagation time will change.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>propagation-time<span class="w"> </span><span class="m">10</span>.0<span class="w"> </span>fs
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real-time</span> <span class="pre">ions</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>This value decides how the ions will move during the   time-propagation. The options are: <cite>static</cite>, <cite>impulsive</cite> and   <cite>ehrenfest</cite>.</p>
+<p>The default is <cite>static</cite> where the ions don’t move during the propagation.</p>
+<p>In <cite>impulsive</cite> the ions move with a constant velocity given by the   initial conditions. This implies that the energy is not conserved.</p>
+<p>The last option is <cite>ehrenfest</cite> dynamics, where the ions follow the   instantaneous classical forces generated by the electrons.</p>
+<p>Note that when ions move, inq has to recalculate the atomic   potential at each step, so the propagation will be more costly.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>ions<span class="w"> </span>ehrenfest
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real-time</span> <span class="pre">observables</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>This value decides what observables will be calculated the   time-propagation. Right now the options are are: <cite>dipole</cite> and   <cite>current</cite> The total energy is also always calculated.</p>
+<p>Several calls to this function will add more observables.     Note that the calculated values will be stored internally by   INQ. They can be queried after the simulation is complete with the   <cite>results real-time</cite> command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>observables<span class="w"> </span>current
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real-time</span> <span class="pre">observables</span> <span class="pre">clear</span></code></p>
+<p>This option removes all the observables that have been previously   requested.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>observables<span class="w"> </span>clear
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-8-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-8-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command defines the options for real-time electron dynamics simulations. These are the available options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_time.status()</span></code></p>
+<p>When no arguments are given (or “status” in python), <cite>real-time</cite> will   just print the currently defined options (including default values).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_time.time_step(value,</span> <span class="pre">units)</span></code></p>
+<p>Sets the time step for the real-time integration. In most cases you   want to pick the largest value that gives you a stable   propagation. Note you need to pass the units, you can use “atu” (or   “atomictimeunits”), “as” or “fs” among others. The default value is   0.01 atu.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.time_step<span class="o">(</span><span class="m">0</span>.1,<span class="w"> </span><span class="s2">&quot;atu&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_time.num_steps(value)</span></code></p>
+<p>The number of time-steps to do in the time propagation. The default   value is 100.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.num-steps<span class="o">(</span><span class="m">10000</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_time.propagation_time(value,</span> <span class="pre">units)</span></code></p>
+<p>Sets the number of step so that the total propagation time is   (slightly larger than) <cite>value</cite>. You need to pass the units as a   second argument, you can use “atu” (or “atomictimeunits”), “as” or   “fs” among others.</p>
+<p>Note that this variable directly calculates the number of steps   based on the currently defined time-step. If the time-step is later   changed the number of steps will remain unchanged and the   propagation time will change.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.propagation_time<span class="o">(</span><span class="m">10</span>.0,<span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_time.ions.static()`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">`real_time.ions.impulsive()`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">`real_time.ions.ehrenfest()</span></code></p>
+<p>This value decides how the ions will move during the   time-propagation. The options are: <cite>static</cite>, <cite>impulsive</cite> and   <cite>ehrenfest</cite>.</p>
+<p>The default is <cite>static</cite> where the ions don’t move during the propagation.</p>
+<p>In <cite>impulsive</cite> the ions move with a constant velocity given by the   initial conditions. This implies that the energy is not conserved.</p>
+<p>The last option is <cite>ehrenfest</cite> dynamics, where the ions follow the   instantaneous classical forces generated by the electrons.</p>
+<p>Note that when ions move, inq has to recalculate the atomic   potential at each step, so the propagation will be more costly.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.ions.ehrenfest<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_time.observables.dipole()`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">`real_time.observables.current()</span></code></p>
+<p>This value decides what observables will be calculated the   time-propagation. Right now the options are are: <cite>dipole</cite> and   <cite>current</cite> The total energy is also always calculated.</p>
+<p>Several calls to this function will add more observables.     Note that the calculated values will be stored internally by   INQ. They can be queried after the simulation is complete with the   <cite>results real-time</cite> command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.observables.current<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_time.observables.clear()</span></code></p>
+<p>This option removes all the observables that have been previously   requested.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.observables.clear<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="results">
+<h2><span class="section-number">4.10. </span>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-9-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-9-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-9-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-9-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-9-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>The result command queries the results of a simulation that has been run in inq. Specific versions of the command exist for each simulation run. You can see the specific help for each one with:</p>
+<p>Shell: - <cite>inq help results ground-state</cite> - <cite>inq help results real-time</cite></p>
+<p>Python: - <cite>help(pinq.results.ground_state)</cite> - <cite>help(pinq.results.real_time)</cite></p>
+</div><div aria-labelledby="tab-9-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-9-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>The result command queries the results of a simulation that has been run in inq. Specific versions of the command exist for each simulation run. You can see the specific help for each one with:</p>
+<p>Shell: - <cite>inq help results ground-state</cite> - <cite>inq help results real-time</cite></p>
+<p>Python: - <cite>help(pinq.results.ground_state)</cite> - <cite>help(pinq.results.real_time)</cite></p>
+</div></div>
+</section>
+<section id="the-results-ground-state-command">
+<h2><span class="section-number">4.11. </span>The ‘results ground-state’ command<a class="headerlink" href="#the-results-ground-state-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-10-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-10-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-10-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-10-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-10-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command queries the results obtained from a ground-state calculation. Without arguments, it prints the values calculated.</p>
+<p>The options allows you to query a specific value. In this case only the value will be printed without any other text, so it is suitable for easy parsing in scripting. The values are returned in atomic units.</p>
+<p>These are the available subcommands:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span></code></p>
+<p>When no arguments are given (or the status function is used), print   the values calculated.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">iterations</span></code></p>
+<p>Print the number of self-consistency iterations done.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>iterations
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">magnetization</span> <span class="pre">[index]</span></code></p>
+<p>Query the magnetization. In Python or if no additional arguments are   given, print the whole 3D vector. For the shell, optionally you can   add an index argument to print a specific component of the   vector. The index can be given as the letters _x_, _y_ or _z_.</p>
+<p>Note that for spin unpolarized systems the magnetization is always   zero. For spin polarized the magnetization is assumed on the _z_   direction.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>magnetization<span class="w"> </span>z
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">dipole</span> <span class="pre">[index]</span></code></p>
+<p>Return the dipole of the system in atomic units. The whole vector is   given if no additional arguments are included. In the CLI, you can   also add an index argument to print a specific component. The index   can be given as the letters _x_, _y_ or _z_.</p>
+<p>Note that the dipole is only calculated for the non-periodic   directions. For the periodic directions is set to zero since the   dipole is not properly defined.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>magnetization<span class="w"> </span>z
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">forces</span> <span class="pre">[iatom]</span> <span class="pre">[index]</span></code></p>
+<p>Return the forces over the atoms in the system in atomic units. In   Python this is an array. In the CLI, if no arguments are given, all   the forces are printed. Alternatively is possible to pass an atom   index (that starts from 0), or both an atom and direction index   (_x_, _y_, or _z_).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>forces<span class="w"> </span><span class="m">7</span><span class="w"> </span>z
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span></code></p>
+<p>When no arguments are given (or status() in Python), <cite>energy</cite> will   print all the energy values available.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">total</span></code></p>
+<p>Returns the total energy of the calculation. This includes the ionic   contribution.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>total
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">kinetic</span></code></p>
+<p>The electronic kinetic energy.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>kinetic
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">eigenvalues</span></code></p>
+<p>The sum of the eigenvalues, weighed by the occupations.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>eigenvalues
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">Hartree</span></code></p>
+<p>The classical electrostatic interaction energy between electrons.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>Hartree
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">external</span></code></p>
+<p>The energy of the interaction of the electrons with the local   potential generated by the ions. This doesn’t include the non-local   pseudopotential part.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>external
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">non-local</span></code></p>
+<p>The energy of the interaction of the electrons with the non-local   part of the ionic pseudo-potentials.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>non-local
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">xc</span></code></p>
+<p>The exchange and correlation energy from DFT semi-local   functionals. It doesn’t include the contribution from Hartree-Fock   exchange (see <cite>energy exact_exchange</cite>).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>xc
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">nvxc</span></code></p>
+<p>The energy of the interaction of the exchange and correlation   potential and the density. This is different from the exchange and   correlation energy.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>nvxc
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">exact-exchange</span></code></p>
+<p>The Hartree-Fock exact-exchange energy. This is calculated for   Hartree-Fock and hybrid functionals.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>exact-exchange
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">ground-state</span> <span class="pre">energy</span> <span class="pre">ion</span></code></p>
+<p>The ion-ion interaction energy. This value is calculated taking into   account the periodicity of the system.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground-state<span class="w"> </span>energy<span class="w"> </span>ion
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-10-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-10-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command queries the results obtained from a ground-state calculation. Without arguments, it prints the values calculated.</p>
+<p>The options allows you to query a specific value. In this case only the value will be printed without any other text, so it is suitable for easy parsing in scripting. The values are returned in atomic units.</p>
+<p>These are the available subcommands:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.status()</span></code></p>
+<p>When no arguments are given (or the status function is used), print   the values calculated.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.iterations()</span></code></p>
+<p>Print the number of self-consistency iterations done.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.iterations<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.magnetization()</span></code></p>
+<p>Query the magnetization. In Python or if no additional arguments are   given, print the whole 3D vector. For the shell, optionally you can   add an index argument to print a specific component of the   vector. The index can be given as the letters _x_, _y_ or _z_.</p>
+<p>Note that for spin unpolarized systems the magnetization is always   zero. For spin polarized the magnetization is assumed on the _z_   direction.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.magnetization<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.dipole()</span></code></p>
+<p>Return the dipole of the system in atomic units. The whole vector is   given if no additional arguments are included. In the CLI, you can   also add an index argument to print a specific component. The index   can be given as the letters _x_, _y_ or _z_.</p>
+<p>Note that the dipole is only calculated for the non-periodic   directions. For the periodic directions is set to zero since the   dipole is not properly defined.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.magnetization<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.forces()</span></code></p>
+<p>Return the forces over the atoms in the system in atomic units. In   Python this is an array. In the CLI, if no arguments are given, all   the forces are printed. Alternatively is possible to pass an atom   index (that starts from 0), or both an atom and direction index   (_x_, _y_, or _z_).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.forces<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.status()</span></code></p>
+<p>When no arguments are given (or status() in Python), <cite>energy</cite> will   print all the energy values available.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.total()</span></code></p>
+<p>Returns the total energy of the calculation. This includes the ionic   contribution.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.total<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.kinetic()</span></code></p>
+<p>The electronic kinetic energy.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.kinetic<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.eigenvalues()</span></code></p>
+<p>The sum of the eigenvalues, weighed by the occupations.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.eigenvalues<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.hartree()</span></code></p>
+<p>The classical electrostatic interaction energy between electrons.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.hartree<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.external()</span></code></p>
+<p>The energy of the interaction of the electrons with the local   potential generated by the ions. This doesn’t include the non-local   pseudopotential part.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.external<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.non_local()</span></code></p>
+<p>The energy of the interaction of the electrons with the non-local   part of the ionic pseudo-potentials.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.non_local<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.xc()</span></code></p>
+<p>The exchange and correlation energy from DFT semi-local   functionals. It doesn’t include the contribution from Hartree-Fock   exchange (see <cite>energy exact_exchange</cite>).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.xc<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.nvxc()</span></code></p>
+<p>The energy of the interaction of the exchange and correlation   potential and the density. This is different from the exchange and   correlation energy.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.nvxc<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.exact_exchange()</span></code></p>
+<p>The Hartree-Fock exact-exchange energy. This is calculated for   Hartree-Fock and hybrid functionals.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.exact_exchange<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.ion()</span></code></p>
+<p>The ion-ion interaction energy. This value is calculated taking into   account the periodicity of the system.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.ion<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-results-real-time-command">
+<h2><span class="section-number">4.12. </span>The ‘results real-time’ command<a class="headerlink" href="#the-results-real-time-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-11-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-11-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-11-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-11-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-11-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command queries the results obtained from a real-time calculation. Without arguments, it prints the values calculated.</p>
+<p>The options allows you to query a specific value. In this case only the value will be printed without any other text, so it is suitable for easy parsing in scripting. The values are returned in atomic units.</p>
+<p>These are the available subcommands:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span></code></p>
+<p>When no arguments are given (ot the status() function in Python),   print the available values.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">total-steps</span></code></p>
+<p>Returns the total number of real-time simulation steps done.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>total-steps
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">total-time</span></code></p>
+<p>Returns the total simulated time (in atomic units).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>total-time
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">time</span> <span class="pre">[step]</span></code></p>
+<p>Returns the time values for each time-step.</p>
+<p>In the shell, if not additional arguments are passed, inq prints the   whole series for each time step. Alternatively, you can pass a step   index to get the energy value.</p>
+<p>For Python this functions returns an array and does not receive any   arguments.</p>
+<p>Note that for the moment inq uses a uniform time integration, so the   time is just the step index times the time-step.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span><span class="nb">time</span><span class="sb">`</span><span class="w">                   </span><span class="sb">`</span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="m">99</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">total-energy</span> <span class="pre">[step]</span></code></p></li>
+</ul>
+<p>Returns the values of the total energy for each time step during the   propagation.</p>
+<p>For the shell, if not additional arguments are passed, inq prints   the whole series for each time step in a two column format, the   first column is the time and the second one is the energy. This   output is suitable to view on a plotting program like gnuplot.   Alternatively, you can pass a step index to get the energy value for   that step.</p>
+<p>For Python this functions returns an array and does not receive any   arguments.</p>
+<p>Shell examples: <cite>inq results real-time total-energy</cite>                   <cite>inq results real-time total-energy 43</cite>   Python example: <cite>pinq.results.real_time.total_energy()</cite></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">dipole</span> <span class="pre">[step]</span> <span class="pre">[dir]</span></code></p></li>
+</ul>
+<p>Returns the values of the dipole for each time-step during the   propagation. The value is in cartesian coordinates and atomic   units. Note that the calculation of the dipole must be requested   before running using the <cite>observables</cite> command.</p>
+<p>Shell: If not additional arguments are passed, inq prints the whole   series for each time step in a four column format, the first column   is the time and the second, third and fourth ones are the x, y, and   z components of the dipole, respectively. This output is suitable to   view on a plotting program like gnuplot.  Alternatively, you can   pass a step index to get the dipole value for that step. An extra   direction index (x, y or z) will return a single component of the   dipole vector.</p>
+<p>For Python this functions returns an two-dimensional array with the   values of the dipole and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the dipole.</p>
+<p>Shell examples: <cite>inq results real-time dipole</cite>                   <cite>inq results real-time dipole 7866</cite>                   <cite>inq results real-time dipole 33 y</cite>   Python example: <cite>dip = pinq.results.real_time.dipole()</cite></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">current</span> <span class="pre">[step]</span> <span class="pre">[dir]</span></code></p></li>
+</ul>
+<p>Returns the values of the current for each time-step during the   propagation. The value is in cartesian coordinates and atomic   units. Note that the calculation of the current must be requested   before running using the <cite>observables</cite> command.</p>
+<p>Shell: If not additional arguments are passed, inq prints the whole   series for each time step in a four column format, the first column   is the time and the second, third and fourth ones are the x, y, and   z components of the current, respectively. This output is suitable to   view on a plotting program like gnuplot.  Alternatively, you can   pass a step index to get the current value for that step. An extra   direction index (x, y or z) will return a single component of the   current vector.</p>
+<p>For Python this functions returns an two-dimensional array with the   values of the current and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the current.</p>
+<p>Shell examples: <cite>inq results real-time current</cite>                   <cite>inq results real-time current 183</cite>                   <cite>inq results real-time current 97843 y</cite>   Python example: <cite>curr = pinq.results.real_time.current()</cite></p>
+</div><div aria-labelledby="tab-11-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-11-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command queries the results obtained from a real-time calculation. Without arguments, it prints the values calculated.</p>
+<p>The options allows you to query a specific value. In this case only the value will be printed without any other text, so it is suitable for easy parsing in scripting. The values are returned in atomic units.</p>
+<p>These are the available subcommands:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.status()</span></code></p>
+<p>When no arguments are given (ot the status() function in Python),   print the available values.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.real_time.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.total_steps()</span></code></p>
+<p>Returns the total number of real-time simulation steps done.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.real_time.total_steps<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.total_time()</span></code></p>
+<p>Returns the total simulated time (in atomic units).</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.real_time.total_time<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.time()</span></code></p>
+<p>Returns the time values for each time-step.</p>
+<p>In the shell, if not additional arguments are passed, inq prints the   whole series for each time step. Alternatively, you can pass a step   index to get the energy value.</p>
+<p>For Python this functions returns an array and does not receive any   arguments.</p>
+<p>Note that for the moment inq uses a uniform time integration, so the   time is just the step index times the time-step.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.real_time.time<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.total_energy()</span></code></p></li>
+</ul>
+<p>Returns the values of the total energy for each time step during the   propagation.</p>
+<p>For the shell, if not additional arguments are passed, inq prints   the whole series for each time step in a two column format, the   first column is the time and the second one is the energy. This   output is suitable to view on a plotting program like gnuplot.   Alternatively, you can pass a step index to get the energy value for   that step.</p>
+<p>For Python this functions returns an array and does not receive any   arguments.</p>
+<p>Shell examples: <cite>inq results real-time total-energy</cite>                   <cite>inq results real-time total-energy 43</cite>   Python example: <cite>pinq.results.real_time.total_energy()</cite></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.dipole()</span></code></p></li>
+</ul>
+<p>Returns the values of the dipole for each time-step during the   propagation. The value is in cartesian coordinates and atomic   units. Note that the calculation of the dipole must be requested   before running using the <cite>observables</cite> command.</p>
+<p>Shell: If not additional arguments are passed, inq prints the whole   series for each time step in a four column format, the first column   is the time and the second, third and fourth ones are the x, y, and   z components of the dipole, respectively. This output is suitable to   view on a plotting program like gnuplot.  Alternatively, you can   pass a step index to get the dipole value for that step. An extra   direction index (x, y or z) will return a single component of the   dipole vector.</p>
+<p>For Python this functions returns an two-dimensional array with the   values of the dipole and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the dipole.</p>
+<p>Shell examples: <cite>inq results real-time dipole</cite>                   <cite>inq results real-time dipole 7866</cite>                   <cite>inq results real-time dipole 33 y</cite>   Python example: <cite>dip = pinq.results.real_time.dipole()</cite></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.current()</span></code></p></li>
+</ul>
+<p>Returns the values of the current for each time-step during the   propagation. The value is in cartesian coordinates and atomic   units. Note that the calculation of the current must be requested   before running using the <cite>observables</cite> command.</p>
+<p>Shell: If not additional arguments are passed, inq prints the whole   series for each time step in a four column format, the first column   is the time and the second, third and fourth ones are the x, y, and   z components of the current, respectively. This output is suitable to   view on a plotting program like gnuplot.  Alternatively, you can   pass a step index to get the current value for that step. An extra   direction index (x, y or z) will return a single component of the   current vector.</p>
+<p>For Python this functions returns an two-dimensional array with the   values of the current and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the current.</p>
+<p>Shell examples: <cite>inq results real-time current</cite>                   <cite>inq results real-time current 183</cite>                   <cite>inq results real-time current 97843 y</cite>   Python example: <cite>curr = pinq.results.real_time.current()</cite></p>
+</div></div>
+</section>
+<section id="the-run-command">
+<h2><span class="section-number">4.13. </span>The ‘run’ command<a class="headerlink" href="#the-run-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-12-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-12-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-12-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-12-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-12-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command runs the actual simulation. It requires all the simulation parameters to be set before running.</p>
+<p>Note that this is the expensive part in the execution on inq. Depending on the system you are using you might want to execute this in parallel or through a queuing system.</p>
+<p>These are the options available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">ground-state</span></code></p>
+<p>Runs a ground-state calculation with fixed ions.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>run<span class="w"> </span>ground-state
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">real-time</span></code></p>
+<p>Runs a real-time simulation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>run<span class="w"> </span>real-time
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">resume</span></code></p>
+<p>Restarts the run of a stopped simulation from a checkpoint. For the    moment this only works for real-time simulations.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>run<span class="w"> </span>resume
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-12-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-12-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command runs the actual simulation. It requires all the simulation parameters to be set before running.</p>
+<p>Note that this is the expensive part in the execution on inq. Depending on the system you are using you might want to execute this in parallel or through a queuing system.</p>
+<p>These are the options available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">run.ground_state()</span></code></p>
+<p>Runs a ground-state calculation with fixed ions.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.run.ground_state<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run.real_time()</span></code></p>
+<p>Runs a real-time simulation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.run.real_time<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run.resume()</span></code></p>
+<p>Restarts the run of a stopped simulation from a checkpoint. For the    moment this only works for real-time simulations.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.run.resume<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-species-command">
+<h2><span class="section-number">4.14. </span>The ‘species’ command<a class="headerlink" href="#the-species-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-13-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-13-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-13-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-13-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-13-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command defines speciess the actual simulation.</p>
+<p>These are the options available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span></code></p>
+<p>Shows the species currently defined in the simulation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">set</span></code></p>
+<p>Returns the current pseudopotential set that will be used by    default for all species in the simulation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span><span class="nb">set</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">list-sets</span></code></p>
+<p>Prints a list of the available pseudopotentials.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span>list-sets
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">set</span> <span class="pre">&lt;set</span> <span class="pre">name&gt;</span></code></p>
+<p>Selects the pseudopotential set that will be used by default for    all species in the simulation. The name must be one those returned    by the <cite>list-sets</cite> command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span><span class="nb">set</span><span class="w"> </span>sg15
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">add</span> <span class="pre">&lt;element&gt;</span></code></p>
+<p>Adds a new species of given by &lt;element&gt;. The element must be a    IUPAC recognized element chemical symbol.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span>add<span class="w"> </span>Tc
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">add</span> <span class="pre">&lt;symbol&gt;</span> <span class="pre">element</span> <span class="pre">&lt;element&gt;</span></code></p>
+<p>Adds a new species given by its &lt;symbol&gt; as an alias to    &lt;element&gt;. Note that element must be a IUPAC recognized element    symbol.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span>add<span class="w"> </span>proton<span class="w"> </span>element<span class="w"> </span>H
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">add</span> <span class="pre">&lt;symbol&gt;</span> <span class="pre">atomic_number</span> <span class="pre">&lt;z&gt;</span></code></p>
+<p>Adds a new species given by its &lt;symbol&gt; as an alias to    the chemical element with atomic number &lt;z&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span>add<span class="w"> </span>C14<span class="w"> </span>atomic-number<span class="w"> </span><span class="m">6</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">&lt;symbol&gt;</span> <span class="pre">set</span> <span class="pre">&lt;set</span> <span class="pre">name&gt;</span></code></p>
+<p>Sets the pseudopotential set that will be used for the species    given by &lt;symbol&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span>He<span class="w"> </span><span class="nb">set</span><span class="w"> </span>sg15
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">&lt;symbol&gt;</span> <span class="pre">file</span> <span class="pre">&lt;filename&gt;</span></code></p>
+<p>Sets the pseudopotential file that will be used for the species    given by &lt;symbol&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span>Xe<span class="w"> </span>file<span class="w"> </span>Xe.upf
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species</span> <span class="pre">&lt;symbol&gt;</span> <span class="pre">mass</span> <span class="pre">&lt;value&gt;</span></code></p>
+<p>Sets the ionic mass for the species given by &lt;symbol&gt;. The mass    must be given in atomic mass units (amu). They should not be    confused with atomic units of mass. In amu the mass of a carbon    atom is 12.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>species<span class="w"> </span>U<span class="w"> </span>mass<span class="w"> </span><span class="m">235</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-13-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-13-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command defines speciess the actual simulation.</p>
+<p>These are the options available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.status()</span></code></p>
+<p>Shows the species currently defined in the simulation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.status<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.pseudo_set()</span></code></p>
+<p>Returns the current pseudopotential set that will be used by    default for all species in the simulation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.pseudo_set<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.list_sets()</span></code></p>
+<p>Prints a list of the available pseudopotentials.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.list_sets<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.pseudo_set(&quot;set_name&quot;)</span></code></p>
+<p>Selects the pseudopotential set that will be used by default for    all species in the simulation. The name must be one those returned    by the <cite>list-sets</cite> command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.set<span class="o">(</span><span class="s2">&quot;sg15&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.add(&quot;element&quot;)</span></code></p>
+<p>Adds a new species of given by &lt;element&gt;. The element must be a    IUPAC recognized element chemical symbol.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.add<span class="o">(</span><span class="s2">&quot;Tc&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.add_by_element(&quot;symbol&quot;,</span> <span class="pre">&quot;element&quot;)</span></code></p>
+<p>Adds a new species given by its &lt;symbol&gt; as an alias to    &lt;element&gt;. Note that element must be a IUPAC recognized element    symbol.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.add_by_element<span class="o">(</span><span class="s2">&quot;proton&quot;</span>,<span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.add_by_atomic_number(&quot;symbol&quot;,</span> <span class="pre">z)</span></code></p>
+<p>Adds a new species given by its &lt;symbol&gt; as an alias to    the chemical element with atomic number &lt;z&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.add_by_atomic_number<span class="o">(</span><span class="s2">&quot;C14&quot;</span>,<span class="w"> </span><span class="m">6</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.pseudo_set(&quot;symbol&quot;,</span> <span class="pre">&quot;set_name&quot;)</span></code></p>
+<p>Sets the pseudopotential set that will be used for the species    given by &lt;symbol&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.set<span class="o">(</span><span class="s2">&quot;He&quot;</span>,<span class="w"> </span><span class="s2">&quot;sg15&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.file(&quot;symbol&quot;,</span> <span class="pre">&quot;filename&quot;)</span></code></p>
+<p>Sets the pseudopotential file that will be used for the species    given by &lt;symbol&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.file<span class="o">(</span><span class="s2">&quot;Xe&quot;</span>,<span class="w"> </span><span class="s2">&quot;Xe.upf&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">species.mass(&quot;symbol&quot;,</span> <span class="pre">value)</span></code></p>
+<p>Sets the ionic mass for the species given by &lt;symbol&gt;. The mass    must be given in atomic mass units (amu). They should not be    confused with atomic units of mass. In amu the mass of a carbon    atom is 12.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.mass<span class="o">(</span><span class="s2">&quot;U&quot;</span>,<span class="w"> </span><span class="m">235</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-spectrum-command">
+<h2><span class="section-number">4.15. </span>The ‘spectrum’ command<a class="headerlink" href="#the-spectrum-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-14-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-14-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-14-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-14-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-14-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command is used to calculate spectra of different types using the results of calculations.</p>
+<p>These are the options available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">spectrum</span> <span class="pre">file</span> <span class="pre">&lt;filename&gt;</span></code></p>
+<p>Calculates an absorption spectra based on a dipole series. The    spectrum data is printed to the terminal as two data columns, the    first one is the frequency/energy and the second one is the    spectrum for all input columns.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>spectrum<span class="w"> </span>file<span class="w"> </span>data.txt
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-14-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-14-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command is used to calculate spectra of different types using the results of calculations.</p>
+<p>These are the options available:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">spectrum.file(filename)</span></code></p>
+<p>Calculates an absorption spectra based on a dipole series. The    spectrum data is printed to the terminal as two data columns, the    first one is the frequency/energy and the second one is the    spectrum for all input columns.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.spectrum.file<span class="o">(</span><span class="s2">&quot;data.txt&quot;</span><span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+<section id="the-status-command">
+<h2><span class="section-number">4.16. </span>The ‘status’ command<a class="headerlink" href="#the-status-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-15-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-15-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-15-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-15-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-15-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-15-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>Prints all the currently defined parameters and available results.</p>
+</div><div aria-labelledby="tab-15-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-15-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>Prints all the currently defined parameters and available results.</p>
+</div></div>
+</section>
+<section id="the-theory-command">
+<h2><span class="section-number">4.17. </span>The ‘theory’ command<a class="headerlink" href="#the-theory-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-16-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-16-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-16-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-16-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-16-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command specified the theory level used to model the electron-electron interaction. Most of the time you will want to use some form of density functional theory (DFT) but some other options are available. This command will allow you to pick up the DFT functional you want to use, the most popular ones have a specific option or you can use the <cite>functional</cite> command to select any functional from libxc.</p>
+<p>These are the options available:</p>
+<ul class="simple">
+<li><p><cite>theory</cite></p></li>
+</ul>
+<p>Without any argument, <cite>theory</cite> will just print the current theory level that is set.</p>
+<p>Example: <cite>inq theory</cite></p>
+<ul class="simple">
+<li><p><cite>theory dft</cite> (default)</p></li>
+</ul>
+<p>This is the default, DFT in the PBE approximation is used to model    the electron-electron interaction.</p>
+<p>Example: <cite>inq theory dft</cite> ` - <cite>theory non-interacting</cite></p>
+<p>There is no electron-electron interaction, particles are assumed to    be independent.</p>
+<p>Example: <cite>inq theory non-interacting</cite></p>
+<ul class="simple">
+<li><p><cite>theory Hartree</cite></p></li>
+</ul>
+<p>Particles only interact through classical electrostatics. Note that    as implemented in inq, hartree does not include a self-interaction    correction term.</p>
+<p>Example: <cite>inq theory Hartree</cite></p>
+<ul class="simple">
+<li><p><cite>theory Hartree-Fock</cite></p></li>
+</ul>
+<p>Exchange is modeled by the Hartree-Fock method. Note that this    method is much more expensive than pure DFT.</p>
+<p>Example: <cite>inq theory Hartree-Fock</cite></p>
+<ul class="simple">
+<li><p><cite>theory lda</cite></p></li>
+</ul>
+<p>The local density approximation in DFT.</p>
+<p>Example: <cite>inq theory lda</cite></p>
+<ul class="simple">
+<li><p><cite>theory pbe</cite></p></li>
+</ul>
+<p>The PBE GGA approximation in DFT.</p>
+<p>Example: <cite>inq theory pbe</cite></p>
+<ul class="simple">
+<li><p><cite>theory pbe0</cite></p></li>
+</ul>
+<p>The PBE0 (also known as PBEH) hybrid functional. Note that this    functional includes Hartree-Fock exact exchange, so it is much more    computationally expensive than GGA functionals like pbe.</p>
+<p>Example: <cite>inq theory pbe0</cite></p>
+<ul class="simple">
+<li><p><cite>theory b3lyp</cite></p></li>
+</ul>
+<p>The B3LYP hybrid functional. Note that this functional includes    Hartree-Fock exact exchange, so it is much more computationally    expensive than GGA functionals like pbe.</p>
+<p>Example: <cite>inq theory b3lyp</cite></p>
+<ul class="simple">
+<li><p><cite>theory functional &lt;exchange_name&gt; [correlation_name]</cite></p></li>
+</ul>
+<p>This option allows you to select any functional combination from    the libxc library using the functional names (functional id numbers    are not supported). Note that the correlation functional is    optional, it is okay to pass just one functional. You can find a    list of libxc functionals here [1].</p>
+<p>[1] <a class="reference external" href="https://www.tddft.org/programs/libxc/functionals/">https://www.tddft.org/programs/libxc/functionals/</a>        Examples: <cite>inq theory functional XC_GGA_X_RPBE XC_GGA_C_PBE</cite>              <cite>inq theory functional LDA_XC_TETER93</cite></p>
+</div><div aria-labelledby="tab-16-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-16-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command specified the theory level used to model the electron-electron interaction. Most of the time you will want to use some form of density functional theory (DFT) but some other options are available. This command will allow you to pick up the DFT functional you want to use, the most popular ones have a specific option or you can use the <cite>functional</cite> command to select any functional from libxc.</p>
+<p>These are the options available:</p>
+<ul class="simple">
+<li><p><cite>theory</cite></p></li>
+</ul>
+<p>Without any argument, <cite>theory</cite> will just print the current theory level that is set.</p>
+<p>Example: <cite>inq theory</cite></p>
+<ul class="simple">
+<li><p><cite>theory dft</cite> (default)</p></li>
+</ul>
+<p>This is the default, DFT in the PBE approximation is used to model    the electron-electron interaction.</p>
+<p>Example: <cite>inq theory dft</cite> ` - <cite>theory non-interacting</cite></p>
+<p>There is no electron-electron interaction, particles are assumed to    be independent.</p>
+<p>Example: <cite>inq theory non-interacting</cite></p>
+<ul class="simple">
+<li><p><cite>theory Hartree</cite></p></li>
+</ul>
+<p>Particles only interact through classical electrostatics. Note that    as implemented in inq, hartree does not include a self-interaction    correction term.</p>
+<p>Example: <cite>inq theory Hartree</cite></p>
+<ul class="simple">
+<li><p><cite>theory Hartree-Fock</cite></p></li>
+</ul>
+<p>Exchange is modeled by the Hartree-Fock method. Note that this    method is much more expensive than pure DFT.</p>
+<p>Example: <cite>inq theory Hartree-Fock</cite></p>
+<ul class="simple">
+<li><p><cite>theory lda</cite></p></li>
+</ul>
+<p>The local density approximation in DFT.</p>
+<p>Example: <cite>inq theory lda</cite></p>
+<ul class="simple">
+<li><p><cite>theory pbe</cite></p></li>
+</ul>
+<p>The PBE GGA approximation in DFT.</p>
+<p>Example: <cite>inq theory pbe</cite></p>
+<ul class="simple">
+<li><p><cite>theory pbe0</cite></p></li>
+</ul>
+<p>The PBE0 (also known as PBEH) hybrid functional. Note that this    functional includes Hartree-Fock exact exchange, so it is much more    computationally expensive than GGA functionals like pbe.</p>
+<p>Example: <cite>inq theory pbe0</cite></p>
+<ul class="simple">
+<li><p><cite>theory b3lyp</cite></p></li>
+</ul>
+<p>The B3LYP hybrid functional. Note that this functional includes    Hartree-Fock exact exchange, so it is much more computationally    expensive than GGA functionals like pbe.</p>
+<p>Example: <cite>inq theory b3lyp</cite></p>
+<ul class="simple">
+<li><p><cite>theory functional &lt;exchange_name&gt; [correlation_name]</cite></p></li>
+</ul>
+<p>This option allows you to select any functional combination from    the libxc library using the functional names (functional id numbers    are not supported). Note that the correlation functional is    optional, it is okay to pass just one functional. You can find a    list of libxc functionals here [1].</p>
+<p>[1] <a class="reference external" href="https://www.tddft.org/programs/libxc/functionals/">https://www.tddft.org/programs/libxc/functionals/</a>        Examples: <cite>inq theory functional XC_GGA_X_RPBE XC_GGA_C_PBE</cite>              <cite>inq theory functional LDA_XC_TETER93</cite></p>
+</div></div>
+</section>
+<section id="units-in-inq">
+<h2><span class="section-number">4.18. </span>Units in inq<a class="headerlink" href="#units-in-inq" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-17-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-17-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-17-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-17-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-17-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-17-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>In inq all physical quantities given to the code must also include the units they are in. There are two main objectives for this. First, it allows users to use the units directly from the source without having to waste time converting. Second, it avoids errors when users assume the code is expecting different units.</p>
+<p>The code works internally in Hartree atomic units, and most of the quantities are printed in these units. However, when space allows for it, we print quantities in other relevant units.</p>
+<p>In the command line interface units are given as an argument after a value, or a set of values. There are no default input units in inq. Not putting the units is a syntax error and the command most likely fail or produce unexpected behavior.</p>
+<p>This page lists the supported units in inq for different magnitudes. All units are case insensitive, have abbreviations and can be given in plural form.</p>
+<ul class="simple">
+<li><p>Energy   * ‘Hartree’ or ‘Ha’   * ‘Electronvolt’ or ‘eV’: 0.0367493221756544 Ha   * ‘Rydberg’ or ‘Ry’: 0.5 Ha   * ‘Kelvin’ or ‘K’ (times the Boltzmann constant): 3.16681156345556e-06 Ha   * ‘teraHertz’ or ‘THz’ (times the Planck constant): 1.51982850071590e-4 Ha</p></li>
+<li><p>Length   * ‘Bohr’ or ‘b’   * ‘Angstrom’ or ‘A’: 1.88972612462938 b   * ‘nanometer’ or ‘nm’: 10 A   * ‘picometer’ or ‘pm’: 0.01 A</p></li>
+<li><p>Time   * ‘Atomictime’ or ‘atu’   * ‘attosecond’ or ‘as’: 0.0413413733352975 atu   * ‘femtosecond’ or ‘fs’: 41.3413733352975 atu   * ‘nanosecond’ or ‘ns’: 1000 fs   * ‘picosecond’ or ‘ps’: 1000 ns</p></li>
+</ul>
+</div><div aria-labelledby="tab-17-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-17-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>In inq all physical quantities given to the code must also include the units they are in. There are two main objectives for this. First, it allows users to use the units directly from the source without having to waste time converting. Second, it avoids errors when users assume the code is expecting different units.</p>
+<p>The code works internally in Hartree atomic units, and most of the quantities are printed in these units. However, when space allows for it, we print quantities in other relevant units.</p>
+<p>In the command line interface units are given as an argument after a value, or a set of values. There are no default input units in inq. Not putting the units is a syntax error and the command most likely fail or produce unexpected behavior.</p>
+<p>This page lists the supported units in inq for different magnitudes. All units are case insensitive, have abbreviations and can be given in plural form.</p>
+<ul class="simple">
+<li><p>Energy   * ‘Hartree’ or ‘Ha’   * ‘Electronvolt’ or ‘eV’: 0.0367493221756544 Ha   * ‘Rydberg’ or ‘Ry’: 0.5 Ha   * ‘Kelvin’ or ‘K’ (times the Boltzmann constant): 3.16681156345556e-06 Ha   * ‘teraHertz’ or ‘THz’ (times the Planck constant): 1.51982850071590e-4 Ha</p></li>
+<li><p>Length   * ‘Bohr’ or ‘b’   * ‘Angstrom’ or ‘A’: 1.88972612462938 b   * ‘nanometer’ or ‘nm’: 10 A   * ‘picometer’ or ‘pm’: 0.01 A</p></li>
+<li><p>Time   * ‘Atomictime’ or ‘atu’   * ‘attosecond’ or ‘as’: 0.0413413733352975 atu   * ‘femtosecond’ or ‘fs’: 41.3413733352975 atu   * ‘nanosecond’ or ‘ns’: 1000 fs   * ‘picosecond’ or ‘ps’: 1000 ns</p></li>
+</ul>
+</div></div>
+</section>
+<section id="the-util-command">
+<h2><span class="section-number">4.19. </span>The ‘util’ command<a class="headerlink" href="#the-util-command" title="Permalink to this heading"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-18-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-18-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-18-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-18-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-18-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-18-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command provided some simple utilities for use in scripts or for the testing of inq.</p>
+<p>These are the available subcommands:</p>
+<ul>
+<li><p>Shell: <cite>util match calc &lt;math-expression&gt;</cite></p>
+<p>Calculates the result of the given mathematical expression. This is   useful if you need to calculate a value in a script or double check   the result of an expression you are giving to inq in an argument.</p>
+<p>This function is not available in Python, since mathematical   expressions can be evaluated directly by the language.</p>
+<p>Shell example: <cite>inq util calc “1/sqrt(2.0) + exp(-1/2)</cite></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">util</span> <span class="pre">match</span> <span class="pre">&lt;value1&gt;</span> <span class="pre">&lt;value2&gt;</span> <span class="pre">...</span> <span class="pre">&lt;tolerance&gt;</span></code></p></li>
+</ul>
+<p>Checks if two set of values match within a certain tolerance. If   they match, the command will run successfully, with a 0 return   code. If the match fails, then the command will fail with a return   value of 1.</p>
+<p>In Python the values can be scalar or arrays (of the same size). The   function will return true if the values match or false otherwise.</p>
+<p>When more than two values are passed, it is assumed these are two   sets given in sequential order. For example, if 6 values are passed   inq assumes than the first 3 are one set and the second 3 another   one. Then comparisons are made between the first value with the   fourth one, the second with the fifth, and the third with the sixth   one.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>util<span class="w"> </span>match<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>1e-5
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>util<span class="w"> </span>match<span class="w">  </span><span class="m">1</span>.0<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.0<span class="w">  </span><span class="m">1</span>.001<span class="w"> </span>1e-12<span class="w"> </span>1e-23<span class="w">  </span>1e-2
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util</span> <span class="pre">test-data</span></code></p>
+<p>Returns the path where inq install the data files used for   tests. This is not really useful for users, it is mainly for   testing.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>util<span class="w"> </span>test-data
+</pre></div>
+</div>
+</li>
+</ul>
+</div><div aria-labelledby="tab-18-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-18-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command provided some simple utilities for use in scripts or for the testing of inq.</p>
+<p>These are the available subcommands:</p>
+<ul>
+<li><p>Shell: <cite>util match calc &lt;math-expression&gt;</cite></p>
+<p>Calculates the result of the given mathematical expression. This is   useful if you need to calculate a value in a script or double check   the result of an expression you are giving to inq in an argument.</p>
+<p>This function is not available in Python, since mathematical   expressions can be evaluated directly by the language.</p>
+<p>Shell example: <cite>inq util calc “1/sqrt(2.0) + exp(-1/2)</cite></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">util.match(value1,</span> <span class="pre">value2,</span> <span class="pre">tolerance)</span></code></p></li>
+</ul>
+<p>Checks if two set of values match within a certain tolerance. If   they match, the command will run successfully, with a 0 return   code. If the match fails, then the command will fail with a return   value of 1.</p>
+<p>In Python the values can be scalar or arrays (of the same size). The   function will return true if the values match or false otherwise.</p>
+<p>When more than two values are passed, it is assumed these are two   sets given in sequential order. For example, if 6 values are passed   inq assumes than the first 3 are one set and the second 3 another   one. Then comparisons are made between the first value with the   fourth one, the second with the fifth, and the third with the sixth   one.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.util.match<span class="o">(</span><span class="m">1</span>.0,<span class="w"> </span><span class="m">2</span>.0,<span class="w"> </span>1e-5<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.util.match<span class="o">([</span><span class="m">1</span>.0,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.0<span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="m">1</span>.001,<span class="w"> </span>1e-12,<span class="w"> </span>1e-23<span class="o">]</span>,<span class="w"> </span>1e-2<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util.test_data()</span></code></p>
+<p>Returns the path where inq install the data files used for   tests. This is not really useful for users, it is mainly for   testing.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.util.test_data<span class="o">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="theory.html" class="btn btn-neutral float-left" title="3. Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial_shell_python.html" class="btn btn-neutral float-right" title="5. Tutorial (Shell and Python)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2025 Lawrence Livermore National Security, LLC., Xavier Andrade, Alfredo A. Correa.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4. Tutorial (Shell and Python) &mdash; INQ 0.95 documentation</title>
+  <title>5. Tutorial (Shell and Python) &mdash; INQ 0.95 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/lammps.css" type="text/css" />
       <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
@@ -23,8 +23,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="5. Tutorial (C++)" href="tutorial_cpp.html" />
-    <link rel="prev" title="3. Theory" href="theory.html" /> 
+    <link rel="next" title="6. Tutorial (C++)" href="tutorial_cpp.html" />
+    <link rel="prev" title="4. Interface" href="interface.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -132,62 +132,84 @@
 <li class="toctree-l2"><a class="reference internal" href="theory.html#magnetization">3.10. Magnetization</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Tutorial (Shell and Python)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#nitrogen-molecule">4.1. Nitrogen molecule</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-run-directory">4.1.1. Setting up the run directory</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#defining-the-simulation-parameters">4.1.2. Defining the simulation parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#running-the-simulation">4.1.3. Running the simulation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#querying-the-ground-state-results">4.1.4. Querying the ground-state results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#changing-the-ion-positions">4.1.5. Changing the ion positions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#scripting-the-potential-energy-surface-of-n2">4.1.6. Scripting: the potential energy surface of N2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interface.html">4. Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-cell-command">4.1. The ‘cell’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-clear-command">4.2. The ‘clear’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-electrons-command">4.3. The ‘electrons’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-ground-state-command">4.4. The ‘ground-state’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-history-command">4.5. The ‘history’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-ions-command">4.6. The ‘ions’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-kpoints-command">4.7. The ‘kpoints’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-perturbations-command">4.8. The ‘perturbations’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-real-time-command">4.9. The ‘real-time’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#results">4.10. Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-results-ground-state-command">4.11. The ‘results ground-state’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-results-real-time-command">4.12. The ‘results real-time’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-run-command">4.13. The ‘run’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-species-command">4.14. The ‘species’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-spectrum-command">4.15. The ‘spectrum’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-status-command">4.16. The ‘status’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-theory-command">4.17. The ‘theory’ command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#units-in-inq">4.18. Units in inq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interface.html#the-util-command">4.19. The ‘util’ command</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#benzene-optical-absorption-spectrum">4.2. Benzene optical absorption spectrum</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#simulation-parameters">4.2.1. Simulation parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ground-state-calculation">4.2.2. Ground state calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#first-time-propagation-finding-the-optimal-time-step">4.2.3. First time propagation, finding the optimal time-step</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adding-a-perturbation">4.2.4. Adding a perturbation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#defining-the-observables">4.2.5. Defining the observables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#run-the-propagation">4.2.6. Run the propagation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#analyzing-the-results-and-obtaining-the-spectrum">4.2.7. Analyzing the results and obtaining the spectrum</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Tutorial (Shell and Python)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nitrogen-molecule">5.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-up-the-run-directory">5.1.1. Setting up the run directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-the-simulation-parameters">5.1.2. Defining the simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-the-simulation">5.1.3. Running the simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#querying-the-ground-state-results">5.1.4. Querying the ground-state results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changing-the-ion-positions">5.1.5. Changing the ion positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scripting-the-potential-energy-surface-of-n2">5.1.6. Scripting: the potential energy surface of N2</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial_cpp.html">5. Tutorial (C++)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#nitrogen-molecule">5.1. Nitrogen molecule</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#header">5.1.1. Header</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#electronic-system">5.1.2. Electronic system</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#single-point-energy-calculation">5.1.3. Single point energy calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#potential-energy-surface">5.1.4. Potential energy surface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#finding-the-minimum-energy-advanced">5.1.5. Finding the minimum energy (advanced)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#hydrogen-fluoride-molecule">5.2. Hydrogen fluoride molecule</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#partial-charges">5.2.1. Partial charges</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#hartee-fock">5.2.2. Hartee-Fock</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#parallelization">5.2.3. Parallelization</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#benzene-optical-absorption-spectrum">5.3. Benzene optical absorption spectrum</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#first-time-propagation-finding-the-optimal-time-step">5.3.1. First time propagation, finding the optimal time-step</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-perturbation-and-observables">5.3.2. Adding a perturbation and observables</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#electronic-stopping">5.4. Electronic stopping</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#aluminum-supercell">5.4.1. Aluminum supercell</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-proton">5.4.2. Adding a proton</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#ground-state-calculation">5.4.3. Ground state calculation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#time-propagation">5.4.4. Time propagation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#results">5.4.5. Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#benzene-optical-absorption-spectrum">5.2. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simulation-parameters">5.2.1. Simulation parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ground-state-calculation">5.2.2. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#first-time-propagation-finding-the-optimal-time-step">5.2.3. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-a-perturbation">5.2.4. Adding a perturbation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#defining-the-observables">5.2.5. Defining the observables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-propagation">5.2.6. Run the propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#analyzing-the-results-and-obtaining-the-spectrum">5.2.7. Analyzing the results and obtaining the spectrum</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="developers_guide.html">6. Developers Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#repository">6.1. Repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#coding">6.2. Coding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#debugging-code">6.3. Debugging code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial_cpp.html">6. Tutorial (C++)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#nitrogen-molecule">6.1. Nitrogen molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#header">6.1.1. Header</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#electronic-system">6.1.2. Electronic system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#single-point-energy-calculation">6.1.3. Single point energy calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#potential-energy-surface">6.1.4. Potential energy surface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#finding-the-minimum-energy-advanced">6.1.5. Finding the minimum energy (advanced)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#hydrogen-fluoride-molecule">6.2. Hydrogen fluoride molecule</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#partial-charges">6.2.1. Partial charges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#hartee-fock">6.2.2. Hartee-Fock</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#parallelization">6.2.3. Parallelization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#benzene-optical-absorption-spectrum">6.3. Benzene optical absorption spectrum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#first-time-propagation-finding-the-optimal-time-step">6.3.1. First time propagation, finding the optimal time-step</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-perturbation-and-observables">6.3.2. Adding a perturbation and observables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_cpp.html#electronic-stopping">6.4. Electronic stopping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#aluminum-supercell">6.4.1. Aluminum supercell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#adding-a-proton">6.4.2. Adding a proton</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#ground-state-calculation">6.4.3. Ground state calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#time-propagation">6.4.4. Time propagation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial_cpp.html#results">6.4.5. Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developers_guide.html">7. Developers Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#repository">7.1. Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#coding">7.2. Coding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers_guide.html#debugging-code">7.3. Debugging code</a></li>
 </ul>
 </li>
 </ul>
@@ -221,13 +243,13 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4. </span>Tutorial (Shell and Python)</li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>Tutorial (Shell and Python)</li>
       <li class="wy-breadcrumbs-aside">
           <a href="https://gitlab.com/npneq/inq"><img src="_static/gitlab.png" width="100" alt="gitlab"> </a>
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="theory.html" class="btn btn-neutral float-left" title="3. Theory" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tutorial_cpp.html" class="btn btn-neutral float-right" title="5. Tutorial (C++)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="interface.html" class="btn btn-neutral float-left" title="4. Interface" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial_cpp.html" class="btn btn-neutral float-right" title="6. Tutorial (C++)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -235,7 +257,7 @@
            <div itemprop="articleBody">
              
   <section id="tutorial-shell-and-python">
-<h1><span class="section-number">4. </span>Tutorial (Shell and Python)<a class="headerlink" href="#tutorial-shell-and-python" title="Permalink to this heading"></a></h1>
+<h1><span class="section-number">5. </span>Tutorial (Shell and Python)<a class="headerlink" href="#tutorial-shell-and-python" title="Permalink to this heading"></a></h1>
 <p>INQ’s command line interface takes a unique approach to run an electronic structure simulation.
 The basic premise of INQ command interface is that a certain directory/folder corresponds to a specific simulation.
 All commands that you run, either through a Unix shell or Python functions, are relative to the directory and are persistent (they are stored in files and outlive the run time of the commands).</p>
@@ -245,9 +267,9 @@ This strategy avoid too common situations like having a simulation job waiting f
 Note that both ways of using the interface modify the underlying meta-data in the current folder, so it is possible to mix shell and python commands for the same simulation.
 For example you can set up your simulation using a python script and then run it using the shell <cite>inq run</cite> command.</p>
 <section id="nitrogen-molecule">
-<h2><span class="section-number">4.1. </span>Nitrogen molecule<a class="headerlink" href="#nitrogen-molecule" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.1. </span>Nitrogen molecule<a class="headerlink" href="#nitrogen-molecule" title="Permalink to this heading"></a></h2>
 <section id="setting-up-the-run-directory">
-<h3><span class="section-number">4.1.1. </span>Setting up the run directory<a class="headerlink" href="#setting-up-the-run-directory" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.1. </span>Setting up the run directory<a class="headerlink" href="#setting-up-the-run-directory" title="Permalink to this heading"></a></h3>
 <p>We will start our tutorial by a simple molecular system calculation. We are assuming you are right now running in a Unix terminal and you have INQ installed. First, let’s create a folder for our simulation and get into it:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>nitrogen
 <span class="nb">cd</span><span class="w"> </span>nitrogen
@@ -264,10 +286,10 @@ For example you can set up your simulation using a python script and then run it
 </div>
 <p>You don’t need to do anything at this point if you are going to use the shell command. Just verify that the <cite>inq</cite> command is available. The first command we will run is <cite>clear</cite>. This command removes all INQ meta-data in the current folder. Since we just created the directory it should be empty, but let’s run it anyways.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>clear
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>clear
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
@@ -277,15 +299,15 @@ For example you can set up your simulation using a python script and then run it
 </div>
 </section>
 <section id="defining-the-simulation-parameters">
-<h3><span class="section-number">4.1.2. </span>Defining the simulation parameters<a class="headerlink" href="#defining-the-simulation-parameters" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.2. </span>Defining the simulation parameters<a class="headerlink" href="#defining-the-simulation-parameters" title="Permalink to this heading"></a></h3>
 <p>Now we are ready to start setting up the simulation.
 First we define a simulation cell of size 10 x 10 x 12 bohr.
 This is how to do it:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell<span class="w"> </span>orthorhombic<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span>bohr
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell<span class="w"> </span>orthorhombic<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">12</span><span class="w"> </span>bohr
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">orthorhombic</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;bohr&quot;</span><span class="p">)</span>
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">orthorhombic</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;bohr&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -295,10 +317,10 @@ This is how to do it:</p>
 </div>
 <p>Once we defined the cell, we can query what is the cell in our simulation at any time with the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>cell
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
@@ -315,11 +337,11 @@ This is how to do it:</p>
 It is a good practice to use them check to make sure the code is actually going to do what we want.</p>
 <p>Now that the cell is defined, let’s add the atoms. This is done with the <cite>ions insert</cite> command. The following commands will insert two nitrogen atoms at a distance of 1.3 Angstrom.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>N<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="m">1</span>.3/2<span class="w"> </span>Angstrom
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>N<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w">  </span><span class="m">1</span>.3/2<span class="w"> </span>Angstrom
 inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>N<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>-1.3/2<span class="w"> </span>Angstrom
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="mf">1.3</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;Angstrom&quot;</span><span class="p">)</span>
+</div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="mf">1.3</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;Angstrom&quot;</span><span class="p">)</span>
 <span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.3</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;Angstrom&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -330,34 +352,34 @@ The only parameter we really need is the plane-wave cutoff, as for other values 
 <p>The cutoff is set by the <cite>electrons cutoff</cite> command.
 In this case we want to set a value of 40 Hartree that we do by:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-4-4-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-4-4-1" name="4-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>cutoff<span class="w"> </span><span class="m">40</span>.0<span class="w"> </span>Hartree
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>cutoff<span class="w"> </span><span class="m">40</span>.0<span class="w"> </span>Hartree
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-4-4-1" class="sphinx-tabs-panel" hidden="true" id="panel-4-4-1" name="4-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">cutoff</span><span class="p">(</span><span class="mf">40.0</span><span class="p">,</span> <span class="s2">&quot;Hartree&quot;</span><span class="p">)</span>
+</div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">cutoff</span><span class="p">(</span><span class="mf">40.0</span><span class="p">,</span> <span class="s2">&quot;Hartree&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
 <p>You can check the options that are set for the electrons running the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-5-5-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-5-5-1" name="5-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-5-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-5-5-1" class="sphinx-tabs-panel" hidden="true" id="panel-5-5-1" name="5-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
 <p>This will give you an idea of the parameters available and their default values.</p>
 </section>
 <section id="running-the-simulation">
-<h3><span class="section-number">4.1.3. </span>Running the simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.3. </span>Running the simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this heading"></a></h3>
 <p>We have now set all the parameters needed to do a ground-state calculation for nitrogen.
 However, the simulation has not been done yet, we need to tell INQ to run it.
 This is done with the <cite>run ground state</cite> command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-6-6-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-6-6-1" name="6-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>run<span class="w"> </span>ground<span class="w"> </span>state
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-6-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-6-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-6-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>run<span class="w"> </span>ground<span class="w"> </span>state
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-6-6-1" class="sphinx-tabs-panel" hidden="true" id="panel-6-6-1" name="6-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">run</span><span class="o">.</span><span class="n">ground_state</span><span class="p">()</span>
+</div><div aria-labelledby="tab-6-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-6-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">run</span><span class="o">.</span><span class="n">ground_state</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
@@ -385,14 +407,14 @@ This is done with the <cite>run ground state</cite> command:</p>
 </div>
 </section>
 <section id="querying-the-ground-state-results">
-<h3><span class="section-number">4.1.4. </span>Querying the ground-state results<a class="headerlink" href="#querying-the-ground-state-results" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.4. </span>Querying the ground-state results<a class="headerlink" href="#querying-the-ground-state-results" title="Permalink to this heading"></a></h3>
 <p>Now that we finished the calculation we can access the individual simulation results using commands.
 The command <cite>results ground state</cite> will give us an overview of the simulation data:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-7-7-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-7-7-1" name="7-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-7-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-7-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-7-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-7-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-7-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-7-7-1" class="sphinx-tabs-panel" hidden="true" id="panel-7-7-1" name="7-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</div><div aria-labelledby="tab-7-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-7-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
@@ -410,28 +432,28 @@ The command <cite>results ground state</cite> will give us an overview of the si
 </div>
 <p>We can also use this command to query specific values, this is particularly useful if we want to use scripts to post process the results. For example, to get the total energy we can use the following command</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-8-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-8-8-0" name="8-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-8-8-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-8-8-1" name="8-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-8-8-0" class="sphinx-tabs-panel" id="panel-8-8-0" name="8-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state<span class="w"> </span>energy<span class="w"> </span>total
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-8-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-8-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-8-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-8-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-8-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state<span class="w"> </span>energy<span class="w"> </span>total
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-8-8-1" class="sphinx-tabs-panel" hidden="true" id="panel-8-8-1" name="8-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">total</span><span class="p">()</span>
+</div><div aria-labelledby="tab-8-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-8-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">total</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
 <p>These function print/return a single value that can be captured to use it in scripting. In bash to capture the value you can use backticks to assign it to a variable. In python this is straightforward as the function returns a floating point value that you can directly assign to a variable.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-9-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-9-9-0" name="9-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-9-9-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-9-9-1" name="9-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-9-9-0" class="sphinx-tabs-panel" id="panel-9-9-0" name="9-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">energy</span><span class="o">=</span><span class="sb">`</span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state<span class="w"> </span>energy<span class="w"> </span>total<span class="sb">`</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-9-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-9-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-9-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-9-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-9-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">energy</span><span class="o">=</span><span class="sb">`</span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state<span class="w"> </span>energy<span class="w"> </span>total<span class="sb">`</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-9-9-1" class="sphinx-tabs-panel" hidden="true" id="panel-9-9-1" name="9-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">energy</span> <span class="o">=</span> <span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">total</span><span class="p">()</span>
+</div><div aria-labelledby="tab-9-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-9-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">energy</span> <span class="o">=</span> <span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">total</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
 <p>You can also query the forces with the command <cite>results ground state forces</cite>.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-10-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-10-10-0" name="10-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-10-10-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-10-10-1" name="10-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-10-10-0" class="sphinx-tabs-panel" id="panel-10-10-0" name="10-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state<span class="w"> </span>forces
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-10-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-10-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-10-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-10-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-10-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state<span class="w"> </span>forces
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-10-10-1" class="sphinx-tabs-panel" hidden="true" id="panel-10-10-1" name="10-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">forces</span><span class="p">()</span>
+</div><div aria-labelledby="tab-10-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-10-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">forces</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
@@ -441,10 +463,10 @@ The first option specifies the index of the atom you want the force for (startin
 In python the forces are returned in an array, so you can just access the element you want.
 For example, if you want the z component of the force for atom 0 you can use:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-11-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-11-11-0" name="11-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-11-11-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-11-11-1" name="11-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-11-11-0" class="sphinx-tabs-panel" id="panel-11-11-0" name="11-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state<span class="w"> </span>forces<span class="w"> </span><span class="m">0</span><span class="w"> </span>z
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-11-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-11-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-11-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-11-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-11-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>ground<span class="w"> </span>state<span class="w"> </span>forces<span class="w"> </span><span class="m">0</span><span class="w"> </span>z
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-11-11-1" class="sphinx-tabs-panel" hidden="true" id="panel-11-11-1" name="11-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">forces</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</div><div aria-labelledby="tab-11-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-11-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">forces</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 </div></div>
@@ -452,25 +474,25 @@ For example, if you want the z component of the force for atom 0 you can use:</p
 <p>Based on the results of the simulation would you consider the interatomic distance we used, 1.3 angstrom, corresponds to stable configuration?</p>
 </section>
 <section id="changing-the-ion-positions">
-<h3><span class="section-number">4.1.5. </span>Changing the ion positions<a class="headerlink" href="#changing-the-ion-positions" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.5. </span>Changing the ion positions<a class="headerlink" href="#changing-the-ion-positions" title="Permalink to this heading"></a></h3>
 <p>As you probably figure out the atoms in our simulation are not at the minimum energy configuration since the force is rather large. The experimental value of the interatomic distance of the N2 molecule is 110 pm. So let’s use that value in our simulation.</p>
 <p>INQ has several commands to handle atoms that include <cite>remove</cite> (to remove a single ions) and <cite>ions clear</cite> that removes all ions in the system. You can check how to use them using the documentation for ions that can be accessed from the same command interface.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-12-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-12-12-0" name="12-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-12-12-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-12-12-1" name="12-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-12-12-0" class="sphinx-tabs-panel" id="panel-12-12-0" name="12-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span><span class="nb">help</span><span class="w"> </span>ions
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-12-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-12-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-12-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-12-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-12-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span><span class="nb">help</span><span class="w"> </span>ions
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-12-12-1" class="sphinx-tabs-panel" hidden="true" id="panel-12-12-1" name="12-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="p">)</span>
+</div><div aria-labelledby="tab-12-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-12-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
 <p>In this case we are going to use the <cite>ions clear</cite> command to remove all ions and then insert them again in the new position (make sure you replace NNN by the experimental value in pm):</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-13-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-13-13-0" name="13-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-13-13-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-13-13-1" name="13-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-13-13-0" class="sphinx-tabs-panel" id="panel-13-13-0" name="13-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>clear
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-13-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-13-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-13-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>clear
 inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>N<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w">   </span>NNN/2<span class="w"> </span>pm
 inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>N<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w">  </span>-NNN/2<span class="w"> </span>pm
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-13-13-1" class="sphinx-tabs-panel" hidden="true" id="panel-13-13-1" name="13-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</div><div aria-labelledby="tab-13-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-13-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span>  <span class="n">NNN</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;pm&quot;</span><span class="p">)</span>
 <span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="n">NNN</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;pm&quot;</span><span class="p">)</span>
 </pre></div>
@@ -481,11 +503,11 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 <p>What can you say about the results? Did the energy become smaller? Did the force become close to zero?</p>
 </section>
 <section id="scripting-the-potential-energy-surface-of-n2">
-<h3><span class="section-number">4.1.6. </span>Scripting: the potential energy surface of N2<a class="headerlink" href="#scripting-the-potential-energy-surface-of-n2" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.1.6. </span>Scripting: the potential energy surface of N2<a class="headerlink" href="#scripting-the-potential-energy-surface-of-n2" title="Permalink to this heading"></a></h3>
 <p>We are now going to explore the power of INQ interface by writing a script that iterates over the interatomic distance calculating the energy for each value.</p>
 <p>This is the template of the script we are going to use:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-14-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-14-14-0" name="14-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-14-14-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-14-14-1" name="14-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-14-14-0" class="sphinx-tabs-panel" id="panel-14-14-0" name="14-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span>-e<span class="w"> </span><span class="c1">#make the script fail if a command fails</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-14-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-14-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-14-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-14-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-14-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span>-e<span class="w"> </span><span class="c1">#make the script fail if a command fails</span>
 
 <span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;#distance energy&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>pes.dat
 
@@ -496,7 +518,7 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 <span class="k">done</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-14-14-1" class="sphinx-tabs-panel" hidden="true" id="panel-14-14-1" name="14-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pinq</span>
+</div><div aria-labelledby="tab-14-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-14-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pinq</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="n">pes</span> <span class="o">=</span> <span class="p">[]</span>
@@ -571,14 +593,14 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 </section>
 </section>
 <section id="benzene-optical-absorption-spectrum">
-<h2><span class="section-number">4.2. </span>Benzene optical absorption spectrum<a class="headerlink" href="#benzene-optical-absorption-spectrum" title="Permalink to this heading"></a></h2>
+<h2><span class="section-number">5.2. </span>Benzene optical absorption spectrum<a class="headerlink" href="#benzene-optical-absorption-spectrum" title="Permalink to this heading"></a></h2>
 <p>Now we are going to move to the domain of time-dependent density functional theory (TDDFT) to calculate excited states properties.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This tutorial builds upon what you learned before, so make sure to check the previous tutorial if you haven’t done it.</p>
 </div>
 <section id="simulation-parameters">
-<h3><span class="section-number">4.2.1. </span>Simulation parameters<a class="headerlink" href="#simulation-parameters" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.1. </span>Simulation parameters<a class="headerlink" href="#simulation-parameters" title="Permalink to this heading"></a></h3>
 <p>We will start by a simple case, the optical absorption of a molecule, in this case benzene. The first thing to do is to create a new folder for our simulation (as we did before). Remember that in INQ you need a separate folder for each simulation.</p>
 <p>This time, instead of giving the ion positions one by one we will load it from an XYZ file. Create that file, naming it <cite>benzene.xyz</cite> with the following content:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span>
@@ -599,10 +621,10 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 </div>
 <p>To load the XYZ into INQ we will use the following command.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-15-15-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-15-15-0" name="15-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-15-15-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-15-15-1" name="15-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-15-15-0" class="sphinx-tabs-panel" id="panel-15-15-0" name="15-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>file<span class="w"> </span>benzene.xyz<span class="w"> </span>radius<span class="w"> </span><span class="m">10</span><span class="w"> </span>bohr
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-15-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-15-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-15-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-15-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-15-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-15-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>file<span class="w"> </span>benzene.xyz<span class="w"> </span>radius<span class="w"> </span><span class="m">10</span><span class="w"> </span>bohr
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-15-15-1" class="sphinx-tabs-panel" hidden="true" id="panel-15-15-1" name="15-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;benzene.xyz&quot;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">&quot;bohr&quot;</span><span class="p">)</span>
+</div><div aria-labelledby="tab-15-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-15-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;benzene.xyz&quot;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">&quot;bohr&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -613,10 +635,10 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 </div>
 <p>Now we need to setup the parameters for the electrons. This time, however, instead of specifying the energy cutoff we will use the real-space grid spacing as</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-16-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-16-16-0" name="16-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-16-16-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-16-16-1" name="16-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-16-16-0" class="sphinx-tabs-panel" id="panel-16-16-0" name="16-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>spacing<span class="w"> </span><span class="m">0</span>.43<span class="w"> </span>bohr
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-16-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-16-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-16-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-16-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-16-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>electrons<span class="w"> </span>spacing<span class="w"> </span><span class="m">0</span>.43<span class="w"> </span>bohr
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-16-16-1" class="sphinx-tabs-panel" hidden="true" id="panel-16-16-1" name="16-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="mf">0.43</span><span class="p">,</span> <span class="s2">&quot;bohr&quot;</span><span class="p">)</span>
+</div><div aria-labelledby="tab-16-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-16-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="mf">0.43</span><span class="p">,</span> <span class="s2">&quot;bohr&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -626,17 +648,17 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 </div>
 </section>
 <section id="ground-state-calculation">
-<h3><span class="section-number">4.2.2. </span>Ground state calculation<a class="headerlink" href="#ground-state-calculation" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.2. </span>Ground state calculation<a class="headerlink" href="#ground-state-calculation" title="Permalink to this heading"></a></h3>
 <p>The first step in a real-time calculation is to calculate the ground state, that will set initial condition for our real-time simulation. So calculate the ground state with the <cite>run ground state</cite> command.</p>
 </section>
 <section id="first-time-propagation-finding-the-optimal-time-step">
-<h3><span class="section-number">4.2.3. </span>First time propagation, finding the optimal time-step<a class="headerlink" href="#first-time-propagation-finding-the-optimal-time-step" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.3. </span>First time propagation, finding the optimal time-step<a class="headerlink" href="#first-time-propagation-finding-the-optimal-time-step" title="Permalink to this heading"></a></h3>
 <p>Now that we have a ground state we can do a real-time calculation. For this we need to set a few options. The first one is the time-step, this is a crucial quantity in a real-time propagation. If the time step is too large the simulation is unstable, if it is too small the calculation would be slower than necessarily. The time-step depends on the energy cutoff/spacing used for the simulation and possibly other parameters, so we should optimize it for each case. In INQ you set the time-step with the following command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-17-17-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-17-17-0" name="17-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-17-17-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-17-17-1" name="17-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-17-17-0" class="sphinx-tabs-panel" id="panel-17-17-0" name="17-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>time-step<span class="w"> </span><span class="m">0</span>.08<span class="w"> </span>atu
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-17-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-17-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-17-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-17-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-17-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-17-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>time-step<span class="w"> </span><span class="m">0</span>.08<span class="w"> </span>atu
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-17-17-1" class="sphinx-tabs-panel" hidden="true" id="panel-17-17-1" name="17-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">time_step</span><span class="p">(</span><span class="mf">0.08</span><span class="p">,</span> <span class="s2">&quot;atu&quot;</span><span class="p">)</span>
+</div><div aria-labelledby="tab-17-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-17-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">time_step</span><span class="p">(</span><span class="mf">0.08</span><span class="p">,</span> <span class="s2">&quot;atu&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -646,10 +668,10 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 </div>
 <p>Our first task will be to find the optimal time-step for this case. After you add the propagation line above to your file, run INQ with:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-18-18-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-18-18-0" name="18-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-18-18-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-18-18-1" name="18-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-18-18-0" class="sphinx-tabs-panel" id="panel-18-18-0" name="18-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>run<span class="w"> </span>real<span class="w"> </span><span class="nb">time</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-18-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-18-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-18-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-18-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-18-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-18-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>run<span class="w"> </span>real<span class="w"> </span><span class="nb">time</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-18-18-1" class="sphinx-tabs-panel" hidden="true" id="panel-18-18-1" name="18-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">run</span><span class="o">.</span><span class="n">real_time</span><span class="p">()</span>
+</div><div aria-labelledby="tab-18-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-18-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">run</span><span class="o">.</span><span class="n">real_time</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
@@ -673,41 +695,41 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 <p>Now modify the time-step in your input and see what happens with the energy values. Repeat this until a few times you find the largest value of the time-step that give you a stable energy. Note that we are looking for stability rather than exact energy conservation, with a proper time-step the energy will oscillate around a value instead of exploding.</p>
 </section>
 <section id="adding-a-perturbation">
-<h3><span class="section-number">4.2.4. </span>Adding a perturbation<a class="headerlink" href="#adding-a-perturbation" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.4. </span>Adding a perturbation<a class="headerlink" href="#adding-a-perturbation" title="Permalink to this heading"></a></h3>
 <p>Now that you have found the optimal step, let’s do some more physically interesting. Up to now our propagation doesn’t have any perturbation, so it stays in the ground-state just changing the phase of the orbitals. Let’s change that.</p>
 <p>INQ defines the concept of a perturbation: an external change in the systems that affects the electrons. Note that a perturbation does not necessarily have to be small, real-time TDDFT can study the response of strongly-driven systems as well.</p>
 <p>In this case we will use a kick, this is an electric field perturbation of the form <span class="math notranslate nohighlight">\(\vec{E}(r, t)=\vec{\kappa}\delta(t)\)</span>. The advantage of a kick is that it is flat in Fourier space, so it excites all frequencies equally, making it useful for linear response calculations. This is how we define a kick:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-19-19-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-19-19-0" name="19-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-19-19-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-19-19-1" name="19-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-19-19-0" class="sphinx-tabs-panel" id="panel-19-19-0" name="19-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbation<span class="w"> </span>kick<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-19-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-19-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-19-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-19-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-19-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-19-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbation<span class="w"> </span>kick<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-19-19-1" class="sphinx-tabs-panel" hidden="true" id="panel-19-19-1" name="19-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">perturbation</span><span class="o">.</span><span class="n">kick</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</div><div aria-labelledby="tab-19-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-19-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">perturbation</span><span class="o">.</span><span class="n">kick</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div></div>
 <p>The argument is the direction and intensity of the kick <span class="math notranslate nohighlight">\(\kappa\)</span>. Since we are interested in linear response we use a small amplitude to avoid non-linear effects to appear on our simulation (these effects depend at least on <span class="math notranslate nohighlight">\(\kappa^2\)</span>).</p>
 </section>
 <section id="defining-the-observables">
-<h3><span class="section-number">4.2.5. </span>Defining the observables<a class="headerlink" href="#defining-the-observables" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.5. </span>Defining the observables<a class="headerlink" href="#defining-the-observables" title="Permalink to this heading"></a></h3>
 <p>To make our simulation useful we also need to obtain some data out of it. There are many possible observables in a simulation that we want to look at, however calculating them and storing them can be expensive so we only want to calculate what we really need. For this reason we need to tell INQ beforehand what observables we want.</p>
 <p>For the calculation of the absorption spectrum of a molecule the quantity we are interested is the dipole. So we tell INQ:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-20-20-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-20-20-0" name="20-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-20-20-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-20-20-1" name="20-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-20-20-0" class="sphinx-tabs-panel" id="panel-20-20-0" name="20-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>observables<span class="w"> </span>dipole
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-20-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-20-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-20-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-20-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-20-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-20-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>observables<span class="w"> </span>dipole
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-20-20-1" class="sphinx-tabs-panel" hidden="true" id="panel-20-20-1" name="20-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">observables</span><span class="o">.</span><span class="n">dipole</span><span class="p">()</span>
+</div><div aria-labelledby="tab-20-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-20-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">observables</span><span class="o">.</span><span class="n">dipole</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
 </section>
 <section id="run-the-propagation">
-<h3><span class="section-number">4.2.6. </span>Run the propagation<a class="headerlink" href="#run-the-propagation" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.6. </span>Run the propagation<a class="headerlink" href="#run-the-propagation" title="Permalink to this heading"></a></h3>
 <p>We are almost ready to run the simulation, the only part we are missing is top specify the length of the simulation. The longer the simulation is, the more well defined the absorption peaks will be, but at the same time the simulation will be more expensive. In practice, the time we need around <span class="math notranslate nohighlight">\(10\)</span> fs (<span class="math notranslate nohighlight">\(~400\)</span> atu) for a converged spectrum. In this tutorial we will use a shorter time of <span class="math notranslate nohighlight">\(5\)</span> fs to avoid waiting for too long. This is set with the command:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-21-21-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-21-21-0" name="21-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-21-21-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-21-21-1" name="21-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-21-21-0" class="sphinx-tabs-panel" id="panel-21-21-0" name="21-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>propagation-time<span class="w"> </span><span class="m">5</span><span class="w"> </span>fs
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-21-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-21-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-21-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-21-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-21-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-21-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>real-time<span class="w"> </span>propagation-time<span class="w"> </span><span class="m">5</span><span class="w"> </span>fs
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-21-21-1" class="sphinx-tabs-panel" hidden="true" id="panel-21-21-1" name="21-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">propagation_time</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;fs&quot;</span><span class="p">)</span>
+</div><div aria-labelledby="tab-21-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-21-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">propagation_time</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;fs&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -722,13 +744,13 @@ Now run inq again using the <cite>run ground state</cite> command.</p>
 </div>
 </section>
 <section id="analyzing-the-results-and-obtaining-the-spectrum">
-<h3><span class="section-number">4.2.7. </span>Analyzing the results and obtaining the spectrum<a class="headerlink" href="#analyzing-the-results-and-obtaining-the-spectrum" title="Permalink to this heading"></a></h3>
+<h3><span class="section-number">5.2.7. </span>Analyzing the results and obtaining the spectrum<a class="headerlink" href="#analyzing-the-results-and-obtaining-the-spectrum" title="Permalink to this heading"></a></h3>
 <p>Once the simulation is done we can analyze the results. The command</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-22-22-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-22-22-0" name="22-0" role="tab" tabindex="0">Shell</button><button aria-controls="panel-22-22-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-22-22-1" name="22-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-22-22-0" class="sphinx-tabs-panel" id="panel-22-22-0" name="22-0" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>result<span class="w"> </span>real-time<span class="w"> </span>dipole
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-22-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-22-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-22-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-22-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-22-U2hlbGw=" class="sphinx-tabs-panel code-tab group-tab" id="panel-22-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>result<span class="w"> </span>real-time<span class="w"> </span>dipole
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-22-22-1" class="sphinx-tabs-panel" hidden="true" id="panel-22-22-1" name="22-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">dipole</span><span class="p">()</span>
+</div><div aria-labelledby="tab-22-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-22-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">dipole</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
@@ -765,8 +787,8 @@ inq<span class="w"> </span>spectrum<span class="w"> </span>file<span class="w"> 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="theory.html" class="btn btn-neutral float-left" title="3. Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tutorial_cpp.html" class="btn btn-neutral float-right" title="5. Tutorial (C++)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="interface.html" class="btn btn-neutral float-left" title="4. Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tutorial_cpp.html" class="btn btn-neutral float-right" title="6. Tutorial (C++)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

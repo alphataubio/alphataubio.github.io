@@ -305,31 +305,31 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">pinq.cell.status()</span></code></p>
 <p>Without any arguments (or the status function in python), <cite>cell</cite>   prints the cell currently defined in the system.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pinq.cell.cubic(a,</span> <span class="pre">units,</span> <span class="pre">periodicity</span> <span class="pre">=</span> <span class="pre">3)</span></code></p>
 <p>Defines a cubic cell of side &lt;a&gt;.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.cubic<span class="o">(</span><span class="m">5</span>.0,<span class="w"> </span><span class="s2">&quot;A&quot;</span>,<span class="w"> </span><span class="s2">&quot;finite&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">cubic</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;finite&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pinq.cell.orthorhombic(a,</span> <span class="pre">b,</span> <span class="pre">c,</span> <span class="pre">units,</span> <span class="pre">periodicity</span> <span class="pre">=</span> <span class="pre">3)</span></code></p>
 <p>Defines a orthorhombic cell of sides a, b and c.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.orthorhombic<span class="o">(</span><span class="m">10</span>.0,<span class="w"> </span><span class="m">10</span>.0,<span class="w"> </span><span class="m">12</span>.0,<span class="w"> </span><span class="s2">&quot;bohr&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">orthorhombic</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">,</span> <span class="s2">&quot;bohr&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">inq.cell.lattice([a1,</span> <span class="pre">a2,</span> <span class="pre">a3],</span> <span class="pre">[b1,</span> <span class="pre">b2,</span> <span class="pre">b3],</span> <span class="pre">[c1,</span> <span class="pre">c2,</span> <span class="pre">c3],</span> <span class="pre">units,</span> <span class="pre">periodicity)</span></code></p>
 <p>Creates a general cell defined by the lattice vectors a, b, and c   (given by components). The units are applied to all the vector   components.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.lattice<span class="o">([</span><span class="m">4</span>.6478,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span><span class="o">]</span>,<span class="w"> </span><span class="o">[</span>-2.3239,<span class="w"> </span><span class="m">4</span>.02512,<span class="w"> </span><span class="m">0</span><span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>,<span class="w"> </span><span class="m">0</span>,<span class="w"> </span><span class="m">10</span>.0<span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;b&quot;</span>,<span class="w"> </span><span class="s2">&quot;2d&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">lattice</span><span class="p">([</span><span class="mf">4.6478</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.3239</span><span class="p">,</span> <span class="mf">4.02512</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;2d&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">inq.cell.lattice([a1,</span> <span class="pre">a2,</span> <span class="pre">a3],</span> <span class="pre">[b1,</span> <span class="pre">b2,</span> <span class="pre">b3],</span> <span class="pre">[c1,</span> <span class="pre">c2,</span> <span class="pre">c3],</span> <span class="pre">scale,</span> <span class="pre">units,</span> <span class="pre">periodicity)</span></code></p>
 <p>Like the previous case, creates a general cell defined by the lattice vectors a, b, and c   (given by components). However in this case a general scale factor is applied to all the vectors.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.cell.lattice<span class="o">([</span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.5<span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.5<span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.5,<span class="w"> </span><span class="m">0</span>.0<span class="o">]</span>,<span class="w"> </span><span class="m">3</span>.57,<span class="w"> </span><span class="s2">&quot;angstrom&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">lattice</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">3.57</span><span class="p">,</span> <span class="s2">&quot;angstrom&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -347,7 +347,7 @@
 </div></blockquote>
 </div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>The ‘clear’ command removes all inq information from the current directory. It doesn’t take any arguments.</p>
 <blockquote>
-<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.clear<span class="o">()</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -408,46 +408,46 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">electrons.status()</span></code></p>
 <p>When no arguments are given (or the <cite>status</cite> function in Python),   <cite>electrons</cite> will just print the currently defined options (including   default values).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">electrons.cutoff(value,</span> <span class="pre">units)</span></code></p>
 <p>Sets the energy cutoff for the simulation grid. A higher cutoff   implies a more precise, but more costly, simulation. The value must   be followed by its units, check <cite>inq help units</cite> for details on what   units are available.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.cutoff<span class="o">(</span><span class="m">30</span>.0,<span class="w"> </span><span class="s2">&quot;Ry&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">cutoff</span><span class="p">(</span><span class="mf">30.0</span><span class="p">,</span> <span class="s2">&quot;Ry&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">electrons.spacing(value,</span> <span class="pre">units)</span></code></p>
 <p>As an alternative to the cutoff, you can sets the spacing for the   simulation grid. A lower spacing implies a more precise, but more   costly, simulation. The value must be followed by its length units,   check <cite>inq help units</cite> for details on what units are available.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.spacing<span class="o">(</span><span class="m">0</span>.23,<span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="mf">0.23</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">electrons.spin_unpolarized()`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">`electrons.spin_polarized()`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">`electrons.spin_non_collinear()</span></code></p>
 <p>Sets the spin configuration used in the simulation. In the command   line interface this is selected by an argument whose values can be   ‘unpolarized’ (the default), ‘polarized’ and ‘non-collinear’. For   Python there are different functions for each value.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.spin_polarized<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">spin_polarized</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">electrons.extra_electrons(value)</span></code></p>
 <p>Inq determines the number of electrons from the ions present in the   system. Using this variable you can add or remove electrons from the   simulation. Positive values add electrons and negative values remove   them. The number of electrons does not have to be an integer, you   can add fractions of an electrons (given as a decimal number).</p>
 <p>Note that in first principles simulations the electrons are not   associated a priory to a certain atom. So when you add an electron   there is no concept of ‘where’ you put it. This will be determined   by the ground-state optimization.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.extra_electrons<span class="o">(</span>-0.5<span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">extra_electrons</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">electrons.extra_states(value)</span></code></p>
 <p>Inq automatically selects a number of states (orbitals, bands) that is   enough to represent all the electrons in the system. In many cases   you want additional states, and you do that using this command. The   value must be a positive integer.</p>
 <p>Extra-states are necessary when setting an electronic temperature   and to improve ground-state convergence.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.extra_states<span class="o">(</span><span class="m">2</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">extra_states</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">electrons.temperature(value,</span> <span class="pre">units)</span></code></p>
 <p>This command sets the temperature of the electrons in the   ground-state optimization. The value must be positive and the units   must be given. Check <cite>inq help units</cite> for details on what units are   available. Most likely you want to use ‘eV’ or ‘K’.</p>
 <p>Note that when you add a temperature you also need to specify   extra-states.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.electrons.temperature<span class="o">(</span><span class="m">273</span>.15,<span class="w"> </span><span class="s2">&quot;Kelvin&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">electrons</span><span class="o">.</span><span class="n">temperature</span><span class="p">(</span><span class="mf">273.15</span><span class="p">,</span> <span class="s2">&quot;Kelvin&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -488,25 +488,25 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">ground_state.status()</span></code></p>
 <p>When no arguments are given, <cite>ground-state</cite> will just print the   currently defined options (including default values).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ground_state.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ground_state.max_steps(value)</span></code></p>
 <p>Sets the maximum number of self-consistency steps that will be   done. The default value is 200.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ground_state.max_steps<span class="o">(</span><span class="m">100</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">max_steps</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ground_state.tolerance(value)</span></code></p>
 <p>The tolerance used to consider that the self-consistency iteration   is converged. The default value is 1e-6.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ground_state.tolerance<span class="o">(</span>1e-9<span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">tolerance</span><span class="p">(</span><span class="mf">1e-9</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ground_state.mixing(value)</span></code></p>
 <p>Set the mixing factor for the self-consistency. The default value is 0.3.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq.ground_state.mixing<span class="o">(</span><span class="m">0</span>.1<span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inq</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">mixing</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -598,50 +598,50 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions.status()</span></code></p>
 <p>Without any arguments (or status() in python), <cite>ions</cite> prints a list of   the ions currently in the system.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions.clear()</span></code></p>
 <p>Removes any ions present in the system. Does not change the cell.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.clear<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions.insert(symbol,</span> <span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z],</span> <span class="pre">units)</span></code></p>
 <p>Add an ion of type _symbol_ at coordinates _x_, _y_, and _z_. The   units for the coordinates must be specified (check <cite>inq help units</cite>   for details).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.insert<span class="o">(</span><span class="s2">&quot;He&quot;</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">2</span>.0<span class="o">]</span>,<span class="w"> </span><span class="s2">&quot;Angstrom&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;He&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="s2">&quot;Angstrom&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions.insert_fractional(symbol,</span> <span class="pre">[x,</span> <span class="pre">y,</span> <span class="pre">z])</span></code></p>
 <p>Insert an ion of type _symbol_ at fractional coordinates _x_, _y_,   and _z_.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.insert_fractional<span class="o">(</span><span class="s2">&quot;Si&quot;</span>,<span class="w"> </span><span class="o">[</span><span class="m">0</span>.25,<span class="w"> </span><span class="m">0</span>.25,<span class="w"> </span><span class="m">0</span>.25<span class="o">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">insert_fractional</span><span class="p">(</span><span class="s2">&quot;Si&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">])</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions.remove(index)</span></code></p>
 <p>Removes the ion given by _index_. Note that the ions indices start   from 0, not 1.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.remove<span class="o">(</span><span class="m">3</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions.file(filename)</span></code></p>
 <p>Read a coordinate file given by &lt;filename&gt;. The supported formats   are POSCAR, CIF and XYZ. For POSCAR and CIF both the ions and the   cell information will be read. For XYZ only the atomic positions are   read, so the cell must be defined before reading the file.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.file<span class="o">(</span><span class="s2">&quot;diamond.cif&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;diamond.cif&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions.file(filename,</span> <span class="pre">radius,</span> <span class="pre">units)</span></code></p>
 <p>Reads a coordinate file from &lt;filename&gt; and define a cell around the ions. The cell   is orthorhombic and finite. The cell has the smallest possible size   so that walls are at least distance ‘r’ from any atom. This is   useful for molecular systems where you need to converge the size of   the cell.  The units for the radius value must be specified (check   <cite>inq help units</cite> for details).</p>
 <p>Note: right now this functionality is only implemented for XYZ files.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.file<span class="o">(</span><span class="s2">&quot;glucose.xyz&quot;</span>,<span class="w"> </span><span class="m">2</span>.0,<span class="w"> </span><span class="s2">&quot;A&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;glucose.xyz&quot;</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions.from_ase(atoms)</span></code></p>
 <p>Imports the cell and ions from an Atomic Simulation Environment   (ASE) object. This is only available for the Python interface.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.ions.from_ase<span class="o">(</span>atoms<span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">from_ase</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -698,37 +698,37 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">kpoints.status()</span></code></p>
 <p>Prints a list of the current kpoints in the simulation.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">kpoints</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kpoints.gamma()</span></code></p>
 <p>Tells the system to only use the 0 0 0 point. This is the default.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.gamma<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">kpoints</span><span class="o">.</span><span class="n">gamma</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kpoints.grid(nx,</span> <span class="pre">ny,</span> <span class="pre">nz)</span></code></p>
 <p>Define a uniform grid to sample the Brillouin zone with sizes _nx_,    _ny_ and _nz_. This generates a non-shifted grid that will include    gamma.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.grid<span class="o">(</span><span class="m">8</span>,<span class="w"> </span><span class="m">8</span>,<span class="w"> </span><span class="m">8</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">kpoints</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kpoints.shifted_grid(nx,</span> <span class="pre">ny,</span> <span class="pre">nz)</span></code></p>
 <p>Define a shifted uniform grid to sample the Brillouin zone with sizes _nx_,    _ny_ and _nz_. This grid doesn’t include gamma.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.shifted_grid<span class="o">(</span><span class="m">4</span>,<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="m">4</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">kpoints</span><span class="o">.</span><span class="n">shifted_grid</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kpoints.insert(kx,</span> <span class="pre">ky,</span> <span class="pre">kz,</span> <span class="pre">w)</span></code></p>
 <p>Add a kpoint to the grid with coordinates _kx_, _ky_, _kz_, and    weight _w_. The kpoint must be given in covariant coordinates in the    range [-0.5, 0.5).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.insert<span class="o">(</span><span class="m">0</span>.25,<span class="w"> </span><span class="m">0</span>.25,<span class="w"> </span><span class="m">0</span>.25,<span class="w"> </span><span class="m">1</span>.0<span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">kpoints</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">kpoints.clear()</span></code></p>
 <p>Removes all the kpoints defined in the grid.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.kpoints.clear<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">kpoints</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
@@ -768,9 +768,7 @@
 <p>Alternative you can use the keyword ‘wavelength’ followed by the   wavelength of the laser and its units (typically ‘nm’).</p>
 <p>For finite systems the laser is applied in the length gauge as a   potential. For periodic systems, the laser is applied in the   velocity gauge as a uniform vector potential.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbations<span class="w"> </span>laser<span class="w">  </span><span class="m">0</span><span class="w">    </span><span class="m">0</span><span class="w">    </span><span class="m">0</span>.5<span class="w"> </span>frequency<span class="w">  </span><span class="m">300</span><span class="w"> </span>THz
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>perturbations<span class="w"> </span>laser<span class="w"> </span>-0.01<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span><span class="w">   </span>wavelength<span class="w"> </span><span class="m">880</span><span class="w"> </span>nm
+inq<span class="w"> </span>perturbations<span class="w"> </span>laser<span class="w"> </span>-0.01<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="m">0</span><span class="w">   </span>wavelength<span class="w"> </span><span class="m">880</span><span class="w"> </span>nm
 </pre></div>
 </div>
 </li>
@@ -781,13 +779,13 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">perturbations.status()</span></code></p>
 <p>Without any arguments (or with the status() function in Python),   <cite>perturbations</cite> prints a the perturbations that are currently   defined.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.perturbations.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">perturbations</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">perturbations.clear()</span></code></p>
 <p>Removes any perturbations currently defined in the system.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.perturbations.clear<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">perturbations</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
@@ -795,7 +793,7 @@
 <p>Specifies a kick perturbation. This corresponds of a uniform   time-dependent electric field. The time profile is a delta function   at time 0. The direction and intensity of the field is given by the   values _px_, _py_ and _pz_ (these values are in cartesian units and   always considered in atomic units).</p>
 <p>A kick has a flat profile in frequency space, so it will excite all   frequencies equally. This is useful to obtain linear response   properties.</p>
 <p>For finite systems this kick is applied in the length gauge as a   phase to the orbitals (this avoid time-discretization errors). For   periodic systems, the kick is applied in the velocity gauge as a   uniform vector potential.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.perturbations.kick<span class="o">([</span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.1<span class="o">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">perturbations</span><span class="o">.</span><span class="n">kick</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">])</span>
 </pre></div>
 </div>
 </li>
@@ -804,10 +802,7 @@
 <p>You also have to specify the frequency of the laser using the   keyword ‘frequency’ followed by its value and its units (you can use   ‘eV’ or ‘THz’ for example, check <cite>inq help units</cite> for a full list of   the energy units available).</p>
 <p>Alternative you can use the keyword ‘wavelength’ followed by the   wavelength of the laser and its units (typically ‘nm’).</p>
 <p>For finite systems the laser is applied in the length gauge as a   potential. For periodic systems, the laser is applied in the   velocity gauge as a uniform vector potential.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>currently<span class="w"> </span>not<span class="w"> </span>implemented<span class="o">)</span>
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>currently<span class="w"> </span>not<span class="w"> </span>implemented<span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">currently</span> <span class="ow">not</span> <span class="n">implemented</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -872,26 +867,26 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">real_time.status()</span></code></p>
 <p>When no arguments are given (or “status” in python), <cite>real-time</cite> will   just print the currently defined options (including default values).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">real_time.time_step(value,</span> <span class="pre">units)</span></code></p>
 <p>Sets the time step for the real-time integration. In most cases you   want to pick the largest value that gives you a stable   propagation. Note you need to pass the units, you can use “atu” (or   “atomictimeunits”), “as” or “fs” among others. The default value is   0.01 atu.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.time_step<span class="o">(</span><span class="m">0</span>.1,<span class="w"> </span><span class="s2">&quot;atu&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">time_step</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;atu&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">real_time.num_steps(value)</span></code></p>
 <p>The number of time-steps to do in the time propagation. The default   value is 100.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.num-steps<span class="o">(</span><span class="m">10000</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">num</span><span class="o">-</span><span class="n">steps</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">real_time.propagation_time(value,</span> <span class="pre">units)</span></code></p>
 <p>Sets the number of step so that the total propagation time is   (slightly larger than) <cite>value</cite>. You need to pass the units as a   second argument, you can use “atu” (or “atomictimeunits”), “as” or   “fs” among others.</p>
 <p>Note that this variable directly calculates the number of steps   based on the currently defined time-step. If the time-step is later   changed the number of steps will remain unchanged and the   propagation time will change.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.propagation_time<span class="o">(</span><span class="m">10</span>.0,<span class="w"> </span><span class="s2">&quot;fs&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">propagation_time</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="s2">&quot;fs&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -901,20 +896,20 @@
 <p>In <cite>impulsive</cite> the ions move with a constant velocity given by the   initial conditions. This implies that the energy is not conserved.</p>
 <p>The last option is <cite>ehrenfest</cite> dynamics, where the ions follow the   instantaneous classical forces generated by the electrons.</p>
 <p>Note that when ions move, inq has to recalculate the atomic   potential at each step, so the propagation will be more costly.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.ions.ehrenfest<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">ions</span><span class="o">.</span><span class="n">ehrenfest</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">real_time.observables.dipole()`</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">`real_time.observables.current()</span></code></p>
 <p>This value decides what observables will be calculated the   time-propagation. Right now the options are are: <cite>dipole</cite> and   <cite>current</cite> The total energy is also always calculated.</p>
 <p>Several calls to this function will add more observables.     Note that the calculated values will be stored internally by   INQ. They can be queried after the simulation is complete with the   <cite>results real-time</cite> command.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.observables.current<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">observables</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">real_time.observables.clear()</span></code></p>
 <p>This option removes all the observables that have been previously   requested.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.real_time.observables.clear<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">observables</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
@@ -925,11 +920,15 @@
 <h2><span class="section-number">4.10. </span>Results<a class="headerlink" href="#results" title="Permalink to this heading"></a></h2>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-9-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-9-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-9-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-9-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-9-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>The result command queries the results of a simulation that has been run in inq. Specific versions of the command exist for each simulation run. You can see the specific help for each one with:</p>
-<p>Shell: - <cite>inq help results ground-state</cite> - <cite>inq help results real-time</cite></p>
-<p>Python: - <cite>help(pinq.results.ground_state)</cite> - <cite>help(pinq.results.real_time)</cite></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">inq</span> <span class="pre">help</span> <span class="pre">results</span> <span class="pre">ground-state</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inq</span> <span class="pre">help</span> <span class="pre">results</span> <span class="pre">real-time</span></code></p></li>
+</ul>
 </div><div aria-labelledby="tab-9-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-9-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>The result command queries the results of a simulation that has been run in inq. Specific versions of the command exist for each simulation run. You can see the specific help for each one with:</p>
-<p>Shell: - <cite>inq help results ground-state</cite> - <cite>inq help results real-time</cite></p>
-<p>Python: - <cite>help(pinq.results.ground_state)</cite> - <cite>help(pinq.results.real_time)</cite></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">help(pinq.results.ground_state)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">help(pinq.results.real_time)</span></code></p></li>
+</ul>
 </div></div>
 </section>
 <section id="the-results-ground-state-command">
@@ -1044,99 +1043,99 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.status()</span></code></p>
 <p>When no arguments are given (or the status function is used), print   the values calculated.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.iterations()</span></code></p>
 <p>Print the number of self-consistency iterations done.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.iterations<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">iterations</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.magnetization()</span></code></p>
 <p>Query the magnetization. In Python or if no additional arguments are   given, print the whole 3D vector. For the shell, optionally you can   add an index argument to print a specific component of the   vector. The index can be given as the letters _x_, _y_ or _z_.</p>
 <p>Note that for spin unpolarized systems the magnetization is always   zero. For spin polarized the magnetization is assumed on the _z_   direction.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.magnetization<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">magnetization</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.dipole()</span></code></p>
 <p>Return the dipole of the system in atomic units. The whole vector is   given if no additional arguments are included. In the CLI, you can   also add an index argument to print a specific component. The index   can be given as the letters _x_, _y_ or _z_.</p>
 <p>Note that the dipole is only calculated for the non-periodic   directions. For the periodic directions is set to zero since the   dipole is not properly defined.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.magnetization<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">magnetization</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.forces()</span></code></p>
 <p>Return the forces over the atoms in the system in atomic units. In   Python this is an array. In the CLI, if no arguments are given, all   the forces are printed. Alternatively is possible to pass an atom   index (that starts from 0), or both an atom and direction index   (_x_, _y_, or _z_).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.forces<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">forces</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.status()</span></code></p>
 <p>When no arguments are given (or status() in Python), <cite>energy</cite> will   print all the energy values available.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.total()</span></code></p>
 <p>Returns the total energy of the calculation. This includes the ionic   contribution.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.total<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">total</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.kinetic()</span></code></p>
 <p>The electronic kinetic energy.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.kinetic<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">kinetic</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.eigenvalues()</span></code></p>
 <p>The sum of the eigenvalues, weighed by the occupations.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.eigenvalues<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">eigenvalues</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.hartree()</span></code></p>
 <p>The classical electrostatic interaction energy between electrons.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.hartree<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">hartree</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.external()</span></code></p>
 <p>The energy of the interaction of the electrons with the local   potential generated by the ions. This doesn’t include the non-local   pseudopotential part.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.external<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">external</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.non_local()</span></code></p>
 <p>The energy of the interaction of the electrons with the non-local   part of the ionic pseudo-potentials.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.non_local<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">non_local</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.xc()</span></code></p>
 <p>The exchange and correlation energy from DFT semi-local   functionals. It doesn’t include the contribution from Hartree-Fock   exchange (see <cite>energy exact_exchange</cite>).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.xc<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">xc</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.nvxc()</span></code></p>
 <p>The energy of the interaction of the exchange and correlation   potential and the density. This is different from the exchange and   correlation energy.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.nvxc<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">nvxc</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.exact_exchange()</span></code></p>
 <p>The Hartree-Fock exact-exchange energy. This is calculated for   Hartree-Fock and hybrid functionals.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.exact_exchange<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">exact_exchange</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.ground_state.energy.ion()</span></code></p>
 <p>The ion-ion interaction energy. This value is calculated taking into   account the periodicity of the system.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.ground_state.energy.ion<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
@@ -1173,49 +1172,60 @@
 <p>In the shell, if not additional arguments are passed, inq prints the   whole series for each time step. Alternatively, you can pass a step   index to get the energy value.</p>
 <p>For Python this functions returns an array and does not receive any   arguments.</p>
 <p>Note that for the moment inq uses a uniform time integration, so the   time is just the step index times the time-step.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span><span class="nb">time</span><span class="sb">`</span><span class="w">                   </span><span class="sb">`</span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="m">99</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span><span class="nb">time</span>
+inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="m">99</span>
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">total-energy</span> <span class="pre">[step]</span></code></p></li>
-</ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">total-energy</span> <span class="pre">[step]</span></code></p>
 <p>Returns the values of the total energy for each time step during the   propagation.</p>
 <p>For the shell, if not additional arguments are passed, inq prints   the whole series for each time step in a two column format, the   first column is the time and the second one is the energy. This   output is suitable to view on a plotting program like gnuplot.   Alternatively, you can pass a step index to get the energy value for   that step.</p>
 <p>For Python this functions returns an array and does not receive any   arguments.</p>
-<p>Shell examples: <cite>inq results real-time total-energy</cite>                   <cite>inq results real-time total-energy 43</cite>   Python example: <cite>pinq.results.real_time.total_energy()</cite></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">dipole</span> <span class="pre">[step]</span> <span class="pre">[dir]</span></code></p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>total-energy
+inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>total-energy<span class="w"> </span><span class="m">43</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">dipole</span> <span class="pre">[step]</span> <span class="pre">[dir]</span></code></p>
 <p>Returns the values of the dipole for each time-step during the   propagation. The value is in cartesian coordinates and atomic   units. Note that the calculation of the dipole must be requested   before running using the <cite>observables</cite> command.</p>
 <p>Shell: If not additional arguments are passed, inq prints the whole   series for each time step in a four column format, the first column   is the time and the second, third and fourth ones are the x, y, and   z components of the dipole, respectively. This output is suitable to   view on a plotting program like gnuplot.  Alternatively, you can   pass a step index to get the dipole value for that step. An extra   direction index (x, y or z) will return a single component of the   dipole vector.</p>
-<p>For Python this functions returns an two-dimensional array with the   values of the dipole and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the dipole.</p>
-<p>Shell examples: <cite>inq results real-time dipole</cite>                   <cite>inq results real-time dipole 7866</cite>                   <cite>inq results real-time dipole 33 y</cite>   Python example: <cite>dip = pinq.results.real_time.dipole()</cite></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">current</span> <span class="pre">[step]</span> <span class="pre">[dir]</span></code></p></li>
-</ul>
+<p>For Python this functions returns a two-dimensional array with the   values of the dipole and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the dipole.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>dipole
+inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>dipole<span class="w"> </span><span class="m">7866</span>
+inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>dipole<span class="w"> </span><span class="m">33</span><span class="w"> </span>y
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results</span> <span class="pre">real-time</span> <span class="pre">current</span> <span class="pre">[step]</span> <span class="pre">[dir]</span></code></p>
 <p>Returns the values of the current for each time-step during the   propagation. The value is in cartesian coordinates and atomic   units. Note that the calculation of the current must be requested   before running using the <cite>observables</cite> command.</p>
 <p>Shell: If not additional arguments are passed, inq prints the whole   series for each time step in a four column format, the first column   is the time and the second, third and fourth ones are the x, y, and   z components of the current, respectively. This output is suitable to   view on a plotting program like gnuplot.  Alternatively, you can   pass a step index to get the current value for that step. An extra   direction index (x, y or z) will return a single component of the   current vector.</p>
-<p>For Python this functions returns an two-dimensional array with the   values of the current and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the current.</p>
-<p>Shell examples: <cite>inq results real-time current</cite>                   <cite>inq results real-time current 183</cite>                   <cite>inq results real-time current 97843 y</cite>   Python example: <cite>curr = pinq.results.real_time.current()</cite></p>
+<p>For Python this functions returns a two-dimensional array with the   values of the current and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the current.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>current
+inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>current<span class="w"> </span><span class="m">183</span>
+inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="w"> </span>current<span class="w"> </span><span class="m">97843</span><span class="w"> </span>y
+</pre></div>
+</div>
+</li>
+</ul>
 </div><div aria-labelledby="tab-11-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-11-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command queries the results obtained from a real-time calculation. Without arguments, it prints the values calculated.</p>
 <p>The options allows you to query a specific value. In this case only the value will be printed without any other text, so it is suitable for easy parsing in scripting. The values are returned in atomic units.</p>
 <p>These are the available subcommands:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.status()</span></code></p>
 <p>When no arguments are given (ot the status() function in Python),   print the available values.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.real_time.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.total_steps()</span></code></p>
 <p>Returns the total number of real-time simulation steps done.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.real_time.total_steps<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">total_steps</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.total_time()</span></code></p>
 <p>Returns the total simulated time (in atomic units).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.real_time.total_time<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">total_time</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
@@ -1224,30 +1234,35 @@
 <p>In the shell, if not additional arguments are passed, inq prints the   whole series for each time step. Alternatively, you can pass a step   index to get the energy value.</p>
 <p>For Python this functions returns an array and does not receive any   arguments.</p>
 <p>Note that for the moment inq uses a uniform time integration, so the   time is just the step index times the time-step.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.results.real_time.time<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.total_energy()</span></code></p></li>
-</ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.total_energy()</span></code></p>
 <p>Returns the values of the total energy for each time step during the   propagation.</p>
 <p>For the shell, if not additional arguments are passed, inq prints   the whole series for each time step in a two column format, the   first column is the time and the second one is the energy. This   output is suitable to view on a plotting program like gnuplot.   Alternatively, you can pass a step index to get the energy value for   that step.</p>
 <p>For Python this functions returns an array and does not receive any   arguments.</p>
-<p>Shell examples: <cite>inq results real-time total-energy</cite>                   <cite>inq results real-time total-energy 43</cite>   Python example: <cite>pinq.results.real_time.total_energy()</cite></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.dipole()</span></code></p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">total_energy</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.dipole()</span></code></p>
 <p>Returns the values of the dipole for each time-step during the   propagation. The value is in cartesian coordinates and atomic   units. Note that the calculation of the dipole must be requested   before running using the <cite>observables</cite> command.</p>
 <p>Shell: If not additional arguments are passed, inq prints the whole   series for each time step in a four column format, the first column   is the time and the second, third and fourth ones are the x, y, and   z components of the dipole, respectively. This output is suitable to   view on a plotting program like gnuplot.  Alternatively, you can   pass a step index to get the dipole value for that step. An extra   direction index (x, y or z) will return a single component of the   dipole vector.</p>
-<p>For Python this functions returns an two-dimensional array with the   values of the dipole and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the dipole.</p>
-<p>Shell examples: <cite>inq results real-time dipole</cite>                   <cite>inq results real-time dipole 7866</cite>                   <cite>inq results real-time dipole 33 y</cite>   Python example: <cite>dip = pinq.results.real_time.dipole()</cite></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.current()</span></code></p></li>
-</ul>
+<p>For Python this functions returns a two-dimensional array with the   values of the dipole and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the dipole.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dip</span> <span class="o">=</span> <span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">dipole</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">results.real_time.current()</span></code></p>
 <p>Returns the values of the current for each time-step during the   propagation. The value is in cartesian coordinates and atomic   units. Note that the calculation of the current must be requested   before running using the <cite>observables</cite> command.</p>
 <p>Shell: If not additional arguments are passed, inq prints the whole   series for each time step in a four column format, the first column   is the time and the second, third and fourth ones are the x, y, and   z components of the current, respectively. This output is suitable to   view on a plotting program like gnuplot.  Alternatively, you can   pass a step index to get the current value for that step. An extra   direction index (x, y or z) will return a single component of the   current vector.</p>
-<p>For Python this functions returns an two-dimensional array with the   values of the current and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the current.</p>
-<p>Shell examples: <cite>inq results real-time current</cite>                   <cite>inq results real-time current 183</cite>                   <cite>inq results real-time current 97843 y</cite>   Python example: <cite>curr = pinq.results.real_time.current()</cite></p>
+<p>For Python this functions returns a two-dimensional array with the   values of the current and does not receive any arguments. The first   (leftmost) index is the time-step index while the second array index   is the coordinate of the current.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">curr</span> <span class="o">=</span> <span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">real_time</span><span class="o">.</span><span class="n">current</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ul>
 </div></div>
 </section>
 <section id="the-run-command">
@@ -1282,19 +1297,19 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">run.ground_state()</span></code></p>
 <p>Runs a ground-state calculation with fixed ions.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.run.ground_state<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">run</span><span class="o">.</span><span class="n">ground_state</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">run.real_time()</span></code></p>
 <p>Runs a real-time simulation.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.run.real_time<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">run</span><span class="o">.</span><span class="n">real_time</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">run.resume()</span></code></p>
 <p>Restarts the run of a stopped simulation from a checkpoint. For the    moment this only works for real-time simulations.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.run.resume<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">run</span><span class="o">.</span><span class="n">resume</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
@@ -1373,61 +1388,61 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.status()</span></code></p>
 <p>Shows the species currently defined in the simulation.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.status<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.pseudo_set()</span></code></p>
 <p>Returns the current pseudopotential set that will be used by    default for all species in the simulation.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.pseudo_set<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">pseudo_set</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.list_sets()</span></code></p>
 <p>Prints a list of the available pseudopotentials.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.list_sets<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">list_sets</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.pseudo_set(&quot;set_name&quot;)</span></code></p>
 <p>Selects the pseudopotential set that will be used by default for    all species in the simulation. The name must be one those returned    by the <cite>list-sets</cite> command.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.set<span class="o">(</span><span class="s2">&quot;sg15&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;sg15&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.add(&quot;element&quot;)</span></code></p>
 <p>Adds a new species of given by &lt;element&gt;. The element must be a    IUPAC recognized element chemical symbol.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.add<span class="o">(</span><span class="s2">&quot;Tc&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;Tc&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.add_by_element(&quot;symbol&quot;,</span> <span class="pre">&quot;element&quot;)</span></code></p>
 <p>Adds a new species given by its &lt;symbol&gt; as an alias to    &lt;element&gt;. Note that element must be a IUPAC recognized element    symbol.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.add_by_element<span class="o">(</span><span class="s2">&quot;proton&quot;</span>,<span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">add_by_element</span><span class="p">(</span><span class="s2">&quot;proton&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.add_by_atomic_number(&quot;symbol&quot;,</span> <span class="pre">z)</span></code></p>
 <p>Adds a new species given by its &lt;symbol&gt; as an alias to    the chemical element with atomic number &lt;z&gt;.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.add_by_atomic_number<span class="o">(</span><span class="s2">&quot;C14&quot;</span>,<span class="w"> </span><span class="m">6</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">add_by_atomic_number</span><span class="p">(</span><span class="s2">&quot;C14&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.pseudo_set(&quot;symbol&quot;,</span> <span class="pre">&quot;set_name&quot;)</span></code></p>
 <p>Sets the pseudopotential set that will be used for the species    given by &lt;symbol&gt;.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.set<span class="o">(</span><span class="s2">&quot;He&quot;</span>,<span class="w"> </span><span class="s2">&quot;sg15&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;He&quot;</span><span class="p">,</span> <span class="s2">&quot;sg15&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.file(&quot;symbol&quot;,</span> <span class="pre">&quot;filename&quot;)</span></code></p>
 <p>Sets the pseudopotential file that will be used for the species    given by &lt;symbol&gt;.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.file<span class="o">(</span><span class="s2">&quot;Xe&quot;</span>,<span class="w"> </span><span class="s2">&quot;Xe.upf&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;Xe&quot;</span><span class="p">,</span> <span class="s2">&quot;Xe.upf&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">species.mass(&quot;symbol&quot;,</span> <span class="pre">value)</span></code></p>
 <p>Sets the ionic mass for the species given by &lt;symbol&gt;. The mass    must be given in atomic mass units (amu). They should not be    confused with atomic units of mass. In amu the mass of a carbon    atom is 12.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.species.mass<span class="o">(</span><span class="s2">&quot;U&quot;</span>,<span class="w"> </span><span class="m">235</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">mass</span><span class="p">(</span><span class="s2">&quot;U&quot;</span><span class="p">,</span> <span class="mi">235</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -1452,7 +1467,7 @@
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">spectrum.file(filename)</span></code></p>
 <p>Calculates an absorption spectra based on a dipole series. The    spectrum data is printed to the terminal as two data columns, the    first one is the frequency/energy and the second one is the    spectrum for all input columns.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.spectrum.file<span class="o">(</span><span class="s2">&quot;data.txt&quot;</span><span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">spectrum</span><span class="o">.</span><span class="n">file</span><span class="p">(</span><span class="s2">&quot;data.txt&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -1598,20 +1613,19 @@
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-18-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-18-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-18-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-18-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-18-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-18-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command provided some simple utilities for use in scripts or for the testing of inq.</p>
 <p>These are the available subcommands:</p>
 <ul>
-<li><p>Shell: <cite>util match calc &lt;math-expression&gt;</cite></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">util</span> <span class="pre">match</span> <span class="pre">calc</span> <span class="pre">&lt;math-expression&gt;</span></code></p>
 <p>Calculates the result of the given mathematical expression. This is   useful if you need to calculate a value in a script or double check   the result of an expression you are giving to inq in an argument.</p>
 <p>This function is not available in Python, since mathematical   expressions can be evaluated directly by the language.</p>
-<p>Shell example: <cite>inq util calc “1/sqrt(2.0) + exp(-1/2)</cite></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">util</span> <span class="pre">match</span> <span class="pre">&lt;value1&gt;</span> <span class="pre">&lt;value2&gt;</span> <span class="pre">...</span> <span class="pre">&lt;tolerance&gt;</span></code></p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>util<span class="w"> </span>calc<span class="w"> </span><span class="s2">&quot;1/sqrt(2.0) + exp(-1/2)&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util</span> <span class="pre">match</span> <span class="pre">&lt;value1&gt;</span> <span class="pre">&lt;value2&gt;</span> <span class="pre">...</span> <span class="pre">&lt;tolerance&gt;</span></code></p>
 <p>Checks if two set of values match within a certain tolerance. If   they match, the command will run successfully, with a 0 return   code. If the match fails, then the command will fail with a return   value of 1.</p>
 <p>In Python the values can be scalar or arrays (of the same size). The   function will return true if the values match or false otherwise.</p>
 <p>When more than two values are passed, it is assumed these are two   sets given in sequential order. For example, if 6 values are passed   inq assumes than the first 3 are one set and the second 3 another   one. Then comparisons are made between the first value with the   fourth one, the second with the fifth, and the third with the sixth   one.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>util<span class="w"> </span>match<span class="w"> </span><span class="m">1</span>.0<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>1e-5
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>util<span class="w"> </span>match<span class="w">  </span><span class="m">1</span>.0<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.0<span class="w">  </span><span class="m">1</span>.001<span class="w"> </span>1e-12<span class="w"> </span>1e-23<span class="w">  </span>1e-2
+inq<span class="w"> </span>util<span class="w"> </span>match<span class="w">  </span><span class="m">1</span>.0<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.0<span class="w">  </span><span class="m">1</span>.001<span class="w"> </span>1e-12<span class="w"> </span>1e-23<span class="w">  </span>1e-2
 </pre></div>
 </div>
 </li>
@@ -1625,26 +1639,25 @@
 </div><div aria-labelledby="tab-18-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-18-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command provided some simple utilities for use in scripts or for the testing of inq.</p>
 <p>These are the available subcommands:</p>
 <ul>
-<li><p>Shell: <cite>util match calc &lt;math-expression&gt;</cite></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">(not</span> <span class="pre">available)</span></code></p>
 <p>Calculates the result of the given mathematical expression. This is   useful if you need to calculate a value in a script or double check   the result of an expression you are giving to inq in an argument.</p>
 <p>This function is not available in Python, since mathematical   expressions can be evaluated directly by the language.</p>
-<p>Shell example: <cite>inq util calc “1/sqrt(2.0) + exp(-1/2)</cite></p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">util.match(value1,</span> <span class="pre">value2,</span> <span class="pre">tolerance)</span></code></p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="ow">not</span> <span class="n">available</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">util.match(value1,</span> <span class="pre">value2,</span> <span class="pre">tolerance)</span></code></p>
 <p>Checks if two set of values match within a certain tolerance. If   they match, the command will run successfully, with a 0 return   code. If the match fails, then the command will fail with a return   value of 1.</p>
 <p>In Python the values can be scalar or arrays (of the same size). The   function will return true if the values match or false otherwise.</p>
 <p>When more than two values are passed, it is assumed these are two   sets given in sequential order. For example, if 6 values are passed   inq assumes than the first 3 are one set and the second 3 another   one. Then comparisons are made between the first value with the   fourth one, the second with the fifth, and the third with the sixth   one.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.util.match<span class="o">(</span><span class="m">1</span>.0,<span class="w"> </span><span class="m">2</span>.0,<span class="w"> </span>1e-5<span class="o">)</span>
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.util.match<span class="o">([</span><span class="m">1</span>.0,<span class="w"> </span><span class="m">0</span>.0,<span class="w"> </span><span class="m">0</span>.0<span class="o">]</span>,<span class="w"> </span><span class="o">[</span><span class="m">1</span>.001,<span class="w"> </span>1e-12,<span class="w"> </span>1e-23<span class="o">]</span>,<span class="w"> </span>1e-2<span class="o">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">pinq</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">match</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.001</span><span class="p">,</span> <span class="mf">1e-12</span><span class="p">,</span> <span class="mf">1e-23</span><span class="p">],</span> <span class="mf">1e-2</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">util.test_data()</span></code></p>
 <p>Returns the path where inq install the data files used for   tests. This is not really useful for users, it is mainly for   testing.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pinq.util.test_data<span class="o">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">test_data</span><span class="p">()</span>
 </pre></div>
 </div>
 </li>

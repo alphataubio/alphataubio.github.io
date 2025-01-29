@@ -57,8 +57,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#reaxff-functional-form">6.2. ReaxFF functional form</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reaxff-lammps-commands">6.3. ReaxFF LAMMPS commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fitting-reaxff-parameters">6.4. Fitting ReaxFF parameters</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#n2-reaxff-example">6.4.1. N2_ReaxFF example</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fitsnap-reaxff-input-script">6.4.2. FitSNAP-ReaxFF input script</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fitsnap-reaxff-input-script">6.4.1. FitSNAP-ReaxFF input script</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#reaxff-section"><code class="docutils literal notranslate"><span class="pre">[REAXFF]</span></code> section</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#calculator-section"><code class="docutils literal notranslate"><span class="pre">[CALCULATOR]</span></code> section</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#solver-section"><code class="docutils literal notranslate"><span class="pre">[SOLVER]</span></code> section</a></li>
@@ -175,22 +174,19 @@
 <p>KOKKOS version of ReaxFF with <code class="docutils literal notranslate"><span class="pre">-k</span> <span class="pre">on</span> <span class="pre">t</span> <span class="pre">1</span> <span class="pre">-sf</span> <span class="pre">kk</span></code> is always used by FitSNAP-ReaxFF.</p>
 <blockquote>
 <div><div class="line-block">
-<div class="line"><br /></div>
 <div class="line"><em>“IMO anyone and everyone should be using the KOKKOS version of ReaxFF. Not only is it more memory robust and will never have these hbondchk errors, it is also faster on CPUs, at least in most cases that I’ve benchmarked, or same speed at the very least.”</em></div>
 <div class="line">– Stan Moore (2024/10) on MatSci.org:</div>
 <div class="line"><strong>Lammps hbondchk failed</strong>.</div>
 <div class="line"><a class="reference external" href="https://matsci.org/t/lammps-hbondchk-failed/58230/6">https://matsci.org/t/lammps-hbondchk-failed/58230/6</a></div>
-<div class="line"><br /></div>
 </div>
-<p><em>“I highly suggest using the KOKKOS package for ReaxFF, works in serial for CPUs too.”</em></p>
 <div class="line-block">
+<div class="line"><em>“I highly suggest using the KOKKOS package for ReaxFF, works in serial for CPUs too.”</em></div>
 <div class="line">– Stan Moore (2024/10) on MatSci.org:</div>
 <div class="line"><strong>Segmentation fault: address not mapped to object at address 0xc2cfb87c</strong>.</div>
 <div class="line"><a class="reference external" href="https://matsci.org/t/segmentation-fault-address-not-mapped-to-object-at-address-0xc2cfb87c/58493/5">https://matsci.org/t/segmentation-fault-address-not-mapped-to-object-at-address-0xc2cfb87c/58493/5</a></div>
-<div class="line"><br /></div>
 </div>
-<p><em>“You could also try the KOKKOS version which doesn’t use the safezone, mincap, and minhbonds factors which can bloat the memory if you set them too high.”</em></p>
 <div class="line-block">
+<div class="line"><em>“You could also try the KOKKOS version which doesn’t use the safezone, mincap, and minhbonds factors which can bloat the memory if you set them too high.”</em></div>
 <div class="line">– Stan Moore (2025/01) on MatSci.org:</div>
 <div class="line"><strong>Possible memory problem with Reaxff when the total atom number increased</strong>.</div>
 <div class="line"><a class="reference external" href="https://matsci.org/t/possible-memory-problem-with-reaxff-when-the-total-atom-number-increased/60431/2">https://matsci.org/t/possible-memory-problem-with-reaxff-when-the-total-atom-number-increased/60431/2</a></div>
@@ -213,62 +209,49 @@
 </dd>
 </dl>
 <p>You can start a FitSNAP-ReaxFF optimization with a potential file from   <code class="docutils literal notranslate"><span class="pre">reaxff/potentials/reaxff-&lt;AUTHOR&gt;&lt;YEAR&gt;.ff</span></code> <a class="reference internal" href="#available-potentials"><span class="std std-ref">(see below for full list bundled with FitSNAP-ReaxFF)</span></a>. You can also start with any other valid ReaxFF potential file (with the exception of <em>eReaxFF</em> and <em>LG dispersion correction</em>), or <span class="guilabel">FIXME: restart from a previously optimized potential</span>.</p>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<section id="n2-reaxff-example">
-<h3><span class="section-number">6.4.1. </span>N2_ReaxFF example<a class="headerlink" href="#n2-reaxff-example" title="Link to this heading"></a></h3>
-<p>Let’s start with a simple example related to the <a class="reference external" href="https://alphataubio.com/inq/tutorial_shell_python.html">nitrogen molecule example</a> of INQ, a modern clean-slate C++/CUDA open source (TD)DFT package from LLNL. DFT reference data can also be obtained from  <a class="reference external" href="https://www.quantum-espresso.org/">Quantum Espresso (QE)</a>, <a class="reference external" href="https://www.vasp.at/">Vienna Ab initio Simulation Package (VASP)</a>, literature, databases,…</p>
+<div class="hint admonition">
+<p class="admonition-title">N2_ReaxFF example</p>
+<p>Let’s start with a simple example related to the <a class="reference external" href="https://alphataubio.com/inq/tutorial_shell_python.html">nitrogen molecule example</a> of INQ, a modern clean-slate C++/CUDA open source (TD)DFT package from LLNL. DFT reference data can also be obtained from  <a class="reference external" href="https://www.quantum-espresso.org/">Quantum Espresso (QE)</a>, <a class="reference external" href="https://www.vasp.at/">Vienna Ab initio Simulation Package (VASP)</a>, literature, online databases,…</p>
 <div class="literal-block-wrapper docutils container" id="id105">
-<div class="code-block-caption"><span class="caption-text">examples/N2_ReaxFF/reaxff-n2.in</span><a class="headerlink" href="#id105" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text"><strong>examples/N2_ReaxFF/N2_ReaxFF.in</strong></span><a class="headerlink" href="#id105" title="Link to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">REAXFF</span><span class="p">]</span>
-  <span class="n">potential</span>    <span class="o">=</span> <span class="o">../</span><span class="n">reaxff</span><span class="o">/</span><span class="n">potentials</span><span class="o">/</span><span class="n">reaxff</span><span class="o">-</span><span class="n">wood2014</span><span class="o">.</span><span class="n">ff</span>
-  <span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;De_s&#39;</span>   <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;De_p&#39;</span>   <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;De_pp&#39;</span>  <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_be1&#39;</span>  <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_bo5&#39;</span>  <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_bo6&#39;</span>  <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_ovun1&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_be2&#39;</span>  <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_bo3&#39;</span>  <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_bo4&#39;</span>  <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_bo1&#39;</span>  <span class="p">},</span>
-    <span class="p">{</span><span class="s1">&#39;block&#39;</span><span class="p">:</span> <span class="s1">&#39;BND&#39;</span><span class="p">,</span> <span class="s1">&#39;atoms&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;p_bo2&#39;</span>  <span class="p">}</span>
-  <span class="p">]</span>
+<span class="n">potential</span>      <span class="o">=</span> <span class="o">../</span><span class="n">reaxff</span><span class="o">/</span><span class="n">potentials</span><span class="o">/</span><span class="n">reaxff</span><span class="o">-</span><span class="n">wood2014</span><span class="o">.</span><span class="n">ff</span>
+<span class="n">parameters</span>     <span class="o">=</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo1</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo2</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo3</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo4</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo5</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo6</span>
+                 <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_be1</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_be2</span> 
+                 <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">De_s</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">De_p</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">De_pp</span>
+                 <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_ovun1</span>
 
 <span class="p">[</span><span class="n">CALCULATOR</span><span class="p">]</span>
-  <span class="n">calculator</span>     <span class="o">=</span> <span class="n">LAMMPSREAXFF</span>
-  <span class="n">charge_fix</span>     <span class="o">=</span> <span class="n">fix</span> <span class="mi">1</span> <span class="nb">all</span> <span class="n">qeq</span><span class="o">/</span><span class="n">reaxff</span> <span class="mi">1</span> <span class="mf">0.0</span> <span class="mf">10.0</span> <span class="mf">1.0e-6</span> <span class="n">reaxff</span>
-  <span class="n">energy</span>         <span class="o">=</span> <span class="mi">1</span>
-  <span class="n">force</span>          <span class="o">=</span> <span class="mi">0</span>
+<span class="n">calculator</span>     <span class="o">=</span> <span class="n">LAMMPSREAXFF</span>
+<span class="n">charge_fix</span>     <span class="o">=</span> <span class="n">fix</span> <span class="mi">1</span> <span class="nb">all</span> <span class="n">qeq</span><span class="o">/</span><span class="n">reaxff</span> <span class="mi">1</span> <span class="mf">0.0</span> <span class="mf">10.0</span> <span class="mf">1.0e-6</span> <span class="n">reaxff</span>
+<span class="n">energy</span>         <span class="o">=</span> <span class="mi">1</span>
+<span class="n">force</span>          <span class="o">=</span> <span class="mi">0</span>
 
 <span class="p">[</span><span class="n">SOLVER</span><span class="p">]</span>
-  <span class="n">solver</span>         <span class="o">=</span> <span class="n">CMAES</span>
-  <span class="n">popsize</span>        <span class="o">=</span> <span class="mi">10</span>
-  <span class="n">sigma</span>          <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">solver</span>         <span class="o">=</span> <span class="n">CMAES</span>
+<span class="n">popsize</span>        <span class="o">=</span> <span class="mi">10</span>
+<span class="n">sigma</span>          <span class="o">=</span> <span class="mf">0.1</span>
 
 <span class="p">[</span><span class="n">SCRAPER</span><span class="p">]</span>
-  <span class="n">scraper</span>        <span class="o">=</span> <span class="n">JSON</span>
+<span class="n">scraper</span>        <span class="o">=</span> <span class="n">JSON</span>
 
 <span class="p">[</span><span class="n">PATH</span><span class="p">]</span>
-  <span class="n">dataPath</span>       <span class="o">=</span> <span class="n">JSON</span>
+<span class="n">dataPath</span>       <span class="o">=</span> <span class="n">JSON</span>
 
 <span class="p">[</span><span class="n">OUTFILE</span><span class="p">]</span>
-  <span class="n">potential</span>      <span class="o">=</span> <span class="n">N2_ReaxFF</span><span class="o">-</span><span class="n">optimized</span><span class="o">.</span><span class="n">ff</span>
+<span class="n">potential</span>      <span class="o">=</span> <span class="n">N2_ReaxFF</span><span class="o">-</span><span class="n">optimized</span><span class="o">.</span><span class="n">ff</span>
 
 <span class="p">[</span><span class="n">GROUPS</span><span class="p">]</span>
-  <span class="n">group_sections</span> <span class="o">=</span> <span class="n">name</span> <span class="n">training_size</span>
-  <span class="n">group_types</span>    <span class="o">=</span> <span class="nb">str</span> <span class="nb">float</span>
-  <span class="n">N2_bond_scan</span>   <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">group_sections</span> <span class="o">=</span> <span class="n">name</span> <span class="n">training_size</span>
+<span class="n">group_types</span>    <span class="o">=</span> <span class="nb">str</span> <span class="nb">float</span>
+<span class="n">N2_bond_scan</span>   <span class="o">=</span> <span class="mf">1.0</span>
 
 </pre></div>
 </div>
 </div>
-</section>
+</div>
 <section id="fitsnap-reaxff-input-script">
-<h3><span class="section-number">6.4.2. </span>FitSNAP-ReaxFF input script<a class="headerlink" href="#fitsnap-reaxff-input-script" title="Link to this heading"></a></h3>
+<h3><span class="section-number">6.4.1. </span>FitSNAP-ReaxFF input script<a class="headerlink" href="#fitsnap-reaxff-input-script" title="Link to this heading"></a></h3>
 <p>Compared to linear and nonlinear models, the input script for ReaxFF models needs:</p>
 <blockquote>
 <div><ul class="simple">
@@ -280,37 +263,28 @@
 <section id="reaxff-section">
 <h4><code class="docutils literal notranslate"><span class="pre">[REAXFF]</span></code> section<a class="headerlink" href="#reaxff-section" title="Link to this heading"></a></h4>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">potential</span></code> path of initial ReaxFF potential file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">parameters</span></code> python array of dictionaries with keys:</p>
-<ul>
-<li><p><span class="guilabel">FIXME: get ‘value’ from ff file</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'block'</span></code> string:</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">'ATM'</span></code> for atom</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'BND'</span></code> for bond</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'OFD'</span></code> for off-diagonal</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'ANG'</span></code> for angle</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'TOR'</span></code> for torsion</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'HBD'</span></code> for hydrogen-bond</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parameters</span></code> strings separated by spaces with format <code class="docutils literal notranslate"><span class="pre">&lt;BLOCK&gt;.&lt;ATOM_1&gt;...&lt;ATOM_N&gt;.&lt;NAME&gt;</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ATM.C.name</span></code> for atom parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BND.C.H.name</span></code> for bond parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OFD.C.H.name</span></code> for off-diagonal parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ANG.C.H.O.name</span></code> for angle parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TOR.C.H.O.N.name</span></code> for torsion parameters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HBD.C.H.O.name</span></code> for hydrogen-bond parameters</p></li>
 </ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'atoms'</span></code> python array of string(s) with:</p>
-<ul>
-<li><p>1 atom for <code class="docutils literal notranslate"><span class="pre">ATM</span></code>, eg. <code class="docutils literal notranslate"><span class="pre">['C']</span></code></p></li>
-<li><p>2 atoms for <code class="docutils literal notranslate"><span class="pre">BND</span></code>/<code class="docutils literal notranslate"><span class="pre">OFD</span></code>, eg. <code class="docutils literal notranslate"><span class="pre">['C','H']</span></code></p></li>
-<li><p>3 atoms for <code class="docutils literal notranslate"><span class="pre">ANG</span></code>/<code class="docutils literal notranslate"><span class="pre">HBD</span></code>, eg. <code class="docutils literal notranslate"><span class="pre">['C','H','O']</span></code></p></li>
-<li><p>4 atoms for <code class="docutils literal notranslate"><span class="pre">TOR</span></code>, eg. <code class="docutils literal notranslate"><span class="pre">['C','H','O','N']</span></code></p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'name'</span></code> string of <em>actual LAMMPS implementation parameter name</em> (which might be different than other ReaxFF implementations commonly seen in comments of potential files)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'range'</span></code> <strong>optional</strong> python array of two floats to specify minimum and maximum allowed values for a parameter, with <span class="guilabel">FIXME: default</span> <span class="math notranslate nohighlight">\(\pm 20\%\)</span> of initial value</p></li>
+</div></blockquote>
+<p>where <code class="docutils literal notranslate"><span class="pre">name</span></code> is <em>LAMMPS implementation parameter name</em> (which might be different than other ReaxFF implementations commonly seen in comments of potential files)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'range'</span></code> <strong>optional</strong> python array of two floats to specify minimum and maximum allowed values for a parameter <span class="math notranslate nohighlight">\(p\)</span>, with default range <span class="math notranslate nohighlight">\(p_0\pm.2|p_0|\)</span> if <span class="math notranslate nohighlight">\(|p_0|&gt;0\)</span> and <span class="math notranslate nohighlight">\((-1,1)\)</span> otherwise</p></li>
 </ul>
 </li>
 </ul>
 </div></blockquote>
 <table class="docutils align-center" id="id106">
-<caption><span class="caption-text">LAMMPS implementation parameter names that can be optimized</span><a class="headerlink" href="#id106" title="Link to this table"></a></caption>
+<caption><span class="caption-text">LAMMPS implementation parameter names</span><a class="headerlink" href="#id106" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Block</p></th>
 <th class="head"><p>Name</p></th>
@@ -430,7 +404,7 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">reaxff/tools/reaxff-format-ff.py</span></code> properly reformats a ReaxFF potential file (eg. copy/pasted from journal articles) together with actual LAMMPS implementation parameter names in comment fields. This format can have more precision (8 digits) because LAMMPS parses a potential file by splitting values on spaces instead of the legacy FORTRAN fixed column format (4 digits).</p>
+<p><code class="docutils literal notranslate"><span class="pre">reaxff/tools/reaxff-format-ff.py</span></code> properly reformats a ReaxFF potential file (eg. copy/pasted from journal articles) together with <em>LAMMPS implementation parameter names</em> in comment fields. This format can have more precision (8 digits) because LAMMPS parses a potential file by splitting values on spaces instead of the legacy FORTRAN fixed column format (4 digits).</p>
 <p><strong>Therefore, potentials reformatted by</strong> <code class="docutils literal notranslate"><span class="pre">reaxff-format-ff.py</span></code> <strong>or optimized by FitSNAP-ReaxFF are only intended for LAMMPS and might not work with other ReaxFF implementations</strong>.</p>
 </div>
 </section>
@@ -463,7 +437,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">solver</span></code> <strong>must be</strong> <code class="docutils literal notranslate"><span class="pre">CMAES</span></code> <strong>for FitSNAP-ReaxFF</strong></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">popsize</span></code> population size setting of CMAES algorithm, with default <span class="math notranslate nohighlight">\(4+3*log(|P|)\)</span> where <span class="math notranslate nohighlight">\(|P|\)</span> is the number of parameters to be optimized. [ <a class="reference external" href="https://github.com/CMA-ES/pycma/issues/140">detailed discussion with the author of the pycma python package</a> ]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">popsize</span></code> population size setting of CMAES algorithm, with default <span class="math notranslate nohighlight">\(4+3*log(|P|)\)</span> where <span class="math notranslate nohighlight">\(|P|\)</span> is the number of parameters to be optimized. [<a class="reference external" href="https://github.com/CMA-ES/pycma/issues/140">detailed discussion with the author of the pycma python package</a>]</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sigma</span></code> sigma setting of CMAES algorithm, with default 0.1</p></li>
 </ul>
 </div></blockquote>

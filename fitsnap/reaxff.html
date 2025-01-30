@@ -212,10 +212,57 @@
 <div class="hint admonition">
 <p class="admonition-title">N2_ReaxFF example</p>
 <p>Let’s start with a simple example related to the <a class="reference external" href="https://alphataubio.com/inq/tutorial_shell_python.html">nitrogen molecule example</a> of INQ, a modern clean-slate C++/CUDA open source (TD)DFT package from LLNL. DFT reference data can also be obtained from  <a class="reference external" href="https://www.quantum-espresso.org/">Quantum Espresso (QE)</a>, <a class="reference external" href="https://www.vasp.at/">Vienna Ab initio Simulation Package (VASP)</a>, literature, online databases,…</p>
+<p><em>First</em>, training data is computed using INQ with PBE functional and saved to <code class="docutils literal notranslate"><span class="pre">JSON/N2_ReaxFF-PBE/N2_ReaxFF-PBE.json</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id105">
-<div class="code-block-caption"><span class="caption-text"><strong>examples/N2_ReaxFF/N2_ReaxFF.in</strong></span><a class="headerlink" href="#id105" title="Link to this code"></a></div>
+<div class="code-block-caption"><span class="caption-text"><strong>examples/N2_ReaxFF/N2_ReaxFF-PBE.py</strong></span><a class="headerlink" href="#id105" title="Link to this code"></a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">pinq</span><span class="o">,</span><span class="w"> </span><span class="nn">json</span><span class="o">,</span><span class="w"> </span><span class="nn">threading</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">RLock</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">n2_energy</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;inq-n2-</span><span class="si">{</span><span class="n">dist</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span> <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\</span>
+<span class="s2">        inq clear; </span><span class="se">\</span>
+<span class="s2">        inq theory PBE; </span><span class="se">\</span>
+<span class="s2">        inq cell cubic 5.0 Angstrom; </span><span class="se">\</span>
+<span class="s2">        inq ions insert N </span><span class="si">{</span><span class="o">-</span><span class="n">dist</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> 0.0 0.0 Angstrom; </span><span class="se">\</span>
+<span class="s2">        inq ions insert N </span><span class="si">{</span><span class="n">dist</span><span class="o">/</span><span class="mi">2</span><span class="si">}</span><span class="s2"> 0.0 0.0 Angstrom; </span><span class="se">\</span>
+<span class="s2">        inq electrons cutoff 40.0 Hartree; </span><span class="se">\</span>
+<span class="s2">        inq run ground-state&quot;</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">energy</span> <span class="o">=</span> <span class="n">pinq</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">energy</span><span class="o">.</span><span class="n">total</span><span class="p">()</span><span class="o">*</span><span class="mf">627.509474</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">dist</span><span class="p">,</span><span class="n">energy</span><span class="p">]</span>
+
+<span class="k">with</span> <span class="n">concurrent</span><span class="o">.</span><span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">()</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">pes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">n2_energy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">.9</span><span class="p">,</span><span class="mf">1.6</span><span class="p">,</span><span class="mf">.05</span><span class="p">))))</span>
+    <span class="n">pes</span> <span class="o">=</span> <span class="n">pes</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">pes</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">pes</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">pes</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">json_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Dataset&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;Data&quot;</span><span class="p">:</span> <span class="p">[{</span>
+        <span class="s2">&quot;Positions&quot;</span><span class="p">:[[</span><span class="o">-</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">]],</span> 
+        <span class="s2">&quot;AtomTypes&quot;</span><span class="p">:[</span><span class="s1">&#39;N&#39;</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">],</span>
+        <span class="s2">&quot;Energy&quot;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="p">}</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pes</span><span class="p">],</span>                     
+    <span class="s2">&quot;PositionsStyle&quot;</span><span class="p">:</span> <span class="s2">&quot;angstrom&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;AtomTypeStyle&quot;</span><span class="p">:</span> <span class="s2">&quot;chemicalsymbol&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;EnergyStyle&quot;</span><span class="p">:</span> <span class="s2">&quot;kcalmol&quot;</span><span class="p">}}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;JSON/N2_ReaxFF-PBE/N2_ReaxFF-PBE.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">json_data</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><em>Second</em>, a FitSNAP-ReaxFF optimization with input script <code class="docutils literal notranslate"><span class="pre">N2_ReaxFF.in</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id106">
+<div class="code-block-caption"><span class="caption-text"><strong>examples/N2_ReaxFF/N2_ReaxFF.in</strong></span><a class="headerlink" href="#id106" title="Link to this code"></a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">REAXFF</span><span class="p">]</span>
-<span class="n">potential</span>      <span class="o">=</span> <span class="o">../</span><span class="n">reaxff</span><span class="o">/</span><span class="n">potentials</span><span class="o">/</span><span class="n">reaxff</span><span class="o">-</span><span class="n">wood2014</span><span class="o">.</span><span class="n">ff</span>
+<span class="n">potential</span>      <span class="o">=</span> <span class="o">../../</span><span class="n">reaxff</span><span class="o">/</span><span class="n">potentials</span><span class="o">/</span><span class="n">reaxff</span><span class="o">-</span><span class="n">wood2014</span><span class="o">.</span><span class="n">ff</span>
 <span class="n">parameters</span>     <span class="o">=</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo1</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo2</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo3</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo4</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo5</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_bo6</span>
                  <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_be1</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">p_be2</span> 
                  <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">De_s</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">De_p</span> <span class="n">BND</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">N</span><span class="o">.</span><span class="n">De_pp</span>
@@ -223,7 +270,7 @@
 
 <span class="p">[</span><span class="n">CALCULATOR</span><span class="p">]</span>
 <span class="n">calculator</span>     <span class="o">=</span> <span class="n">LAMMPSREAXFF</span>
-<span class="n">charge_fix</span>     <span class="o">=</span> <span class="n">fix</span> <span class="mi">1</span> <span class="nb">all</span> <span class="n">qeq</span><span class="o">/</span><span class="n">reaxff</span> <span class="mi">1</span> <span class="mf">0.0</span> <span class="mf">10.0</span> <span class="mf">1.0e-6</span> <span class="n">reaxff</span>
+<span class="n">charge_fix</span>     <span class="o">=</span> <span class="n">fix</span> <span class="mi">1</span> <span class="nb">all</span> <span class="n">qeq</span><span class="o">/</span><span class="n">reaxff</span> <span class="mi">1</span> <span class="mf">0.0</span> <span class="mf">10.0</span> <span class="mf">1.0e-6</span> <span class="n">reaxff</span> <span class="n">maxiter</span> <span class="mi">500</span>
 <span class="n">energy</span>         <span class="o">=</span> <span class="mi">1</span>
 <span class="n">force</span>          <span class="o">=</span> <span class="mi">0</span>
 
@@ -244,11 +291,14 @@
 <span class="p">[</span><span class="n">GROUPS</span><span class="p">]</span>
 <span class="n">group_sections</span> <span class="o">=</span> <span class="n">name</span> <span class="n">training_size</span>
 <span class="n">group_types</span>    <span class="o">=</span> <span class="nb">str</span> <span class="nb">float</span>
-<span class="n">N2_bond_scan</span>   <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">N2_ReaxFF</span><span class="o">-</span><span class="n">PBE</span>  <span class="o">=</span> <span class="mf">1.0</span>
 
 </pre></div>
 </div>
 </div>
+<p><em>Third</em>, potential energy computed along the bond scan <span class="math notranslate nohighlight">\(\text{N}\!\equiv\!\text{N}\)</span> by running LAMMPS with potentials <code class="docutils literal notranslate"><span class="pre">reaxff-wood2014.ff</span></code> and <code class="docutils literal notranslate"><span class="pre">N2_ReaxFF-optimized.ff</span></code> is compared to QM training data with matplotlib and saved to <code class="docutils literal notranslate"><span class="pre">N2_ReaxFF.png</span></code>:</p>
+<a class="reference internal image-reference" href="_images/N2_ReaxFF.png"><img alt="_images/N2_ReaxFF.png" class="align-center" src="_images/N2_ReaxFF.png" style="width: 62%;" />
+</a>
 </div>
 <section id="fitsnap-reaxff-input-script">
 <h3><span class="section-number">6.4.1. </span>FitSNAP-ReaxFF input script<a class="headerlink" href="#fitsnap-reaxff-input-script" title="Link to this heading"></a></h3>
@@ -283,8 +333,8 @@
 </li>
 </ul>
 </div></blockquote>
-<table class="docutils align-center" id="id106">
-<caption><span class="caption-text">LAMMPS implementation parameter names</span><a class="headerlink" href="#id106" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id107">
+<caption><span class="caption-text">LAMMPS implementation parameter names</span><a class="headerlink" href="#id107" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Block</p></th>
 <th class="head"><p>Name</p></th>
@@ -492,8 +542,8 @@
 </section>
 <section id="available-reaxff-potentials">
 <span id="available-potentials"></span><h2><span class="section-number">6.5. </span>Available ReaxFF potentials<a class="headerlink" href="#available-reaxff-potentials" title="Link to this heading"></a></h2>
-<table class="docutils align-center" id="id107">
-<caption><span class="caption-text">Historical serial Fortran 77 force fields (no longer compatible and not available)</span><a class="headerlink" href="#id107" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id108">
+<caption><span class="caption-text">Historical serial Fortran 77 force fields (no longer compatible and not available)</span><a class="headerlink" href="#id108" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 10.0%" />
 <col style="width: 10.0%" />
@@ -517,8 +567,8 @@
 </table>
 <section id="combustion-branch">
 <h3><span class="section-number">6.5.1. </span>Combustion Branch<a class="headerlink" href="#combustion-branch" title="Link to this heading"></a></h3>
-<table class="docutils align-center" id="id108">
-<caption><span class="caption-text">Available COMBUSTION force fields in LAMMPS</span><a class="headerlink" href="#id108" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id109">
+<caption><span class="caption-text">Available COMBUSTION force fields in LAMMPS</span><a class="headerlink" href="#id109" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 10.0%" />
 <col style="width: 10.0%" />
@@ -748,8 +798,8 @@
 </section>
 <section id="independent-branch">
 <h3><span class="section-number">6.5.2. </span>Independent Branch<a class="headerlink" href="#independent-branch" title="Link to this heading"></a></h3>
-<table class="docutils align-center" id="id109">
-<caption><span class="caption-text">Available INDEPENDENT force fields in LAMMPS</span><a class="headerlink" href="#id109" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id110">
+<caption><span class="caption-text">Available INDEPENDENT force fields in LAMMPS</span><a class="headerlink" href="#id110" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 10.0%" />
 <col style="width: 10.0%" />
@@ -963,8 +1013,8 @@
 </section>
 <section id="water-branch">
 <h3><span class="section-number">6.5.3. </span>Water Branch<a class="headerlink" href="#water-branch" title="Link to this heading"></a></h3>
-<table class="docutils align-center" id="id110">
-<caption><span class="caption-text">Available WATER force fields in LAMMPS</span><a class="headerlink" href="#id110" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id111">
+<caption><span class="caption-text">Available WATER force fields in LAMMPS</span><a class="headerlink" href="#id111" title="Link to this table"></a></caption>
 <colgroup>
 <col style="width: 10.0%" />
 <col style="width: 10.0%" />

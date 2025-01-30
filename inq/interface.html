@@ -321,13 +321,13 @@
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">inq.cell.lattice([a1,</span> <span class="pre">a2,</span> <span class="pre">a3],</span> <span class="pre">[b1,</span> <span class="pre">b2,</span> <span class="pre">b3],</span> <span class="pre">[c1,</span> <span class="pre">c2,</span> <span class="pre">c3],</span> <span class="pre">units,</span> <span class="pre">periodicity)</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinq.cell.lattice([a1,</span> <span class="pre">a2,</span> <span class="pre">a3],</span> <span class="pre">[b1,</span> <span class="pre">b2,</span> <span class="pre">b3],</span> <span class="pre">[c1,</span> <span class="pre">c2,</span> <span class="pre">c3],</span> <span class="pre">units,</span> <span class="pre">periodicity)</span></code></p>
 <p>Creates a general cell defined by the lattice vectors a, b, and c   (given by components). The units are applied to all the vector   components.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">lattice</span><span class="p">([</span><span class="mf">4.6478</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">2.3239</span><span class="p">,</span> <span class="mf">4.02512</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;2d&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">inq.cell.lattice([a1,</span> <span class="pre">a2,</span> <span class="pre">a3],</span> <span class="pre">[b1,</span> <span class="pre">b2,</span> <span class="pre">b3],</span> <span class="pre">[c1,</span> <span class="pre">c2,</span> <span class="pre">c3],</span> <span class="pre">scale,</span> <span class="pre">units,</span> <span class="pre">periodicity)</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinq.cell.lattice([a1,</span> <span class="pre">a2,</span> <span class="pre">a3],</span> <span class="pre">[b1,</span> <span class="pre">b2,</span> <span class="pre">b3],</span> <span class="pre">[c1,</span> <span class="pre">c2,</span> <span class="pre">c3],</span> <span class="pre">scale,</span> <span class="pre">units,</span> <span class="pre">periodicity)</span></code></p>
 <p>Like the previous case, creates a general cell defined by the lattice vectors a, b, and c   (given by components). However in this case a general scale factor is applied to all the vectors.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">lattice</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">3.57</span><span class="p">,</span> <span class="s2">&quot;angstrom&quot;</span><span class="p">)</span>
 </pre></div>
@@ -506,7 +506,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ground_state.mixing(value)</span></code></p>
 <p>Set the mixing factor for the self-consistency. The default value is 0.3.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">inq</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">mixing</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">ground_state</span><span class="o">.</span><span class="n">mixing</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -556,7 +556,7 @@
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ions</span> <span class="pre">insert</span> <span class="pre">&lt;symbol&gt;</span> <span class="pre">&lt;x&gt;</span> <span class="pre">&lt;y&gt;</span> <span class="pre">&lt;z&gt;</span> <span class="pre">&lt;units&gt;</span></code></p>
 <p>Add an ion of type _symbol_ at coordinates _x_, _y_, and _z_. The   units for the coordinates must be specified (check <cite>inq help units</cite>   for details).</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>He<span class="w">  </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>angstrom
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>ions<span class="w"> </span>insert<span class="w"> </span>He<span class="w">  </span><span class="m">0</span>.0<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>angstrom
 </pre></div>
 </div>
 </li>
@@ -1486,98 +1486,122 @@ inq<span class="w"> </span>results<span class="w"> </span>real-time<span class="
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-U2hlbGw=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-16-U2hlbGw=" name="U2hlbGw=" role="tab" tabindex="0">Shell</button><button aria-controls="panel-16-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-16-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-16-U2hlbGw=" class="sphinx-tabs-panel group-tab" id="panel-16-U2hlbGw=" name="U2hlbGw=" role="tabpanel" tabindex="0"><p>This command specified the theory level used to model the electron-electron interaction. Most of the time you will want to use some form of density functional theory (DFT) but some other options are available. This command will allow you to pick up the DFT functional you want to use, the most popular ones have a specific option or you can use the <cite>functional</cite> command to select any functional from libxc.</p>
 <p>These are the options available:</p>
-<ul class="simple">
-<li><p><cite>theory</cite></p></li>
-</ul>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span></code></p>
 <p>Without any argument, <cite>theory</cite> will just print the current theory level that is set.</p>
-<p>Example: <cite>inq theory</cite></p>
-<ul class="simple">
-<li><p><cite>theory dft</cite> (default)</p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">dft`</span> <span class="pre">(default)</span></code></p>
 <p>This is the default, DFT in the PBE approximation is used to model    the electron-electron interaction.</p>
-<p>Example: <cite>inq theory dft</cite> ` - <cite>theory non-interacting</cite></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory<span class="w"> </span>dft
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">non-interacting</span></code></p>
 <p>There is no electron-electron interaction, particles are assumed to    be independent.</p>
-<p>Example: <cite>inq theory non-interacting</cite></p>
-<ul class="simple">
-<li><p><cite>theory Hartree</cite></p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory<span class="w"> </span>non-interacting
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">hartree</span></code></p>
 <p>Particles only interact through classical electrostatics. Note that    as implemented in inq, hartree does not include a self-interaction    correction term.</p>
-<p>Example: <cite>inq theory Hartree</cite></p>
-<ul class="simple">
-<li><p><cite>theory Hartree-Fock</cite></p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory<span class="w"> </span>hartree
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">hartree-fock</span></code></p>
 <p>Exchange is modeled by the Hartree-Fock method. Note that this    method is much more expensive than pure DFT.</p>
-<p>Example: <cite>inq theory Hartree-Fock</cite></p>
-<ul class="simple">
-<li><p><cite>theory lda</cite></p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory<span class="w"> </span>hartree-fock
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">lda</span></code></p>
 <p>The local density approximation in DFT.</p>
-<p>Example: <cite>inq theory lda</cite></p>
-<ul class="simple">
-<li><p><cite>theory pbe</cite></p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory<span class="w"> </span>lda
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">pbe</span></code></p>
 <p>The PBE GGA approximation in DFT.</p>
-<p>Example: <cite>inq theory pbe</cite></p>
-<ul class="simple">
-<li><p><cite>theory pbe0</cite></p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory<span class="w"> </span>pbe
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">pbe0</span></code></p>
 <p>The PBE0 (also known as PBEH) hybrid functional. Note that this    functional includes Hartree-Fock exact exchange, so it is much more    computationally expensive than GGA functionals like pbe.</p>
-<p>Example: <cite>inq theory pbe0</cite></p>
-<ul class="simple">
-<li><p><cite>theory b3lyp</cite></p></li>
-</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory<span class="w"> </span>pbe0
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory</span> <span class="pre">b3lyp</span></code></p>
 <p>The B3LYP hybrid functional. Note that this functional includes    Hartree-Fock exact exchange, so it is much more computationally    expensive than GGA functionals like pbe.</p>
-<p>Example: <cite>inq theory b3lyp</cite></p>
-<ul class="simple">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>inq<span class="w"> </span>theory<span class="w"> </span>b3lyp
+</pre></div>
+</div>
+</li>
 <li><p><cite>theory functional &lt;exchange_name&gt; [correlation_name]</cite></p></li>
 </ul>
 <p>This option allows you to select any functional combination from    the libxc library using the functional names (functional id numbers    are not supported). Note that the correlation functional is    optional, it is okay to pass just one functional. You can find a    list of libxc functionals here [1].</p>
 <p>[1] <a class="reference external" href="https://www.tddft.org/programs/libxc/functionals/">https://www.tddft.org/programs/libxc/functionals/</a>        Examples: <cite>inq theory functional XC_GGA_X_RPBE XC_GGA_C_PBE</cite>              <cite>inq theory functional LDA_XC_TETER93</cite></p>
 </div><div aria-labelledby="tab-16-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-16-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><p>This command specified the theory level used to model the electron-electron interaction. Most of the time you will want to use some form of density functional theory (DFT) but some other options are available. This command will allow you to pick up the DFT functional you want to use, the most popular ones have a specific option or you can use the <cite>functional</cite> command to select any functional from libxc.</p>
 <p>These are the options available:</p>
-<ul class="simple">
-<li><p><cite>theory</cite></p></li>
-</ul>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.status()</span></code></p>
 <p>Without any argument, <cite>theory</cite> will just print the current theory level that is set.</p>
-<p>Example: <cite>inq theory</cite></p>
-<ul class="simple">
-<li><p><cite>theory dft</cite> (default)</p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.dft()</span></code></p>
 <p>This is the default, DFT in the PBE approximation is used to model    the electron-electron interaction.</p>
-<p>Example: <cite>inq theory dft</cite> ` - <cite>theory non-interacting</cite></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">dft</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.non_interacting()</span></code></p>
 <p>There is no electron-electron interaction, particles are assumed to    be independent.</p>
-<p>Example: <cite>inq theory non-interacting</cite></p>
-<ul class="simple">
-<li><p><cite>theory Hartree</cite></p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">non_interacting</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.hartree()</span></code></p>
 <p>Particles only interact through classical electrostatics. Note that    as implemented in inq, hartree does not include a self-interaction    correction term.</p>
-<p>Example: <cite>inq theory Hartree</cite></p>
-<ul class="simple">
-<li><p><cite>theory Hartree-Fock</cite></p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">hartree</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.hartree_fock()</span></code></p>
 <p>Exchange is modeled by the Hartree-Fock method. Note that this    method is much more expensive than pure DFT.</p>
-<p>Example: <cite>inq theory Hartree-Fock</cite></p>
-<ul class="simple">
-<li><p><cite>theory lda</cite></p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">hartree_fock</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.lda()</span></code></p>
 <p>The local density approximation in DFT.</p>
-<p>Example: <cite>inq theory lda</cite></p>
-<ul class="simple">
-<li><p><cite>theory pbe</cite></p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">lda</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.pbe()</span></code></p>
 <p>The PBE GGA approximation in DFT.</p>
-<p>Example: <cite>inq theory pbe</cite></p>
-<ul class="simple">
-<li><p><cite>theory pbe0</cite></p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">pbe</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.pbe0()</span></code></p>
 <p>The PBE0 (also known as PBEH) hybrid functional. Note that this    functional includes Hartree-Fock exact exchange, so it is much more    computationally expensive than GGA functionals like pbe.</p>
-<p>Example: <cite>inq theory pbe0</cite></p>
-<ul class="simple">
-<li><p><cite>theory b3lyp</cite></p></li>
-</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">pbe0</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">theory.b3lyp()</span></code></p>
 <p>The B3LYP hybrid functional. Note that this functional includes    Hartree-Fock exact exchange, so it is much more computationally    expensive than GGA functionals like pbe.</p>
-<p>Example: <cite>inq theory b3lyp</cite></p>
-<ul class="simple">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pinq</span><span class="o">.</span><span class="n">theory</span><span class="o">.</span><span class="n">b3lyp</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
 <li><p><cite>theory functional &lt;exchange_name&gt; [correlation_name]</cite></p></li>
 </ul>
 <p>This option allows you to select any functional combination from    the libxc library using the functional names (functional id numbers    are not supported). Note that the correlation functional is    optional, it is okay to pass just one functional. You can find a    list of libxc functionals here [1].</p>

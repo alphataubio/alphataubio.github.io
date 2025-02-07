@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3.2. Input files &mdash; FitSNAP  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/lammps.css?v=d6960128" />
+      <link rel="stylesheet" type="text/css" href="../_static/lammps.css?v=14d82903" />
 
   
     <link rel="shortcut icon" href="../_static/fs_favicon.ico"/>
@@ -209,7 +209,7 @@ following input script:</p>
 <h2><span class="section-number">3.2.1. </span>[BISPECTRUM]<a class="headerlink" href="#bispectrum" title="Link to this heading"></a></h2>
 <p>This section contains settings for the SNAP bispectrum descriptors from <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0021999114008353">Thompson et al. (2015)</a></p>
 <ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">numTypes</span></code> number of atom types in your set of configurations located in <a class="reference external" href="Run.html#path">the [PATH] section</a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">numTypes</span></code> number of atom types in your set of configurations located in <a class="reference external" href="run_input.html#path">the [PATH] section</a></p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">type</span></code> contains a list of element type symbols, one for each type. Make sure these are
 ordered correctly, e.g. if you have a LAMMPS type 1 atom that is <code class="code docutils literal notranslate"><span class="pre">Ga</span></code>, and LAMMPS type 2
 atoms are <code class="code docutils literal notranslate"><span class="pre">N</span></code>, list this as <code class="code docutils literal notranslate"><span class="pre">Ga</span> <span class="pre">N</span></code>.</p></li>
@@ -265,7 +265,7 @@ with respect to neighboring atoms, which is required for neural networks.</p></l
 <h2><span class="section-number">3.2.2. </span>[ACE]<a class="headerlink" href="#ace" title="Link to this heading"></a></h2>
 <p>This section contains settings for the Atomic Cluster Expansion (ACE) descriptors from <a class="reference external" href="https://doi.org/10.1103/PhysRevB.99.014104">Drautz (2019)</a> available as <a class="reference external" href="https://docs.lammps.org/pair_pace.html">pair_style pace</a> in LAMMPS. ACE descriptor calculations are explained in <a class="reference external" href="https://doi.org/10.1016/j.jcp.2024.113073">Goff, Sievers, Wood, Thompson (2024)</a>.</p>
 <ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">numTypes</span></code> number of atom types in your set of configurations located in <a class="reference external" href="Run.html#path">the [PATH] section</a></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">numTypes</span></code> number of atom types in your set of configurations located in <a class="reference external" href="run_input.html#path">the [PATH] section</a></p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">type</span></code> contains a list of element type symbols, one for each type. Make sure these are
 ordered correctly, e.g. if you have a LAMMPS type 1 atom that is <code class="code docutils literal notranslate"><span class="pre">Ga</span></code>, and LAMMPS type 2
 atoms are <code class="code docutils literal notranslate"><span class="pre">N</span></code>, list this as <code class="code docutils literal notranslate"><span class="pre">Ga</span> <span class="pre">N</span></code>.</p></li>
@@ -322,10 +322,10 @@ values may also be treated as hyperparameters.</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">scraper</span></code> is either <code class="code docutils literal notranslate"><span class="pre">JSON</span></code> or <code class="code docutils literal notranslate"><span class="pre">XYZ.</span></code></p></li>
 </ul>
-<p>If using the XYZ scraper, each <a class="reference external" href="Run.html#groups">Group</a> of configurations has its own XYZ file
+<p>If using the XYZ scraper, each <a class="reference external" href="run_input.html#groups">Group</a> of configurations has its own XYZ file
 containing configurations of atoms concatenated together, in extended XYZ format. Follow the example
 in <code class="code docutils literal notranslate"><span class="pre">examples/Ta_XYZ</span></code>.</p>
-<p>If using the JSON scraper, each <a class="reference external" href="Run.html#groups">Group</a> may have its own directory containing
+<p>If using the JSON scraper, each <a class="reference external" href="run_input.html#groups">Group</a> may have its own directory containing
 separate JSON files for each configuration. Guarantee compatibility with FitSNAP by using our
 <code class="code docutils literal notranslate"><span class="pre">tools/VASP2JSON.py</span></code> conversion script; this requires that your DFT training data be in VASP
 OUTCAR format. Likewise for <code class="code docutils literal notranslate"><span class="pre">tools/VASPxml2JSON.py</span></code>.</p>
@@ -376,7 +376,7 @@ the reference section would look like (using metal units):</p>
 <section id="groups">
 <h2><span class="section-number">3.2.10. </span>[GROUPS]<a class="headerlink" href="#groups" title="Link to this heading"></a></h2>
 <p>Each group should be its own sub-directory in the directory given by the <code class="code docutils literal notranslate"><span class="pre">dataPath/</span></code> keyword in
-<a class="reference external" href="Run.html#path">the [PATH] section</a>. There are a few different allowed syntaxes; subdirectory
+<a class="reference external" href="run_input.html#path">the [PATH] section</a>. There are a few different allowed syntaxes; subdirectory
 names in the first column is common to all options.</p>
 <p><code class="code docutils literal notranslate"><span class="pre">group_sections</span></code> declares which parameters you want to set for each group of configurations.</p>
 <p>For example:</p>

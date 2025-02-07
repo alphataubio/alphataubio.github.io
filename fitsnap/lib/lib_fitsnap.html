@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3.1. FitSnap &mdash; FitSNAP  documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="../_static/lammps.css?v=d6960128" />
+      <link rel="stylesheet" type="text/css" href="../_static/lammps.css?v=14d82903" />
 
   
     <link rel="shortcut icon" href="../_static/fs_favicon.ico"/>
@@ -60,18 +60,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../executable.html">2. Executable</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Library</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3.1. FitSnap</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap"><code class="docutils literal notranslate"><span class="pre">FitSnap</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.pt"><code class="docutils literal notranslate"><span class="pre">FitSnap.pt</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.config"><code class="docutils literal notranslate"><span class="pre">FitSnap.config</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.scraper"><code class="docutils literal notranslate"><span class="pre">FitSnap.scraper</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.data"><code class="docutils literal notranslate"><span class="pre">FitSnap.data</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.calculator"><code class="docutils literal notranslate"><span class="pre">FitSnap.calculator</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.solver"><code class="docutils literal notranslate"><span class="pre">FitSnap.solver</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.perform_fit"><code class="docutils literal notranslate"><span class="pre">FitSnap.perform_fit()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.process_configs"><code class="docutils literal notranslate"><span class="pre">FitSnap.process_configs()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.fitsnap.FitSnap.scrape_configs"><code class="docutils literal notranslate"><span class="pre">FitSnap.scrape_configs()</span></code></a></li>
-</ul>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#parallel-tools">3.1.1. Parallel Tools</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.parallel_tools.DistributedList"><code class="docutils literal notranslate"><span class="pre">DistributedList</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#fitsnap3lib.parallel_tools.GracefulError"><code class="docutils literal notranslate"><span class="pre">GracefulError</span></code></a></li>
@@ -132,129 +120,6 @@ command. After instantiating <code class="code docutils literal notranslate"><sp
 its own instance of <code class="code docutils literal notranslate"><span class="pre">ParallelTools</span></code> which houses functions and data structures that
 operate on the resources in the input communicator. The settings will be stored in an instance
 of the <code class="code docutils literal notranslate"><span class="pre">Config</span></code> class. The <code class="code docutils literal notranslate"><span class="pre">FitSnap</span></code> class is documented below.</p>
-<dl class="py class" id="module-fitsnap3lib.fitsnap">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">fitsnap3lib.fitsnap.</span></span><span class="sig-name descname"><span class="pre">FitSnap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arglist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap" title="Link to this definition"></a></dt>
-<dd><p>This classes houses the objects needed for machine learning a potential, start to finish.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>input</strong> (<em>str</em>) – Optional dictionary or path to input file when using library mode; defaults to
-None for executable use.</p></li>
-<li><p><strong>comm</strong> – Optional MPI communicator when using library mode; defaults to None.</p></li>
-<li><p><strong>arglist</strong> (<em>list</em>) – Optional list of cmd line args when using library mode.</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.pt">
-<span class="sig-name descname"><span class="pre">pt</span></span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.pt" title="Link to this definition"></a></dt>
-<dd><p>Instance of the ParallelTools class for helping MPI
-communication and shared arrays.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">class</span></code> ParallelTools</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.config">
-<span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.config" title="Link to this definition"></a></dt>
-<dd><p>Instance of the Config class for initializing settings,
-initialized with a Config instance.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">class</span></code> Config</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.scraper">
-<span class="sig-name descname"><span class="pre">scraper</span></span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.scraper" title="Link to this definition"></a></dt>
-<dd><p>Instance of the Scraper class for gathering configs.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">class</span></code> Scraper</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.data">
-<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.data" title="Link to this definition"></a></dt>
-<dd><p>List of dictionaries, where each configuration of atoms has its own
-dictionary.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.calculator">
-<span class="sig-name descname"><span class="pre">calculator</span></span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.calculator" title="Link to this definition"></a></dt>
-<dd><p>Instance of the Calculator class for calculating
-descriptors and fitting data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">class</span></code> Calculator</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.solver">
-<span class="sig-name descname"><span class="pre">solver</span></span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.solver" title="Link to this definition"></a></dt>
-<dd><p>Instance of the Solver class for performing a fit.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">class</span></code> Solver</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.perform_fit">
-<span class="sig-name descname"><span class="pre">perform_fit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.perform_fit" title="Link to this definition"></a></dt>
-<dd><p>Solve the machine learning problem with descriptors as input and energies/forces/etc as
-targets</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.process_configs">
-<span class="sig-name descname"><span class="pre">process_configs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allgather</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.process_configs" title="Link to this definition"></a></dt>
-<dd><p>Calculate descriptors for all configurations in the <code class="code docutils literal notranslate"><span class="pre">data</span></code> list and stores info in the shared arrays.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data</strong> – Optional list of data dictionaries to calculate descriptors for. If not supplied, we use the list
-owned by this instance.</p></li>
-<li><p><strong>allgather</strong> – Whether to gather distributed lists to all processes to just to head proc. In some cases, such as
-processing configs once and then using that data on multiple procs, we must allgather.</p></li>
-<li><p><strong>delete_data</strong> – Whether the data list is deleted or not after processing.Since <cite>data</cite> can retain unwanted
-memory after processing configs, we delete it in executable mode.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="fitsnap3lib.fitsnap.FitSnap.scrape_configs">
-<span class="sig-name descname"><span class="pre">scrape_configs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delete_scraper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fitsnap3lib.fitsnap.FitSnap.scrape_configs" title="Link to this definition"></a></dt>
-<dd><p>Scrapes configurations of atoms and creates an instance attribute list of configurations called <cite>data</cite>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>delete_scraper</strong> – Boolean determining whether the scraper object is deleted or not after scraping. Defaults
-to False. Since scraper can retain unwanted memory, we delete it in executable mode.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <p><code class="code docutils literal notranslate"><span class="pre">FitSnap</span></code> contains instances of two classes that help with MPI communication and
 settings; <code class="code docutils literal notranslate"><span class="pre">ParallelTools</span></code> and <code class="code docutils literal notranslate"><span class="pre">Config</span></code>, respectively. These two classes are
 explained below. In addition to these classes, there are other core classes

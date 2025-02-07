@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>5. PyTorch Models &mdash; FitSNAP  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/lammps.css?v=d6960128" />
+      <link rel="stylesheet" type="text/css" href="_static/lammps.css?v=14d82903" />
 
   
     <link rel="shortcut icon" href="_static/fs_favicon.ico"/>
@@ -182,21 +182,21 @@ errors:</p>
 <li><p><span class="math notranslate nohighlight">\(m\)</span> indexes a particular configuration.</p></li>
 <li><p><span class="math notranslate nohighlight">\(N_m\)</span> is the number of atoms for configuration <span class="math notranslate nohighlight">\(m\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(w_m^E\)</span> is the energy weight of configuration <span class="math notranslate nohighlight">\(m\)</span>. These weights can be set by designating
-the particular weights in the <a class="reference external" href="Run.html#groups">[GROUPS] section</a>, or by declaring a global
+the particular weights in the <a class="reference external" href="run.html#groups">[GROUPS] section</a>, or by declaring a global
 weight in the <code class="code docutils literal notranslate"><span class="pre">[PYTORCH]</span></code> section, which will override the group weights.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\theta\)</span> represents all the model fitting parameters (e.g. the trainable coefficients in a neural network).</p></li>
 <li><p><span class="math notranslate nohighlight">\(\hat{E}_m(\theta)\)</span> is the model predicted energy of configuration <span class="math notranslate nohighlight">\(m\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E_m\)</span> is the target <em>ab initio</em> energy of configuration <span class="math notranslate nohighlight">\(m\)</span>, subtracted by the LAMMPS
-reference potential declared in the <a class="reference external" href="Run.html#reference">[REFERENCE] section</a>.</p></li>
+reference potential declared in the <a class="reference external" href="run.html#reference">[REFERENCE] section</a>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(i\)</span> indexes a Cartesian index of a single atom; we lump Cartesian indices and atom indices
 into a single index here.</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_m^F\)</span> is the force weight of configuration <span class="math notranslate nohighlight">\(m\)</span>. These weights can be set by designating
-the particular weights in the <a class="reference external" href="Run.html#groups">[GROUPS] section</a>, or by declaring a global
+the particular weights in the <a class="reference external" href="run.html#groups">[GROUPS] section</a>, or by declaring a global
 weight in the <code class="code docutils literal notranslate"><span class="pre">[PYTORCH]</span></code> section, which will override the group weights.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\hat{F}_{mi}(\theta)\)</span> is a model predicted force component <span class="math notranslate nohighlight">\(i\)</span> in configuration <span class="math notranslate nohighlight">\(m\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(F_{mi}\)</span> is a target <em>ab initio</em> force component <span class="math notranslate nohighlight">\(i\)</span> in configuration <span class="math notranslate nohighlight">\(m\)</span>,
 subtracted by the LAMMPS reference potential force declared in the
-<a class="reference external" href="Run.html#reference">[REFERENCE] section</a>.</p></li>
+<a class="reference external" href="run.html#reference">[REFERENCE] section</a>.</p></li>
 </ul>
 <p>This loss also gets evaluated for the validation set for each epoch, so that the screen output looks
 something like:</p>

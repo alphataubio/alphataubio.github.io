@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>4. Linear Models &mdash; FitSNAP  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/lammps.css?v=d6960128" />
+      <link rel="stylesheet" type="text/css" href="_static/lammps.css?v=14d82903" />
 
   
     <link rel="shortcut icon" href="_static/fs_favicon.ico"/>
@@ -112,7 +112,7 @@
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{\beta}_i\)</span> is a vector of fitting coefficients for atom <span class="math notranslate nohighlight">\(i\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\boldsymbol{B}_i\)</span> is a vector of atomic environment descriptors for atom <span class="math notranslate nohighlight">\(i\)</span></p></li>
 </ul>
-<p>The settings for SNAP descriptors are explained in the <a class="reference external" href="Run.html#bispectrum">[BISPECTRUM] section</a>.</p>
+<p>The settings for SNAP descriptors are explained in the <a class="reference external" href="run.html#bispectrum">[BISPECTRUM] section</a>.</p>
 <p>For this linear regression problem we solve the following matrix problem as explained in <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0021999114008353">Thompson et. al.</a></p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="_images/fitting_matrix.png"><img alt="_images/fitting_matrix.png" src="_images/fitting_matrix.png" style="width: 62%;" />
@@ -124,19 +124,19 @@
 with respect to <span class="math notranslate nohighlight">\(r_j^{\alpha}\)</span>, the <span class="math notranslate nohighlight">\(\alpha\)</span> Cartesian direction of atom <span class="math notranslate nohighlight">\(j\)</span>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(E^{qm}_s\)</span> is the quantum mechanical target energy for configuration <span class="math notranslate nohighlight">\(s\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E^{ref}_s\)</span> is the reference energy of a potential that is overlayed on the linear regression
-model, as declared in the <a class="reference external" href="Run.html#reference">[REFERENCE] section</a></p></li>
+model, as declared in the <a class="reference external" href="run.html#reference">[REFERENCE] section</a></p></li>
 <li><p><span class="math notranslate nohighlight">\(F^{qm}_{j,\alpha}\)</span> is the quantum mechanical target force for atom <span class="math notranslate nohighlight">\(j\)</span> in the
 <span class="math notranslate nohighlight">\(\alpha\)</span> direction.</p></li>
 <li><p><span class="math notranslate nohighlight">\(F^{qm}_{j,\alpha}\)</span> is the reference force for atom <span class="math notranslate nohighlight">\(j\)</span> in the <span class="math notranslate nohighlight">\(\alpha\)</span>
 direction, from a potential that is overlayed on the linear regression model, as declared in
-the <a class="reference external" href="Run.html#reference">[REFERENCE] section</a>.</p></li>
+the <a class="reference external" href="run.html#reference">[REFERENCE] section</a>.</p></li>
 <li><p><span class="math notranslate nohighlight">\(W_{\alpha \beta, s}\)</span> is virial in the <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> directions for
 configuration <span class="math notranslate nohighlight">\(s\)</span>, where both quantum mechanical target and reference virials are included
 on the right-hand side of the matrix equation.</p></li>
 </ul>
 <p>FitSNAP solves this matrix problem using SVD and supports other solvers as well. For more details on
 settings used for descriptors and solvers, please see the docs on
-<a class="reference external" href="Run.html#input-scripts">FitSNAP Input Scripts</a>.</p>
+<a class="reference external" href="run.html#input-scripts">FitSNAP Input Scripts</a>.</p>
 <section id="outputs">
 <h2><span class="section-number">4.1. </span>Outputs<a class="headerlink" href="#outputs" title="Link to this heading"></a></h2>
 <p>The outputs for linear models are explained here. For nonlinear models, please see the
@@ -148,10 +148,10 @@ shown above. We have interactive examples of examining this dataframe and calcul
 errors from it in our <a class="reference external" href="https://colab.research.google.com/github/FitSNAP/FitSNAP/blob/master/tutorial.ipynb">Colab Python notebook tutorial</a>.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">*_metrics.md</span></code> is a markdown file containing mean absolute errors and RMSEs for your dataset.
 If using LAMMPS metal units, energy errors are in eV, and force errors are in eV/Angstrom. The prefix name
-of this file depends on the <code class="code docutils literal notranslate"><span class="pre">metrics</span></code> parameter declared in the <a class="reference external" href="Run.html#outfile">[OUTFILE] section</a>.</p></li>
+of this file depends on the <code class="code docutils literal notranslate"><span class="pre">metrics</span></code> parameter declared in the <a class="reference external" href="run.html#outfile">[OUTFILE] section</a>.</p></li>
 <li><p><strong>LAMMPS-ready potential files</strong>. For example if fitting with SNAP descriptors, this will create
 <code class="code docutils literal notranslate"><span class="pre">*_pot.snapparam</span></code> and <code class="code docutils literal notranslate"><span class="pre">*_pot.snapcoeff</span></code> files with prefix names depending on the <code class="code docutils literal notranslate"><span class="pre">potential</span></code>
-parameter declared in the <a class="reference external" href="Run.html#outfile">[OUTFILE] section</a>. To use these files with LAMMPS,
+parameter declared in the <a class="reference external" href="run.html#outfile">[OUTFILE] section</a>. To use these files with LAMMPS,
 please refer to the LAMMPS documentation.</p></li>
 </ul>
 </section>

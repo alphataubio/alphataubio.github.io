@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>2. Installation &mdash; FitSNAP  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-      <link rel="stylesheet" type="text/css" href="_static/lammps.css?v=d6960128" />
+      <link rel="stylesheet" type="text/css" href="_static/lammps.css?v=14d82903" />
 
   
     <link rel="shortcut icon" href="_static/fs_favicon.ico"/>
@@ -106,7 +106,7 @@ LAMMPS specifically for FitSNAP.</p>
 <ul class="simple">
 <li><p>If you do not want to manually install LAMMPS, please see <a class="reference internal" href="#minimal-conda-install">Minimal conda install</a>, but note this
 version of conda LAMMPS does not included recent features like neural networks or ACE descriptors.</p></li>
-<li><p>If you want a quick summary of installation instructions, see <a class="reference external" href="Quick.html">Quick Installation</a>.</p></li>
+<li><p>If you want a quick summary of installation instructions, see <a class="reference external" href="quick.html">Quick Installation</a>.</p></li>
 </ul>
 <section id="lammps-installation">
 <span id="id1"></span><h2><span class="section-number">2.1. </span>LAMMPS Installation<a class="headerlink" href="#lammps-installation" title="Link to this heading"></a></h2>
@@ -141,7 +141,7 @@ creating your virtual environment, <strong>make sure it is activated for all fut
 <span class="c1"># For fitting ACE:</span>
 <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">sympy</span> <span class="n">pyyaml</span>
 <span class="c1"># For contributing to docs:</span>
-<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span> <span class="n">sphinx_rtd_theme</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">napoleon</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">bibtex</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">youtube</span> <span class="n">myst_parser</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span> <span class="n">sphinx_rtd_theme</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">napoleon</span> <span class="n">sphinx_tabs</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">bibtex</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">youtube</span> <span class="n">myst_parser</span>
 </pre></div>
 </div>
 <p>To make sure MPI is working, make a Python script called <code class="code docutils literal notranslate"><span class="pre">test.py</span></code> with the following:</p>

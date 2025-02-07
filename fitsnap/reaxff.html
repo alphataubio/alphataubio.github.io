@@ -125,7 +125,12 @@
 </iframe></div><div class="line-block">
 <div class="line"><br /></div>
 </div>
-<p>ReaxFF in LAMMPS <a class="footnote-reference brackets" href="#footcite-aktulga2012" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> supports three charge equilibration methods to represent the dynamics of electron density while fixed partial charges in classical force fields (eg. CHARMM) do not.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Just because a ReaxFF potential is available with the atoms for your intented application, it <strong>DOES NOT</strong> mean it is transferable if the training set did not include configurations similar to your intented application. For example, there are many potentials with C/H/O/N atoms but not all have the pi-bond parameters trained so a benzene molecule might behave in a <em>completely unphysical manner</em>. <strong>You need to consult the original journal article (doi links below) together with the supplementary materials to confirm the transferability of a given ReaxFF potential to your application.</strong></p>
+</div>
+<p>The Potential Energy Surface (PES) is an insanely immense mathematical object. PES of a system with N atoms doesn’t have N points, it has <em>3N dimensions</em>! The odds are infinitesimal that someone else visited the same tiny slice of subspace you’re interested in and made a Machine-Learning Inter-Atomic-Potential (ML-IAP) or a Reax Force Field (FF) for you already. Stop looking for potentials from somewhere else, except to practice and learn to maybe get close to what you’re doing. For <em>original research</em> there’s no way around having to generate your own DFT and/or experimental data to train a new MLIAP or FF. <strong>This is the purpose of FitSNAP-ReaxFF.</strong></p>
+<p>ReaxFF in LAMMPS <a class="footnote-reference brackets" href="#footcite-aktulga2012" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> supports three charge equilibration methods to represent the dynamics of electron density:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>Charge Equilibration (QEq) <a class="footnote-reference brackets" href="#footcite-rappe1991" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-nakano1997" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a></p></li>
@@ -133,15 +138,7 @@
 <li><p>Charge Transfer and Polarization in Equilibrium (QTPIE) <a class="footnote-reference brackets" href="#footcite-chen2007" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a></p></li>
 </ul>
 </div></blockquote>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>FitSNAP-ReaxFF enables retraining of legacy ReaxFF QEq potentials for ACKS2 and QTPIE, including optimization of the bond_softness, chi, eta, gamma, bcut_acks2, and gauss_exp parameters.</p>
-</div>
-<div class="admonition danger">
-<p class="admonition-title">Danger</p>
-<p>Just because a ReaxFF potential is available with the atoms for your intented application, it <strong>DOES NOT</strong> mean it is transferable if the training set did not include configurations similar to your intented application. For example, there are many potentials with C/H/O/N atoms but not all have the pi-bond parameters trained so a benzene molecule might behave in a <em>completely unphysical manner</em>. <strong>You need to consult the original journal article (doi links below) together with the supplementary materials to confirm the transferability of a given ReaxFF potential to your application.</strong></p>
-</div>
-<p>The Potential Energy Surface (PES) is an insanely immense mathematical object. PES of a system with N atoms doesn’t have N points, it has <em>3N dimensions</em>! The odds are infinitesimal that someone else visited the same tiny slice of subspace you’re interested in and made a Machine-Learning Inter-Atomic-Potential (ML-IAP) or a Reax Force Field (FF) for you already. Stop looking for potentials from somewhere else, except to practice and learn to maybe get close to what you’re doing. For <em>original research</em> there’s no way around having to generate your own DFT and/or experimental data to train a new MLIAP or FF. <strong>This is the purpose of FitSNAP-ReaxFF.</strong></p>
+<p>while fixed partial charges in classical force fields (eg. CHARMM) do not. <strong>FitSNAP-ReaxFF enables retraining of legacy ReaxFF QEq potentials for ACKS2 and QTPIE</strong>, including optimization of the bond_softness, chi, eta, gamma, bcut_acks2, and gauss_exp parameters.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>

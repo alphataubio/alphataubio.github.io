@@ -50,8 +50,7 @@
 <li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to Nevergrad</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#general-considerations">General considerations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#our-development-process">Our Development Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-steps">Development Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#pull-requests">Pull Requests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#contributor-license-agreement-cla">Contributor License Agreement (“CLA”)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#issues">Issues</a></li>
@@ -130,19 +129,69 @@
              
   <section id="contributing-to-nevergrad">
 <h1>Contributing to Nevergrad<a class="headerlink" href="#contributing-to-nevergrad" title="Link to this heading"></a></h1>
-<section id="general-considerations">
-<h2>General considerations<a class="headerlink" href="#general-considerations" title="Link to this heading"></a></h2>
 <p>We want to make contributing to this project as easy and transparent as possible.</p>
 <p>Whether you want to contribute or not, don’t hesitate to join <a class="reference external" href="https://www.facebook.com/groups/nevergradusers/">Nevergrad users’ Facebook group</a></p>
-<section id="our-development-process">
-<h3>Our Development Process<a class="headerlink" href="#our-development-process" title="Link to this heading"></a></h3>
-<p>To install <code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code> in development mode (if you wish to contribute to it), clone the repository and run <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.[all]</span></code> from inside the repository folder,
-or <code class="code docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">'.[all]'</span></code> if you use <code class="code docutils literal notranslate"><span class="pre">zsh</span></code>. If the install fails because of <code class="code docutils literal notranslate"><span class="pre">torch</span></code>, you can preinstall it with the instructions <a class="reference external" href="https://pytorch.org/get-started/locally/">on Pytorch website</a>
-and rerun <code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code>’s installation.</p>
-<p>Most of the code is covered by unit tests. You can run them with:</p>
+<section id="development-steps">
+<h2>Development Steps<a class="headerlink" href="#development-steps" title="Link to this heading"></a></h2>
+<p>To install <code class="docutils literal notranslate"><span class="pre">nevergrad</span></code> in development mode (if you wish to contribute to it):</p>
+<blockquote>
+<div><ul>
+<li><p>Fork the repository on GitHub: <a class="reference external" href="https://github.com/facebookresearch/nevergrad">https://github.com/facebookresearch/nevergrad</a></p></li>
+<li><p>Clone your fork and add the nevergrad repository as upstream</p></li>
+<li><p>Create a python virtual environment</p></li>
+<li><p>Install main and dev dependencies with pip</p></li>
+<li><p>Install nevergrad with pip as development mode install (aka. editable install)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;your-username&gt;/nevergrad.git
+<span class="nb">cd</span><span class="w"> </span>nevergrad
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/facebookresearch/nevergrad.git
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements/main.txt<span class="w"> </span>-r<span class="w"> </span>requirements/dev.txt
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;.[all]&#39;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the install fails due to <cite>torch</cite>, install it manually following the instructions at <a class="reference external" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
+</div>
+<ul>
+<li><p>Create a Feature Branch (easier with Github Desktop application)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/my-awesome-contribution
+</pre></div>
+</div>
+</li>
+<li><p>Make your changes to <code class="docutils literal notranslate"><span class="pre">nevergrad/.../*.py</span></code></p></li>
+<li><p>Format Code</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>black<span class="w"> </span>nevergrad
+</pre></div>
+</div>
+</li>
+<li><p><strong>Test !</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>nevergrad<span class="w"> </span>--cov<span class="o">=</span>nevergrad
 </pre></div>
 </div>
+</li>
+<li><p>Commit and Push (also easier with Github Desktop application)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add feature XYZ to module ABC&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/my-awesome-contribution
+</pre></div>
+</div>
+</li>
+<li><p>Open a Pull Request on github.com. <em>Make sure the base is `facebookresearch/nevergrad:main` and the compare branch is your feature branch.</em></p></li>
+<li><p>Stay in sync with upstream (easier with github.com and Github Desktop application)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>feature/my-awesome-contribution
+git<span class="w"> </span>rebase<span class="w"> </span>main
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
 <p>You can then run <code class="code docutils literal notranslate"><span class="pre">mypy</span></code> on <code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code> with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mypy<span class="w"> </span>--implicit-reexport<span class="w"> </span>nevergrad
 </pre></div>
@@ -157,7 +206,6 @@ can install <code class="code docutils literal notranslate"><span class="pre">bl
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>black<span class="w"> </span>nevergrad
 </pre></div>
 </div>
-</section>
 <section id="pull-requests">
 <h3>Pull Requests<a class="headerlink" href="#pull-requests" title="Link to this heading"></a></h3>
 <p>We actively welcome your pull requests.</p>

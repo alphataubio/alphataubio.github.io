@@ -51,9 +51,9 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimization API (ng.optimizers)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API (ng.p)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API (ng.callbacks)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul>
@@ -142,10 +142,12 @@
 </li>
       <li><a href="benchmarks.html#nevergrad.benchmark.experiments.alldes">alldes() (in module nevergrad.benchmark.experiments)</a>
 </li>
-      <li><a href="benchmarks.html#nevergrad.benchmark.experiments.aquacrop_fao">aquacrop_fao() (in module nevergrad.benchmark.experiments)</a>
+      <li><a href="ref_parametrization.html#nevergrad.ops.Constraint.apply_constraint">apply_constraint() (nevergrad.ops.Constraint method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="benchmarks.html#nevergrad.benchmark.experiments.aquacrop_fao">aquacrop_fao() (in module nevergrad.benchmark.experiments)</a>
+</li>
       <li><a href="ref_parametrization.html#nevergrad.p.Parameter.args">args (nevergrad.p.Parameter property)</a>
 </li>
       <li><a href="ref_parametrization.html#nevergrad.p.Array">Array (class in nevergrad.p)</a>
@@ -173,6 +175,8 @@
       <li><a href="ref_optimizer.html#nevergrad.optimization.optimizerlib.BFGSCMA">BFGSCMA (class in nevergrad.optimization.optimizerlib)</a>
 </li>
       <li><a href="ref_optimizer.html#nevergrad.optimization.optimizerlib.BFGSCMAPlus">BFGSCMAPlus (class in nevergrad.optimization.optimizerlib)</a>
+</li>
+      <li><a href="ref_parametrization.html#nevergrad.ops.BisectionProjectionConstraint">BisectionProjectionConstraint (class in nevergrad.ops)</a>
 </li>
       <li><a href="benchmarks.html#nevergrad.benchmark.experiments.bonnans">bonnans() (in module nevergrad.benchmark.experiments)</a>
 </li>
@@ -210,10 +214,10 @@
 </li>
       <li><a href="benchmarks.html#nevergrad.benchmark.experiments.complex_tsp">complex_tsp() (in module nevergrad.benchmark.experiments)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ref_optimizer.html#nevergrad.optimizers.base.ConfiguredOptimizer">ConfiguredOptimizer (class in nevergrad.optimizers.base)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ConfiguredPSO">ConfiguredPSO (in module nevergrad.optimization.optimizerlib)</a>
 </li>
       <li><a href="ref_optimizer.html#nevergrad.families.ConfPortfolio">ConfPortfolio (class in nevergrad.families)</a>
@@ -235,6 +239,8 @@
 </li>
       </ul></li>
       <li><a href="benchmarks.html#nevergrad.benchmark.experiments.constrained_illconditioned_parallel">constrained_illconditioned_parallel() (in module nevergrad.benchmark.experiments)</a>
+</li>
+      <li><a href="ref_parametrization.html#nevergrad.ops.Constraint">Constraint (class in nevergrad.ops)</a>
 </li>
       <li><a href="benchmarks.html#nevergrad.benchmark.experiments.control_problem">control_problem() (in module nevergrad.benchmark.experiments)</a>
 </li>
@@ -820,6 +826,8 @@
 </li>
       <li><a href="ref_parametrization.html#nevergrad.p.Parameter">Parameter (class in nevergrad.p)</a>
 </li>
+      <li><a href="ref_parametrization.html#nevergrad.ops.Constraint.parameter">parameter() (nevergrad.ops.Constraint method)</a>
+</li>
       <li><a href="ref_callbacks.html#nevergrad.callbacks.ParametersLogger">ParametersLogger (class in nevergrad.callbacks)</a>
 </li>
       <li><a href="ref_optimizer.html#nevergrad.families.ParametrizedCMA">ParametrizedCMA (class in nevergrad.families)</a>
@@ -995,6 +1003,8 @@
       <li><a href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SqrtSQPCMA">SqrtSQPCMA (class in nevergrad.optimization.optimizerlib)</a>
 </li>
       <li><a href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SqrtSQPCMAPlus">SqrtSQPCMAPlus (class in nevergrad.optimization.optimizerlib)</a>
+</li>
+      <li><a href="ref_parametrization.html#nevergrad.ops.Constraint.stopping_criterion">stopping_criterion() (nevergrad.ops.Constraint method)</a>
 </li>
       <li><a href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.suggest">suggest() (nevergrad.optimizers.base.Optimizer method)</a>
 </li>

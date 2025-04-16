@@ -139,8 +139,8 @@
 <li><p>Fork the repository on GitHub: <a class="reference external" href="https://github.com/facebookresearch/nevergrad">https://github.com/facebookresearch/nevergrad</a></p></li>
 <li><p>Clone your fork and add the nevergrad repository as upstream</p></li>
 <li><p>Create a python virtual environment</p></li>
-<li><p>Install main and dev dependencies with pip</p></li>
-<li><p>Install nevergrad with pip as development mode install (aka. editable install)</p>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">main.txt</span></code> and <code class="docutils literal notranslate"><span class="pre">dev.txt</span></code> dependencies with pip</p></li>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">nevergrad</span></code> with pip as <em>development mode install</em> (aka. <em>editable install</em>)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/&lt;your-username&gt;/nevergrad.git
 <span class="nb">cd</span><span class="w"> </span>nevergrad
 git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/facebookresearch/nevergrad.git
@@ -154,7 +154,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If the install fails due to <cite>torch</cite>, install it manually following the instructions at <a class="reference external" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
+<p>If the install fails due to <code class="docutils literal notranslate"><span class="pre">torch</span></code>, install it manually following the instructions at <a class="reference external" href="https://pytorch.org/get-started/locally/">https://pytorch.org/get-started/locally/</a></p>
 </div>
 <ul>
 <li><p>Create a Feature Branch (easier with Github Desktop application)</p>
@@ -180,7 +180,7 @@ git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </
 </pre></div>
 </div>
 </li>
-<li><p>Open a Pull Request on github.com. <em>Make sure the base is `facebookresearch/nevergrad:main` and the compare branch is your feature branch.</em></p></li>
+<li><p>Open a Pull Request on github.com. <strong>Make sure the base is ``facebookresearch/nevergrad:main`` and the compare branch is your feature branch.</strong></p></li>
 <li><p>Stay in sync with upstream (easier with github.com and Github Desktop application)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
 git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main

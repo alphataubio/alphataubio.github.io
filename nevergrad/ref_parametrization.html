@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parametrization API &mdash; nevergrad  documentation</title>
+  <title>Parametrization API (ng.p) &mdash; nevergrad  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
@@ -19,8 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Callbacks API" href="ref_callbacks.html" />
-    <link rel="prev" title="Optimizer API" href="ref_optimizer.html" /> 
+    <link rel="next" title="Callbacks API (ng.callbacks)" href="ref_callbacks.html" />
+    <link rel="prev" title="Optimization API (ng.optimizers)" href="ref_optimizer.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,8 +54,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Parametrization API</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimization API (ng.optimizers)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Parametrization API (ng.p)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#nevergrad.p.Array"><code class="docutils literal notranslate"><span class="pre">Array</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#nevergrad.p.Array.value"><code class="docutils literal notranslate"><span class="pre">Array.value</span></code></a></li>
@@ -110,12 +110,19 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#operators">Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nevergrad.ops.BisectionProjectionConstraint"><code class="docutils literal notranslate"><span class="pre">BisectionProjectionConstraint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nevergrad.ops.Constraint"><code class="docutils literal notranslate"><span class="pre">Constraint</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nevergrad.ops.Constraint.apply_constraint"><code class="docutils literal notranslate"><span class="pre">Constraint.apply_constraint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nevergrad.ops.Constraint.parameter"><code class="docutils literal notranslate"><span class="pre">Constraint.parameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nevergrad.ops.Constraint.stopping_criterion"><code class="docutils literal notranslate"><span class="pre">Constraint.stopping_criterion()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#nevergrad.ops.Int"><code class="docutils literal notranslate"><span class="pre">Int</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API (ng.callbacks)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul>
@@ -148,7 +155,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Parametrization API</li>
+      <li class="breadcrumb-item active">Parametrization API (ng.p)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/ref_parametrization.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -158,9 +165,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="parametrization-api">
-<span id="parametrization-ref"></span><h1>Parametrization API<a class="headerlink" href="#parametrization-api" title="Link to this heading"></a></h1>
-<div class="admonition note">
+  <section id="parametrization-api-ng-p">
+<h1>Parametrization API (ng.p)<a class="headerlink" href="#parametrization-api-ng-p" title="Link to this heading"></a></h1>
+<div class="admonition note" id="parametrization-ref">
 <p class="admonition-title">Note</p>
 <p>Please note that parametrization is still a work in progress and changes are on their way including for this documentation ! We are trying to update it to make it simpler and simpler to use with the side effect that there will be breaking changes. All feedback is welcome.</p>
 </div>
@@ -726,8 +733,54 @@ to optimize.</p>
 </section>
 <section id="operators">
 <h2>Operators<a class="headerlink" href="#operators" title="Link to this heading"></a></h2>
-<p>These experimental operators are designed to be instantiated and called with a parameter as input, creating a new parameter with the required behavior.</p>
+<p><em>Operators</em> are designed to be instantiated and called with a parameter as input, creating a new parameter with the required behavior. <em>Constraints</em> are implemented as operators.</p>
 <dl class="py class" id="module-nevergrad.ops">
+<dt class="sig sig-object py" id="nevergrad.ops.BisectionProjectionConstraint">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nevergrad.ops.</span></span><span class="sig-name descname"><span class="pre">BisectionProjectionConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">is_feasible</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ub</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nevergrad.ops.BisectionProjectionConstraint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nevergrad.ops.Constraint">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nevergrad.ops.</span></span><span class="sig-name descname"><span class="pre">Constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'NGOpt'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">budget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nevergrad.ops.Constraint" title="Link to this definition"></a></dt>
+<dd><p>Operator for applying a constraint on a Parameter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>func</strong> (<em>function</em>) – the constraint function, taking the same arguments that the function to optimize.
+This constraint function must return a float (or a list/tuple/array of floats),
+positive if the constraint is not satisfied, null or negative otherwise.</p></li>
+<li><p><strong>optimizer</strong> (<em>str</em>) – name of the optimizer to use for solving the constraint</p></li>
+<li><p><strong>budget</strong> (<em>int</em>) – the budget to use for applying the constraint</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">constrained_parameter</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">constraint_function</span><span class="p">)(</span><span class="n">parameter</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">constrained_parameter</span><span class="o">.</span><span class="n">value</span>  <span class="c1"># value after trying to satisfy the constraint</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nevergrad.ops.Constraint.apply_constraint">
+<span class="sig-name descname"><span class="pre">apply_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#nevergrad.p.Parameter" title="nevergrad.parametrization.core.Parameter"><span class="pre">Parameter</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nevergrad.p.Parameter" title="nevergrad.parametrization.core.Parameter"><span class="pre">Parameter</span></a></span></span><a class="headerlink" href="#nevergrad.ops.Constraint.apply_constraint" title="Link to this definition"></a></dt>
+<dd><p>Find a new parameter that better satisfies the constraint</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nevergrad.ops.Constraint.parameter">
+<span class="sig-name descname"><span class="pre">parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nevergrad.p.Parameter" title="nevergrad.parametrization.core.Parameter"><span class="pre">Parameter</span></a></span></span><a class="headerlink" href="#nevergrad.ops.Constraint.parameter" title="Link to this definition"></a></dt>
+<dd><p>Returns a constraint-free parameter, for the optimization process</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nevergrad.ops.Constraint.stopping_criterion">
+<span class="sig-name descname"><span class="pre">stopping_criterion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#nevergrad.ops.Constraint.stopping_criterion" title="Link to this definition"></a></dt>
+<dd><p>Checks whether a solution was found
+This is used as stopping criterio callback</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="nevergrad.ops.Int">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nevergrad.ops.</span></span><span class="sig-name descname"><span class="pre">Int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deterministic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nevergrad.ops.Int" title="Link to this definition"></a></dt>
 <dd><p>Cast Data as integer (or integer array)</p>
@@ -754,8 +807,8 @@ non-deterministic mode</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ref_optimizer.html" class="btn btn-neutral float-left" title="Optimizer API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ref_callbacks.html" class="btn btn-neutral float-right" title="Callbacks API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ref_optimizer.html" class="btn btn-neutral float-left" title="Optimization API (ng.optimizers)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ref_callbacks.html" class="btn btn-neutral float-right" title="Callbacks API (ng.callbacks)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

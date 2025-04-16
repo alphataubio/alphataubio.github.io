@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nevergrad - A gradient-free optimization platform &mdash; nevergrad  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started" href="getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            nevergrad
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">CONTENTS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Installation and configuration on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">How to perform optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencompetition2020.html">Open Optimization Competition 2020</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="machinelearning.html">Nevergrad for machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">Nevergrad for R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyomo.html">Working with Pyomo model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statistics/Statistics.html">Benchmarks in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics/AgStatistics.html">Benchmarks in Nevergrad (excluding wizards)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">nevergrad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Nevergrad - A gradient-free optimization platform</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nevergrad-a-gradient-free-optimization-platform">
+<h1>Nevergrad - A gradient-free optimization platform<a class="headerlink" href="#nevergrad-a-gradient-free-optimization-platform" title="Link to this heading"></a></h1>
+<img alt="_images/Nevergrad-LogoMark.png" src="_images/Nevergrad-LogoMark.png" />
+<a class="reference external image-reference" href="https://opensource.fb.com/support-ukraine"><img alt="Support Ukraine - Help Provide Humanitarian Aid to Ukraine." src="https://img.shields.io/badge/Support-Ukraine-FFD500?style=flat&amp;labelColor=005BBB" />
+</a>
+<p>This documentation is a work in progress, feel free to help us update/improve/restucture it!</p>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<p><code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code> is a Python 3.6+ library. It can be installed with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>nevergrad
+</pre></div>
+</div>
+<p>You can find other installation options (including for Windows users) in the <a class="reference internal" href="getting_started.html#getting-started"><span class="std std-ref">Getting started section</span></a>.</p>
+<p>Feel free to join <a class="reference external" href="https://www.facebook.com/groups/nevergradusers/">Nevergrad users Facebook group</a>.</p>
+<p>Minimizing a function using an optimizer (here <code class="code docutils literal notranslate"><span class="pre">NgIohTuned</span></code>, our adaptative optimization algorithm) can be easily run with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># optimization on x as an array of shape (2,)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>  <span class="c1"># best value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; [0.49999998 0.50000004]</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/TwoPointsDE.gif"><img alt="_images/TwoPointsDE.gif" src="_images/TwoPointsDE.gif" style="width: 400px;" />
+</a>
+<p><em>Convergence of a population of points to the minima with two-points DE.</em></p>
+<p><code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code> can also support bounded continuous variables as well as discrete variables, and mixture of those.
+To do this, one can specify the input space:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fake_training</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">architecture</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="c1"># optimal for learning_rate=0.2, batch_size=4, architecture=&quot;conv&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">learning_rate</span> <span class="o">-</span> <span class="mf">0.2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">batch_size</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="mi">0</span> <span class="k">if</span> <span class="n">architecture</span> <span class="o">==</span> <span class="s2">&quot;conv&quot;</span> <span class="k">else</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Instrumentation class is used for functions with multiple inputs</span>
+<span class="c1"># (positional and/or keywords)</span>
+<span class="n">parametrization</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Instrumentation</span><span class="p">(</span>
+    <span class="c1"># a log-distributed scalar between 0.001 and 1.0</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Log</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mf">1.0</span><span class="p">),</span>
+    <span class="c1"># an integer from 1 to 12</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Scalar</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">set_integer_casting</span><span class="p">(),</span>
+    <span class="c1"># either &quot;conv&quot; or &quot;fc&quot;</span>
+    <span class="n">architecture</span><span class="o">=</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s2">&quot;conv&quot;</span><span class="p">,</span> <span class="s2">&quot;fc&quot;</span><span class="p">]),</span>
+<span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="n">parametrization</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">fake_training</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># shows the recommended keyword arguments of the function</span>
+<span class="c1"># &gt;&gt;&gt; {&#39;learning_rate&#39;: 0.1998, &#39;batch_size&#39;: 4, &#39;architecture&#39;: &#39;conv&#39;}</span>
+</pre></div>
+</div>
+<p>Learn more about parametrization in the <a class="reference internal" href="parametrization.html#parametrizing"><span class="std std-ref">Parametrization section</span></a>!</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">CONTENTS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#installing">Installing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#installing-on-windows">Installing on Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#basic-optimization-example">Basic optimization example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#structure-of-the-package">Structure of the package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Installation and configuration on Windows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#installation-of-anaconda-and-nevergrad">Installation of Anaconda and nevergrad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#adding-spyder">Adding spyder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#to-run-an-experiment">To run an experiment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="windows.html#to-make-a-pull-request">To make a pull request</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">How to perform optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#basic-example">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#using-several-workers">Using several workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#ask-and-tell-interface">Ask and tell interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#choosing-an-optimizer">Choosing an optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#telling-non-asked-points-or-suggesting-points">Telling non-asked points, or suggesting points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#adding-callbacks">Adding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#optimization-with-constraints">Optimization with constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#optimizing-machine-learning-hyperparameters">Optimizing machine learning hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#example-with-permutation">Example with permutation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#example-of-chaining-or-inoculation-or-initialization-of-an-evolutionary-algorithm">Example of chaining, or inoculation, or initialization of an evolutionary algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#multiobjective-minimization-with-nevergrad">Multiobjective minimization with Nevergrad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parametrization.html#preliminary-examples">Preliminary examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parametrization.html#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parametrization.html#parametrization">Parametrization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parametrization.html#parametrizing-external-code">Parametrizing external code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parametrization.html#tips-and-caveats">Tips and caveats</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking.html#creating-data-from-experiments">Creating data from experiments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking.html#plotting-results">Plotting results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking.html#full-pipeline">Full pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking.html#adding-your-own-experiments-and-or-optimizers-and-or-test-functions">Adding your own experiments and/or optimizers and/or test functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Nevergrad</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#general-considerations">General considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#our-development-process">Our Development Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pull-requests">Pull Requests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#contributor-license-agreement-cla">Contributor License Agreement (“CLA”)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#issues">Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#coding-style">Coding Style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#license">License</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#adding-an-algorithm">Adding an algorithm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#where-to-add-the-algorithm">Where to add the algorithm?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#how-to-implement-it">How to implement it?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#how-to-test-it">How to test it</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#how-to-benchmark-it">How to benchmark it</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="opencompetition2020.html">Open Optimization Competition 2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencompetition2020.html#performance-improvements-for-any-of-the-following-performance-tracks">Performance: Improvements for any of the following performance tracks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencompetition2020.html#new-ideas-others-contributions-to-the-experimental-routines-including">New ideas &amp; others: contributions to the experimental routines, including</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#submission">Submission</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#key-principles">Key principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#papers-in-the-acm-gecco-proceedings-companion">Papers in the ACM GECCO Proceedings Companion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#dates">Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#winners">Winners:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#about-nevergrad-and-iohprofiler">About Nevergrad and IOHprofiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencompetition2020.html#nevergrad">Nevergrad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencompetition2020.html#iohprofiler">IOHProfiler</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#award-committee-members">Award Committee Members</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#details-about-the-submissions">Details about the Submissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#recommended-topics-non-exhaustive-list">Recommended topics (non-exhaustive list)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="opencompetition2020.html#improvements-in-any-of-the-following-optimization-categories">Improvements in any of the following optimization categories:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencompetition2020.html#improvements-in-terms-of-benchmarking">Improvements in terms of benchmarking:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="opencompetition2020.html#software-contributions">Software contributions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="opencompetition2020.html#organizers">Organizers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer"><code class="docutils literal notranslate"><span class="pre">Optimizer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.ask"><code class="docutils literal notranslate"><span class="pre">Optimizer.ask()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.dimension"><code class="docutils literal notranslate"><span class="pre">Optimizer.dimension</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.dump"><code class="docutils literal notranslate"><span class="pre">Optimizer.dump()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.enable_pickling"><code class="docutils literal notranslate"><span class="pre">Optimizer.enable_pickling()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.load"><code class="docutils literal notranslate"><span class="pre">Optimizer.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.minimize"><code class="docutils literal notranslate"><span class="pre">Optimizer.minimize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.num_ask"><code class="docutils literal notranslate"><span class="pre">Optimizer.num_ask</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.num_objectives"><code class="docutils literal notranslate"><span class="pre">Optimizer.num_objectives</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.num_tell"><code class="docutils literal notranslate"><span class="pre">Optimizer.num_tell</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.num_tell_not_asked"><code class="docutils literal notranslate"><span class="pre">Optimizer.num_tell_not_asked</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.pareto_front"><code class="docutils literal notranslate"><span class="pre">Optimizer.pareto_front()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.provide_recommendation"><code class="docutils literal notranslate"><span class="pre">Optimizer.provide_recommendation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.recommend"><code class="docutils literal notranslate"><span class="pre">Optimizer.recommend()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.register_callback"><code class="docutils literal notranslate"><span class="pre">Optimizer.register_callback()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.remove_all_callbacks"><code class="docutils literal notranslate"><span class="pre">Optimizer.remove_all_callbacks()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.suggest"><code class="docutils literal notranslate"><span class="pre">Optimizer.suggest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer.tell"><code class="docutils literal notranslate"><span class="pre">Optimizer.tell()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ref_optimizer.html#configurable-optimizers">Configurable optimizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.ConfiguredOptimizer"><code class="docutils literal notranslate"><span class="pre">ConfiguredOptimizer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.BayesOptim"><code class="docutils literal notranslate"><span class="pre">BayesOptim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.Chaining"><code class="docutils literal notranslate"><span class="pre">Chaining</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.ConfPSO"><code class="docutils literal notranslate"><span class="pre">ConfPSO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.ConfPortfolio"><code class="docutils literal notranslate"><span class="pre">ConfPortfolio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.ConfSplitOptimizer"><code class="docutils literal notranslate"><span class="pre">ConfSplitOptimizer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.DifferentialEvolution"><code class="docutils literal notranslate"><span class="pre">DifferentialEvolution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.EMNA"><code class="docutils literal notranslate"><span class="pre">EMNA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.EvolutionStrategy"><code class="docutils literal notranslate"><span class="pre">EvolutionStrategy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.NoisySplit"><code class="docutils literal notranslate"><span class="pre">NoisySplit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.NonObjectOptimizer"><code class="docutils literal notranslate"><span class="pre">NonObjectOptimizer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.ParametrizedCMA"><code class="docutils literal notranslate"><span class="pre">ParametrizedCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.ParametrizedMetaModel"><code class="docutils literal notranslate"><span class="pre">ParametrizedMetaModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.ParametrizedOnePlusOne"><code class="docutils literal notranslate"><span class="pre">ParametrizedOnePlusOne</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.ParametrizedTBPSA"><code class="docutils literal notranslate"><span class="pre">ParametrizedTBPSA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.Pymoo"><code class="docutils literal notranslate"><span class="pre">Pymoo</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.RandomSearchMaker"><code class="docutils literal notranslate"><span class="pre">RandomSearchMaker</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.families.SamplingSearch"><code class="docutils literal notranslate"><span class="pre">SamplingSearch</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ref_optimizer.html#optimizers">Optimizers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.AXP"><code class="docutils literal notranslate"><span class="pre">AXP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.BFGSCMA"><code class="docutils literal notranslate"><span class="pre">BFGSCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.BFGSCMAPlus"><code class="docutils literal notranslate"><span class="pre">BFGSCMAPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.BayesOptim"><code class="docutils literal notranslate"><span class="pre">BayesOptim</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.CM"><code class="docutils literal notranslate"><span class="pre">CM</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.CMA"><code class="docutils literal notranslate"><span class="pre">CMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.CMandAS2"><code class="docutils literal notranslate"><span class="pre">CMandAS2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.CMandAS3"><code class="docutils literal notranslate"><span class="pre">CMandAS3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.CSEC"><code class="docutils literal notranslate"><span class="pre">CSEC</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.CSEC10"><code class="docutils literal notranslate"><span class="pre">CSEC10</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.CSEC11"><code class="docutils literal notranslate"><span class="pre">CSEC11</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.Carola3"><code class="docutils literal notranslate"><span class="pre">Carola3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.Chaining"><code class="docutils literal notranslate"><span class="pre">Chaining</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ChoiceBase"><code class="docutils literal notranslate"><span class="pre">ChoiceBase</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ConfPSO"><code class="docutils literal notranslate"><span class="pre">ConfPSO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ConfPortfolio"><code class="docutils literal notranslate"><span class="pre">ConfPortfolio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ConfSplitOptimizer"><code class="docutils literal notranslate"><span class="pre">ConfSplitOptimizer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ConfiguredPSO"><code class="docutils literal notranslate"><span class="pre">ConfiguredPSO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.EDA"><code class="docutils literal notranslate"><span class="pre">EDA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.EMNA"><code class="docutils literal notranslate"><span class="pre">EMNA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.F2SQPCMA"><code class="docutils literal notranslate"><span class="pre">F2SQPCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.F3SQPCMA"><code class="docutils literal notranslate"><span class="pre">F3SQPCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.FSQPCMA"><code class="docutils literal notranslate"><span class="pre">FSQPCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ForceMultiCobyla"><code class="docutils literal notranslate"><span class="pre">ForceMultiCobyla</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.LogBFGSCMA"><code class="docutils literal notranslate"><span class="pre">LogBFGSCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.LogBFGSCMAPlus"><code class="docutils literal notranslate"><span class="pre">LogBFGSCMAPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.LogMultiBFGS"><code class="docutils literal notranslate"><span class="pre">LogMultiBFGS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.LogMultiBFGSPlus"><code class="docutils literal notranslate"><span class="pre">LogMultiBFGSPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.LogSQPCMA"><code class="docutils literal notranslate"><span class="pre">LogSQPCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.LogSQPCMAPlus"><code class="docutils literal notranslate"><span class="pre">LogSQPCMAPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MEDA"><code class="docutils literal notranslate"><span class="pre">MEDA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MPCEDA"><code class="docutils literal notranslate"><span class="pre">MPCEDA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MetaCMA"><code class="docutils literal notranslate"><span class="pre">MetaCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MultiBFGS"><code class="docutils literal notranslate"><span class="pre">MultiBFGS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MultiBFGSPlus"><code class="docutils literal notranslate"><span class="pre">MultiBFGSPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MultiCobyla"><code class="docutils literal notranslate"><span class="pre">MultiCobyla</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MultiCobylaPlus"><code class="docutils literal notranslate"><span class="pre">MultiCobylaPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MultiDiscrete"><code class="docutils literal notranslate"><span class="pre">MultiDiscrete</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MultiSQP"><code class="docutils literal notranslate"><span class="pre">MultiSQP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MultiSQPPlus"><code class="docutils literal notranslate"><span class="pre">MultiSQPPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.MultipleSingleRuns"><code class="docutils literal notranslate"><span class="pre">MultipleSingleRuns</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGDSRW"><code class="docutils literal notranslate"><span class="pre">NGDSRW</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGO"><code class="docutils literal notranslate"><span class="pre">NGO</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt"><code class="docutils literal notranslate"><span class="pre">NGOpt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt10"><code class="docutils literal notranslate"><span class="pre">NGOpt10</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt12"><code class="docutils literal notranslate"><span class="pre">NGOpt12</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt13"><code class="docutils literal notranslate"><span class="pre">NGOpt13</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt14"><code class="docutils literal notranslate"><span class="pre">NGOpt14</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt15"><code class="docutils literal notranslate"><span class="pre">NGOpt15</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt16"><code class="docutils literal notranslate"><span class="pre">NGOpt16</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt21"><code class="docutils literal notranslate"><span class="pre">NGOpt21</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt36"><code class="docutils literal notranslate"><span class="pre">NGOpt36</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt38"><code class="docutils literal notranslate"><span class="pre">NGOpt38</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt39"><code class="docutils literal notranslate"><span class="pre">NGOpt39</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt4"><code class="docutils literal notranslate"><span class="pre">NGOpt4</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOpt8"><code class="docutils literal notranslate"><span class="pre">NGOpt8</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOptBase"><code class="docutils literal notranslate"><span class="pre">NGOptBase</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOptDSBase"><code class="docutils literal notranslate"><span class="pre">NGOptDSBase</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOptF"><code class="docutils literal notranslate"><span class="pre">NGOptF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOptF2"><code class="docutils literal notranslate"><span class="pre">NGOptF2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOptF3"><code class="docutils literal notranslate"><span class="pre">NGOptF3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOptF5"><code class="docutils literal notranslate"><span class="pre">NGOptF5</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NGOptRW"><code class="docutils literal notranslate"><span class="pre">NGOptRW</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgDS"><code class="docutils literal notranslate"><span class="pre">NgDS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgDS11"><code class="docutils literal notranslate"><span class="pre">NgDS11</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgDS2"><code class="docutils literal notranslate"><span class="pre">NgDS2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh"><code class="docutils literal notranslate"><span class="pre">NgIoh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh10"><code class="docutils literal notranslate"><span class="pre">NgIoh10</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh11"><code class="docutils literal notranslate"><span class="pre">NgIoh11</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh12"><code class="docutils literal notranslate"><span class="pre">NgIoh12</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh12b"><code class="docutils literal notranslate"><span class="pre">NgIoh12b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh13"><code class="docutils literal notranslate"><span class="pre">NgIoh13</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh13b"><code class="docutils literal notranslate"><span class="pre">NgIoh13b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh14"><code class="docutils literal notranslate"><span class="pre">NgIoh14</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh14b"><code class="docutils literal notranslate"><span class="pre">NgIoh14b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh15"><code class="docutils literal notranslate"><span class="pre">NgIoh15</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh15b"><code class="docutils literal notranslate"><span class="pre">NgIoh15b</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh16"><code class="docutils literal notranslate"><span class="pre">NgIoh16</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh17"><code class="docutils literal notranslate"><span class="pre">NgIoh17</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh18"><code class="docutils literal notranslate"><span class="pre">NgIoh18</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh19"><code class="docutils literal notranslate"><span class="pre">NgIoh19</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh2"><code class="docutils literal notranslate"><span class="pre">NgIoh2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh20"><code class="docutils literal notranslate"><span class="pre">NgIoh20</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh21"><code class="docutils literal notranslate"><span class="pre">NgIoh21</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh3"><code class="docutils literal notranslate"><span class="pre">NgIoh3</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh4"><code class="docutils literal notranslate"><span class="pre">NgIoh4</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh5"><code class="docutils literal notranslate"><span class="pre">NgIoh5</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh6"><code class="docutils literal notranslate"><span class="pre">NgIoh6</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh7"><code class="docutils literal notranslate"><span class="pre">NgIoh7</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh8"><code class="docutils literal notranslate"><span class="pre">NgIoh8</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIoh9"><code class="docutils literal notranslate"><span class="pre">NgIoh9</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIohRW2"><code class="docutils literal notranslate"><span class="pre">NgIohRW2</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NgIohTuned"><code class="docutils literal notranslate"><span class="pre">NgIohTuned</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NoisyBandit"><code class="docutils literal notranslate"><span class="pre">NoisyBandit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.NoisySplit"><code class="docutils literal notranslate"><span class="pre">NoisySplit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.PCEDA"><code class="docutils literal notranslate"><span class="pre">PCEDA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ParametrizedCMA"><code class="docutils literal notranslate"><span class="pre">ParametrizedCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ParametrizedMetaModel"><code class="docutils literal notranslate"><span class="pre">ParametrizedMetaModel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ParametrizedOnePlusOne"><code class="docutils literal notranslate"><span class="pre">ParametrizedOnePlusOne</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.ParametrizedTBPSA"><code class="docutils literal notranslate"><span class="pre">ParametrizedTBPSA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.Portfolio"><code class="docutils literal notranslate"><span class="pre">Portfolio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.Rescaled"><code class="docutils literal notranslate"><span class="pre">Rescaled</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SPSA"><code class="docutils literal notranslate"><span class="pre">SPSA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SQPCMA"><code class="docutils literal notranslate"><span class="pre">SQPCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SQPCMAPlus"><code class="docutils literal notranslate"><span class="pre">SQPCMAPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.Shiwa"><code class="docutils literal notranslate"><span class="pre">Shiwa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SplitOptimizer"><code class="docutils literal notranslate"><span class="pre">SplitOptimizer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SqrtBFGSCMA"><code class="docutils literal notranslate"><span class="pre">SqrtBFGSCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SqrtBFGSCMAPlus"><code class="docutils literal notranslate"><span class="pre">SqrtBFGSCMAPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SqrtMultiBFGS"><code class="docutils literal notranslate"><span class="pre">SqrtMultiBFGS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SqrtMultiBFGSPlus"><code class="docutils literal notranslate"><span class="pre">SqrtMultiBFGSPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SqrtSQPCMA"><code class="docutils literal notranslate"><span class="pre">SqrtSQPCMA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.SqrtSQPCMAPlus"><code class="docutils literal notranslate"><span class="pre">SqrtSQPCMAPlus</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.Wiz"><code class="docutils literal notranslate"><span class="pre">Wiz</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.cGA"><code class="docutils literal notranslate"><span class="pre">cGA</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.rescaled"><code class="docutils literal notranslate"><span class="pre">rescaled()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_optimizer.html#nevergrad.optimization.optimizerlib.smooth_copy"><code class="docutils literal notranslate"><span class="pre">smooth_copy()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ref_parametrization.html#parameters">Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.Array"><code class="docutils literal notranslate"><span class="pre">Array</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.Choice"><code class="docutils literal notranslate"><span class="pre">Choice</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.Dict"><code class="docutils literal notranslate"><span class="pre">Dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.Instrumentation"><code class="docutils literal notranslate"><span class="pre">Instrumentation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.Log"><code class="docutils literal notranslate"><span class="pre">Log</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.Scalar"><code class="docutils literal notranslate"><span class="pre">Scalar</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.TransitionChoice"><code class="docutils literal notranslate"><span class="pre">TransitionChoice</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.Tuple"><code class="docutils literal notranslate"><span class="pre">Tuple</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ref_parametrization.html#parameter-api">Parameter API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.p.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ref_parametrization.html#operators">Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ref_parametrization.html#nevergrad.ops.Int"><code class="docutils literal notranslate"><span class="pre">Int</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.EarlyStopping"><code class="docutils literal notranslate"><span class="pre">EarlyStopping</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.EarlyStopping.no_improvement_stopper"><code class="docutils literal notranslate"><span class="pre">EarlyStopping.no_improvement_stopper()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.EarlyStopping.timer"><code class="docutils literal notranslate"><span class="pre">EarlyStopping.timer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.OptimizerDump"><code class="docutils literal notranslate"><span class="pre">OptimizerDump</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.ParametersLogger"><code class="docutils literal notranslate"><span class="pre">ParametersLogger</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.ParametersLogger.load"><code class="docutils literal notranslate"><span class="pre">ParametersLogger.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.ParametersLogger.load_flattened"><code class="docutils literal notranslate"><span class="pre">ParametersLogger.load_flattened()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.ParametersLogger.to_hiplot_experiment"><code class="docutils literal notranslate"><span class="pre">ParametersLogger.to_hiplot_experiment()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ref_callbacks.html#nevergrad.callbacks.ProgressBar"><code class="docutils literal notranslate"><span class="pre">ProgressBar</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="machinelearning.html">Nevergrad for machine learning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html#optimization-of-continuous-hyperparameters-with-cma-pso-de-random-and-quasirandom">Optimization of continuous hyperparameters with CMA, PSO, DE, Random and QuasiRandom</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="machinelearning.html#ask-and-tell-version">Ask and tell version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="machinelearning.html#asynchronous-version-with-concurrent-futures">Asynchronous version with concurrent.futures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html#optimization-of-mixed-continuous-and-discrete-hyperparameters">Optimization of mixed (continuous and discrete) hyperparameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="machinelearning.html#manual-parametrization">Manual parametrization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html#optimization-of-parameters-for-reinforcement-learning">Optimization of parameters for reinforcement learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="machinelearning.html#examples-from-our-external-users">Examples from our external users</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">Nevergrad for R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#noisy-optimization">Noisy optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#one-shot-optimization">One-shot optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#in-dimension-11-with-one-feature">In dimension-11 with one feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#in-dimension-12-with-two-features">In dimension-12 with two features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#in-dimension-10-with-small-budget">In dimension-10 with small budget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#in-dimension-4">In dimension-4</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#comparison-based-methods-for-ill-conditioned-problems">Comparison-based methods for ill-conditioned problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#ill-conditioned-function">Ill-conditioned function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#discrete">Discrete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarks.html#list-of-benchmarks">List of benchmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.basic"><code class="docutils literal notranslate"><span class="pre">basic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.compabasedillcond"><code class="docutils literal notranslate"><span class="pre">compabasedillcond()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.dim10_select_one_feature"><code class="docutils literal notranslate"><span class="pre">dim10_select_one_feature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.dim10_select_two_features"><code class="docutils literal notranslate"><span class="pre">dim10_select_two_features()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.dim10_smallbudget"><code class="docutils literal notranslate"><span class="pre">dim10_smallbudget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.doe_dim4"><code class="docutils literal notranslate"><span class="pre">doe_dim4()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.illcond"><code class="docutils literal notranslate"><span class="pre">illcond()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.metanoise"><code class="docutils literal notranslate"><span class="pre">metanoise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.noise"><code class="docutils literal notranslate"><span class="pre">noise()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.oneshot1"><code class="docutils literal notranslate"><span class="pre">oneshot1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.oneshot2"><code class="docutils literal notranslate"><span class="pre">oneshot2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.oneshot3"><code class="docutils literal notranslate"><span class="pre">oneshot3()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.oneshot4"><code class="docutils literal notranslate"><span class="pre">oneshot4()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.frozenexperiments.repeated_basic"><code class="docutils literal notranslate"><span class="pre">repeated_basic()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.adversarial_attack"><code class="docutils literal notranslate"><span class="pre">adversarial_attack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.alldes"><code class="docutils literal notranslate"><span class="pre">alldes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.aquacrop_fao"><code class="docutils literal notranslate"><span class="pre">aquacrop_fao()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.bonnans"><code class="docutils literal notranslate"><span class="pre">bonnans()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.ceviche"><code class="docutils literal notranslate"><span class="pre">ceviche()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.complex_tsp"><code class="docutils literal notranslate"><span class="pre">complex_tsp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.constrained_illconditioned_parallel"><code class="docutils literal notranslate"><span class="pre">constrained_illconditioned_parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.control_problem"><code class="docutils literal notranslate"><span class="pre">control_problem()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.deceptive"><code class="docutils literal notranslate"><span class="pre">deceptive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.doe"><code class="docutils literal notranslate"><span class="pre">doe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.double_o_seven"><code class="docutils literal notranslate"><span class="pre">double_o_seven()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.far_optimum_es"><code class="docutils literal notranslate"><span class="pre">far_optimum_es()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.fishing"><code class="docutils literal notranslate"><span class="pre">fishing()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.fiveshots"><code class="docutils literal notranslate"><span class="pre">fiveshots()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.harderparallel"><code class="docutils literal notranslate"><span class="pre">harderparallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.hdbo4d"><code class="docutils literal notranslate"><span class="pre">hdbo4d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.hdmultimodal"><code class="docutils literal notranslate"><span class="pre">hdmultimodal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.illcondi"><code class="docutils literal notranslate"><span class="pre">illcondi()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.illcondipara"><code class="docutils literal notranslate"><span class="pre">illcondipara()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_multi_similarity"><code class="docutils literal notranslate"><span class="pre">image_multi_similarity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_multi_similarity_cv"><code class="docutils literal notranslate"><span class="pre">image_multi_similarity_cv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_multi_similarity_pgan"><code class="docutils literal notranslate"><span class="pre">image_multi_similarity_pgan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_multi_similarity_pgan_cv"><code class="docutils literal notranslate"><span class="pre">image_multi_similarity_pgan_cv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_quality"><code class="docutils literal notranslate"><span class="pre">image_quality()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_quality_cv"><code class="docutils literal notranslate"><span class="pre">image_quality_cv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_quality_cv_pgan"><code class="docutils literal notranslate"><span class="pre">image_quality_cv_pgan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_quality_pgan"><code class="docutils literal notranslate"><span class="pre">image_quality_pgan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_quality_proxy"><code class="docutils literal notranslate"><span class="pre">image_quality_proxy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_quality_proxy_pgan"><code class="docutils literal notranslate"><span class="pre">image_quality_proxy_pgan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_similarity"><code class="docutils literal notranslate"><span class="pre">image_similarity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_similarity_and_quality"><code class="docutils literal notranslate"><span class="pre">image_similarity_and_quality()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_similarity_and_quality_cv"><code class="docutils literal notranslate"><span class="pre">image_similarity_and_quality_cv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_similarity_and_quality_cv_pgan"><code class="docutils literal notranslate"><span class="pre">image_similarity_and_quality_cv_pgan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_similarity_and_quality_pgan"><code class="docutils literal notranslate"><span class="pre">image_similarity_and_quality_pgan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_similarity_pgan"><code class="docutils literal notranslate"><span class="pre">image_similarity_pgan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_single_quality"><code class="docutils literal notranslate"><span class="pre">image_single_quality()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.image_single_quality_pgan"><code class="docutils literal notranslate"><span class="pre">image_single_quality_pgan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.instrum_discrete"><code class="docutils literal notranslate"><span class="pre">instrum_discrete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.keras_tuning"><code class="docutils literal notranslate"><span class="pre">keras_tuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.lowbudget"><code class="docutils literal notranslate"><span class="pre">lowbudget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.lsgo"><code class="docutils literal notranslate"><span class="pre">lsgo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.mixsimulator"><code class="docutils literal notranslate"><span class="pre">mixsimulator()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.mlda"><code class="docutils literal notranslate"><span class="pre">mlda()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.mldakmeans"><code class="docutils literal notranslate"><span class="pre">mldakmeans()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.mltuning"><code class="docutils literal notranslate"><span class="pre">mltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.mono_rocket"><code class="docutils literal notranslate"><span class="pre">mono_rocket()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.morphing_pgan_quality"><code class="docutils literal notranslate"><span class="pre">morphing_pgan_quality()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.ms_bbob"><code class="docutils literal notranslate"><span class="pre">ms_bbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multi_ceviche"><code class="docutils literal notranslate"><span class="pre">multi_ceviche()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multi_ceviche_c0"><code class="docutils literal notranslate"><span class="pre">multi_ceviche_c0()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multi_ceviche_c0_warmstart"><code class="docutils literal notranslate"><span class="pre">multi_ceviche_c0_warmstart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multi_ceviche_c0p"><code class="docutils literal notranslate"><span class="pre">multi_ceviche_c0p()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multimodal"><code class="docutils literal notranslate"><span class="pre">multimodal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multiobjective_example"><code class="docutils literal notranslate"><span class="pre">multiobjective_example()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multiobjective_example_hd"><code class="docutils literal notranslate"><span class="pre">multiobjective_example_hd()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multiobjective_example_many"><code class="docutils literal notranslate"><span class="pre">multiobjective_example_many()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.multiobjective_example_many_hd"><code class="docutils literal notranslate"><span class="pre">multiobjective_example_many_hd()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.naive_seq_keras_tuning"><code class="docutils literal notranslate"><span class="pre">naive_seq_keras_tuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.naive_seq_mltuning"><code class="docutils literal notranslate"><span class="pre">naive_seq_mltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.naive_veryseq_keras_tuning"><code class="docutils literal notranslate"><span class="pre">naive_veryseq_keras_tuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.naivemltuning"><code class="docutils literal notranslate"><span class="pre">naivemltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.nano_naive_seq_mltuning"><code class="docutils literal notranslate"><span class="pre">nano_naive_seq_mltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.nano_naive_veryseq_mltuning"><code class="docutils literal notranslate"><span class="pre">nano_naive_veryseq_mltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.nano_seq_mltuning"><code class="docutils literal notranslate"><span class="pre">nano_seq_mltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.nano_veryseq_mltuning"><code class="docutils literal notranslate"><span class="pre">nano_veryseq_mltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.neuro_control_problem"><code class="docutils literal notranslate"><span class="pre">neuro_control_problem()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.newdoe"><code class="docutils literal notranslate"><span class="pre">newdoe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.noisy"><code class="docutils literal notranslate"><span class="pre">noisy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.nozp_noms_bbob"><code class="docutils literal notranslate"><span class="pre">nozp_noms_bbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.olympus_emulators"><code class="docutils literal notranslate"><span class="pre">olympus_emulators()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.olympus_surfaces"><code class="docutils literal notranslate"><span class="pre">olympus_surfaces()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.oneshot"><code class="docutils literal notranslate"><span class="pre">oneshot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.oneshot_mltuning"><code class="docutils literal notranslate"><span class="pre">oneshot_mltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.paraalldes"><code class="docutils literal notranslate"><span class="pre">paraalldes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.parahdbo4d"><code class="docutils literal notranslate"><span class="pre">parahdbo4d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.parallel"><code class="docutils literal notranslate"><span class="pre">parallel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.parallel_small_budget"><code class="docutils literal notranslate"><span class="pre">parallel_small_budget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.paramultimodal"><code class="docutils literal notranslate"><span class="pre">paramultimodal()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.pbbob"><code class="docutils literal notranslate"><span class="pre">pbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.pbo_reduced_suite"><code class="docutils literal notranslate"><span class="pre">pbo_reduced_suite()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.pbo_suite"><code class="docutils literal notranslate"><span class="pre">pbo_suite()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.pbt"><code class="docutils literal notranslate"><span class="pre">pbt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.photonics"><code class="docutils literal notranslate"><span class="pre">photonics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.photonics2"><code class="docutils literal notranslate"><span class="pre">photonics2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.powersystems"><code class="docutils literal notranslate"><span class="pre">powersystems()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.ranknoisy"><code class="docutils literal notranslate"><span class="pre">ranknoisy()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.realworld"><code class="docutils literal notranslate"><span class="pre">realworld()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.reduced_yahdlbbbob"><code class="docutils literal notranslate"><span class="pre">reduced_yahdlbbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.refactor_optims"><code class="docutils literal notranslate"><span class="pre">refactor_optims()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.rocket"><code class="docutils literal notranslate"><span class="pre">rocket()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.seq_keras_tuning"><code class="docutils literal notranslate"><span class="pre">seq_keras_tuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.seq_mltuning"><code class="docutils literal notranslate"><span class="pre">seq_mltuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.sequential_fastgames"><code class="docutils literal notranslate"><span class="pre">sequential_fastgames()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.sequential_instrum_discrete"><code class="docutils literal notranslate"><span class="pre">sequential_instrum_discrete()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.sequential_topology_optimization"><code class="docutils literal notranslate"><span class="pre">sequential_topology_optimization()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.simple_tsp"><code class="docutils literal notranslate"><span class="pre">simple_tsp()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.skip_ci"><code class="docutils literal notranslate"><span class="pre">skip_ci()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.small_photonics"><code class="docutils literal notranslate"><span class="pre">small_photonics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.small_photonics2"><code class="docutils literal notranslate"><span class="pre">small_photonics2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.smallbudget_lsgo"><code class="docutils literal notranslate"><span class="pre">smallbudget_lsgo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.spsa_benchmark"><code class="docutils literal notranslate"><span class="pre">spsa_benchmark()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.team_cycling"><code class="docutils literal notranslate"><span class="pre">team_cycling()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.topology_optimization"><code class="docutils literal notranslate"><span class="pre">topology_optimization()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.ultrasmall_photonics"><code class="docutils literal notranslate"><span class="pre">ultrasmall_photonics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.ultrasmall_photonics2"><code class="docutils literal notranslate"><span class="pre">ultrasmall_photonics2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.unit_commitment"><code class="docutils literal notranslate"><span class="pre">unit_commitment()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.veryseq_keras_tuning"><code class="docutils literal notranslate"><span class="pre">veryseq_keras_tuning()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.verysmall_photonics"><code class="docutils literal notranslate"><span class="pre">verysmall_photonics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.verysmall_photonics2"><code class="docutils literal notranslate"><span class="pre">verysmall_photonics2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yabbob"><code class="docutils literal notranslate"><span class="pre">yabbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yabigbbob"><code class="docutils literal notranslate"><span class="pre">yabigbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaboundedbbob"><code class="docutils literal notranslate"><span class="pre">yaboundedbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaboxbbob"><code class="docutils literal notranslate"><span class="pre">yaboxbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaconstrainedbbob"><code class="docutils literal notranslate"><span class="pre">yaconstrainedbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yahdbbob"><code class="docutils literal notranslate"><span class="pre">yahdbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yahdlbbbob"><code class="docutils literal notranslate"><span class="pre">yahdlbbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yahdnoisybbob"><code class="docutils literal notranslate"><span class="pre">yahdnoisybbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yahdnoisysplitbbob"><code class="docutils literal notranslate"><span class="pre">yahdnoisysplitbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yahdsplitbbob"><code class="docutils literal notranslate"><span class="pre">yahdsplitbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yamegapenbbob"><code class="docutils literal notranslate"><span class="pre">yamegapenbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yamegapenbigbbob"><code class="docutils literal notranslate"><span class="pre">yamegapenbigbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yamegapenboundedbbob"><code class="docutils literal notranslate"><span class="pre">yamegapenboundedbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yamegapenboxbbob"><code class="docutils literal notranslate"><span class="pre">yamegapenboxbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yamegapenhdbbob"><code class="docutils literal notranslate"><span class="pre">yamegapenhdbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yanoisybbob"><code class="docutils literal notranslate"><span class="pre">yanoisybbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yanoisysplitbbob"><code class="docutils literal notranslate"><span class="pre">yanoisysplitbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaonepenbbob"><code class="docutils literal notranslate"><span class="pre">yaonepenbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaonepenbigbbob"><code class="docutils literal notranslate"><span class="pre">yaonepenbigbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaonepenboundedbbob"><code class="docutils literal notranslate"><span class="pre">yaonepenboundedbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaonepenboxbbob"><code class="docutils literal notranslate"><span class="pre">yaonepenboxbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaonepennoisybbob"><code class="docutils literal notranslate"><span class="pre">yaonepennoisybbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaonepenparabbob"><code class="docutils literal notranslate"><span class="pre">yaonepenparabbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaonepensmallbbob"><code class="docutils literal notranslate"><span class="pre">yaonepensmallbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yaparabbob"><code class="docutils literal notranslate"><span class="pre">yaparabbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yapenbbob"><code class="docutils literal notranslate"><span class="pre">yapenbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yapenboundedbbob"><code class="docutils literal notranslate"><span class="pre">yapenboundedbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yapenboxbbob"><code class="docutils literal notranslate"><span class="pre">yapenboxbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yapennoisybbob"><code class="docutils literal notranslate"><span class="pre">yapennoisybbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yapenparabbob"><code class="docutils literal notranslate"><span class="pre">yapenparabbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yapensmallbbob"><code class="docutils literal notranslate"><span class="pre">yapensmallbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yasmallbbob"><code class="docutils literal notranslate"><span class="pre">yasmallbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yasplitbbob"><code class="docutils literal notranslate"><span class="pre">yasplitbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yatinybbob"><code class="docutils literal notranslate"><span class="pre">yatinybbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yatuningbbob"><code class="docutils literal notranslate"><span class="pre">yatuningbbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.yawidebbob"><code class="docutils literal notranslate"><span class="pre">yawidebbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.zp_ms_bbob"><code class="docutils literal notranslate"><span class="pre">zp_ms_bbob()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchmarks.html#nevergrad.benchmark.experiments.zp_pbbob"><code class="docutils literal notranslate"><span class="pre">zp_pbbob()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyomo.html">Working with Pyomo model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyomo.html#concrete-model">Concrete Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyomo.html#abstract-model">Abstract Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html#latent-variables-in-image-generation">Latent variables in image generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html#applying-the-voronoi-crossover-for-latent-image-generation">Applying the Voronoi crossover for latent image generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html#enhancements">Enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html#diversity-in-high-dimensional-contexts">Diversity in high-dimensional contexts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html#application-to-image-generation">Application to image generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html#lognormal-algorithm">Lognormal algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html#extension-to-the-discrete-setting">Extension to the discrete setting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html#application-to-fake-images">Application to fake images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html#citation">Citation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html#what-is-retrofitting">What is retrofitting ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html#when-is-classical-gradient-based-deep-learning-limited">When is classical gradient-based deep learning limited ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html#nevergrad-for-retrofitting">Nevergrad for retrofitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html#enhancements">Enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html#citation">Citation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statistics/Statistics.html">Benchmarks in Nevergrad</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statistics/Statistics.html#comparison-on-all-benchmarks-for-the-simple-regret-criterion-the-wizard-performs-best">Comparison on all benchmarks, for the simple regret criterion: the wizard performs best</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics/Statistics.html#comparing-all-methods-with-a-robustness-criterion-the-wizard-still-performs-best">Comparing all methods, with a robustness criterion: the wizard still performs best</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics/Statistics.html#comparing-from-the-point-of-view-of-the-frequency-at-which-a-method-is-in-the-three-best-the-wizard-ngiohtuned-still-performs-best">Comparing from the point of view of the frequency at which a method is in the three best: the wizard NgIohTuned still performs best</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="statistics/AgStatistics.html">Benchmarks in Nevergrad (excluding wizards)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="statistics/AgStatistics.html#comparison-on-all-benchmarks-for-the-simple-regret-criterion-the-wizard-performs-best">Comparison on all benchmarks, for the simple regret criterion: the wizard performs best</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics/AgStatistics.html#comparing-all-methods-with-a-robustness-criterion-the-wizard-still-performs-best">Comparing all methods, with a robustness criterion: the wizard still performs best</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics/AgStatistics.html#comparing-from-the-point-of-view-of-the-frequency-at-which-a-method-is-in-the-three-best-methods-from-discrete-optimization-perform-best">Comparing from the point of view of the frequency at which a method is in the three best: methods from discrete optimization perform best</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="citing">
+<h2>Citing<a class="headerlink" href="#citing" title="Link to this heading"></a></h2>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span><span class="nl">nevergrad</span><span class="p">,</span>
+<span class="w">    </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{J. Rapin and O. Teytaud}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{Nevergrad - A gradient-free optimization platform}}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2018}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">publisher</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{GitHub}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">journal</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{GitHub repository}</span><span class="p">,</span>
+<span class="w">    </span><span class="na">howpublished</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{\url{https://GitHub.com/FacebookResearch/Nevergrad}}</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p><code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code> is released under the MIT license. See <a class="reference external" href="https://github.com/facebookresearch/nevergrad/blob/main/LICENSE">LICENSE</a> for additional details about it, as well as our <a class="reference external" href="https://opensource.facebook.com/legal/terms">Terms of Use</a> and <a class="reference external" href="https://opensource.facebook.com/legal/privacy">Privacy Policy</a>.
+Copyright © Meta Platforms, Inc.</p>
+</section>
+<section id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Facebook AI Research.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

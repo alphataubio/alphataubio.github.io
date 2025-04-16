@@ -1,0 +1,206 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nevergrad for R &mdash; nevergrad  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Benchmarks" href="benchmarks.html" />
+    <link rel="prev" title="Nevergrad for machine learning" href="machinelearning.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            nevergrad
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">CONTENTS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Installation and configuration on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">How to perform optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencompetition2020.html">Open Optimization Competition 2020</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="machinelearning.html">Nevergrad for machine learning</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Nevergrad for R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyomo.html">Working with Pyomo model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statistics/Statistics.html">Benchmarks in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics/AgStatistics.html">Benchmarks in Nevergrad (excluding wizards)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">nevergrad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Nevergrad for R</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/r.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nevergrad-for-r">
+<span id="r"></span><h1>Nevergrad for R<a class="headerlink" href="#nevergrad-for-r" title="Link to this heading"></a></h1>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library and environment for Reticulate/Nevergrad.</span>
+<span class="nf">library</span><span class="p">(</span><span class="s">&quot;reticulate&quot;</span><span class="p">)</span>
+<span class="nf">conda_create</span><span class="p">(</span><span class="s">&quot;r-reticulate&quot;</span><span class="p">)</span>
+<span class="nf">conda_install</span><span class="p">(</span><span class="s">&quot;r-reticulate&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nevergrad&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pip</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">use_condaenv</span><span class="p">(</span><span class="s">&quot;r-reticulate&quot;</span><span class="p">)</span>
+
+<span class="c1"># Only if you use parallelism.</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">doParallel</span><span class="p">)</span>
+
+<span class="c1"># Choose your optimization method below.</span>
+<span class="n">optimizer_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s">&quot;NgIohTuned&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;DoubleFastGADiscreteOnePlusOne&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;OnePlusOne&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;DE&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;RandomSearch&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;TwoPointsDE&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;Powell&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;MetaModel&quot;  CRASH !!!!</span>
+<span class="c1"># optimizer_name &lt;- &quot;SQP&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;Cobyla&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;NaiveTBPSA&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;DiscreteOnePlusOne&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;cGA&quot;</span>
+<span class="c1"># optimizer_name &lt;- &quot;ScrHammersleySearch&quot;</span>
+
+<span class="c1"># Now we can play with Nevergrad as usual.</span>
+<span class="c1"># We assume here that we have 17 continuous hyperparameters with values in [0, 1].</span>
+<span class="c1"># We can do other instrumentations, as discussed below.</span>
+<span class="n">my_tuple</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">tuple</span><span class="p">(</span><span class="m">17</span><span class="p">)</span>
+<span class="n">instrumentation</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ng</span><span class="o">$</span><span class="n">p</span><span class="o">$</span><span class="nf">Array</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">my_tuple</span><span class="p">)</span>
+<span class="n">instrumentation</span><span class="o">$</span><span class="nf">set_bounds</span><span class="p">(</span><span class="m">0</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="n">.</span><span class="p">)</span>
+<span class="n">num_workers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="c1"># We want to be able to evaluate 3 hyperparametrizations simultaneously.</span>
+<span class="n">num_iterations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">num_workers</span><span class="w">  </span><span class="c1"># Let us say we have a budget of 100xnum_workers hyperparameters to evaluate.</span>
+
+<span class="c1"># Let us create a Nevergrad optimization method.</span>
+<span class="n">optimizer</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="n">ng</span><span class="o">$</span><span class="n">optimizers</span><span class="o">$</span><span class="n">registry</span><span class="p">[</span><span class="n">optimizer_name</span><span class="p">](</span><span class="n">instrumentation</span><span class="p">,</span><span class="w"> </span><span class="n">budget</span><span class="o">=</span><span class="n">num_iterations</span><span class="p">,</span><span class="w"> </span><span class="n">num_workers</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
+
+<span class="c1"># Dummy initializations.</span>
+<span class="n">nevergrad_hp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="n">nevergrad_hp_val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="n">score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+
+<span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">num_iterations</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">num_workers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="n">nevergrad_hp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">optimizer</span><span class="o">$</span><span class="nf">ask</span><span class="p">()</span>
+<span class="w">       </span><span class="n">nevergrad_hp_val</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">nevergrad_hp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">$</span><span class="n">value</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1"># Sequential version.</span>
+<span class="w">    </span><span class="c1"># for (j in 1:num_workers) {  # In a perfect world this would be parallel.</span>
+<span class="w">    </span><span class="c1">#    score[j] &lt;- norm(nevergrad_hp_val[j]</span>
+<span class="w">    </span><span class="c1"># }</span>
+
+<span class="w">    </span><span class="c1"># Parallel version.</span>
+<span class="w">    </span><span class="c1"># Actually this could be asynchronous, Nevergrad is ok for that, you do not have to</span>
+<span class="w">    </span><span class="c1"># do the tell&#39;s in the same order as the ask&#39;s.</span>
+<span class="w">    </span><span class="nf">registerDoParallel</span><span class="p">(</span><span class="n">cores</span><span class="o">=</span><span class="n">num_workers</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">getDoParWorkers</span><span class="p">()</span>
+<span class="w">    </span><span class="nf">foreach</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="n">num_workers</span><span class="p">)</span><span class="w"> </span><span class="o">%dopar%</span><span class="w"> </span><span class="n">score</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">norm</span><span class="p">(</span><span class="n">nevergrad_hp_val</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">num_workers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="n">optimizer</span><span class="o">$</span><span class="nf">tell</span><span class="p">(</span><span class="n">nevergrad_hp</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">score</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">optimizer</span><span class="o">$</span><span class="nf">recommend</span><span class="p">()</span><span class="o">$</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Don’t forget the “pip=TRUE”. I wasted so much time because of this :-)</p>
+<p>For other instrumentations (discrete variables, logarithmic continuous variables…), please check <cite>different instrumentations: &lt;https://github.com/facebookresearch/nevergrad/blob/main/docs/parametrization.rst&gt;</cite>. Or for simple examples for machine learning <cite>machine learning &lt;https://github.com/facebookresearch/nevergrad/blob/main/docs/machinelearning.rst&gt;</cite>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="machinelearning.html" class="btn btn-neutral float-left" title="Nevergrad for machine learning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="benchmarks.html" class="btn btn-neutral float-right" title="Benchmarks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Facebook AI Research.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

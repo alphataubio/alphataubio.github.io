@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Callbacks API &mdash; nevergrad  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Nevergrad for machine learning" href="machinelearning.html" />
+    <link rel="prev" title="Parametrization API" href="ref_parametrization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            nevergrad
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">CONTENTS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Installation and configuration on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">How to perform optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencompetition2020.html">Open Optimization Competition 2020</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Callbacks API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nevergrad.callbacks.EarlyStopping"><code class="docutils literal notranslate"><span class="pre">EarlyStopping</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nevergrad.callbacks.EarlyStopping.no_improvement_stopper"><code class="docutils literal notranslate"><span class="pre">EarlyStopping.no_improvement_stopper()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nevergrad.callbacks.EarlyStopping.timer"><code class="docutils literal notranslate"><span class="pre">EarlyStopping.timer()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nevergrad.callbacks.OptimizerDump"><code class="docutils literal notranslate"><span class="pre">OptimizerDump</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nevergrad.callbacks.ParametersLogger"><code class="docutils literal notranslate"><span class="pre">ParametersLogger</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nevergrad.callbacks.ParametersLogger.load"><code class="docutils literal notranslate"><span class="pre">ParametersLogger.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nevergrad.callbacks.ParametersLogger.load_flattened"><code class="docutils literal notranslate"><span class="pre">ParametersLogger.load_flattened()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nevergrad.callbacks.ParametersLogger.to_hiplot_experiment"><code class="docutils literal notranslate"><span class="pre">ParametersLogger.to_hiplot_experiment()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nevergrad.callbacks.ProgressBar"><code class="docutils literal notranslate"><span class="pre">ProgressBar</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="machinelearning.html">Nevergrad for machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">Nevergrad for R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyomo.html">Working with Pyomo model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statistics/Statistics.html">Benchmarks in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics/AgStatistics.html">Benchmarks in Nevergrad (excluding wizards)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">nevergrad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Callbacks API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ref_callbacks.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="callbacks-api">
+<h1>Callbacks API<a class="headerlink" href="#callbacks-api" title="Link to this heading"></a></h1>
+<p id="callbacks">Callbacks can be registered through the <code class="code docutils literal notranslate"><span class="pre">optimizer.register_callback</span></code> for call on either <code class="code docutils literal notranslate"><span class="pre">ask</span></code> or <code class="code docutils literal notranslate"><span class="pre">tell</span></code> methods. Two of them are available through the
+<cite>ng.callbacks</cite> namespace.</p>
+<dl class="py class" id="module-nevergrad.callbacks">
+<dt class="sig sig-object py" id="nevergrad.callbacks.EarlyStopping">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nevergrad.callbacks.</span></span><span class="sig-name descname"><span class="pre">EarlyStopping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stopping_criterion</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ref_optimizer.html#nevergrad.optimizers.base.Optimizer" title="nevergrad.optimization.base.Optimizer"><span class="pre">Optimizer</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nevergrad.callbacks.EarlyStopping" title="Link to this definition"></a></dt>
+<dd><p>Callback for stopping the <code class="code docutils literal notranslate"><span class="pre">minimize</span></code> method before the budget is
+fully used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stopping_criterion</strong> (<em>func</em><em>(</em><em>optimizer</em><em>) </em><em>-&gt; bool</em>) – function that takes the current optimizer as input and returns True
+if the minimization must be stopped</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This callback must be register on the “ask” method only.</p>
+</div>
+<p class="rubric">Example</p>
+<p>In the following code, the <code class="code docutils literal notranslate"><span class="pre">minimize</span></code> method will be stopped at the 4th “ask”</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="k">lambda</span> <span class="n">opt</span><span class="p">:</span> <span class="n">opt</span><span class="o">.</span><span class="n">num_ask</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">optimizer</span><span class="o">.</span><span class="n">register_callback</span><span class="p">(</span><span class="s2">&quot;ask&quot;</span><span class="p">,</span> <span class="n">early_stopping</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">_func</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A couple other options (equivalent in case of non-noisy optimization) for stopping
+if the loss is below 12:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="k">lambda</span> <span class="n">opt</span><span class="p">:</span> <span class="n">opt</span><span class="o">.</span><span class="n">recommend</span><span class="p">()</span><span class="o">.</span><span class="n">loss</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="k">lambda</span> <span class="n">opt</span><span class="p">:</span> <span class="n">opt</span><span class="o">.</span><span class="n">current_bests</span><span class="p">[</span><span class="s2">&quot;minimum&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nevergrad.callbacks.EarlyStopping.no_improvement_stopper">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">no_improvement_stopper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tolerance_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nevergrad.callbacks.EarlyStopping" title="nevergrad.optimization.callbacks.EarlyStopping"><span class="pre">EarlyStopping</span></a></span></span><a class="headerlink" href="#nevergrad.callbacks.EarlyStopping.no_improvement_stopper" title="Link to this definition"></a></dt>
+<dd><p>Early stop when loss didn’t reduce during tolerance_window asks</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nevergrad.callbacks.EarlyStopping.timer">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">timer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#nevergrad.callbacks.EarlyStopping" title="nevergrad.optimization.callbacks.EarlyStopping"><span class="pre">EarlyStopping</span></a></span></span><a class="headerlink" href="#nevergrad.callbacks.EarlyStopping.timer" title="Link to this definition"></a></dt>
+<dd><p>Early stop when max_duration seconds has been reached (from the first ask)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nevergrad.callbacks.OptimizerDump">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nevergrad.callbacks.</span></span><span class="sig-name descname"><span class="pre">OptimizerDump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nevergrad.callbacks.OptimizerDump" title="Link to this definition"></a></dt>
+<dd><p>Dumps the optimizer to a pickle file at every call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em><em> or </em><em>Path</em>) – path to the pickle file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nevergrad.callbacks.ParametersLogger">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nevergrad.callbacks.</span></span><span class="sig-name descname"><span class="pre">ParametersLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nevergrad.callbacks.ParametersLogger" title="Link to this definition"></a></dt>
+<dd><p>Logs parameter and run information throughout into a file during
+optimization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em><em> or </em><em>pathlib.Path</em>) – the path to dump data to</p></li>
+<li><p><strong>append</strong> (<em>bool</em>) – whether to append the file (otherwise it replaces it)</p></li>
+<li><p><strong>order</strong> (<em>int</em>) – order of the internal/model parameters to extract</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logger</span> <span class="o">=</span> <span class="n">ParametersLogger</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">register_callback</span><span class="p">(</span><span class="s2">&quot;tell&quot;</span><span class="p">,</span>  <span class="n">logger</span><span class="p">)</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">()</span>
+<span class="n">list_of_dict_of_data</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Arrays are converted to lists</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="nevergrad.callbacks.ParametersLogger.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nevergrad.callbacks.ParametersLogger.load" title="Link to this definition"></a></dt>
+<dd><p>Loads data from the log file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nevergrad.callbacks.ParametersLogger.load_flattened">
+<span class="sig-name descname"><span class="pre">load_flattened</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_list_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">24</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#nevergrad.callbacks.ParametersLogger.load_flattened" title="Link to this definition"></a></dt>
+<dd><p>Loads data from the log file, and splits lists (arrays) into multiple arguments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_list_elements</strong> (<em>int</em>) – Maximum number of elements displayed from the array, each element is given a
+unique id of type list_name#i0_i1_…</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nevergrad.callbacks.ParametersLogger.to_hiplot_experiment">
+<span class="sig-name descname"><span class="pre">to_hiplot_experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_list_elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">24</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#nevergrad.callbacks.ParametersLogger.to_hiplot_experiment" title="Link to this definition"></a></dt>
+<dd><p>Converts the logs into an hiplot experiment for display.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_list_elements</strong> (<em>int</em>) – maximum number of elements of list/arrays to export (only the first elements are extracted)</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span> <span class="o">=</span> <span class="n">logs</span><span class="o">.</span><span class="n">to_hiplot_experiment</span><span class="p">()</span>
+<span class="n">exp</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">force_full_width</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>You can easily change the axes of the XY plot:
+<code class="code docutils literal notranslate"><span class="pre">exp.display_data(hip.Displays.XY).update({'axis_x':</span> <span class="pre">'0#0',</span> <span class="pre">'axis_y':</span> <span class="pre">'0#1'})</span></code></p></li>
+<li><p>For more context about hiplot, check:</p>
+<ul>
+<li><p>blogpost: <a class="reference external" href="https://ai.facebook.com/blog/hiplot-high-dimensional-interactive-plots-made-easy/">https://ai.facebook.com/blog/hiplot-high-dimensional-interactive-plots-made-easy/</a></p></li>
+<li><p>github repo: <a class="reference external" href="https://github.com/facebookresearch/hiplot">https://github.com/facebookresearch/hiplot</a></p></li>
+<li><p>documentation: <a class="reference external" href="https://facebookresearch.github.io/hiplot/">https://facebookresearch.github.io/hiplot/</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nevergrad.callbacks.ProgressBar">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">nevergrad.callbacks.</span></span><span class="sig-name descname"><span class="pre">ProgressBar</span></span><a class="headerlink" href="#nevergrad.callbacks.ProgressBar" title="Link to this definition"></a></dt>
+<dd><p>Progress bar to register as callback in an optimizer</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ref_parametrization.html" class="btn btn-neutral float-left" title="Parametrization API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="machinelearning.html" class="btn btn-neutral float-right" title="Nevergrad for machine learning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Facebook AI Research.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

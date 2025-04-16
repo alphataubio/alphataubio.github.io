@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to perform optimization &mdash; nevergrad  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parametrizing your optimization" href="parametrization.html" />
+    <link rel="prev" title="Installation and configuration on Windows" href="windows.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            nevergrad
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">CONTENTS</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Installation and configuration on Windows</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to perform optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-several-workers">Using several workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ask-and-tell-interface">Ask and tell interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#choosing-an-optimizer">Choosing an optimizer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#telling-non-asked-points-or-suggesting-points">Telling non-asked points, or suggesting points</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-callbacks">Adding callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optimization-with-constraints">Optimization with constraints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optimizing-machine-learning-hyperparameters">Optimizing machine learning hyperparameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-with-permutation">Example with permutation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-of-chaining-or-inoculation-or-initialization-of-an-evolutionary-algorithm">Example of chaining, or inoculation, or initialization of an evolutionary algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiobjective-minimization-with-nevergrad">Multiobjective minimization with Nevergrad</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencompetition2020.html">Open Optimization Competition 2020</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="machinelearning.html">Nevergrad for machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">Nevergrad for R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyomo.html">Working with Pyomo model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statistics/Statistics.html">Benchmarks in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics/AgStatistics.html">Benchmarks in Nevergrad (excluding wizards)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">nevergrad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">How to perform optimization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/optimization.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-perform-optimization">
+<h1>How to perform optimization<a class="headerlink" href="#how-to-perform-optimization" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, all optimizers assume a centered and reduced prior at the beginning of the optimization (ie. 0 mean and unitary standard deviation). They are however able to find solutions far from this initial prior.</p>
+</div>
+<section id="basic-example">
+<h2>Basic example<a class="headerlink" href="#basic-example" title="Link to this heading"></a></h2>
+<p>Minimizing a function using an optimizer (here <code class="code docutils literal notranslate"><span class="pre">NgIohTuned</span></code>, our adaptative optimization algorithm) can be easily run with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># optimization on x as an array of shape (2,)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>  <span class="c1"># best value</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; [0.49971112 0.5002944 ]</span>
+</pre></div>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">parametrization=n</span></code> is a shortcut to state that the function has only one variable, continuous, of dimension <code class="code docutils literal notranslate"><span class="pre">n</span></code>: <code class="code docutils literal notranslate"><span class="pre">ng.p.Array(shape=(n,))</span></code>.</p>
+<p><strong>Important</strong>: Make sure to check the <a class="reference internal" href="parametrization.html#parametrizing"><span class="std std-ref">Parametrization section</span></a> for more complex parametrizations examples, and <a class="reference internal" href="ref_parametrization.html#parametrization-ref"><span class="std std-ref">Parametrization API section</span></a> for the full list of options. Below are a few more advanced cases.</p>
+<p>Defining the parametrization (<code class="code docutils literal notranslate"><span class="pre">instrum</span></code>) as follows in the code sample will instead optimize on both <code class="code docutils literal notranslate"><span class="pre">x</span></code> (continuous, dimension 2, bounded between -12 and 12) and <code class="code docutils literal notranslate"><span class="pre">y</span></code> (continuous, dimension 1).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">instrum</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Instrumentation</span><span class="p">(</span>
+    <span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Array</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,))</span><span class="o">.</span><span class="n">set_bounds</span><span class="p">(</span><span class="n">lower</span><span class="o">=-</span><span class="mi">12</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Scalar</span><span class="p">()</span>
+<span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="n">instrum</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; ((array([0.52213095, 0.45030925]),), {&#39;y&#39;: -0.0003603100877068604})</span>
+</pre></div>
+</div>
+<p>We can work in the discrete case as well, e.g. with the one-max function applied on <code class="code docutils literal notranslate"><span class="pre">{0,1,2,3,4,5,6}^10</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">onemax</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Discrete, ordered</span>
+<span class="n">param</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">TransitionChoice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span> <span class="n">repetitions</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">DiscreteOnePlusOne</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="n">param</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">provide_recommendation</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">budget</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">ask</span><span class="p">()</span>
+    <span class="c1"># loss = onemax(*x.args, **x.kwargs)  # equivalent to x.value if not using Instrumentation</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">onemax</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">provide_recommendation</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; (1, 1, 0, 1, 1, 4, 1, 1, 1, 1)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-several-workers">
+<h2>Using several workers<a class="headerlink" href="#using-several-workers" title="Link to this heading"></a></h2>
+<p>Running the function evaluation in parallel with several workers is as easy as providing an executor:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent</span><span class="w"> </span><span class="kn">import</span> <span class="n">futures</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="n">instrum</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># We use ThreadPoolExecutor for CircleCI but please</span>
+<span class="c1"># use the line just below, with ProcessPoolExecutor instead (unless your</span>
+<span class="c1"># code is I/O bound rather than CPU bound):</span>
+<span class="k">with</span> <span class="n">futures</span><span class="o">.</span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">optimizer</span><span class="o">.</span><span class="n">num_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+<span class="c1">#with futures.ProcessPoolExecutor(max_workers=optimizer.num_workers) as executor:</span>
+    <span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">executor</span><span class="o">=</span><span class="n">executor</span><span class="p">,</span> <span class="n">batch_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With <code class="code docutils literal notranslate"><span class="pre">batch_mode=True</span></code> it will ask the optimizer for <code class="code docutils literal notranslate"><span class="pre">num_workers</span></code> points to evaluate, run the evaluations, then update the optimizer with the <code class="code docutils literal notranslate"><span class="pre">num_workers</span></code> function outputs, and repeat until the budget is all spent. Since no executor is provided, the evaluations will be sequential. <code class="code docutils literal notranslate"><span class="pre">num_workers</span> <span class="pre">&gt;</span> <span class="pre">1</span></code> with no executor is therefore suboptimal but nonetheless useful for evaluation purpose (i.e. we simulate parallelism but have no actual parallelism). <code class="code docutils literal notranslate"><span class="pre">batch_mode=False</span></code> (steady state mode) will ask for a new evaluation whenever a worker is ready.</p>
+</section>
+<section id="ask-and-tell-interface">
+<h2>Ask and tell interface<a class="headerlink" href="#ask-and-tell-interface" title="Link to this heading"></a></h2>
+<p>An <em>ask and tell</em> interface is also available. The 3 key methods for this interface are respectively:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">ask</span></code>: suggest a candidate on which to evaluate the function to optimize.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">tell</span></code>: to update the optimizer with the value of the function for a candidate.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">provide_recommendation</span></code>: returns the candidate the algorithms considers the best.</p></li>
+</ul>
+<p>For most optimization algorithms in the platform, they can be called in arbitrary order - asynchronous optimization is OK. Some algorithms (with class attribute <code class="code docutils literal notranslate"><span class="pre">no_parallelization=True</span></code> however do not support this.</p>
+<p>The <code class="code docutils literal notranslate"><span class="pre">Parameter</span></code> class holds attribute <code class="code docutils literal notranslate"><span class="pre">value</span></code> which contain the actual value to evaluate through the function.</p>
+<p>Here is a simpler example in the sequential case (this is what happens in the <code class="code docutils literal notranslate"><span class="pre">optimize</span></code> method for <code class="code docutils literal notranslate"><span class="pre">num_workers=1</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">12</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">instrum</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Instrumentation</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Array</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,)),</span> <span class="n">y</span><span class="o">=</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Scalar</span><span class="p">())</span>  <span class="c1"># We are working on R^2 x R.</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="n">instrum</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">budget</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">ask</span><span class="p">()</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="o">*</span><span class="n">x</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">x</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">optimizer</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">loss</span><span class="p">)</span>
+
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">provide_recommendation</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Please make sure that your function returns a float, and that you indeed want to perform minimization and not maximization ;)</p>
+</section>
+<section id="choosing-an-optimizer">
+<h2>Choosing an optimizer<a class="headerlink" href="#choosing-an-optimizer" title="Link to this heading"></a></h2>
+<p><code class="code docutils literal notranslate"><span class="pre">ng.optimizers.registry</span></code> is a <code class="code docutils literal notranslate"><span class="pre">dict</span></code> of all optimizers, so you <code class="code docutils literal notranslate"><span class="pre">ng.optimizers.NgIohTuned</span></code> is equivalent to <code class="code docutils literal notranslate"><span class="pre">ng.optimizers.registry[&quot;NgIohTuned&quot;]</span></code>.
+Also, <strong>you can print the full list of optimizers</strong> with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>All algorithms have strengths and weaknesses. Questionable rules of thumb could be:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">NgIohTuned</span></code> is “meta”-optimizer which adapts to the provided settings (budget, number of workers, parametrization) and should therefore be a good default.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">TwoPointsDE</span></code> is excellent in many cases, including very high <code class="code docutils literal notranslate"><span class="pre">num_workers</span></code>.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PortfolioDiscreteOnePlusOne</span></code> is excellent in discrete settings of mixed settings when high precision on parameters is not relevant; it’s possibly a good choice for hyperparameter choice.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">OnePlusOne</span></code> is a simple robust method for continuous parameters with <code class="code docutils literal notranslate"><span class="pre">num_workers</span></code> &lt; 8.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">CMA</span></code> is excellent for control (e.g. neurocontrol) when the environment is not very noisy (num_workers ~50 ok) and when the budget is large (e.g. 1000 x the dimension).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">TBPSA</span></code> is excellent for problems corrupted by noise, in particular overparameterized (neural) ones; very high <code class="code docutils literal notranslate"><span class="pre">num_workers</span></code> ok).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">PSO</span></code> is excellent in terms of robustness, high <code class="code docutils literal notranslate"><span class="pre">num_workers</span></code> ok.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ScrHammersleySearchPlusMiddlePoint</span></code> is excellent for super parallel cases (fully one-shot, i.e. <code class="code docutils literal notranslate"><span class="pre">num_workers</span></code> = budget included) or for very multimodal cases (such as some of our MLDA problems); don’t use softmax with this optimizer.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">RandomSearch</span></code> is the classical random search baseline; don’t use softmax with this optimizer.</p></li>
+</ul>
+</section>
+<section id="telling-non-asked-points-or-suggesting-points">
+<h2>Telling non-asked points, or suggesting points<a class="headerlink" href="#telling-non-asked-points-or-suggesting-points" title="Link to this heading"></a></h2>
+<p>There are two ways to inoculate information you already have about some points:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">optimizer.sugggest(*args,</span> <span class="pre">**kwargs)</span></code>: after suggesting a point, the next <code class="code docutils literal notranslate"><span class="pre">ask</span></code> will be a point with the provided inputs. Make sure you call <code class="code docutils literal notranslate"><span class="pre">optimizer.suggest</span></code> the same way (= with the same arguments) that you would call your function to optimize.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">candidate</span> <span class="pre">=</span> <span class="pre">optimizer.parametrization.spawn_child(new_value=your_value)</span></code>  which you can then use to <code class="code docutils literal notranslate"><span class="pre">tell</span></code> the optimizer with the corresponding loss.</p></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>parametrized with an <code class="code docutils literal notranslate"><span class="pre">ng.p.Instrumentation</span></code></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Instrumentation</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Choice</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]),</span> <span class="n">lr</span><span class="o">=</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">Log</span><span class="p">(</span><span class="n">lower</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mf">1.0</span><span class="p">))</span>
+<span class="n">optim</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="n">param</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">optim</span><span class="o">.</span><span class="n">suggest</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">candidate</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">ask</span><span class="p">()</span>
+<span class="c1"># equivalent to:</span>
+<span class="n">candidate</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">parametrization</span><span class="o">.</span><span class="n">spawn_child</span><span class="p">(</span><span class="n">new_value</span><span class="o">=</span><span class="p">((</span><span class="s2">&quot;c&quot;</span><span class="p">,),</span> <span class="p">{</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="mf">0.02</span><span class="p">}))</span>
+<span class="c1"># you can then use to tell the loss</span>
+<span class="n">optim</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>parametrized with an <code class="code docutils literal notranslate"><span class="pre">Array</span></code>:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optim</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">optim</span><span class="o">.</span><span class="n">suggest</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+<span class="n">candidate</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">ask</span><span class="p">()</span>
+<span class="c1"># equivalent to:</span>
+<span class="n">candidate</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">parametrization</span><span class="o">.</span><span class="n">spawn_child</span><span class="p">(</span><span class="n">new_value</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+<span class="c1"># you can then use to tell the loss</span>
+<span class="n">optim</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Note:</strong> some optimizers do not support such inoculation. Those will raise a <code class="code docutils literal notranslate"><span class="pre">TellNotAskedNotSupportedError</span></code>.</p>
+</section>
+<section id="adding-callbacks">
+<h2>Adding callbacks<a class="headerlink" href="#adding-callbacks" title="Link to this heading"></a></h2>
+<p>You can add callbacks to the <code class="code docutils literal notranslate"><span class="pre">ask</span></code> and <code class="code docutils literal notranslate"><span class="pre">tell</span></code> methods through the <code class="code docutils literal notranslate"><span class="pre">register_callback</span></code> method.
+The functions/callbacks registered on <code class="code docutils literal notranslate"><span class="pre">ask</span></code> must have signature <code class="code docutils literal notranslate"><span class="pre">callback</span> <span class="pre">(optimizer)</span></code> and functions registered on <code class="code docutils literal notranslate"><span class="pre">tell</span></code> must have signature <code class="code docutils literal notranslate"><span class="pre">function(optimizer,</span> <span class="pre">candidate,</span> <span class="pre">value)</span></code>.</p>
+<p>The example below shows a callback which prints <code class="code docutils literal notranslate"><span class="pre">candidate</span></code> and <code class="code docutils literal notranslate"><span class="pre">value</span></code> on <code class="code docutils literal notranslate"><span class="pre">tell</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">print_candidate_and_value</span><span class="p">(</span><span class="n">optimizer</span><span class="p">,</span> <span class="n">candidate</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">register_callback</span><span class="p">(</span><span class="s2">&quot;tell&quot;</span><span class="p">,</span> <span class="n">print_candidate_and_value</span><span class="p">)</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">my_function</span><span class="p">)</span>  <span class="c1"># triggers a print at each tell within minimize</span>
+</pre></div>
+</div>
+<p>Two callbacks are available through <code class="code docutils literal notranslate"><span class="pre">ng.callbacks</span></code>, see the <a class="reference internal" href="ref_callbacks.html#callbacks"><span class="std std-ref">callbacks module documentation</span></a>.</p>
+</section>
+<section id="optimization-with-constraints">
+<h2>Optimization with constraints<a class="headerlink" href="#optimization-with-constraints" title="Link to this heading"></a></h2>
+<p>Sometimes you want the best candidate, given some constraints.</p>
+<p>Then, if you want to work with the ask/tell form, instead of</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>you can do</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">candidate</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="p">[</span><span class="n">constraint_violation1</span><span class="p">,</span> <span class="n">constraint_violation2</span><span class="p">,</span> <span class="n">constraint_violation3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Or, if you work with minimize, you can also replace</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss_function</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>by</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss_function</span><span class="p">,</span> <span class="n">constraint_violations</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where constraint_violations maps a candidate to a vector of constraint violations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>constraint_violation</cite> is by far the most effective and recommended approach for handling constraints. While <cite>register_cheap_constraint</cite> is available and may be useful in certain specific cases, it is generally less robust. Always define your constraints using the float-valued form (returning a violation magnitude). Avoid using the boolean form unless a float-valued version is not possible.</p>
+</div>
+<p>Nevergrad has, also, a mechanism for cheap constraints.
+“Cheap” means that we do not try to reduce the number of calls to such constraints.
+We basically repeat mutations until we get a satisfiable point.</p>
+<p>Let us say that we want to minimize <code class="code docutils literal notranslate"><span class="pre">(x[0]-.5)**2</span> <span class="pre">+</span> <span class="pre">(x[1]-.5)**2</span></code> under the constraint <code class="code docutils literal notranslate"><span class="pre">x[0]</span> <span class="pre">&gt;=</span> <span class="pre">1</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># define a constraint on first variable of x:</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">parametrization</span><span class="o">.</span><span class="n">register_cheap_constraint</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; [1.00037625, 0.50683314]</span>
+</pre></div>
+</div>
+<p>Note that we can provide a richer information by using float-valued constraints (&gt;= 0 if ok):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">NGOpt</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="c1"># define a constraint on first variable of x:</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">parametrization</span><span class="o">.</span><span class="n">register_cheap_constraint</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="c1"># &gt;&gt;&gt; [1.00037625, 0.50683314]</span>
+</pre></div>
+</div>
+</section>
+<section id="optimizing-machine-learning-hyperparameters">
+<h2>Optimizing machine learning hyperparameters<a class="headerlink" href="#optimizing-machine-learning-hyperparameters" title="Link to this heading"></a></h2>
+<p>When optimizing hyperparameters as e.g. in machine learning. If you don’t know what variables (see <a class="reference internal" href="parametrization.html#parametrizing"><span class="std std-ref">Parametrization</span></a> to use:</p>
+<ul class="simple">
+<li><p>use <code class="code docutils literal notranslate"><span class="pre">Choice</span></code> for discrete variables</p></li>
+<li><p>use <code class="code docutils literal notranslate"><span class="pre">TwoPointsDE</span></code> with <code class="code docutils literal notranslate"><span class="pre">num_workers</span></code> equal to the number of workers available to you. See the <a class="reference internal" href="machinelearning.html#machinelearning"><span class="std std-ref">machine learning examples</span></a> for more.</p></li>
+</ul>
+<p>Or if you want something more aimed at robustly outperforming random search in highly parallel settings (one-shot):</p>
+<ul class="simple">
+<li><p>use <code class="code docutils literal notranslate"><span class="pre">TransitionChoice</span></code> for discrete variables, taking care that the default value is in the middle.</p></li>
+<li><p>Use <code class="code docutils literal notranslate"><span class="pre">ScrHammersleySearchPlusMiddlePoint</span></code> (<code class="code docutils literal notranslate"><span class="pre">PlusMiddlePoint</span></code> only if you have continuous parameters or good default values for discrete parameters).</p></li>
+</ul>
+</section>
+<section id="example-with-permutation">
+<h2>Example with permutation<a class="headerlink" href="#example-with-permutation" title="Link to this heading"></a></h2>
+<p>SimpleTSP and ComplexTSP are two cases of optimization on a domain of permutations:
+<a class="reference external" href="https://docs.google.com/document/d/1B5yVOx1H1nnjY3EOf14487hAr8CzwJ9zEkDwQnZ5nbE/edit?usp=sharing">example here.</a>
+This is relevant when you optimize a single big permutation.
+Also includes cases with many small permutations.</p>
+</section>
+<section id="example-of-chaining-or-inoculation-or-initialization-of-an-evolutionary-algorithm">
+<h2>Example of chaining, or inoculation, or initialization of an evolutionary algorithm<a class="headerlink" href="#example-of-chaining-or-inoculation-or-initialization-of-an-evolutionary-algorithm" title="Link to this heading"></a></h2>
+<p>Chaining consists in running several algorithms in turn, information being forwarded from the first to the second and so on.
+More precisely, the budget is distributed over several algorithms, and when an objective function value is computed, all algorithms are informed.</p>
+<p>Here is how to create such optimizers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Running LHSSearch with budget num_workers and then DE:</span>
+<span class="n">DEwithLHS</span> <span class="o">=</span> <span class="n">Chaining</span><span class="p">([</span><span class="n">LHSSearch</span><span class="p">,</span> <span class="n">DE</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;num_workers&quot;</span><span class="p">])</span>
+
+<span class="c1"># Runninng LHSSearch with budget the dimension and then DE:</span>
+<span class="n">DEwithLHSdim</span> <span class="o">=</span> <span class="n">Chaining</span><span class="p">([</span><span class="n">LHSSearch</span><span class="p">,</span> <span class="n">DE</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;dimension&quot;</span><span class="p">])</span>
+
+<span class="c1"># Runnning LHSSearch with budget 30 and then DE:</span>
+<span class="n">DEwithLHS30</span> <span class="o">=</span> <span class="n">Chaining</span><span class="p">([</span><span class="n">LHSSearch</span><span class="p">,</span> <span class="n">DE</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">])</span>
+
+<span class="c1"># Running LHS for 100 iterations, then DE for 60, then CMA:</span>
+<span class="n">LHSthenDEthenCMA</span> <span class="o">=</span> <span class="n">Chaining</span><span class="p">([</span><span class="n">LHSSearch</span><span class="p">,</span> <span class="n">DE</span><span class="p">,</span> <span class="n">CMA</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>We can then minimize as usual:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mf">.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">DEwithLHS30</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">recommendation</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">recommendation</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="mf">0.50843113</span><span class="p">,</span> <span class="mf">0.5104554</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="multiobjective-minimization-with-nevergrad">
+<h2>Multiobjective minimization with Nevergrad<a class="headerlink" href="#multiobjective-minimization-with-nevergrad" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Multiobjective minimization is a <strong>work in progress</strong> in <code class="code docutils literal notranslate"><span class="pre">nevergrad</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>not stable</strong>: the API may be updated at any time, hopefully to make it simpler and more intuitive.</p></li>
+<li><p><strong>not robust</strong>: there are probably corner cases we have not investigated yet.</p></li>
+<li><p><strong>not scalable</strong>: it is not yet clear how the current version will work with large number of losses, or large budget. For now the features have been implemented without time complexity considerations.</p></li>
+<li><p><strong>not optimal</strong>: this currently transforms multiobjective functions into monoobjective functions, hence losing some structure and making the function dynamic, which some optimizers are not designed to work on.</p></li>
+</ul>
+</div></blockquote>
+<p>In other words, use it at your own risk ;) and provide feedback (both positive and negative) if you have any!</p>
+</div>
+<p>To perform multiobjective optimization, you can just provide <code class="code docutils literal notranslate"><span class="pre">tell</span></code> with the results as an array or list of floats:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nevergrad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ng</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">multiobjective</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: &quot;</span><span class="p">,</span> <span class="n">multiobjective</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])))</span>
+<span class="c1"># &gt;&gt;&gt; Example: [5.0, 2.0]</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">ng</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">CMA</span><span class="p">(</span><span class="n">parametrization</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">budget</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># for all but DE optimizers, deriving a volume out of the losses,</span>
+<span class="c1"># it&#39;s not strictly necessary but highly advised to provide an</span>
+<span class="c1"># upper bound reference for the losses (if not provided, such upper</span>
+<span class="c1"># bound is automatically inferred with the first few &quot;tell&quot;)</span>
+<span class="n">optimizer</span><span class="o">.</span><span class="n">tell</span><span class="p">(</span><span class="n">ng</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">MultiobjectiveReference</span><span class="p">(),</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="c1"># note that you can provide a Parameter to MultiobjectiveReference,</span>
+<span class="c1"># which will be passed to the optimizer</span>
+
+<span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">multiobjective</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># The function embeds its Pareto-front:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pareto front:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">optimizer</span><span class="o">.</span><span class="n">pareto_front</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">losses</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2"> with losses </span><span class="si">{</span><span class="n">param</span><span class="o">.</span><span class="n">losses</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># &gt;&gt;&gt; Array{(3,)}:[0. 0. 0.] with loss [0. 3.]</span>
+<span class="c1">#     Array{(3,)}:[0.39480968 0.98105712 0.55785803] with loss [1.42955333 0.56210368]</span>
+<span class="c1">#     Array{(3,)}:[1.09901515 0.97673712 0.97153943] with loss [3.10573857 0.01115516]</span>
+
+<span class="c1"># It can also provide subsets:</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Random subset:&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">pareto_front</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loss-covering subset:&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">pareto_front</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;loss-covering&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Domain-covering subset:&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">pareto_front</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;domain-covering&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;EPS subset:&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">pareto_front</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="s2">&quot;EPS&quot;</span><span class="p">))</span>
+
+</pre></div>
+</div>
+<p>Currently most optimizers only derive a volume float loss from the multiobjective loss and minimize it.
+<code class="code docutils literal notranslate"><span class="pre">DE</span></code> and its variants have however been updated to make use of the full multi-objective losses
+[#789](<a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/789">https://github.com/facebookresearch/nevergrad/pull/789</a>), which make them good candidates for multi-objective minimization (<code class="code docutils literal notranslate"><span class="pre">NgIohTuned</span></code> will
+delegate to DE in the case of multi-objective functions).</p>
+</section>
+<section id="reproducibility">
+<h2>Reproducibility<a class="headerlink" href="#reproducibility" title="Link to this heading"></a></h2>
+<p>Each parametrization has its own <code class="code docutils literal notranslate"><span class="pre">random_state</span></code> for generating random numbers. All optimizers pull from it when they require stochastic behaviors.
+For reproducibility, this random state can be seeded in two ways:</p>
+<ul class="simple">
+<li><p>by setting <code class="code docutils literal notranslate"><span class="pre">numpy</span></code>’s global random state seed (<code class="code docutils literal notranslate"><span class="pre">np.random.seed(32)</span></code>) before the parametrization’s first use. Indeed, when first used,
+the parametrization’s random state is seeded with a seed drawn from the global random state.</p></li>
+<li><p>by manually seeding the parametrization random state (E.g.: <code class="code docutils literal notranslate"><span class="pre">parametrization.random_state.seed(12)</span></code> or <code class="code docutils literal notranslate"><span class="pre">optimizer.parametrization.random_state</span> <span class="pre">=</span> <span class="pre">np.random.RandomState(12)</span></code>)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="windows.html" class="btn btn-neutral float-left" title="Installation and configuration on Windows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parametrization.html" class="btn btn-neutral float-right" title="Parametrizing your optimization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Facebook AI Research.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

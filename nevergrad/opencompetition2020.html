@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Optimization Competition 2020 &mdash; nevergrad  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Optimizer API" href="ref_optimizer.html" />
+    <link rel="prev" title="Contributing to Nevergrad" href="contributing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            nevergrad
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">CONTENTS</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="windows.html">Installation and configuration on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">How to perform optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Nevergrad</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Open Optimization Competition 2020</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#performance-improvements-for-any-of-the-following-performance-tracks">Performance: Improvements for any of the following performance tracks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#new-ideas-others-contributions-to-the-experimental-routines-including">New ideas &amp; others: contributions to the experimental routines, including</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submission">Submission</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-principles">Key principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#papers-in-the-acm-gecco-proceedings-companion">Papers in the ACM GECCO Proceedings Companion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dates">Dates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#winners">Winners:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-nevergrad-and-iohprofiler">About Nevergrad and IOHprofiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#nevergrad">Nevergrad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iohprofiler">IOHProfiler</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#award-committee-members">Award Committee Members</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#details-about-the-submissions">Details about the Submissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recommended-topics-non-exhaustive-list">Recommended topics (non-exhaustive list)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#improvements-in-any-of-the-following-optimization-categories">Improvements in any of the following optimization categories:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improvements-in-terms-of-benchmarking">Improvements in terms of benchmarking:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-contributions">Software contributions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#organizers">Organizers</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="machinelearning.html">Nevergrad for machine learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="r.html">Nevergrad for R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="benchmarks.html">Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pyomo.html">Working with Pyomo model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="statistics/Statistics.html">Benchmarks in Nevergrad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statistics/AgStatistics.html">Benchmarks in Nevergrad (excluding wizards)</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">nevergrad</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Open Optimization Competition 2020</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/opencompetition2020.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="open-optimization-competition-2020">
+<h1>Open Optimization Competition 2020<a class="headerlink" href="#open-optimization-competition-2020" title="Link to this heading"></a></h1>
+<p>The Nevergrad and IOHprofiler teams are happy to announce that we have
+paired up for the Open Optimization Competition 2020.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>All kind of contributions (under the form of pull requests) to Nevergrad and IOHprofiler are eligible.
+For example, we distinguish two (non exclusive) categories for submission.</p>
+<section id="performance-improvements-for-any-of-the-following-performance-tracks">
+<h3>Performance: Improvements for any of the following performance tracks<a class="headerlink" href="#performance-improvements-for-any-of-the-following-performance-tracks" title="Link to this heading"></a></h3>
+<p>(classic competition, with existing baselines that are meant to be outperformed)</p>
+<ul class="simple">
+<li><p>One-shot optimization</p></li>
+<li><p>Low budget optimization</p></li>
+<li><p>Multi-objective optimization</p></li>
+<li><p>Discrete optimization</p></li>
+<li><p>Structured optimization</p></li>
+<li><p>Constrained optimization</p></li>
+</ul>
+<p>We explicitly allow portfolio-based algorithms such as landscape-aware algorithm selection techniques, etc.</p>
+</section>
+<section id="new-ideas-others-contributions-to-the-experimental-routines-including">
+<h3>New ideas &amp; others: contributions to the experimental routines, including<a class="headerlink" href="#new-ideas-others-contributions-to-the-experimental-routines-including" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>suggestions for performance measures and statistics,</p></li>
+<li><p>good benchmark problems,</p></li>
+<li><p>modular algorithm frameworks,</p></li>
+<li><p>visualization of data,</p></li>
+<li><p>parallelization,</p></li>
+<li><p>reproducibility,</p></li>
+<li><p>etc.</p></li>
+</ul>
+</section>
+</section>
+<section id="submission">
+<h2>Submission<a class="headerlink" href="#submission" title="Link to this heading"></a></h2>
+<p>All contributions are directly made to either one of the tools, Nevergrad or IOHprofiler, via pull requests on our GitHub pages. You do not have to do anything else than a pull request:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/facebookresearch/nevergrad">https://github.com/facebookresearch/nevergrad</a> for Nevergrad</p></li>
+<li><p><a class="reference external" href="https://github.com/IOHprofiler/">https://github.com/IOHprofiler/</a> for IOHprofiler [for IOHprofiler, please use the competition branch of the repositories “IOHanalyzer” or “IOHexperimenter” for your submissions]</p></li>
+</ul>
+<p>All supporting material should be uploaded together with the pull request. Links to arXiv papers etc are possible and welcome, but by no means mandatory. Keep in mind that a good description of your contribution increases the chance that jury members will understand and value your contribution.
+All pull requests not yet merged on December 1 2019 and opened before September 30, 2020 are eligible for the competition</p>
+<p>Nevergrad requires a CLA for contributors (see in the “Contributing to Nevergad” section of the <a class="reference external" href="https://facebookresearch.github.io/nevergrad/">documentation</a>).</p>
+</section>
+<section id="key-principles">
+<h2>Key principles<a class="headerlink" href="#key-principles" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Open source: no matter how good the results are, if they can not be reproduced or the code can not be checked, this is not in the scope.</p></li>
+<li><p>Reproducibility: if the code can not be run easily, it is also not in the scope.</p></li>
+</ul>
+</section>
+<section id="papers-in-the-acm-gecco-proceedings-companion">
+<h2>Papers in the ACM GECCO Proceedings Companion<a class="headerlink" href="#papers-in-the-acm-gecco-proceedings-companion" title="Link to this heading"></a></h2>
+<p>Documentations of your submissions can also be submitted for publication in the <strong>GECCO companion materials</strong>.
+For all details, please check <a class="reference external" href="https://gecco-2020.sigevo.org/index.html/Workshops">https://gecco-2020.sigevo.org/index.html/Workshops</a>
+Note that the page limit is <strong>2 pages in ACM format</strong>, including references
+Submission deadline: April 17, 2020
+Make sure to select the Open Optimization Competition 2020 as track when you submit your paper.</p>
+</section>
+<section id="dates">
+<h2>Dates<a class="headerlink" href="#dates" title="Link to this heading"></a></h2>
+<p><strong>Submission deadline is Sept. 30, 2020, AoE</strong>
+All pull requests active between December 1st 2019 and Sept 30, 2020 are eligible.</p>
+</section>
+<section id="winners">
+<h2>Winners:<a class="headerlink" href="#winners" title="Link to this heading"></a></h2>
+<p>The winning entries of the Open Optimization Competition 2020 are
+(ordered by pull request ID):</p>
+<ul class="simple">
+<li><p>nojhan
+<a class="reference external" href="https://github.com/IOHprofiler/IOHexperimenter/pull/45">https://github.com/IOHprofiler/IOHexperimenter/pull/45</a>
+On-the-fly computation of the area under the EDCF curve, for use within automated algorithm configuration frameworks. A proxy for integrating problems defined in Python.</p></li>
+<li><p>teftimov
+<a class="reference external" href="https://github.com/IOHprofiler/IOHanalyzer/pull/56">https://github.com/IOHprofiler/IOHanalyzer/pull/56</a>
+Interface to the Deep Statistical Comparison Toolbox and PerformViz.</p></li>
+<li><p>Corwinpro
+<a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/484">https://github.com/facebookresearch/nevergrad/pull/484</a>
+Hypervolume (pyhv.py) module rewrite. Makes the code more readable, and makes the license more compliant.</p></li>
+<li><p>Foloso
+<a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/812">https://github.com/facebookresearch/nevergrad/pull/812</a>
+Adds a real-world objective function describing Madagascar’s electricity mix.</p></li>
+<li><p>Pacowong
+<a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/823">https://github.com/facebookresearch/nevergrad/pull/823</a>
+Draft of an NSGA-II implementation</p></li>
+</ul>
+<p>Second Prize
+(ordered by pull request ID):</p>
+<ul class="simple">
+<li><p>Fteytaud
+<a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/551">https://github.com/facebookresearch/nevergrad/pull/551</a>  <a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/561">https://github.com/facebookresearch/nevergrad/pull/561</a>  <a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/404">https://github.com/facebookresearch/nevergrad/pull/404</a>
+EMNA and EMNA combined with population control methods.</p></li>
+<li><p>Herilalaina
+<a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/790">https://github.com/facebookresearch/nevergrad/pull/790</a>
+Adding Mujoco support from Lamcts and Ars papers.</p></li>
+<li><p>Alexd314
+<a class="reference external" href="https://github.com/facebookresearch/nevergrad/pull/828">https://github.com/facebookresearch/nevergrad/pull/828</a>
+Real-world problem: fitting an animatable 3D human mesh template to data</p></li>
+</ul>
+<p>Honorable mention (in no particular order):</p>
+<ul class="simple">
+<li><p>thomasWeise
+<a class="reference external" href="https://github.com/IOHprofiler/IOHanalyzer/pull/39">https://github.com/IOHprofiler/IOHanalyzer/pull/39</a>
+Support for string-based function IDs in IOHanalyzer and bug fixing in uploading zip files containing multiple algorithms</p></li>
+<li><p>Ljialin
+Variations around NGOpt, an algorithm for algorithm selection implemented in Nevergrad. Led to a paper published with the Nevergrad team.</p></li>
+<li><p>Dvermetten
+Adding experiments from IOHexperimenter.</p></li>
+<li><p>Dietermarwo
+add support for alternative cmaes implementation (fcmaes)</p></li>
+<li><p>Fmder
+Cooperative Coevolution Optimization with DEAP</p></li>
+</ul>
+<p>List of winners: <a class="reference external" href="https://github.com/facebookresearch/nevergrad/blob/main/docs/winners2020.rst">https://github.com/facebookresearch/nevergrad/blob/main/docs/winners2020.rst</a></p>
+</section>
+<section id="about-nevergrad-and-iohprofiler">
+<h2>About Nevergrad and IOHprofiler<a class="headerlink" href="#about-nevergrad-and-iohprofiler" title="Link to this heading"></a></h2>
+<section id="nevergrad">
+<h3>Nevergrad<a class="headerlink" href="#nevergrad" title="Link to this heading"></a></h3>
+<p>Nevergrad is an open source platform for derivative-free optimization:  it contains a wide range of optimizers, test cases, supports multiobjective optimization and handles constraints. It automatically updates results of all experiments merged in the codebase, hence users do not need computational power for participating and getting results.</p>
+</section>
+<section id="iohprofiler">
+<h3>IOHProfiler<a class="headerlink" href="#iohprofiler" title="Link to this heading"></a></h3>
+<p>IOHprofiler is a tool for benchmarking iterative optimization heuristics such as local search variants, evolutionary algorithms, model-based algorithms, and other sequential optimization techniques. IOHprofiler has two components:</p>
+<ul class="simple">
+<li><p>IOHexperimenter for running empirical evaluations</p></li>
+<li><p>IOHanalyzer for the statistical analysis and visualization of the experiment data.
+A documentation is available here: <a class="reference external" href="https://iohprofiler.github.io/">https://iohprofiler.github.io/</a></p></li>
+</ul>
+</section>
+</section>
+<section id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading"></a></h2>
+<p>We want to build open-source, user-friendly, and community-driven platforms for comparing different optimization techniques. Our key principles are reproducibility, open source, and ease of access. While we have set some first steps towards such platforms, we believe that the tools can greatly benefit from the contributions of the various communities for whom they are built.</p>
+</section>
+<section id="award-committee-members">
+<h2>Award Committee Members<a class="headerlink" href="#award-committee-members" title="Link to this heading"></a></h2>
+<p>The award committee members are:</p>
+<ul class="simple">
+<li><p>Enrique Alba (University of Málaga, Spain)</p></li>
+<li><p>Maxim Buzdalov (ITMO University, Russia)</p></li>
+<li><p>Josu Cerebio (University of the Basque country, Spain)</p></li>
+<li><p>Benjamin Doerr (Ecole Polytechnique, France)</p></li>
+<li><p>Tobias Glasmachers (Ruhr-Universität Bochum, Germany)</p></li>
+<li><p>Manuel Lopez-Ibanez (University of Manchester, UK)</p></li>
+<li><p>Katherine Mary Malan  (University of South Africa)</p></li>
+<li><p>Luís Paquete (University of Coimbra, Portugal)</p></li>
+<li><p>Jan van Rijn (Leiden University, The Netherlands)</p></li>
+<li><p>Marc Schoenauer (Inria Saclay, France)</p></li>
+<li><p>Thomas Weise (Hefei University, China)</p></li>
+</ul>
+<p>Our policy re. possible conflict of interest: Award committee members can not propose as winner a person with whom they worked directly during the previous 12 months. There is no restriction for coworkers of other committee members than oneself.
+Submissions made by members of the organizing committee or by employees of Facebook can not be awarded. Their coworkers can be rewarded (but only for work that does not involve organizers nor Facebook employees).</p>
+</section>
+<section id="details-about-the-submissions">
+<h2>Details about the Submissions<a class="headerlink" href="#details-about-the-submissions" title="Link to this heading"></a></h2>
+<p>All submissions are based on pull request, which are directly made to either one of the tools, via</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/facebookresearch/nevergrad">https://github.com/facebookresearch/nevergrad</a> for Nevergrad</p></li>
+<li><p><a class="reference external" href="https://github.com/IOHprofiler/">https://github.com/IOHprofiler/</a> for IOHprofiler. For submissions to IOHprofiler, please use the competition branch</p></li>
+</ul>
+</section>
+<section id="recommended-topics-non-exhaustive-list">
+<h2>Recommended topics (non-exhaustive list)<a class="headerlink" href="#recommended-topics-non-exhaustive-list" title="Link to this heading"></a></h2>
+<p>We identify the following list of topics for which we feel that great contributions are possible.
+This does not exclude other forms of contributions; all pull requests are eligible; please just do a pull request, follow the discussion there, you might specify a track in the conversation but this is not mandatory.</p>
+<section id="improvements-in-any-of-the-following-optimization-categories">
+<h3>Improvements in any of the following optimization categories:<a class="headerlink" href="#improvements-in-any-of-the-following-optimization-categories" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>One-shot optimization</p></li>
+<li><p>Low budget optimization</p></li>
+<li><p>Multi-objective optimization</p></li>
+<li><p>Discrete optimization, in particular self-adaptation</p></li>
+<li><p>Structured optimization (e.g. almost periodic problems with several groups of variables)</p></li>
+<li><p>Constraint handling</p></li>
+<li><p>Algorithm selection and combination</p></li>
+<li><p>As a beta version, we have an automatic recomputing of various benchmark results, at <a class="reference external" href="https://dl.fbaipublicfiles.com/nevergrad/allxps/list.html">https://dl.fbaipublicfiles.com/nevergrad/allxps/list.html</a>, including realworld benchmarks, Yet another black-box optimization benchmark (YABBOB), and many others.</p></li>
+</ul>
+</section>
+<section id="improvements-in-terms-of-benchmarking">
+<h3>Improvements in terms of benchmarking:<a class="headerlink" href="#improvements-in-terms-of-benchmarking" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Criteria in benchmarking, e.g. robustness criteria over large families of problems</p></li>
+<li><p>Visualization of data</p></li>
+<li><p>New problems (structured optimization, new classes of problems, real world problems)</p></li>
+<li><p>Cross-validation issues in optimization benchmarking</p></li>
+<li><p>Statistics</p></li>
+</ul>
+</section>
+<section id="software-contributions">
+<h3>Software contributions<a class="headerlink" href="#software-contributions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Distribution over clusters or grids</p></li>
+<li><p>Software contribution in general</p></li>
+<li><p>Mathematically justified improvement</p></li>
+</ul>
+<p>The awards will be separated in two tracks:</p>
+<ul class="simple">
+<li><p>Performance: making algorithms better or designing better algorithms;</p></li>
+<li><p>Contributions: everything people can think of, which makes the platform better for users and for science.
+Please note that tracks are indicative; you do not have to specify a track.</p></li>
+</ul>
+</section>
+</section>
+<section id="organizers">
+<h2>Organizers<a class="headerlink" href="#organizers" title="Link to this heading"></a></h2>
+<p>In case of questions, please do not hesitate to contact the organizers of the competition. Please send all inquiries to Carola (Carola.Doerr&#64;lip6.fr) and Olivier (oteytaud&#64;fb.com), who will coordinate your request.</p>
+<ul class="simple">
+<li><p>Thomas Bäck (Leiden University, The Netherlands)</p></li>
+<li><p>Carola Doerr (CNRS, Sorbonne Université, Paris, France)</p></li>
+<li><p>Antoine Moreau (Université Clermont Auvergne)</p></li>
+<li><p>Jeremy Rapin (Facebook Artificial Intelligence Research, Paris, France)</p></li>
+<li><p>Baptiste Roziere (Facebook Artificial Intelligence Research, Paris, France)</p></li>
+<li><p>Ofer M. Shir (Tel-Hai College and Migal Institute, Israel)</p></li>
+<li><p>Olivier Teytaud (Facebook Artificial Intelligence Research, Paris, France)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="contributing.html" class="btn btn-neutral float-left" title="Contributing to Nevergrad" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ref_optimizer.html" class="btn btn-neutral float-right" title="Optimizer API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, Facebook AI Research.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

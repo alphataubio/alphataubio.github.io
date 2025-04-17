@@ -9,6 +9,8 @@
   <title>Parametrizing your optimization &mdash; nevergrad  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=9a177f33" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -16,10 +18,11 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Running algorithm benchmarks" href="benchmarking.html" />
+    <link rel="next" title="Strict constraints in continuous optimization NEW" href="constraints.html" />
     <link rel="prev" title="How to perform optimization" href="optimization.html" /> 
 </head>
 
@@ -57,15 +60,16 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">Strict constraints in continuous optimization <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">NEW</span></a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Nevergrad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opencompetition2020.html">Open Optimization Competition 2020</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimization API (ng.optimizers)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API (ng.p)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API (ng.callbacks)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul>
@@ -76,7 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad <span style="background:#e91e63;color:white;border-radius:4px;padding:2px 6px;font-size:0.75em;">NEW</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">NEW</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
 <ul>
@@ -110,9 +114,11 @@
              
   <section id="parametrizing-your-optimization">
 <span id="parametrizing"></span><h1>Parametrizing your optimization<a class="headerlink" href="#parametrizing-your-optimization" title="Link to this heading"></a></h1>
-<p><strong>Please note that parametrization is still a work in progress and changes are on their way (including for this documentation)! We are trying to update it to make it simpler and simpler to use (all feedbacks are welcome ;) ), with the side effect that there will be breaking changes.</strong></p>
-<p>The aim of parametrization is to specify what are the parameters that the optimization should be performed upon.
-The parametrization subpackage will help you do thanks to:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that parametrization is still a work in progress and changes are on their way (including for this documentation)! We are trying to update it to make it simpler and simpler to use with the side effect that there will be breaking changes. All feedbacks is welcome.</p>
+</div>
+<p>The aim of parametrization is to specify what are the parameters that the optimization should be performed upon:</p>
 <ul class="simple">
 <li><p>the <code class="code docutils literal notranslate"><span class="pre">parameter</span></code> modules (accessed by the shortcut <code class="code docutils literal notranslate"><span class="pre">nevergrad.p</span></code>) providing classes that should be used to specify each parameter.</p></li>
 <li><p>the <code class="code docutils literal notranslate"><span class="pre">FolderFunction</span></code> which helps transform any code into a Python function in a few lines. This can be especially helpful to optimize parameters in non-Python 3.6+ code (C++, Octave, etc…) or parameters in scripts.</p></li>
@@ -337,7 +343,7 @@ where it is easier to define operations.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="optimization.html" class="btn btn-neutral float-left" title="How to perform optimization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="benchmarking.html" class="btn btn-neutral float-right" title="Running algorithm benchmarks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="constraints.html" class="btn btn-neutral float-right" title="Strict constraints in continuous optimization NEW" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

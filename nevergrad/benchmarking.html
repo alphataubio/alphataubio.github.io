@@ -9,6 +9,8 @@
   <title>Running algorithm benchmarks &mdash; nevergrad  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=9a177f33" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
@@ -16,11 +18,12 @@
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributing to Nevergrad" href="contributing.html" />
-    <link rel="prev" title="Parametrizing your optimization" href="parametrization.html" /> 
+    <link rel="prev" title="Strict constraints in continuous optimization NEW" href="constraints.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,6 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="windows.html">Installation and configuration on Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimization.html">How to perform optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">Strict constraints in continuous optimization <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">NEW</span></a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Running algorithm benchmarks</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#creating-data-from-experiments">Creating data from experiments</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#plotting-results">Plotting results</a></li>
@@ -60,9 +64,9 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimizer API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_optimizer.html">Optimization API (ng.optimizers)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_parametrization.html">Parametrization API (ng.p)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref_callbacks.html">Callbacks API (ng.callbacks)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
 <ul>
@@ -73,7 +77,7 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad <span style="background:#e91e63;color:white;border-radius:4px;padding:2px 6px;font-size:0.75em;">NEW</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">NEW</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
 <ul>
@@ -167,7 +171,7 @@ so that two copies can differ, providing more robustness to benchmarks.</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="parametrization.html" class="btn btn-neutral float-left" title="Parametrizing your optimization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="constraints.html" class="btn btn-neutral float-left" title="Strict constraints in continuous optimization NEW" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing to Nevergrad" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

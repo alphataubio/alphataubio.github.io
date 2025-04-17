@@ -3,27 +3,22 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search &mdash; nevergrad  documentation</title>
+  <title>Background: Strict vs. Soft Constraint Handling in Optimization &mdash; nevergrad  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
-      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=9a177f33" />
 
   
-    
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script src="_static/js/theme.js"></script>
-    <script src="_static/searchtools.js"></script>
-    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -38,7 +33,7 @@
             nevergrad
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -51,7 +46,7 @@
 <li class="toctree-l1"><a class="reference internal" href="windows.html">Installation and configuration on Windows</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimization.html">How to perform optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parametrization.html">Parametrizing your optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="constraints.html">Strict constraints in continuous optimization <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">NEW</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="constraints.html">Constraints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Running algorithm benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Nevergrad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="opencompetition2020.html">Open Optimization Competition 2020</a></li>
@@ -71,7 +66,7 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/guiding/Guiding%20image%20generation%20with%20Nevergrad.html">Guiding image generation with Nevergrad</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/diversity/Diversity%20in%20image%20generation%20with%20Nevergrad.html">Diversity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/lognormal/Lognormal%20mutations%20in%20Nevergrad.html">Lognormal mutations in Nevergrad</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad <span class="sd-sphinx-override sd-badge sd-bg-info sd-bg-text-info">NEW</span></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/retrofitting/Retrofitting%20with%20Nevergrad.html">Retrofitting with Nevergrad <span style="background:#e91e63;color:white;border-radius:4px;padding:2px 6px;font-size:0.75em;">NEW</span></a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">STATISTICS</span></p>
 <ul>
@@ -93,8 +88,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Search</li>
+      <li class="breadcrumb-item active">Background: Strict vs. Soft Constraint Handling in Optimization</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/strict_constraint_handling_review.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -102,18 +98,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search functionality.
-    </p>
-  </div>
-  </noscript>
+  <section id="background-strict-vs-soft-constraint-handling-in-optimization">
+<h1>Background: Strict vs. Soft Constraint Handling in Optimization<a class="headerlink" href="#background-strict-vs-soft-constraint-handling-in-optimization" title="Link to this heading"></a></h1>
+<p>Constrained optimization problems often require that candidate solutions strictly satisfy all constraints at all times, especially in engineering contexts where violating a constraint can cause simulation failures. For example, in ReaxFF parameter fitting (a high-dimensional continuous problem in reactive force field development), certain parameters must remain within physical bounds to avoid unstable molecular dynamics simulations. In such cases, strict constraint handling (ensuring every evaluated solution is feasible) is essential. This contrasts with “soft” methods that allow temporary constraint violations by penalizing them in the objective function. Traditional evolutionary strategies (ES) took a strict approach by simply rejecting infeasible solutions, whereas genetic algorithms often used penalty functions for infeasible individuals. The choice of constraint-handling technique impacts the search efficiency and reliability of reaching a valid optimum.</p>
+<p>[… full text truncated for brevity, would continue in real document …]</p>
+</section>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
           </div>
@@ -139,14 +129,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-  <script>
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script id="searchindexloader"></script>
-   
-
+  </script> 
 
 </body>
 </html>

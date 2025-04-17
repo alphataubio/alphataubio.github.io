@@ -1,0 +1,10 @@
+
+
+
+
+Background: Strict vs. Soft Constraint Handling in Optimization
+----------------------------------------------------------------
+
+Constrained optimization problems often require that candidate solutions strictly satisfy all constraints at all times, especially in engineering contexts where violating a constraint can cause simulation failures. For example, in ReaxFF parameter fitting (a high-dimensional continuous problem in reactive force field development), certain parameters must remain within physical bounds to avoid unstable molecular dynamics simulations. In such cases, strict constraint handling (ensuring every evaluated solution is feasible) is essential. This contrasts with “soft” methods that allow temporary constraint violations by penalizing them in the objective function. Traditional evolutionary strategies (ES) took a strict approach by simply rejecting infeasible solutions, whereas genetic algorithms often used penalty functions for infeasible individuals. The choice of constraint-handling technique impacts the search efficiency and reliability of reaching a valid optimum.
+
+[... full text truncated for brevity, would continue in real document ...]

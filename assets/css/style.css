@@ -10086,8 +10086,16 @@ a.text-danger:focus, a.text-danger:hover {
   height: auto !important;
 }
 
+.w-auto {
+  width: auto !important;
+}
+
 .h-50 {
   height: 50px !important;
+}
+
+.h-75 {
+  height: 75px !important;
 }
 
 .h-100 {

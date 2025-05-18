@@ -1,0 +1,419 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="KokkosBatched::CG" href="sparse/KokkosBatched_CG.html" /><link rel="prev" title="KokkosBatched::Xpay" href="dense/KokkosBatched_Xpay.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.04.27 -->
+        <title>sparse - Kokkos Kernels documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=949a1ff5" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/hacks.css?v=76c1c40f" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Kokkos Kernels  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Kokkos Kernels  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../building.html">Building</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cmake-keywords.html">CMake Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../common-index.html">API: Common</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../blas-index.html">API: BLAS</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API: BLAS</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_abs.html">KokkosBlas::abs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_axpy.html">KokkosBlas::axpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_dot.html">KokkosBlas::dot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_iamax.html">KokkosBlas::iamax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_nrm1.html">KokkosBlas::nrm1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_nrm2.html">KokkosBlas::nrm2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_rotg.html">KokkosBlas::rotg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_rot.html">KokkosBlas::rot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_rotmg.html">KokkosBlas::rotmg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_rotm.html">KokkosBlas::rotm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_scal.html">KokkosBlas::scal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas1_swap.html">KokkosBlas::swap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas2_gemv.html">KokkosBlas::gemv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas2_ger.html">KokkosBlas::ger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas2_syr.html">KokkosBlas::syr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas2_syr2.html">KokkosBlas::syr2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas3_gemm.html">KokkosBlas::gemm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas3_trmm.html">KokkosBlas::trmm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blas/blas3_trsm.html">KokkosBlas::trsm</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../batched-index.html">API: Batched</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of API: Batched</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="dense-index.html">dense</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of dense</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_AddRadial.html">KokkosBatched::AddRadial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_ApplyHouseholder.html">KokkosBatched::ApplyHouseholder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_ApplyPivot.html">KokkosBatched::ApplyPivot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_ApplyQ.html">KokkosBatched::ApplyQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Axpy.html">KokkosBatched::Axpy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Copy.html">KokkosBatched::Copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Dot.html">KokkosBatched::Dot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Eigendecomposition.html">KokkosBatched::Eigendecomposition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Gbtrf.html">KokkosBatched::Gbtrf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Gbtrs.html">KokkosBatched::Gbtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Gemm.html">KokkosBatched::Gemm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Gemv.html">KokkosBatched::Gemv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Ger.html">KokkosBatched::Ger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Gesv.html">KokkosBatched::Gesv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Getrf.html">KokkosBatched::Getrf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Getrs.html">KokkosBatched::Getrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_HadamardProduct.html">KokkosBatched::HadamardProduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Householder.html">KokkosBatched::Householder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Iamax.html">KokkosBatched::Iamax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_InverseLU.html">KokkosBatched::InverseLU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_LU.html">KokkosBatched::LU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Lacgv.html">KokkosBatched::Lacgv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Laswp.html">KokkosBatched::Laswp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Pbtrf.html">KokkosBatched::Pbtrf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Pbtrs.html">KokkosBatched::Pbtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Pttrf.html">KokkosBatched::Pttrf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Pttrs.html">KokkosBatched::Pttrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_QR.html">KokkosBatched::QR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_SVD.html">KokkosBatched::SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_SetIdentity.html">KokkosBatched::SetIdentity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_SolveLU.html">KokkosBatched::SolveLU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_SolveUTV.html">KokkosBatched::SolveUTV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Syr.html">KokkosBatched::Syr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Trmm.html">KokkosBatched::Trmm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Trsm.html">KokkosBatched::Trsm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Trsv.html">KokkosBatched::Trsv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Trtri.html">KokkosBatched::Trtri</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_UTV.html">KokkosBatched::UTV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Vector.html">KokkosBatched::Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dense/KokkosBatched_Xpay.html">KokkosBatched::Xpay</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">sparse</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of sparse</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="sparse/KokkosBatched_CG.html">KokkosBatched::CG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sparse/KokkosBatched_CrsMatrix.html">KokkosBatched::CrsMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sparse/KokkosBatched_GMRES.html">KokkosBatched::GMRES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sparse/KokkosBatched_Identity.html">KokkosBatched::Identity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sparse/KokkosBatched_JacobiPrec.html">KokkosBatched::JacobiPrec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sparse/KokkosBatched_Krylov_Handle.html">KokkosBatched::KrylovHandle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sparse/KokkosBatched_Krylov_Solvers.html">KokkosBatched::Krylov_Solvers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sparse/KokkosBatched_Spmv.html">KokkosBatched::Spmv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lapack-index.html">API: LAPACK</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of API: LAPACK</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lapack/gesv.html">KokkosLapack::gesv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lapack/gesvd.html">KokkosLapack::svd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lapack/trtri.html">KokkosLapack::trtri</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../sparse-index.html">API: Sparse</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of API: Sparse</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../sparse/bsr_matrix.html">KokkosSparse::BsrMatrix</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of KokkosSparse::BsrMatrix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sparse/BsrMatrix_constructors.html">KokkosSparse::BsrMatrix&lt;&gt;::BsrMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sparse/bsr_row_view.html">KokkosSparse::BsrRowView</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../sparse/crs_matrix.html">KokkosSparse::CrsMatrix</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of KokkosSparse::CrsMatrix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sparse/CrsMatrix_constructors.html">KokkosSparse::CrsMatrix&lt;&gt;::CrsMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sparse/sparse_row_view.html">KokkosSparse::SparseRowView</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../sparse/kokkoskernelshandle.html">KokkosKernels::Experimental::KokkosKernelsHandle</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of KokkosKernels::Experimental::KokkosKernelsHandle</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sparse/handle_get_create_destroy.html">KokkosKernels::Experimental::KokkosKernelsHandle::{get,create,destroy}</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/spmv.html">KokkosSparse::spmv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/spadd_symbolic.html">KokkosSparse::spadd_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/spadd_numeric.html">KokkosSparse::spadd_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/spgemm_symbolic.html">KokkosSparse::spgemm_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/spgemm_numeric.html">KokkosSparse::spgemm_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/sptrsv_symbolic.html">KokkosSparse::sptrsv_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/sptrsv_solve.html">KokkosSparse::sptrsv_solve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/gauss_seidel_symbolic.html">KokkosSparse::gauss_seidel_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/gauss_seidel_numeric.html">KokkosSparse::gauss_seidel_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/gauss_seidel_apply_symmetric.html">KokkosSparse::symmetric_gauss_seidel_apply</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/gauss_seidel_apply_forward.html">KokkosSparse::forward_sweep_gauss_seidel_apply</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/gauss_seidel_apply_backward.html">KokkosSparse::backward_sweep_gauss_seidel_apply</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/spiluk_symbolic.html">KokkosSparse::spiluk_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/spiluk_numeric.html">KokkosSparse::spiluk_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/par_ilut.html">KokkosSparse::par_ilut_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/par_ilut.html#kokkossparse-par-ilut-numeric">KokkosSparse::par_ilut_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sparse/par_ilut.html#kokkossparse-par-iluthandle">KokkosSparse::PAR_ILUTHandle</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../graph-index.html">API: Graph</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of API: Graph</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../graph/distance1_color.html">KokkosGraph::graph_color_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../graph/distance2_color.html">KokkosGraph::graph_color_distance2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../known_issues.html">Known issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deprecation_page.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kokkos/kokkos-tutorials">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kokkos/kokkos-kernels">GitHub Repo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+<div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/kokkos/kokkos-core-wiki/blob/main/docs/source/API/batched/sparse-index.rst" title="Edit this page">
+    <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+      <line x1="13.5" y1="6.5" x2="17.5" y2="10.5"></line>
+    </svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div>
+
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="sparse">
+<h1>sparse<a class="headerlink" href="#sparse" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sparse/KokkosBatched_CG.html">KokkosBatched::CG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sparse/KokkosBatched_CrsMatrix.html">KokkosBatched::CrsMatrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sparse/KokkosBatched_GMRES.html">KokkosBatched::GMRES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sparse/KokkosBatched_Identity.html">KokkosBatched::Identity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sparse/KokkosBatched_JacobiPrec.html">KokkosBatched::JacobiPrec</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sparse/KokkosBatched_Krylov_Handle.html">KokkosBatched::KrylovHandle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sparse/KokkosBatched_Krylov_Solvers.html">KokkosBatched::Krylov_Solvers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sparse/KokkosBatched_Spmv.html">KokkosBatched::Spmv</a></li>
+</ul>
+</div>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="sparse/KokkosBatched_CG.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">KokkosBatched::CG</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="dense/KokkosBatched_Xpay.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">KokkosBatched::Xpay</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS)
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=ff8fa330"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

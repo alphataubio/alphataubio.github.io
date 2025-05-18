@@ -1,0 +1,1028 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="API: Common" href="API/common-index.html" /><link rel="prev" title="Building" href="building.html" />
+
+    <!-- Generated with Sphinx 7.4.7 and Furo 2024.04.27 -->
+        <title>CMake Options - Kokkos Kernels documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=437aa6ec" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=949a1ff5" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="_static/hacks.css?v=76c1c40f" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Kokkos Kernels  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">Kokkos Kernels  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">CMake Options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API/common-index.html">API: Common</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="API/blas-index.html">API: BLAS</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of API: BLAS</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_abs.html">KokkosBlas::abs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_axpy.html">KokkosBlas::axpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_dot.html">KokkosBlas::dot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_iamax.html">KokkosBlas::iamax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_nrm1.html">KokkosBlas::nrm1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_nrm2.html">KokkosBlas::nrm2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_rotg.html">KokkosBlas::rotg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_rot.html">KokkosBlas::rot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_rotmg.html">KokkosBlas::rotmg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_rotm.html">KokkosBlas::rotm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_scal.html">KokkosBlas::scal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas1_swap.html">KokkosBlas::swap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas2_gemv.html">KokkosBlas::gemv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas2_ger.html">KokkosBlas::ger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas2_syr.html">KokkosBlas::syr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas2_syr2.html">KokkosBlas::syr2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas3_gemm.html">KokkosBlas::gemm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas3_trmm.html">KokkosBlas::trmm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/blas/blas3_trsm.html">KokkosBlas::trsm</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="API/batched-index.html">API: Batched</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of API: Batched</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="API/batched/dense-index.html">dense</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of dense</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_AddRadial.html">KokkosBatched::AddRadial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_ApplyHouseholder.html">KokkosBatched::ApplyHouseholder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_ApplyPivot.html">KokkosBatched::ApplyPivot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_ApplyQ.html">KokkosBatched::ApplyQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Axpy.html">KokkosBatched::Axpy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Copy.html">KokkosBatched::Copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Dot.html">KokkosBatched::Dot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Eigendecomposition.html">KokkosBatched::Eigendecomposition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Gbtrf.html">KokkosBatched::Gbtrf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Gbtrs.html">KokkosBatched::Gbtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Gemm.html">KokkosBatched::Gemm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Gemv.html">KokkosBatched::Gemv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Ger.html">KokkosBatched::Ger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Gesv.html">KokkosBatched::Gesv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Getrf.html">KokkosBatched::Getrf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Getrs.html">KokkosBatched::Getrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_HadamardProduct.html">KokkosBatched::HadamardProduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Householder.html">KokkosBatched::Householder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Iamax.html">KokkosBatched::Iamax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_InverseLU.html">KokkosBatched::InverseLU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_LU.html">KokkosBatched::LU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Lacgv.html">KokkosBatched::Lacgv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Laswp.html">KokkosBatched::Laswp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Pbtrf.html">KokkosBatched::Pbtrf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Pbtrs.html">KokkosBatched::Pbtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Pttrf.html">KokkosBatched::Pttrf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Pttrs.html">KokkosBatched::Pttrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_QR.html">KokkosBatched::QR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_SVD.html">KokkosBatched::SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_SetIdentity.html">KokkosBatched::SetIdentity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_SolveLU.html">KokkosBatched::SolveLU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_SolveUTV.html">KokkosBatched::SolveUTV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Syr.html">KokkosBatched::Syr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Trmm.html">KokkosBatched::Trmm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Trsm.html">KokkosBatched::Trsm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Trsv.html">KokkosBatched::Trsv</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Trtri.html">KokkosBatched::Trtri</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_UTV.html">KokkosBatched::UTV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Vector.html">KokkosBatched::Vector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/dense/KokkosBatched_Xpay.html">KokkosBatched::Xpay</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="API/batched/sparse-index.html">sparse</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of sparse</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/sparse/KokkosBatched_CG.html">KokkosBatched::CG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/sparse/KokkosBatched_CrsMatrix.html">KokkosBatched::CrsMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/sparse/KokkosBatched_GMRES.html">KokkosBatched::GMRES</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/sparse/KokkosBatched_Identity.html">KokkosBatched::Identity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/sparse/KokkosBatched_JacobiPrec.html">KokkosBatched::JacobiPrec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/sparse/KokkosBatched_Krylov_Handle.html">KokkosBatched::KrylovHandle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/sparse/KokkosBatched_Krylov_Solvers.html">KokkosBatched::Krylov_Solvers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/batched/sparse/KokkosBatched_Spmv.html">KokkosBatched::Spmv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="API/lapack-index.html">API: LAPACK</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of API: LAPACK</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="API/lapack/gesv.html">KokkosLapack::gesv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/lapack/gesvd.html">KokkosLapack::svd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/lapack/trtri.html">KokkosLapack::trtri</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="API/sparse-index.html">API: Sparse</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of API: Sparse</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="API/sparse/bsr_matrix.html">KokkosSparse::BsrMatrix</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of KokkosSparse::BsrMatrix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="API/sparse/BsrMatrix_constructors.html">KokkosSparse::BsrMatrix&lt;&gt;::BsrMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/sparse/bsr_row_view.html">KokkosSparse::BsrRowView</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="API/sparse/crs_matrix.html">KokkosSparse::CrsMatrix</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of KokkosSparse::CrsMatrix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="API/sparse/CrsMatrix_constructors.html">KokkosSparse::CrsMatrix&lt;&gt;::CrsMatrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="API/sparse/sparse_row_view.html">KokkosSparse::SparseRowView</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="API/sparse/kokkoskernelshandle.html">KokkosKernels::Experimental::KokkosKernelsHandle</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of KokkosKernels::Experimental::KokkosKernelsHandle</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="API/sparse/handle_get_create_destroy.html">KokkosKernels::Experimental::KokkosKernelsHandle::{get,create,destroy}</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/spmv.html">KokkosSparse::spmv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/spadd_symbolic.html">KokkosSparse::spadd_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/spadd_numeric.html">KokkosSparse::spadd_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/spgemm_symbolic.html">KokkosSparse::spgemm_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/spgemm_numeric.html">KokkosSparse::spgemm_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/sptrsv_symbolic.html">KokkosSparse::sptrsv_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/sptrsv_solve.html">KokkosSparse::sptrsv_solve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/gauss_seidel_symbolic.html">KokkosSparse::gauss_seidel_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/gauss_seidel_numeric.html">KokkosSparse::gauss_seidel_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/gauss_seidel_apply_symmetric.html">KokkosSparse::symmetric_gauss_seidel_apply</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/gauss_seidel_apply_forward.html">KokkosSparse::forward_sweep_gauss_seidel_apply</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/gauss_seidel_apply_backward.html">KokkosSparse::backward_sweep_gauss_seidel_apply</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/spiluk_symbolic.html">KokkosSparse::spiluk_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/spiluk_numeric.html">KokkosSparse::spiluk_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/par_ilut.html">KokkosSparse::par_ilut_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/par_ilut.html#kokkossparse-par-ilut-numeric">KokkosSparse::par_ilut_numeric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/sparse/par_ilut.html#kokkossparse-par-iluthandle">KokkosSparse::PAR_ILUTHandle</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="API/graph-index.html">API: Graph</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of API: Graph</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="API/graph/distance1_color.html">KokkosGraph::graph_color_symbolic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="API/graph/distance2_color.html">KokkosGraph::graph_color_distance2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="known_issues.html">Known issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deprecation_page.html">Deprecations</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kokkos/kokkos-tutorials">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kokkos/kokkos-kernels">GitHub Repo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+<div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/kokkos/kokkos-core-wiki/blob/main/docs/source/cmake-keywords.rst" title="Edit this page">
+    <svg aria-hidden="true" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+      <line x1="13.5" y1="6.5" x2="17.5" y2="10.5"></line>
+    </svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div>
+
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="cmake-options">
+<h1>CMake Options<a class="headerlink" href="#cmake-options" title="Link to this heading">¶</a></h1>
+<section id="test-options">
+<h2>Test Options<a class="headerlink" href="#test-options" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TESTS</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to build tests.</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_TEST_ETI_ONLY</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to restrict testing to ETI types.</p></li>
+<li><p>Default: ON</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_PERFTESTS</span></code>: STRING</p>
+<ul>
+<li><p>Whether to build performance tests</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TESTS_AND_PERFSUITE</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to build performance tests and suite.</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="examples-options">
+<h2>Examples Options<a class="headerlink" href="#examples-options" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_EXAMPLES</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to build examples.</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="component-options">
+<h2>Component Options<a class="headerlink" href="#component-options" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLED_COMPONENTS</span></code>: BOOL</p>
+<ul>
+<li><p>A list of components to enable in testing and building</p></li>
+<li><p>Default: ALL</p></li>
+<li><p>Valid: BATCHED BLAS LAPACK GRAPH SPARSE ALL</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_ALL_COMPONENTS</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_COMPONENT_BATCHED</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_COMPONENT_BLAS</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_COMPONENT_LAPACK</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_COMPONENT_SPARSE</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_COMPONENT_GRAPH</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_COMPONENT_ODE</span></code>: BOOL</p></li>
+</ul>
+</section>
+<section id="eti-options">
+<h2>ETI Options<a class="headerlink" href="#eti-options" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_HALF</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the scalar type Kokkos::Experimental::half_t.  Disabling this may increase build times</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_BHALF</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the scalar type Kokkos::Experimental::bhalf_t.  Disabling this may increase build times</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ETI_ONLY</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to restrict availability of kernels to ETI types only. Turning this on guarantees that kernels are never built inside of object files which simply call KokkosKernels functions.</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_COMPLEX_DOUBLE</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the scalar type complex&lt;double&gt;.  Disabling this may increase build times.</p></li>
+<li><p>Default: OFF or unless enabled during a Trilinos build with Trilinos_ENABLE_COMPLEX_DOUBLE.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_COMPLEX_FLOAT</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the scalar type complex&lt;float&gt;.  Disabling this may increase build times.</p></li>
+<li><p>Default: OFF or unless enabled during a Trilinos build with Trilinos_ENABLE_COMPLEX_FLOAT.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_DOUBLE</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the scalar type double.  This option is KokkosKernels_INST_DOUBLE=ON by default.  Disabling this may increase build times.</p></li>
+<li><p>Default: ON</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_EXECSPACE_OPENMP</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the execution space Kokkos::OpenMP.  Disabling this when Kokkos_ENABLE_OpenMP is enabled may increase build times.</p></li>
+<li><p>Default: ON if Kokkos is OpenMP-enabled, OFF otherwise.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_EXECSPACE_SERIAL</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to build kernels for the execution space Kokkos::Serial.  If explicit template instantiation (ETI) is enabled in Trilinos, disabling this when Kokkos_ENABLE_SERIAL is enabled may increase build times.</p></li>
+<li><p>Default: ON when Kokkos is Serial-enabled, OFF otherwise.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_EXECSPACE_THREADS</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to build kernels for the execution space <code class="docutils literal notranslate"><span class="pre">Kokkos::Threads</span></code>.  If explicit template instantiation (ETI) is enabled in Trilinos, disabling this when Kokkos_ENABLE_PTHREAD is enabled may increase build times.</p></li>
+<li><p>Default: ON if Kokkos is Threads-enabled, OFF otherwise.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_FLOAT</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the scalar type float.  Disabling this may increase build times.</p></li>
+<li><p>Default: OFF or unless enabled during a Trilinos build with <code class="docutils literal notranslate"><span class="pre">Trilinos_ENABLE_FLOAT</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_LAYOUTLEFT</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the view layout LayoutLeft.  This option is <code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_LAYOUTLEFT=ON</span></code> by default.  Disabling this may increase build times.</p></li>
+<li><p>Default: ON</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_LAYOUTRIGHT</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the view layout LayoutRight.  This option is <code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_LAYOUTRIGHT=OFF</span></code> by default.  Disabling this may increase build times.</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_MEMSPACE_HOSTSPACE</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the memory space <code class="docutils literal notranslate"><span class="pre">Kokkos::HostSpace</span></code>.  Disabling this when one of the Host execution spaces is enabled may increase build times.</p></li>
+<li><p>Default: ON</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_OFFSET_INT</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the offset type int. This option is KokkosKernels_INST_OFFSET_INT=ON by default.</p></li>
+<li><p>Default: ON</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_OFFSET_SIZE_T</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the offset type size_t.  This option is KokkosKernels_INST_OFFSET_SIZE_T=OFF by default.</p></li>
+<li><p>Default: ON</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_ORDINAL_INT</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the ordinal type int.  This option is KokkosKernels_INST_ORDINAL_INT=ON by default.</p></li>
+<li><p>Default: ON</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_ORDINAL_INT64_T</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the ordinal type int64_t.  This option is KokkosKernels_INST_ORDINAL_INT64_T=OFF by default.</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ADD_DEFAULT_ETI</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to include a set of default ETI instantiations (otherwise only those explicitly requested will be included</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_EXECSPACE_CUDA</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the execution space <code class="docutils literal notranslate"><span class="pre">Kokkos::Cuda</span></code>. Disabling this when <code class="docutils literal notranslate"><span class="pre">Kokkos_ENABLE_CUDA</span></code> is enabled may increase build times.</p></li>
+<li><p>Default: ON if Kokkos is CUDA-enabled, OFF otherwise</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_MEMSPACE_CUDAUVMSPACE</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to pre instantiate kernels for the memory space <code class="docutils literal notranslate"><span class="pre">Kokkos::CudaUVMSpace</span></code>.  Disabling this when <code class="docutils literal notranslate"><span class="pre">Kokkos_ENABLE_CUDA</span></code> is enabled may increase build times.</p></li>
+<li><p>Default: OFF.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_EXECSPACE_HIP</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_MEMSPACE_HIPSPACE</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_EXECSPACE_SYCL</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_MEMSPACE_SYCLSPACE</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_EXECSPACE_OPENMPTARGET</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_MEMSPACE_OPENMPTARGETSPACE</span></code>: BOOL</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_INST_MEMSPACE_HBWSPACE</span></code>: BOOL</p></li>
+</ul>
+</section>
+<section id="documentation-options">
+<h2>Documentation Options<a class="headerlink" href="#documentation-options" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_DOCS</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to build documentation</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="supported-third-party-libraries-and-related-cmake-options">
+<h2>Supported Third-party Libraries and Related CMake Options<a class="headerlink" href="#supported-third-party-libraries-and-related-cmake-options" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_NO_DEFAULT_CUDA_TPLS</span></code>: BOOL</p>
+<ul>
+<li><p>Whether CUDA TPLs should be enabled by default.</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_NO_DEFAULT_ROCM_TPLS</span></code>: BOOL</p></li>
+<li><p>ARMPL</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_ARMPL</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable ARMPL</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARMPL_LIBRARIES</span></code>: STRING</p>
+<ul>
+<li><p>the name of the armpl library files to look for (possibly combined with above)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ARMPL_LIBRARY_DIRS</span></code>: STRING</p>
+<ul>
+<li><p>which directories to look for <code class="docutils literal notranslate"><span class="pre">armpl</span></code>/<code class="docutils literal notranslate"><span class="pre">armpl_mp</span></code> (optionally combined with below)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><em>under construction…</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>BLAS</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_BLAS</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable BLAS</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BLAS_LIBRARIES</span></code>: STRING</p>
+<ul>
+<li><p>Optional override for the libraries that comprise TPL BLAS.</p></li>
+<li><p>Default: None. Default common library names will be searched</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BLAS_LIBRARY_DIRS</span></code>: STRING</p>
+<ul>
+<li><p>Optional override for the library directories that comprise TPL BLAS.</p></li>
+<li><p>Default: None. Default common library locations will be searched</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><em>under construction…</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CBLAS</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_CBLAS</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable CBLAS</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CBLAS_ROOT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CBLAS_LIBRARIES</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CBLAS_LIBRARY_DIRS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CBLAS_INCLUDE_DIRS</span></code></p></li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><em>under construction…</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CHOLMOD</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_CHOLMOD</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable CHOLMOD</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CHOLMOD_ROOT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CHOLMOD_LIBRARIES</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CHOLMOD_LIBRARY_DIRS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CHOLMOD_INCLUDE_DIRS</span></code></p></li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><em>under construction…</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CUBLAS</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_CUBLAS</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable CUBLAS</p></li>
+<li><p>Default: ON if CUDA-enabled Kokkos, otherwise OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TPLCUBLAS_ROOT</span></code></p>
+<ul>
+<li><p>Optional override for the library directories that comprise TPL CUSOLVER. As a side-effect of <code class="docutils literal notranslate"><span class="pre">find_library</span></code> being called from within <code class="docutils literal notranslate"><span class="pre">find_package(CUDA)</span></code> which we use to find the CUDA libraries</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUBLAS_ROOT</span></code>: Optional override for the root directory of CUBLAS install (contains e.g. <code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib64</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_CUBLAS_ROOT</span></code>: Optional override for the root directory of CUBLAS install (contains e.g. <code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib64</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUBLAS_LIBRARIES</span></code>: paths to CUBLAS libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUBLAS_INCLUDE_DIRS</span></code>: paths to CUBLAS include dirs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUBLAS_LIBRARY_DIRS</span></code>: paths directories containing CUBLAS libraries</p></li>
+</ul>
+</li>
+<li><p>Environment Variables
+- <em>under construction…</em></p></li>
+</ul>
+</li>
+<li><p>CUSOLVER</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_CUSOLVER</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable CUSOLVER</p></li>
+<li><p>Default: ON if CUDA-enabled Kokkos, otherwise OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TPLCUSOLVER_ROOT</span></code></p>
+<ul>
+<li><p>Optional override for the library directories that comprise TPL CUSOLVER. (As a side-effect of <code class="docutils literal notranslate"><span class="pre">find_library</span></code> being called from within <code class="docutils literal notranslate"><span class="pre">find_package(CUDA)</span></code> which we use to find the CUDA libraries).</p></li>
+<li><p>Default: None</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSOLVER_ROOT</span></code>: Optional override for the root directory of CUSOLVER install (contains e.g. <code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib64</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_CUSOLVER_ROOT</span></code>: Optional override for the root directory of CUSOLVER install (contains e.g. <code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib64</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSOLVER_LIBRARIES</span></code>: paths to CUSOLVER libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSOLVER_INCLUDE_DIRS</span></code>: paths to CUSOLVER include dirs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSOLVER_LIBRARY_DIRS</span></code>: paths directories containing CUSOLVER libraries</p></li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><em>under construction…</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CUSPARSE</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_CUSPARSE</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable CUSPARSE</p></li>
+<li><p>Default: ON if CUDA-enabled Kokkos, otherwise OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TPLCUSPARSE_ROOT</span></code>: STRING</p>
+<ul>
+<li><p>Optional override for the library directories that comprise TPL CUSPARSE. (As a side-effect of <code class="docutils literal notranslate"><span class="pre">find_library</span></code> being called from within <code class="docutils literal notranslate"><span class="pre">find_package(CUDA)</span></code> which we use to find the CUDA libraries).</p></li>
+<li><p>Default: None</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSPARSE_ROOT</span></code>: Optional override for the root directory of CUSPARSE install (contains e.g. <code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib64</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_CUSOLVER_ROOT</span></code>: Optional override for the root directory of CUSPARSE install (contains e.g. <code class="docutils literal notranslate"><span class="pre">include</span></code>, <code class="docutils literal notranslate"><span class="pre">lib64</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSPARSE_LIBRARIES</span></code>: paths to CUSPARSE libraries</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSPARSE_INCLUDE_DIRS</span></code>: paths to CUSPARSE include dirs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CUSPARSE_LIBRARY_DIRS</span></code>: paths directories containing CUSPARSE libraries</p></li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><em>under construction…</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>MAGMA</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_MAGMA</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable MAGMA</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_MAGMA_ROOT</span></code>: PATH</p>
+<ul>
+<li><p>Location of MAGMA install root.</p></li>
+<li><p>Default: None or the value of the environment variable MAGMA_ROOT if set</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAGMA_LIBRARY_DIRS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAGMA_LIBRARIES</span></code></p></li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAGMA_DIR</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>MKL</p>
+<ul>
+<li><p>supported versions:</p></li>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_MKL</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable MKL</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MKL_LIBRARIES</span></code>: STRING</p>
+<ul>
+<li><p>Optional override for the libraries that comprise TPL MKL.</p></li>
+<li><p>Default: None. Default common library names will be searched</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MKL_LIBRARY_DIRS</span></code>: STRING</p>
+<ul>
+<li><p>Optional override for the library directories that comprise TPL MKL.</p></li>
+<li><p>Default: None. Default common library locations will be searched</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_MKL_ROOT</span></code>: PATH</p>
+<ul>
+<li><p>Location of MKL install root.</p></li>
+<li><p>Default: None or the value of the environment variable MKL_ROOT if set</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">MKLROOT</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>LAPACK</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_TPL_LAPACK</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to enable LAPACK</p></li>
+<li><p>Default: ON if BLAS is enabled, otherwise OFF</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAPACK_LIBRARIES</span></code>: STRING</p>
+<ul>
+<li><p>Optional override for the libraries that comprise TPL LAPACK.</p></li>
+<li><p>Default: None. Default common library names will be searched</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAPACK_LIBRARY_DIRS</span></code>: STRING</p>
+<ul>
+<li><p>Optional override for the library directories that comprise TPL LAPACK.</p></li>
+<li><p>Default: None. Default common library locations will be searched</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_LAPACK_ROOT</span></code>: PATH</p>
+<ul>
+<li><p>Location of LAPACK install root.</p></li>
+<li><p>Default: None or the value of the environment variable LAPACK_ROOT if set</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><em>under construction…</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>LAPACKE</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAPACKE_LIBRARIES</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAPACKE_LIBRARY_DIRS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAPACKE_INCLUDE_DIRS</span></code></p></li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">LAPACKE_ROOT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_LAPACKE_ROOT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OPENBLAS_ROOT</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>METIS</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">METIS_LIBRARY_DIRS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">METIS_INCLUDE_DIRS</span></code></p></li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">METIS_ROOT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_METIS_ROOT</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ROCBLAS</p>
+<ul>
+<li><p>deferred to <code class="docutils literal notranslate"><span class="pre">find_package(ROCBLAS)</span></code></p></li>
+</ul>
+</li>
+<li><p>ROCSOLVER</p>
+<ul>
+<li><p>deferred to <code class="docutils literal notranslate"><span class="pre">find_package(ROCSOLVER)</span></code></p></li>
+</ul>
+</li>
+<li><p>ROCSPARSE</p>
+<ul>
+<li><p>deferred to <code class="docutils literal notranslate"><span class="pre">find_package(ROCSPARSE)</span></code></p></li>
+</ul>
+</li>
+<li><p>SUPERLU</p>
+<ul>
+<li><p>CMake Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUPERLU_LIBRARIES</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUPERLU_LIBRARY_DIRS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUPERLU_INCLUDE_DIRS</span></code></p></li>
+</ul>
+</li>
+<li><p>Environment Variables</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUPERLU_ROOT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_SUPERLU_ROOT</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="other-options">
+<h2>Other Options<a class="headerlink" href="#other-options" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>KokkosKernels_ENABLE_EXPERIMENTAL: BOOL</p>
+<ul>
+<li><p>Enable building and installation of experimental KokkosKernels features.</p></li>
+<li><p>Default: OFF</p></li>
+</ul>
+</li>
+<li><p>KokkosKernels_LINALG_OPT_LEVEL: BOOL</p>
+<ul>
+<li><p>Optimization level for KokkosKernels computational kernels: a nonnegative integer.  Higher levels result in better performance that is more uniform for corner cases, but increase build time and library size.  The default value is 1, which should give performance within ten percent of optimal on most platforms, for most problems.</p></li>
+<li><p>Default: 1</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KokkosKernels_ENABLE_SUPERNODAL_SPTRSV</span></code>: BOOL</p>
+<ul>
+<li><p>Whether to build supernodal SPTRSV support</p></li>
+<li><p>Default: ON</p></li>
+</ul>
+</li>
+</ul>
+<p>Generated using <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-r</span> <span class="pre">KOKKOSKERNELS_ADD_TPL_OPTION</span></code></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="API/common-index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">API: Common</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="building.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Building</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS)
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">CMake Options</a><ul>
+<li><a class="reference internal" href="#test-options">Test Options</a></li>
+<li><a class="reference internal" href="#examples-options">Examples Options</a></li>
+<li><a class="reference internal" href="#component-options">Component Options</a></li>
+<li><a class="reference internal" href="#eti-options">ETI Options</a></li>
+<li><a class="reference internal" href="#documentation-options">Documentation Options</a></li>
+<li><a class="reference internal" href="#supported-third-party-libraries-and-related-cmake-options">Supported Third-party Libraries and Related CMake Options</a></li>
+<li><a class="reference internal" href="#other-options">Other Options</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=ff8fa330"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>

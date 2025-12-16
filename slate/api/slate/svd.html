@@ -1,0 +1,998 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Singular Value Decomposition &mdash; SLATE 2023.11.05 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c74a7515" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=4a0eadb2"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script>window.MathJax = {"tex": {"macros": {"RR": "\\mathbb{R}", "CC": "\\mathbb{C}"}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Matrix Classes" href="matrices_api.html" />
+    <link rel="prev" title="Eigenvalue Problems" href="eigenvalues.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SLATE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">USER GUIDE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/overview.html#design-goals">Design Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/overview.html#software-requirements">Software Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/overview.html#project-resources">Project Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#example-program-lu-solve">Example Program: LU Solve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#understanding-the-example">Understanding the Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#mpi-initialization">MPI Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#creating-matrices">Creating Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#allocating-tiles">Allocating Tiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#solving-the-system">Solving the System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#execution-options">Execution Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#building-the-example">Building the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#running-the-example">Running the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#simplifying-assumptions">Simplifying Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#downloading-source">Downloading Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#makefile-build">Makefile Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#basic-configuration">Basic Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#build-and-install">Build and Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#configuration-options">Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#cmake-build">CMake Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#basic-build">Basic Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#cmake-options">CMake Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#example-with-mkl-and-cuda">Example with MKL and CUDA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#spack-installation">Spack Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#install-spack">Install Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#install-slate">Install SLATE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#loading-slate">Loading SLATE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#gpu-aware-mpi">GPU-Aware MPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#verifying-installation">Verifying Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#module-environment-hpc-systems">Module Environment (HPC Systems)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/matrices.html">Matrices in SLATE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#matrix-hierarchy">Matrix Hierarchy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#matrix-types">Matrix Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#creating-matrices">Creating Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#basic-creation">Basic Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#creating-from-existing-matrix-structure">Creating from Existing Matrix Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#allocating-tile-memory">Allocating Tile Memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#cpu-host-memory">CPU Host Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#gpu-device-memory">GPU Device Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#user-provided-memory">User-Provided Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#scalapack-layout">ScaLAPACK Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#accessing-matrix-elements">Accessing Matrix Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#tile-access">Tile Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#element-access">Element Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#matrix-properties">Matrix Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#matrix-conversions">Matrix Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#transpose-and-conjugate-transpose">Transpose and Conjugate Transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#submatrices-and-slices">Submatrices and Slices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#tile-based-submatrices">Tile-Based Submatrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#element-based-slices">Element-Based Slices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#copying-matrices">Copying Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#deep-copy">Deep Copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#precision-conversion">Precision Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#tile-layout-and-distribution">Tile Layout and Distribution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#data-distribution">Data Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#tile-sizes">Tile Sizes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#memory-management">Memory Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/operations.html">SLATE Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#execution-options">Execution Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#common-options">Common Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#matrix-norms">Matrix Norms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#level-3-blas-operations">Level 3 BLAS Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-multiply-gemm">Matrix Multiply (gemm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#hermitian-symmetric-matrix-multiply-hemm-symm">Hermitian/Symmetric Matrix Multiply (hemm/symm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#rank-k-update-herk-syrk">Rank-k Update (herk/syrk)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#rank-2k-update-her2k-syr2k">Rank-2k Update (her2k/syr2k)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#triangular-multiply-trmm">Triangular Multiply (trmm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#triangular-solve-trsm">Triangular Solve (trsm)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#linear-systems">Linear Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#lu-factorization-general-matrices">LU Factorization (General Matrices)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#lu-pivoting-options">LU Pivoting Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#cholesky-factorization-positive-definite">Cholesky Factorization (Positive Definite)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#indefinite-solve-aasen-s-algorithm">Indefinite Solve (Aasen’s Algorithm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#band-matrix-solve">Band Matrix Solve</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#mixed-precision-iterative-refinement">Mixed-Precision Iterative Refinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#least-squares">Least Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#qr-and-lq-factorizations">QR and LQ Factorizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#eigenvalue-problems">Eigenvalue Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#hermitian-symmetric-eigenvalues">Hermitian/Symmetric Eigenvalues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#eigenvalue-methods">Eigenvalue Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#generalized-eigenvalue-problem">Generalized Eigenvalue Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#singular-value-decomposition">Singular Value Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#auxiliary-operations">Auxiliary Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-add">Matrix Add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-copy">Matrix Copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-set">Matrix Set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-scale">Matrix Scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#condition-number-estimate">Condition Number Estimate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-print">Matrix Print</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/testing.html">Testing and Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#slate-tester">SLATE Tester</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#single-process-testing">Single-Process Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#multi-process-testing">Multi-Process Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#tester-parameters">Tester Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#example-tester-output">Example Tester Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#accuracy-verification">Accuracy Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#without-reference-ref-n">Without Reference (–ref=n)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#with-reference-ref-y">With Reference (–ref=y)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#norm-verification">Norm Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#full-testing-suite">Full Testing Suite</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#custom-test-commands">Custom Test Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#performance-tuning">Performance Tuning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#tile-size">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#process-grid">Process Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#lookahead">Lookahead</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#panel-threads">Panel Threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#multi-threaded-mpi-broadcast">Multi-threaded MPI Broadcast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#gpu-aware-mpi">GPU-Aware MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#performance-examples">Performance Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#unit-tests">Unit Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#benchmark-suite">Benchmark Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#troubleshooting-tests">Troubleshooting Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#debugging">Debugging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compatibility.html">ScaLAPACK Compatibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#lapack-compatibility-api">LAPACK Compatibility API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#using-the-api">Using the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#how-it-works">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#tile-size">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#available-routines">Available Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#scalapack-compatibility-api">ScaLAPACK Compatibility API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#id1">Using the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#id2">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#id3">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#supported-routines">Supported Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#matrix-layout-compatibility">Matrix Layout Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#creating-from-scalapack-data">Creating from ScaLAPACK Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#grid-order">Grid Order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#migration-strategies">Migration Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#gradual-migration">Gradual Migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#direct-migration">Direct Migration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#id4">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#gpu-acceleration">GPU Acceleration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">slate</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-reference">Quick Reference</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="blas.html">BLAS and Auxiliary Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#matrix-multiplication">Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#triangular-matrix-multiplication">Triangular Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#rank-updates">Rank Updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#triangular-solve">Triangular Solve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#auxiliary-routines">Auxiliary Routines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#standard-blas-routines">Standard BLAS Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="linear_systems.html">Linear Systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="linear_systems.html#lu-factorization-general">LU Factorization (General)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linear_systems.html#cholesky-factorization-positive-definite">Cholesky Factorization (Positive Definite)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linear_systems.html#indefinite-factorization-symmetric-hermitian">Indefinite Factorization (Symmetric/Hermitian)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="least_squares.html">Least Squares</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="least_squares.html#least-squares-solve">Least Squares Solve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="least_squares.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="least_squares.html#lq-factorization">LQ Factorization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="eigenvalues.html">Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eigenvalues.html#symmetric-hermitian-eigenvalue-problems">Symmetric/Hermitian Eigenvalue Problems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eigenvalues.html#generalized-symmetric-hermitian-eigenvalue-problems">Generalized Symmetric/Hermitian Eigenvalue Problems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eigenvalues.html#tridiagonal-eigenvalue-solvers">Tridiagonal Eigenvalue Solvers</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Singular Value Decomposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#svd-functions">SVD Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="matrices_api.html">Matrix Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#general-matrices">General Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#structured-matrices">Structured Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#band-matrices">Band Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#tiles">Tiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#auxiliary-classes">Auxiliary Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="enums.html">Enumerations and Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="enums.html#core-enumerations">Core Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enums.html#options">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enums.html#method-enumerations">Method Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enums.html#type-traits">Type Traits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#common-parameters">Common Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#_CPPv4I0E7routinevR6MatrixI8scalar_tERK7Options"><code class="docutils literal notranslate"><span class="pre">routine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#header-files">Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-and-fortran-apis">C and Fortran APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../blaspp/index.html">blaspp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#organization">Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#contents">Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/level1.html">Level 1 BLAS (Vector Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/level1.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/level2.html">Level 2 BLAS (Matrix-Vector Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/level2.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/level3.html">Level 3 BLAS (Matrix-Matrix Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/level3.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/util.html">Utilities and Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/util.html#enumerations">Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/util.html#error-handling">Error Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/util.html#type-traits-and-safety-functions">Type Traits and Safety Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/device.html">Device (GPU) Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/device.html#queue-management">Queue Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/device.html#device-memory-and-batch-operations">Device Memory and Batch Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/performance.html">Performance Counting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/performance.html#papi-counter-integration">PAPI Counter Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/performance.html#flop-calculations">FLOP Calculations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/performance.html#bandwidth-calculations">Bandwidth Calculations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#level-1-blas-vector-vector">Level 1 BLAS (Vector-Vector)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#level-2-blas-matrix-vector">Level 2 BLAS (Matrix-Vector)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#level-3-blas-matrix-matrix">Level 3 BLAS (Matrix-Matrix)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#basic-usage">Basic Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#cpu-host-operations">CPU (Host) Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#gpu-device-operations">GPU (Device) Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#common-parameters">Common Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#layout">Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#op">Op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#uplo">Uplo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#diag">Diag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#side">Side</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#header-files">Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lapackpp/index.html">lapackpp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/util.html">Utilities and Enumerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/util.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/util.html#_CPPv4N6lapack5ErrorE"><code class="docutils literal notranslate"><span class="pre">lapack::Error</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/util.html#enumerations">Enumerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/util.html#version-information">Version Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/device.html">Device (GPU) Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/device.html#queue-management">Queue Management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#_CPPv4N6lapack5QueueE"><code class="docutils literal notranslate"><span class="pre">lapack::Queue</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/device.html#gpu-operations">GPU Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#cholesky-factorization">Cholesky Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#lu-factorization">LU Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#eigenvalue-decomposition">Eigenvalue Decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/device.html#device-memory-types">Device Memory Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/flops.html">Performance Counters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#flop-counting">FLOP Counting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/flops.html#_CPPv4I0EN6lapack5GflopE"><code class="docutils literal notranslate"><span class="pre">lapack::Gflop</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#bandwidth-analysis">Bandwidth Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/flops.html#_CPPv4I0EN6lapack5GbyteE"><code class="docutils literal notranslate"><span class="pre">lapack::Gbyte</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#usage-example">Usage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#supported-operations">Supported Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/factorizations.html">Matrix Factorizations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#lu-factorization">LU Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#cholesky-factorization">Cholesky Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#lq-factorization">LQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#ql-factorization">QL Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#rq-factorization">RQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#symmetric-hermitian-factorizations">Symmetric/Hermitian Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#triangular-factorizations">Triangular Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#bidiagonal-reduction">Bidiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#tridiagonal-reduction">Tridiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#hessenberg-reduction">Hessenberg Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#example-usage">Example Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#factorization-algorithms">Factorization Algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#storage-efficiency">Storage Efficiency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#performance-characteristics">Performance Characteristics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#blocking-and-level-3-blas">Blocking and Level-3 BLAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#choosing-a-factorization">Choosing a Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/linear_systems.html">Linear Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#general-non-symmetric-systems">General (Non-Symmetric) Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#symmetric-hermitian-positive-definite">Symmetric/Hermitian Positive Definite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#symmetric-hermitian-indefinite">Symmetric/Hermitian Indefinite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#triangular-systems">Triangular Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#band-matrices">Band Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#tridiagonal-systems">Tridiagonal Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#symmetric-positive-definite-tridiagonal">Symmetric Positive Definite Tridiagonal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/least_squares.html">Least Squares and Linear Regression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#qr-based-least-squares">QR-Based Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#lq-factorization">LQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#ql-and-rq-factorizations">QL and RQ Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#orthogonal-matrix-generation">Orthogonal Matrix Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#multiplication-by-q">Multiplication by Q</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#complete-orthogonal-factorization">Complete Orthogonal Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#constrained-least-squares">Constrained Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#rank-estimation">Rank Estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/eigenvalues.html">Eigenvalue Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#standard-eigenvalue-problems">Standard Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#symmetric-hermitian-eigenvalues">Symmetric/Hermitian Eigenvalues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#non-symmetric-eigenvalues">Non-Symmetric Eigenvalues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#tridiagonal-banded-eigenproblems">Tridiagonal/Banded Eigenproblems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#generalized-eigenvalue-problems">Generalized Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#symmetric-hermitian">Symmetric/Hermitian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#non-symmetric-generalized-schur">Non-Symmetric (Generalized Schur)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#reduction-to-standard-form">Reduction to Standard Form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#auxiliary-reductions">Auxiliary Reductions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#schur-form-manipulation">Schur Form Manipulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#eigenvector-computation">Eigenvector Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#balancing">Balancing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/svd.html">Singular Value Decomposition (SVD)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#standard-svd">Standard SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#specialized-svd-routines">Specialized SVD Routines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#bidiagonal-svd">Bidiagonal SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#bidiagonal-reduction">Bidiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#generalized-svd-gsvd">Generalized SVD (GSVD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#cs-decomposition-csd">CS Decomposition (CSD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#rank-and-pseudoinverse">Rank and Pseudoinverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#applications">Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/auxiliary.html">Auxiliary Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#matrix-norms">Matrix Norms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#condition-number-estimation">Condition Number Estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#equilibration-and-scaling">Equilibration and Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#matrix-initialization-and-copying">Matrix Initialization and Copying</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#matrix-addition">Matrix Addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#householder-transformations">Householder Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#givens-rotations">Givens Rotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#matrix-multiplication-triangular">Matrix Multiplication (Triangular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#special-matrix-operations">Special Matrix Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#permutations-and-sorting">Permutations and Sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#workspace-queries">Workspace Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#error-checking-and-diagnostics">Error Checking and Diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/index.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/index.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/building.html">Building Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/building.html#option-1-makefile">Option 1: Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/building.html#option-2-cmake">Option 2: CMake</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex01_matrix.html">Example 01: Matrix Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex01_matrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex01_matrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex02_conversion.html">Example 02: Matrix Type Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex02_conversion.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex02_conversion.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex03_submatrix.html">Example 03: Submatrices and Slicing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex03_submatrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex03_submatrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex04_norm.html">Example 04: Matrix Norms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex04_norm.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex04_norm.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex05_blas.html">Example 05: BLAS Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex05_blas.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex05_blas.html#c-example">C++ Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex05_blas.html#c-api-example">C API Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex05_blas.html#fortran-api-example">Fortran API Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex06_linear_system_lu.html">Example 06: Linear Systems (LU)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex06_linear_system_lu.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex06_linear_system_lu.html#c-example">C++ Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex06_linear_system_lu.html#c-api-example">C API Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex07_linear_system_cholesky.html">Example 07: Linear Systems (Cholesky)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex07_linear_system_cholesky.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex07_linear_system_cholesky.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex08_linear_system_indefinite.html">Example 08: Linear Systems (Indefinite)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex08_linear_system_indefinite.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex08_linear_system_indefinite.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex09_least_squares.html">Example 09: Least Squares</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex09_least_squares.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex09_least_squares.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex10_svd.html">Example 10: Singular Value Decomposition (SVD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex10_svd.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex10_svd.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex11_hermitian_eig.html">Example 11: Hermitian Eigenvalue Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex11_hermitian_eig.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex11_hermitian_eig.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex12_generalized_hermitian_eig.html">Example 12: Generalized Hermitian Eigenvalues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex12_generalized_hermitian_eig.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex12_generalized_hermitian_eig.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex13_non_uniform_block_size.html">Example 13: Non-uniform Block Sizes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex13_non_uniform_block_size.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex13_non_uniform_block_size.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex14_scalapack_gemm.html">Example 14: ScaLAPACK Compatibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex14_scalapack_gemm.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex14_scalapack_gemm.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex15_set_matrix.html">Example 15: Setting Matrix Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex15_set_matrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex15_set_matrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DEVELOPER GUIDE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/01_introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/01_introduction.html#revision-notes">Revision Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/02_api_layers.html">API Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#drivers">Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#computational-routines">Computational Routines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/02_api_layers.html#comments-on-the-code">Comments on the Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/02_api_layers.html#template-dispatch">Template Dispatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/02_api_layers.html#executing-multiple-internal-routines-on-devices">Executing Multiple Internal Routines on Devices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#internal-routines-for-major-parallel-tasks">Internal Routines for Major, Parallel Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/02_api_layers.html#batched-gpu-tasks">Batched GPU Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#tile-operations-for-small-sequential-tasks">Tile Operations for Small, Sequential Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#blas-batched-blas-and-lapack">BLAS++, Batched BLAS++, and LAPACK++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#work-routines-for-actual-openmp-work">Work Routines for Actual OpenMP Work</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/03_matrix_storage.html">Matrix Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/03_matrix_storage.html#tile-management">Tile Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/04_side_uplo_trans.html">Handling of Side, Uplo, Trans, etc.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/05_precisions.html">Handling of Precisions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/06_parallelism.html">Parallelism Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/07_communication.html">Message Passing Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/08_mosi.html">MOSI Coherency Protocol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#coherency-control">Coherency Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#tile-states">Tile States</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#mosi-api">MOSI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#data-transfer">Data Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#developer-hints">Developer Hints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/09_layout.html">Column Major and Row Major Layout</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/09_layout.html#layout-representation-and-api">Layout Representation and API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/09_layout.html#layout-conversion">Layout Conversion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/09_layout.html#layout-conversion-of-extended-tiles">Layout Conversion of Extended Tiles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/10_bibliography.html">Bibliography</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL INFO</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About SLATE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#version">Version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../license.html#bsd-3-clause-license">BSD 3-Clause License</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SLATE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">slate</a></li>
+      <li class="breadcrumb-item active">Singular Value Decomposition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/slate/svd.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="singular-value-decomposition">
+<h1>Singular Value Decomposition<a class="headerlink" href="#singular-value-decomposition" title="Link to this heading"></a></h1>
+<p>Compute the singular value decomposition <span class="math notranslate nohighlight">\(A = U \Sigma V^H\)</span>.</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#svd-functions" id="id1">SVD Functions</a></p></li>
+<li><p><a class="reference internal" href="#notes" id="id2">Notes</a></p></li>
+</ul>
+</nav>
+<section id="svd-functions">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">SVD Functions</a><a class="headerlink" href="#svd-functions" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options">
+<span id="_CPPv3I0E3svd6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span id="_CPPv2I0E3svd6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__svd_1gac420f831951e0220f13b5199e619e712"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">svd</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="svd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">A</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">blas</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">real_type</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="svd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Sigma</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="svd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">U</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="svd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">VT</span></span>, <span class="n"><span class="pre">Options</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">opts</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Options</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="Link to this definition"></a><br /></dt>
+<dd><p>Singular Value Decomposition: ( A = U \Sigma V^H ). </p>
+<p>Distributed parallel matrix singular value decomposition.</p>
+<p>
+Computes all singular values and, optionally, singular vectors of a matrix A. The matrix A is preliminary reduced to bidiagonal form using a two-stage approach: First stage: reduction to upper band bidiagonal form (see ge2tb); Second stage: reduction from band to bidiagonal form (see tb2bd). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – <strong>[in]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> A.</p></li>
+<li><p><strong>Sigma</strong> – <strong>[out]</strong> Vector of singular values.</p></li>
+<li><p><strong>U</strong> – <strong>[out]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> U.</p></li>
+<li><p><strong>VT</strong> – <strong>[out]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> ( V^H ).</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options.</p></li>
+<li><p><strong>A</strong> – <strong>[in]</strong> On entry, the m-by-n matrix <span class="math notranslate nohighlight">\(A\)</span>. On exit, contents are destroyed.</p></li>
+<li><p><strong>Sigma</strong> – <strong>[out]</strong> The vector Sigma of length min( m, n ). If successful, the singular values in ascending order.</p></li>
+<li><p><strong>U</strong> – <strong>[out]</strong> On entry, if U is empty, does not compute the left singular vectors. Otherwise, the m-by-min_mn (“economy size”) or m-by-m (“all vectors”) matrix <span class="math notranslate nohighlight">\(U\)</span> to store the left singular vectors. On exit, the left orthonormal singular vectors of the matrix A.</p></li>
+<li><p><strong>VT</strong> – <strong>[out]</strong> On entry, if VT is empty, does not compute the right singular vectors. Otherwise, the min_mn-by-n (“economy size”) or n-by-n (“all vectors”) matrix <span class="math notranslate nohighlight">\(VT\)</span> to store the right singular vectors. On exit, the right orthonormal singular vectors of the matrix A.</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options, as map of name = value pairs. Possible options:<ul>
+<li><p><a class="reference internal" href="enums.html#group__enum_1ggac97a2c5045464e6949b9a65a059b196aa78fc353d89080d549ffd917ff688a3c9"><span class="std std-ref">Option::InnerBlocking</span></a>: Inner blocking to use for panel. Default 16.</p></li>
+<li><p><a class="reference internal" href="enums.html#group__enum_1ggac97a2c5045464e6949b9a65a059b196aaae6f02dd2c1fd23a8f149de7afed2a87"><span class="std std-ref">Option::MaxPanelThreads</span></a>: Number of threads to use for panel. Default omp_get_max_threads()/2.</p></li>
+<li><p><a class="reference internal" href="enums.html#group__enum_1ggac97a2c5045464e6949b9a65a059b196aac41a31890959544c6523af684561abe5"><span class="std std-ref">Option::Target</span></a>: Implementation to target. Possible values:<ul>
+<li><p>HostTask: OpenMP tasks on CPU host [default].</p></li>
+<li><p>HostNest: nested OpenMP parallel for loop on CPU host.</p></li>
+<li><p>HostBatch: batched BLAS on CPU host.</p></li>
+<li><p>Devices: batched BLAS on GPU device. Note A is passed by value, so we can transpose if needed without affecting caller. </p></li>
+</ul>
+</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>scalar_t</strong> – One of float, double, std::complex&lt;float&gt;, std::complex&lt;double&gt;. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options">
+<span id="_CPPv3I0E3svd6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options"></span><span id="_CPPv2I0E3svd6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__svd_1ga1bb3646f9e49299b8c4a56374e6adea4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">svd</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options" title="svd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">A</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">blas</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">real_type</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options" title="svd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Sigma</span></span>, <span class="n"><span class="pre">Options</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">opts</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Options</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E3svdv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options" title="Link to this definition"></a><br /></dt>
+<dd><p>Without U and VT, compute only singular values. </p>
+<p>Same as svd_vals. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E8svd_valsv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options">
+<span id="_CPPv3I0E8svd_vals6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options"></span><span id="_CPPv2I0E8svd_vals6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__svd_1ga81508abe64b3d69bf3deff65259b4b3f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">svd_vals</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E8svd_valsv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options" title="svd_vals::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">A</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">blas</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">real_type</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E8svd_valsv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options" title="svd_vals::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Sigma</span></span>, <span class="n"><span class="pre">Options</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">opts</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Options</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E8svd_valsv6MatrixI8scalar_tERNSt6vectorIN4blas9real_typeI8scalar_tEEEERK7Options" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute only singular values. </p>
+<p>Same as svd without U and VT. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E11unmbr_ge2tbv4Side2OpR6MatrixI8scalar_tE17TriangularFactorsI8scalar_tER6MatrixI8scalar_tERK7Options">
+<span id="_CPPv3I0E11unmbr_ge2tb4Side2OpR6MatrixI8scalar_tE17TriangularFactorsI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span id="_CPPv2I0E11unmbr_ge2tb4Side2OpR6MatrixI8scalar_tE17TriangularFactorsI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__svd_1ga0b0374b6955c25a8d57d18fc84d28745"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unmbr_ge2tb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Side</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">side</span></span>, <span class="n"><span class="pre">Op</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">op</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E11unmbr_ge2tbv4Side2OpR6MatrixI8scalar_tE17TriangularFactorsI8scalar_tER6MatrixI8scalar_tERK7Options" title="unmbr_ge2tb::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A</span></span>, <span class="n"><span class="pre">TriangularFactors</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E11unmbr_ge2tbv4Side2OpR6MatrixI8scalar_tE17TriangularFactorsI8scalar_tER6MatrixI8scalar_tERK7Options" title="unmbr_ge2tb::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">T</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E11unmbr_ge2tbv4Side2OpR6MatrixI8scalar_tE17TriangularFactorsI8scalar_tER6MatrixI8scalar_tERK7Options" title="unmbr_ge2tb::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C</span></span>, <span class="n"><span class="pre">Options</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">opts</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Options</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E11unmbr_ge2tbv4Side2OpR6MatrixI8scalar_tE17TriangularFactorsI8scalar_tER6MatrixI8scalar_tERK7Options" title="Link to this definition"></a><br /></dt>
+<dd><p>Multiply by Q from GE2TB reduction (Bidiagonal reduction part 1). </p>
+<p>Multiplies the general m-by-n matrix C by Q from <code class="docutils literal notranslate"><span class="pre">slate::he2hb</span></code> as follows:</p>
+<p><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>op  </p></th>
+<th class="head"><p>side = Left  </p></th>
+<th class="head"><p>side = Right  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>op = NoTrans  </p></td>
+<td><p><span class="math notranslate nohighlight">\(Q C  \)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(C Q  \)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>op = ConjTrans  </p></td>
+<td><p><span class="math notranslate nohighlight">\(Q^H C\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(C Q^H\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</p>
+<p>where <span class="math notranslate nohighlight">\(Q\)</span> is a unitary matrix defined as the product of k elementary reflectors   <div class="math notranslate nohighlight">
+\[    Q = H(1) H(2) . . . H(k)
+\]</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>side</strong> – <strong>[in]</strong> Side::Left or Side::Right.</p></li>
+<li><p><strong>op</strong> – <strong>[in]</strong> Op::NoTrans or Op::ConjTrans.</p></li>
+<li><p><strong>A</strong> – <strong>[in]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> with reduction factors.</p></li>
+<li><p><strong>T</strong> – <strong>[in]</strong> Triangular factors.</p></li>
+<li><p><strong>C</strong> – <strong>[inout]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> C.</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options.</p></li>
+<li><p><strong>side</strong> – <strong>[in]</strong> <ul>
+<li><p>Side::Left: apply <span class="math notranslate nohighlight">\(Q\)</span> or <span class="math notranslate nohighlight">\(Q^H\)</span> from the left;</p></li>
+<li><p>Side::Right: apply <span class="math notranslate nohighlight">\(Q\)</span> or <span class="math notranslate nohighlight">\(Q^H\)</span> from the right.</p></li>
+</ul>
+</p></li>
+<li><p><strong>op</strong> – <strong>[in]</strong> <ul>
+<li><p>Op::NoTrans apply <span class="math notranslate nohighlight">\(Q\)</span>;</p></li>
+<li><p>Op::ConjTrans: apply <span class="math notranslate nohighlight">\(Q^H\)</span>;</p></li>
+<li><p>Op::Trans: apply <span class="math notranslate nohighlight">\(Q^T\)</span> (only if real). In the real case, Op::Trans is equivalent to Op::ConjTrans. In the complex case, Op::Trans is not allowed.</p></li>
+</ul>
+</p></li>
+<li><p><strong>A</strong> – <strong>[in]</strong> On entry, the n-by-n Hermitian matrix <span class="math notranslate nohighlight">\(A\)</span>, as returned by <code class="docutils literal notranslate"><span class="pre">slate::he2hb</span></code>.</p></li>
+<li><p><strong>T</strong> – <strong>[in]</strong> On entry, triangular matrices of the elementary reflector H(i), as returned by <code class="docutils literal notranslate"><span class="pre">slate::he2hb</span></code>.</p></li>
+<li><p><strong>C</strong> – <strong>[inout]</strong> On entry, the m-by-n matrix <span class="math notranslate nohighlight">\(C\)</span>. On exit, <span class="math notranslate nohighlight">\(C\)</span> is overwritten by <span class="math notranslate nohighlight">\(Q C\)</span>, <span class="math notranslate nohighlight">\(Q^H C\)</span>, <span class="math notranslate nohighlight">\(C Q\)</span>, or <span class="math notranslate nohighlight">\(C Q^H\)</span>.</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options, as map of name = value pairs. Possible options:<ul>
+<li><p><a class="reference internal" href="enums.html#group__enum_1ggac97a2c5045464e6949b9a65a059b196aac41a31890959544c6523af684561abe5"><span class="std std-ref">Option::Target</span></a>: Implementation to target. Possible values:<ul>
+<li><p>HostTask: OpenMP tasks on CPU host [default].</p></li>
+<li><p>HostNest: nested OpenMP parallel for loop on CPU host.</p></li>
+<li><p>HostBatch: batched BLAS on CPU host.</p></li>
+<li><p>Devices: batched BLAS on GPU device. </p></li>
+</ul>
+</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>scalar_t</strong> – One of float, double, std::complex&lt;float&gt;, std::complex&lt;double&gt;. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E5ge2tbvR6MatrixI8scalar_tER17TriangularFactorsI8scalar_tER17TriangularFactorsI8scalar_tERK7Options">
+<span id="_CPPv3I0E5ge2tbR6MatrixI8scalar_tER17TriangularFactorsI8scalar_tER17TriangularFactorsI8scalar_tERK7Options"></span><span id="_CPPv2I0E5ge2tbR6MatrixI8scalar_tER17TriangularFactorsI8scalar_tER17TriangularFactorsI8scalar_tERK7Options"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__svd_1ga3ea51a3181fd51298ac8de966d1f1391"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ge2tb</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5ge2tbvR6MatrixI8scalar_tER17TriangularFactorsI8scalar_tER17TriangularFactorsI8scalar_tERK7Options" title="ge2tb::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A</span></span>, <span class="n"><span class="pre">TriangularFactors</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5ge2tbvR6MatrixI8scalar_tER17TriangularFactorsI8scalar_tER17TriangularFactorsI8scalar_tERK7Options" title="ge2tb::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">TU</span></span>, <span class="n"><span class="pre">TriangularFactors</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5ge2tbvR6MatrixI8scalar_tER17TriangularFactorsI8scalar_tER17TriangularFactorsI8scalar_tERK7Options" title="ge2tb::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">TV</span></span>, <span class="n"><span class="pre">Options</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">opts</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Options</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E5ge2tbvR6MatrixI8scalar_tER17TriangularFactorsI8scalar_tER17TriangularFactorsI8scalar_tERK7Options" title="Link to this definition"></a><br /></dt>
+<dd><p>Reduction from general to triangular-band form (SVD step 1). </p>
+<p>Distributed parallel reduction to band for 2-stage SVD.</p>
+<p>
+Reduces an m-by-n matrix <span class="math notranslate nohighlight">\(A\)</span> to band form using unitary transformations. The factorization has the form   <div class="math notranslate nohighlight">
+\[    A = U B V^H
+\]</div>
+ where <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are unitary. If m &gt;= n, <span class="math notranslate nohighlight">\(B\)</span> is upper triangular band with nb superdiagonals; if m &lt; n, <span class="math notranslate nohighlight">\(B\)</span> is lower triangular band with nb subdiagonals. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – <strong>[inout]</strong> General matrix A. On exit, reduced to triangular-band.</p></li>
+<li><p><strong>TU</strong> – <strong>[out]</strong> Triangular factors for U.</p></li>
+<li><p><strong>TV</strong> – <strong>[out]</strong> Triangular factors for V.</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options.</p></li>
+<li><p><strong>A</strong> – <strong>[inout]</strong> On entry, the m-by-n matrix <span class="math notranslate nohighlight">\(A\)</span>. On exit:<ul>
+<li><p>If m &gt;= n, the elements Aij for j = i, …, i+nb, represent the upper triangular band matrix B. The elements below the main diagonal, along with TU, represent the unitary matrix <span class="math notranslate nohighlight">\(U\)</span> as a product of elementary reflectors. The elements above the nb-th superdiagonal, along with TV, represent the unitary matrix <span class="math notranslate nohighlight">\(V\)</span> as a product of elementary reflectors.</p></li>
+<li><p>If m &lt; n, the elements Aij for j = i-nb, …, i, represent the lower triangular band matrix B. The elements below the nb-th subdiagonal, along with TU, represent the unitary matrix <span class="math notranslate nohighlight">\(U\)</span> as a product of elementary reflectors. The elements above the main diagonal, along with TV, represent the unitary matrix <span class="math notranslate nohighlight">\(V\)</span> as a product of elementary reflectors.</p></li>
+</ul>
+</p></li>
+<li><p><strong>TU</strong> – <strong>[out]</strong> On exit, triangular matrices of the block reflectors for U.</p></li>
+<li><p><strong>TV</strong> – <strong>[out]</strong> On exit, triangular matrices of the block reflectors for V.</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options, as map of name = value pairs. Possible options:<ul>
+<li><p><a class="reference internal" href="enums.html#group__enum_1ggac97a2c5045464e6949b9a65a059b196aa78fc353d89080d549ffd917ff688a3c9"><span class="std std-ref">Option::InnerBlocking</span></a>: Inner blocking to use for panel. Default 16.</p></li>
+<li><p><a class="reference internal" href="enums.html#group__enum_1ggac97a2c5045464e6949b9a65a059b196aaae6f02dd2c1fd23a8f149de7afed2a87"><span class="std std-ref">Option::MaxPanelThreads</span></a>: Number of threads to use for panel. Default omp_get_max_threads()/2.</p></li>
+<li><p><a class="reference internal" href="enums.html#group__enum_1ggac97a2c5045464e6949b9a65a059b196aac41a31890959544c6523af684561abe5"><span class="std std-ref">Option::Target</span></a>: Implementation to target. Possible values:<ul>
+<li><p>HostTask: OpenMP tasks on CPU host [default].</p></li>
+<li><p>HostNest: nested OpenMP parallel for loop on CPU host.</p></li>
+<li><p>HostBatch: batched BLAS on CPU host.</p></li>
+<li><p>Devices: batched BLAS on GPU device. Note a lookahead is not possible with ge2tb due to dependencies from updating on both left and right sides. </p></li>
+</ul>
+</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>scalar_t</strong> – One of float, double, std::complex&lt;float&gt;, std::complex&lt;double&gt;. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E5tb2bdvR20TriangularBandMatrixI8scalar_tER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options">
+<span id="_CPPv3I0E5tb2bdR20TriangularBandMatrixI8scalar_tER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span id="_CPPv2I0E5tb2bdR20TriangularBandMatrixI8scalar_tER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__svd_1ga3136a680129fa17e756fcd99661466a7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tb2bd</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">TriangularBandMatrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5tb2bdvR20TriangularBandMatrixI8scalar_tER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="tb2bd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5tb2bdvR20TriangularBandMatrixI8scalar_tER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="tb2bd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">U</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5tb2bdvR20TriangularBandMatrixI8scalar_tER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="tb2bd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">V</span></span>, <span class="n"><span class="pre">Options</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">opts</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Options</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E5tb2bdvR20TriangularBandMatrixI8scalar_tER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="Link to this definition"></a><br /></dt>
+<dd><p>Bulge Chasing: TriangularBand to Bi-diagonal (SVD step 2). </p>
+<p>Reduces a band matrix to a bidiagonal matrix using bulge chasing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – <strong>[inout]</strong> Triangular band matrix. On exit, bidiagonal.</p></li>
+<li><p><strong>U</strong> – <strong>[out]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> U.</p></li>
+<li><p><strong>V</strong> – <strong>[out]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> V.</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options.</p></li>
+<li><p><strong>A</strong> – <strong>[inout]</strong> The band matrix A.</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options, as map of name = value pairs. Possible options:<ul>
+<li><p><a class="reference internal" href="enums.html#group__enum_1ggac97a2c5045464e6949b9a65a059b196aac41a31890959544c6523af684561abe5"><span class="std std-ref">Option::Target</span></a>: Implementation to target. Possible values:<ul>
+<li><p>HostTask: OpenMP tasks on CPU host [default].</p></li>
+<li><p>HostNest: nested OpenMP parallel for loop on CPU host.</p></li>
+<li><p>HostBatch: batched BLAS on CPU host.</p></li>
+<li><p>Devices: batched BLAS on GPU device. </p></li>
+</ul>
+</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>scalar_t</strong> – One of float, double, std::complex&lt;float&gt;, std::complex&lt;double&gt;. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E5bdsqrv3Job3JobRNSt6vectorIN4blas9real_typeI8scalar_tEEEERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options">
+<span id="_CPPv3I0E5bdsqr3Job3JobRNSt6vectorIN4blas9real_typeI8scalar_tEEEERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span id="_CPPv2I0E5bdsqr3Job3JobRNSt6vectorIN4blas9real_typeI8scalar_tEEEERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__svd_1ga5798c1096c7cc10fc24c75c92633d278"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bdsqr</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Job</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">jobu</span></span>, <span class="n"><span class="pre">Job</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">jobvt</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">blas</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">real_type</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5bdsqrv3Job3JobRNSt6vectorIN4blas9real_typeI8scalar_tEEEERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="bdsqr::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">D</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">blas</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">real_type</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5bdsqrv3Job3JobRNSt6vectorIN4blas9real_typeI8scalar_tEEEERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="bdsqr::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">E</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5bdsqrv3Job3JobRNSt6vectorIN4blas9real_typeI8scalar_tEEEERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="bdsqr::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">U</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E5bdsqrv3Job3JobRNSt6vectorIN4blas9real_typeI8scalar_tEEEERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="bdsqr::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">VT</span></span>, <span class="n"><span class="pre">Options</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">opts</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Options</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E5bdsqrv3Job3JobRNSt6vectorIN4blas9real_typeI8scalar_tEEEERNSt6vectorIN4blas9real_typeI8scalar_tEEEER6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="Link to this definition"></a><br /></dt>
+<dd><p>Bi-diagonal SVD (SVD step 3). </p>
+<p>Computes the singular values and, optionally, the right and/or left singular vectors from the singular value decomposition (SVD) of a real (upper or lower) bidiagonal matrix.</p>
+<p>
+Generic implementation for any target.</p>
+<p>ATTENTION: only singular values computed for now, no singular vectors. Only host computation supported for now. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>jobu</strong> – <strong>[in]</strong> Job::NoVec or Job::Vec (compute U).</p></li>
+<li><p><strong>jobvt</strong> – <strong>[in]</strong> Job::NoVec or Job::Vec (compute VT).</p></li>
+<li><p><strong>D</strong> – <strong>[inout]</strong> Diagonal elements.</p></li>
+<li><p><strong>E</strong> – <strong>[inout]</strong> Off-diagonal elements.</p></li>
+<li><p><strong>U</strong> – <strong>[out]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> U.</p></li>
+<li><p><strong>VT</strong> – <strong>[out]</strong> <a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> VT.</p></li>
+<li><p><strong>opts</strong> – <strong>[in]</strong> Additional options.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4I0E11unmbr_tb2bdv4Side2OpR6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options">
+<span id="_CPPv3I0E11unmbr_tb2bd4Side2OpR6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span id="_CPPv2I0E11unmbr_tb2bd4Side2OpR6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="group__svd_1ga0a76372ef265c2e565345c679d0e4c90"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unmbr_tb2bd</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Side</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">side</span></span>, <span class="n"><span class="pre">Op</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">op</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E11unmbr_tb2bdv4Side2OpR6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="unmbr_tb2bd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">V</span></span>, <span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0E11unmbr_tb2bdv4Side2OpR6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="unmbr_tb2bd::scalar_t"><span class="n"><span class="pre">scalar_t</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C</span></span>, <span class="n"><span class="pre">Options</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">opts</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">Options</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E11unmbr_tb2bdv4Side2OpR6MatrixI8scalar_tER6MatrixI8scalar_tERK7Options" title="Link to this definition"></a><br /></dt>
+<dd><p>Multiply by Q from TB2BD reduction (Bidiagonal reduction part 2?). </p>
+<p>Actually this seems to be related to SVD but placed here? It says unmbr_tb2bd. </p>
+</dd></dl>
+
+</section>
+<section id="notes">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Notes</a><a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<p>The SVD computes:</p>
+<div class="math notranslate nohighlight">
+\[A = U \Sigma V^H\]</div>
+<p>where:
+- <span class="math notranslate nohighlight">\(U\)</span> is m-by-m unitary
+- <span class="math notranslate nohighlight">\(\Sigma\)</span> is m-by-n diagonal with non-negative real entries
+- <span class="math notranslate nohighlight">\(V\)</span> is n-by-n unitary</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="eigenvalues.html" class="btn btn-neutral float-left" title="Eigenvalue Problems" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="matrices_api.html" class="btn btn-neutral float-right" title="Matrix Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025, Innovative Computing Laboratory, University of Tennessee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

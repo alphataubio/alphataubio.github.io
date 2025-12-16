@@ -1,0 +1,1279 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enumerations and Types &mdash; SLATE 2023.11.05 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=c74a7515" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=4a0eadb2"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="blaspp" href="../blaspp/index.html" />
+    <link rel="prev" title="Matrix Classes" href="matrices_api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SLATE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">USER GUIDE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/overview.html#design-goals">Design Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/overview.html#software-requirements">Software Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/overview.html#project-resources">Project Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#example-program-lu-solve">Example Program: LU Solve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#understanding-the-example">Understanding the Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#mpi-initialization">MPI Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#creating-matrices">Creating Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#allocating-tiles">Allocating Tiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#solving-the-system">Solving the System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/getting_started.html#execution-options">Execution Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#building-the-example">Building the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#running-the-example">Running the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#simplifying-assumptions">Simplifying Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/getting_started.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#downloading-source">Downloading Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#makefile-build">Makefile Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#basic-configuration">Basic Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#build-and-install">Build and Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#configuration-options">Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#cmake-build">CMake Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#basic-build">Basic Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#cmake-options">CMake Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#example-with-mkl-and-cuda">Example with MKL and CUDA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#spack-installation">Spack Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#install-spack">Install Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#install-slate">Install SLATE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#loading-slate">Loading SLATE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#gpu-aware-mpi">GPU-Aware MPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#verifying-installation">Verifying Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/installation.html#module-environment-hpc-systems">Module Environment (HPC Systems)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/matrices.html">Matrices in SLATE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#matrix-hierarchy">Matrix Hierarchy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#matrix-types">Matrix Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#creating-matrices">Creating Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#basic-creation">Basic Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#creating-from-existing-matrix-structure">Creating from Existing Matrix Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#allocating-tile-memory">Allocating Tile Memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#cpu-host-memory">CPU Host Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#gpu-device-memory">GPU Device Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#user-provided-memory">User-Provided Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#scalapack-layout">ScaLAPACK Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#accessing-matrix-elements">Accessing Matrix Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#tile-access">Tile Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#element-access">Element Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#matrix-properties">Matrix Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#matrix-conversions">Matrix Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#transpose-and-conjugate-transpose">Transpose and Conjugate Transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#submatrices-and-slices">Submatrices and Slices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#tile-based-submatrices">Tile-Based Submatrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#element-based-slices">Element-Based Slices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#copying-matrices">Copying Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#deep-copy">Deep Copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#precision-conversion">Precision Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#tile-layout-and-distribution">Tile Layout and Distribution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#data-distribution">Data Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#tile-sizes">Tile Sizes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/matrices.html#memory-management">Memory Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/matrices.html#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/operations.html">SLATE Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#execution-options">Execution Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#common-options">Common Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#matrix-norms">Matrix Norms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#level-3-blas-operations">Level 3 BLAS Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-multiply-gemm">Matrix Multiply (gemm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#hermitian-symmetric-matrix-multiply-hemm-symm">Hermitian/Symmetric Matrix Multiply (hemm/symm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#rank-k-update-herk-syrk">Rank-k Update (herk/syrk)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#rank-2k-update-her2k-syr2k">Rank-2k Update (her2k/syr2k)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#triangular-multiply-trmm">Triangular Multiply (trmm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#triangular-solve-trsm">Triangular Solve (trsm)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#linear-systems">Linear Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#lu-factorization-general-matrices">LU Factorization (General Matrices)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#lu-pivoting-options">LU Pivoting Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#cholesky-factorization-positive-definite">Cholesky Factorization (Positive Definite)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#indefinite-solve-aasen-s-algorithm">Indefinite Solve (Aasen’s Algorithm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#band-matrix-solve">Band Matrix Solve</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#mixed-precision-iterative-refinement">Mixed-Precision Iterative Refinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#least-squares">Least Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#qr-and-lq-factorizations">QR and LQ Factorizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#eigenvalue-problems">Eigenvalue Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#hermitian-symmetric-eigenvalues">Hermitian/Symmetric Eigenvalues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#eigenvalue-methods">Eigenvalue Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#generalized-eigenvalue-problem">Generalized Eigenvalue Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#singular-value-decomposition">Singular Value Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#auxiliary-operations">Auxiliary Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-add">Matrix Add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-copy">Matrix Copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-set">Matrix Set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-scale">Matrix Scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#condition-number-estimate">Condition Number Estimate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/operations.html#matrix-print">Matrix Print</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/operations.html#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/testing.html">Testing and Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#slate-tester">SLATE Tester</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#single-process-testing">Single-Process Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#multi-process-testing">Multi-Process Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#tester-parameters">Tester Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#example-tester-output">Example Tester Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#accuracy-verification">Accuracy Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#without-reference-ref-n">Without Reference (–ref=n)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#with-reference-ref-y">With Reference (–ref=y)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#norm-verification">Norm Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#full-testing-suite">Full Testing Suite</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#custom-test-commands">Custom Test Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#performance-tuning">Performance Tuning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#tile-size">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#process-grid">Process Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#lookahead">Lookahead</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#panel-threads">Panel Threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#multi-threaded-mpi-broadcast">Multi-threaded MPI Broadcast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#gpu-aware-mpi">GPU-Aware MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#performance-examples">Performance Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#unit-tests">Unit Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#benchmark-suite">Benchmark Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/testing.html#troubleshooting-tests">Troubleshooting Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/testing.html#debugging">Debugging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/compatibility.html">ScaLAPACK Compatibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#lapack-compatibility-api">LAPACK Compatibility API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#using-the-api">Using the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#how-it-works">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#tile-size">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#available-routines">Available Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#scalapack-compatibility-api">ScaLAPACK Compatibility API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#id1">Using the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#id2">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#id3">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#supported-routines">Supported Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#matrix-layout-compatibility">Matrix Layout Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#creating-from-scalapack-data">Creating from ScaLAPACK Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#grid-order">Grid Order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#migration-strategies">Migration Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#gradual-migration">Gradual Migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#direct-migration">Direct Migration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#id4">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/compatibility.html#gpu-acceleration">GPU Acceleration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/compatibility.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">slate</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-reference">Quick Reference</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#contents">Contents</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="blas.html">BLAS and Auxiliary Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#matrix-multiplication">Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#triangular-matrix-multiplication">Triangular Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#rank-updates">Rank Updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#triangular-solve">Triangular Solve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#auxiliary-routines">Auxiliary Routines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="blas.html#standard-blas-routines">Standard BLAS Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="linear_systems.html">Linear Systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="linear_systems.html#lu-factorization-general">LU Factorization (General)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linear_systems.html#cholesky-factorization-positive-definite">Cholesky Factorization (Positive Definite)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linear_systems.html#indefinite-factorization-symmetric-hermitian">Indefinite Factorization (Symmetric/Hermitian)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="least_squares.html">Least Squares</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="least_squares.html#least-squares-solve">Least Squares Solve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="least_squares.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="least_squares.html#lq-factorization">LQ Factorization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="eigenvalues.html">Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eigenvalues.html#symmetric-hermitian-eigenvalue-problems">Symmetric/Hermitian Eigenvalue Problems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eigenvalues.html#generalized-symmetric-hermitian-eigenvalue-problems">Generalized Symmetric/Hermitian Eigenvalue Problems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eigenvalues.html#tridiagonal-eigenvalue-solvers">Tridiagonal Eigenvalue Solvers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="svd.html">Singular Value Decomposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="svd.html#svd-functions">SVD Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="svd.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="matrices_api.html">Matrix Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#general-matrices">General Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#structured-matrices">Structured Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#band-matrices">Band Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#tiles">Tiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="matrices_api.html#auxiliary-classes">Auxiliary Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Enumerations and Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#core-enumerations">Core Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#method-enumerations">Method Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-traits">Type Traits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#common-parameters">Common Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#_CPPv4I0E7routinevR6MatrixI8scalar_tERK7Options"><code class="docutils literal notranslate"><span class="pre">routine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#header-files">Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#c-and-fortran-apis">C and Fortran APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../blaspp/index.html">blaspp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#organization">Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#contents">Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/level1.html">Level 1 BLAS (Vector Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/level1.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/level2.html">Level 2 BLAS (Matrix-Vector Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/level2.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/level3.html">Level 3 BLAS (Matrix-Matrix Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/level3.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/util.html">Utilities and Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/util.html#enumerations">Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/util.html#error-handling">Error Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/util.html#type-traits-and-safety-functions">Type Traits and Safety Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/device.html">Device (GPU) Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/device.html#queue-management">Queue Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/device.html#device-memory-and-batch-operations">Device Memory and Batch Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/performance.html">Performance Counting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/performance.html#papi-counter-integration">PAPI Counter Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/performance.html#flop-calculations">FLOP Calculations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../blaspp/performance.html#bandwidth-calculations">Bandwidth Calculations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#level-1-blas-vector-vector">Level 1 BLAS (Vector-Vector)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#level-2-blas-matrix-vector">Level 2 BLAS (Matrix-Vector)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#level-3-blas-matrix-matrix">Level 3 BLAS (Matrix-Matrix)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#basic-usage">Basic Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#cpu-host-operations">CPU (Host) Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#gpu-device-operations">GPU (Device) Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#common-parameters">Common Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#layout">Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#op">Op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#uplo">Uplo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#diag">Diag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../blaspp/index.html#side">Side</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#header-files">Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blaspp/index.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../lapackpp/index.html">lapackpp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/util.html">Utilities and Enumerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/util.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/util.html#_CPPv4N6lapack5ErrorE"><code class="docutils literal notranslate"><span class="pre">lapack::Error</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/util.html#enumerations">Enumerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/util.html#version-information">Version Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/device.html">Device (GPU) Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/device.html#queue-management">Queue Management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#_CPPv4N6lapack5QueueE"><code class="docutils literal notranslate"><span class="pre">lapack::Queue</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/device.html#gpu-operations">GPU Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#cholesky-factorization">Cholesky Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#lu-factorization">LU Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/device.html#eigenvalue-decomposition">Eigenvalue Decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/device.html#device-memory-types">Device Memory Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/flops.html">Performance Counters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#flop-counting">FLOP Counting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/flops.html#_CPPv4I0EN6lapack5GflopE"><code class="docutils literal notranslate"><span class="pre">lapack::Gflop</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#bandwidth-analysis">Bandwidth Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/flops.html#_CPPv4I0EN6lapack5GbyteE"><code class="docutils literal notranslate"><span class="pre">lapack::Gbyte</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#usage-example">Usage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#supported-operations">Supported Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/flops.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/factorizations.html">Matrix Factorizations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#lu-factorization">LU Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#cholesky-factorization">Cholesky Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#lq-factorization">LQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#ql-factorization">QL Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#rq-factorization">RQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#symmetric-hermitian-factorizations">Symmetric/Hermitian Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#triangular-factorizations">Triangular Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#bidiagonal-reduction">Bidiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#tridiagonal-reduction">Tridiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#hessenberg-reduction">Hessenberg Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#example-usage">Example Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#factorization-algorithms">Factorization Algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#storage-efficiency">Storage Efficiency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#performance-characteristics">Performance Characteristics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#blocking-and-level-3-blas">Blocking and Level-3 BLAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#choosing-a-factorization">Choosing a Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/factorizations.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/linear_systems.html">Linear Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#general-non-symmetric-systems">General (Non-Symmetric) Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#symmetric-hermitian-positive-definite">Symmetric/Hermitian Positive Definite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#symmetric-hermitian-indefinite">Symmetric/Hermitian Indefinite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#triangular-systems">Triangular Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#band-matrices">Band Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#tridiagonal-systems">Tridiagonal Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#symmetric-positive-definite-tridiagonal">Symmetric Positive Definite Tridiagonal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/linear_systems.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/least_squares.html">Least Squares and Linear Regression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#qr-based-least-squares">QR-Based Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#lq-factorization">LQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#ql-and-rq-factorizations">QL and RQ Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#orthogonal-matrix-generation">Orthogonal Matrix Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#multiplication-by-q">Multiplication by Q</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#complete-orthogonal-factorization">Complete Orthogonal Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#constrained-least-squares">Constrained Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#rank-estimation">Rank Estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/least_squares.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/eigenvalues.html">Eigenvalue Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#standard-eigenvalue-problems">Standard Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#symmetric-hermitian-eigenvalues">Symmetric/Hermitian Eigenvalues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#non-symmetric-eigenvalues">Non-Symmetric Eigenvalues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#tridiagonal-banded-eigenproblems">Tridiagonal/Banded Eigenproblems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#generalized-eigenvalue-problems">Generalized Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#symmetric-hermitian">Symmetric/Hermitian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../lapackpp/eigenvalues.html#non-symmetric-generalized-schur">Non-Symmetric (Generalized Schur)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#reduction-to-standard-form">Reduction to Standard Form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#auxiliary-reductions">Auxiliary Reductions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#schur-form-manipulation">Schur Form Manipulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#eigenvector-computation">Eigenvector Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#balancing">Balancing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/eigenvalues.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/svd.html">Singular Value Decomposition (SVD)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#standard-svd">Standard SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#specialized-svd-routines">Specialized SVD Routines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#bidiagonal-svd">Bidiagonal SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#bidiagonal-reduction">Bidiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#generalized-svd-gsvd">Generalized SVD (GSVD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#cs-decomposition-csd">CS Decomposition (CSD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#rank-and-pseudoinverse">Rank and Pseudoinverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#applications">Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/svd.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/auxiliary.html">Auxiliary Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#matrix-norms">Matrix Norms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#condition-number-estimation">Condition Number Estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#equilibration-and-scaling">Equilibration and Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#matrix-initialization-and-copying">Matrix Initialization and Copying</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#matrix-addition">Matrix Addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#householder-transformations">Householder Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#givens-rotations">Givens Rotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#matrix-multiplication-triangular">Matrix Multiplication (Triangular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#special-matrix-operations">Special Matrix Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#permutations-and-sorting">Permutations and Sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#workspace-queries">Workspace Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#error-checking-and-diagnostics">Error Checking and Diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../lapackpp/auxiliary.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/index.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lapackpp/index.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/building.html">Building Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/building.html#option-1-makefile">Option 1: Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/building.html#option-2-cmake">Option 2: CMake</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex01_matrix.html">Example 01: Matrix Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex01_matrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex01_matrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex02_conversion.html">Example 02: Matrix Type Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex02_conversion.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex02_conversion.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex03_submatrix.html">Example 03: Submatrices and Slicing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex03_submatrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex03_submatrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex04_norm.html">Example 04: Matrix Norms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex04_norm.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex04_norm.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex05_blas.html">Example 05: BLAS Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex05_blas.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex05_blas.html#c-example">C++ Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex05_blas.html#c-api-example">C API Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex05_blas.html#fortran-api-example">Fortran API Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex06_linear_system_lu.html">Example 06: Linear Systems (LU)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex06_linear_system_lu.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex06_linear_system_lu.html#c-example">C++ Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex06_linear_system_lu.html#c-api-example">C API Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex07_linear_system_cholesky.html">Example 07: Linear Systems (Cholesky)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex07_linear_system_cholesky.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex07_linear_system_cholesky.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex08_linear_system_indefinite.html">Example 08: Linear Systems (Indefinite)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex08_linear_system_indefinite.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex08_linear_system_indefinite.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex09_least_squares.html">Example 09: Least Squares</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex09_least_squares.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex09_least_squares.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex10_svd.html">Example 10: Singular Value Decomposition (SVD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex10_svd.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex10_svd.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex11_hermitian_eig.html">Example 11: Hermitian Eigenvalue Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex11_hermitian_eig.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex11_hermitian_eig.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex12_generalized_hermitian_eig.html">Example 12: Generalized Hermitian Eigenvalues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex12_generalized_hermitian_eig.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex12_generalized_hermitian_eig.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex13_non_uniform_block_size.html">Example 13: Non-uniform Block Sizes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex13_non_uniform_block_size.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex13_non_uniform_block_size.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex14_scalapack_gemm.html">Example 14: ScaLAPACK Compatibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex14_scalapack_gemm.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex14_scalapack_gemm.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/ex15_set_matrix.html">Example 15: Setting Matrix Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex15_set_matrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/ex15_set_matrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DEVELOPER GUIDE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/01_introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/01_introduction.html#revision-notes">Revision Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/02_api_layers.html">API Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#drivers">Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#computational-routines">Computational Routines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/02_api_layers.html#comments-on-the-code">Comments on the Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/02_api_layers.html#template-dispatch">Template Dispatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/02_api_layers.html#executing-multiple-internal-routines-on-devices">Executing Multiple Internal Routines on Devices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#internal-routines-for-major-parallel-tasks">Internal Routines for Major, Parallel Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/02_api_layers.html#batched-gpu-tasks">Batched GPU Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#tile-operations-for-small-sequential-tasks">Tile Operations for Small, Sequential Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#blas-batched-blas-and-lapack">BLAS++, Batched BLAS++, and LAPACK++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/02_api_layers.html#work-routines-for-actual-openmp-work">Work Routines for Actual OpenMP Work</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/03_matrix_storage.html">Matrix Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/03_matrix_storage.html#tile-management">Tile Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/04_side_uplo_trans.html">Handling of Side, Uplo, Trans, etc.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/05_precisions.html">Handling of Precisions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/06_parallelism.html">Parallelism Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/07_communication.html">Message Passing Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/08_mosi.html">MOSI Coherency Protocol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#coherency-control">Coherency Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#tile-states">Tile States</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#mosi-api">MOSI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#data-transfer">Data Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/08_mosi.html#developer-hints">Developer Hints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/09_layout.html">Column Major and Row Major Layout</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/09_layout.html#layout-representation-and-api">Layout Representation and API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../developer_guide/09_layout.html#layout-conversion">Layout Conversion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../developer_guide/09_layout.html#layout-conversion-of-extended-tiles">Layout Conversion of Extended Tiles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../developer_guide/10_bibliography.html">Bibliography</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL INFO</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About SLATE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../about.html#version">Version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../license.html#bsd-3-clause-license">BSD 3-Clause License</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SLATE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">slate</a></li>
+      <li class="breadcrumb-item active">Enumerations and Types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/api/slate/enums.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="enumerations-and-types">
+<h1>Enumerations and Types<a class="headerlink" href="#enumerations-and-types" title="Link to this heading"></a></h1>
+<p>SLATE uses strongly-typed enumerations for options and parameters.</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#core-enumerations" id="id1">Core Enumerations</a></p>
+<ul>
+<li><p><a class="reference internal" href="#layout" id="id2">Layout</a></p></li>
+<li><p><a class="reference internal" href="#op-operation" id="id3">Op (Operation)</a></p></li>
+<li><p><a class="reference internal" href="#uplo-upper-lower" id="id4">Uplo (Upper/Lower)</a></p></li>
+<li><p><a class="reference internal" href="#diag-diagonal" id="id5">Diag (Diagonal)</a></p></li>
+<li><p><a class="reference internal" href="#side" id="id6">Side</a></p></li>
+<li><p><a class="reference internal" href="#norm" id="id7">Norm</a></p></li>
+<li><p><a class="reference internal" href="#direction" id="id8">Direction</a></p></li>
+<li><p><a class="reference internal" href="#target" id="id9">Target</a></p></li>
+<li><p><a class="reference internal" href="#grid-order" id="id10">Grid Order</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#options" id="id11">Options</a></p></li>
+<li><p><a class="reference internal" href="#method-enumerations" id="id12">Method Enumerations</a></p></li>
+<li><p><a class="reference internal" href="#type-traits" id="id13">Type Traits</a></p></li>
+</ul>
+</nav>
+<section id="core-enumerations">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Core Enumerations</a><a class="headerlink" href="#core-enumerations" title="Link to this heading"></a></h2>
+<section id="layout">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Layout</a><a class="headerlink" href="#layout" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate6LayoutE">
+<span id="_CPPv3N5slate6LayoutE"></span><span id="_CPPv2N5slate6LayoutE"></span><span class="target" id="namespaceslate_1a3c217f4aa64e3cf0e663b7beae9f41e5"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Layout</span></span></span><a class="headerlink" href="#_CPPv4N5slate6LayoutE" title="Link to this definition"></a><br /></dt>
+<dd><p>Layout: ColMajor, RowMajor. </p>
+<p><em>Values:</em></p>
+</dd></dl>
+
+</section>
+<section id="op-operation">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Op (Operation)</a><a class="headerlink" href="#op-operation" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate2OpE">
+<span id="_CPPv3N5slate2OpE"></span><span id="_CPPv2N5slate2OpE"></span><span class="target" id="namespaceslate_1a1ee9b7eb208d188fa3c45161a12b339f"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Op</span></span></span><a class="headerlink" href="#_CPPv4N5slate2OpE" title="Link to this definition"></a><br /></dt>
+<dd><p>Operation: NoTrans, Trans, ConjTrans. </p>
+<p><em>Values:</em></p>
+</dd></dl>
+
+</section>
+<section id="uplo-upper-lower">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Uplo (Upper/Lower)</a><a class="headerlink" href="#uplo-upper-lower" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate4UploE">
+<span id="_CPPv3N5slate4UploE"></span><span id="_CPPv2N5slate4UploE"></span><span class="target" id="namespaceslate_1a344eada297a6b6723b950cd3303869c4"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Uplo</span></span></span><a class="headerlink" href="#_CPPv4N5slate4UploE" title="Link to this definition"></a><br /></dt>
+<dd><p>Uplo: Upper, Lower, General. </p>
+<p><em>Values:</em></p>
+</dd></dl>
+
+</section>
+<section id="diag-diagonal">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Diag (Diagonal)</a><a class="headerlink" href="#diag-diagonal" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate4DiagE">
+<span id="_CPPv3N5slate4DiagE"></span><span id="_CPPv2N5slate4DiagE"></span><span class="target" id="namespaceslate_1a83c0cf7635b9eadbc844b0b25aeb9ed0"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Diag</span></span></span><a class="headerlink" href="#_CPPv4N5slate4DiagE" title="Link to this definition"></a><br /></dt>
+<dd><p>Diagonal: NonUnit, Unit. </p>
+<p><em>Values:</em></p>
+</dd></dl>
+
+</section>
+<section id="side">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Side</a><a class="headerlink" href="#side" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate4SideE">
+<span id="_CPPv3N5slate4SideE"></span><span id="_CPPv2N5slate4SideE"></span><span class="target" id="namespaceslate_1a6e3ae47f545b485442a93e032c04b88e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Side</span></span></span><a class="headerlink" href="#_CPPv4N5slate4SideE" title="Link to this definition"></a><br /></dt>
+<dd><p>Side: Left, Right. </p>
+<p><em>Values:</em></p>
+</dd></dl>
+
+</section>
+<section id="norm">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Norm</a><a class="headerlink" href="#norm" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate4NormE">
+<span id="_CPPv3N5slate4NormE"></span><span id="_CPPv2N5slate4NormE"></span><span class="target" id="namespaceslate_1aafede10b328f215203ca41fe023c64bc"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Norm</span></span></span><a class="headerlink" href="#_CPPv4N5slate4NormE" title="Link to this definition"></a><br /></dt>
+<dd><p>Norm: One, Two, Inf, Fro, Max, RealOne, RealInf, RealMax. </p>
+<p><em>Values:</em></p>
+</dd></dl>
+
+</section>
+<section id="direction">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Direction</a><a class="headerlink" href="#direction" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate9DirectionE">
+<span id="_CPPv3N5slate9DirectionE"></span><span id="_CPPv2N5slate9DirectionE"></span><span class="target" id="namespaceslate_1afc20bf7e324ec0c634655f89dfb68584"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Direction</span></span></span><a class="headerlink" href="#_CPPv4N5slate9DirectionE" title="Link to this definition"></a><br /></dt>
+<dd><p>Direction: Forward, Backward. </p>
+<p><em>Values:</em></p>
+</dd></dl>
+
+</section>
+<section id="target">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Target</a><a class="headerlink" href="#target" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv46Target">
+<span id="_CPPv36Target"></span><span id="_CPPv26Target"></span><span class="target" id="group__enum_1gaf84c73d5e2cf203effad4b6cb3f96fb8"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Target</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv46Target" title="Link to this definition"></a><br /></dt>
+<dd><p>Location and method of computation. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Target4HostE">
+<span id="_CPPv3N6Target4HostE"></span><span id="_CPPv2N6Target4HostE"></span><span class="target" id="group__enum_1ggaf84c73d5e2cf203effad4b6cb3f96fb8ac2ca16d048ec66e04bca283eab048ec2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Host</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'H'</span></span><a class="headerlink" href="#_CPPv4N6Target4HostE" title="Link to this definition"></a><br /></dt>
+<dd><p>data resides on host </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Target8HostTaskE">
+<span id="_CPPv3N6Target8HostTaskE"></span><span id="_CPPv2N6Target8HostTaskE"></span><span class="target" id="group__enum_1ggaf84c73d5e2cf203effad4b6cb3f96fb8a2b490f62685eb7600e1f4c96b361392d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostTask</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'T'</span></span><a class="headerlink" href="#_CPPv4N6Target8HostTaskE" title="Link to this definition"></a><br /></dt>
+<dd><p>computation using OpenMP nested tasks on host </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Target8HostNestE">
+<span id="_CPPv3N6Target8HostNestE"></span><span id="_CPPv2N6Target8HostNestE"></span><span class="target" id="group__enum_1ggaf84c73d5e2cf203effad4b6cb3f96fb8a640fc3d07af4cb6d5ea7ad363afea9b0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostNest</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'N'</span></span><a class="headerlink" href="#_CPPv4N6Target8HostNestE" title="Link to this definition"></a><br /></dt>
+<dd><p>computation using OpenMP nested parallel for loops on host </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Target9HostBatchE">
+<span id="_CPPv3N6Target9HostBatchE"></span><span id="_CPPv2N6Target9HostBatchE"></span><span class="target" id="group__enum_1ggaf84c73d5e2cf203effad4b6cb3f96fb8a535091a65695b8cac906c5b90d0abfb9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostBatch</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'B'</span></span><a class="headerlink" href="#_CPPv4N6Target9HostBatchE" title="Link to this definition"></a><br /></dt>
+<dd><p>computation using batch BLAS on host (Intel MKL) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Target7DevicesE">
+<span id="_CPPv3N6Target7DevicesE"></span><span id="_CPPv2N6Target7DevicesE"></span><span class="target" id="group__enum_1ggaf84c73d5e2cf203effad4b6cb3f96fb8ac03ca67dda321195d74c951097f240c6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Devices</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'D'</span></span><a class="headerlink" href="#_CPPv4N6Target7DevicesE" title="Link to this definition"></a><br /></dt>
+<dd><p>computation using batch BLAS on devices (cuBLAS) </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="grid-order">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Grid Order</a><a class="headerlink" href="#grid-order" title="Link to this heading"></a></h3>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv49GridOrder">
+<span id="_CPPv39GridOrder"></span><span id="_CPPv29GridOrder"></span><span class="target" id="group__enum_1gaeaac89d42194c5055ca23d59bb9c4dee"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GridOrder</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv49GridOrder" title="Link to this definition"></a><br /></dt>
+<dd><p>Order to map MPI processes to tile grid. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N9GridOrder3ColE">
+<span id="_CPPv3N9GridOrder3ColE"></span><span id="_CPPv2N9GridOrder3ColE"></span><span class="target" id="group__enum_1ggaeaac89d42194c5055ca23d59bb9c4deea5849bfda165a2a82f62deea071fdc9ae"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Col</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'C'</span></span><a class="headerlink" href="#_CPPv4N9GridOrder3ColE" title="Link to this definition"></a><br /></dt>
+<dd><p>Column major. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N9GridOrder3RowE">
+<span id="_CPPv3N9GridOrder3RowE"></span><span id="_CPPv2N9GridOrder3RowE"></span><span class="target" id="group__enum_1ggaeaac89d42194c5055ca23d59bb9c4deeaa70367aa7cb74e510f4f9413ccf059d3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Row</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'R'</span></span><a class="headerlink" href="#_CPPv4N9GridOrder3RowE" title="Link to this definition"></a><br /></dt>
+<dd><p>Row major. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N9GridOrder7UnknownE">
+<span id="_CPPv3N9GridOrder7UnknownE"></span><span id="_CPPv2N9GridOrder7UnknownE"></span><span class="target" id="group__enum_1ggaeaac89d42194c5055ca23d59bb9c4deea88183b946cc5f0e8c96b2e66e1c74a7e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Unknown</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'U'</span></span><a class="headerlink" href="#_CPPv4N9GridOrder7UnknownE" title="Link to this definition"></a><br /></dt>
+<dd><p>Unknown (e.g., if using lambda functions). </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+<section id="options">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Options</a><a class="headerlink" href="#options" title="Link to this heading"></a></h2>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate7OptionsE">
+<span id="_CPPv3N5slate7OptionsE"></span><span id="_CPPv2N5slate7OptionsE"></span><span class="target" id="namespaceslate_1a850e5be64702041812ce212fc78ee1d3"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Options</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv46Option" title="Option"><span class="n"><span class="pre">Option</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">OptionValue</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4N5slate7OptionsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv46Option">
+<span id="_CPPv36Option"></span><span id="_CPPv26Option"></span><span class="target" id="group__enum_1gac97a2c5045464e6949b9a65a059b196a"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Option</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv46Option" title="Link to this definition"></a><br /></dt>
+<dd><p>Keys for options to pass to SLATE routines. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option9ChunkSizeE">
+<span id="_CPPv3N6Option9ChunkSizeE"></span><span id="_CPPv2N6Option9ChunkSizeE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aaf83143c1920d840879f1b4340f2eb1c8"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ChunkSize</span></span></span><a class="headerlink" href="#_CPPv4N6Option9ChunkSizeE" title="Link to this definition"></a><br /></dt>
+<dd><p>chunk size, &gt;= 1 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option9LookaheadE">
+<span id="_CPPv3N6Option9LookaheadE"></span><span id="_CPPv2N6Option9LookaheadE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa9ed6e7a8bdc20e752f9dddcfff0270bf"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Lookahead</span></span></span><a class="headerlink" href="#_CPPv4N6Option9LookaheadE" title="Link to this definition"></a><br /></dt>
+<dd><p>lookahead depth, &gt;= 0 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option9BlockSizeE">
+<span id="_CPPv3N6Option9BlockSizeE"></span><span id="_CPPv2N6Option9BlockSizeE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa18d721bf398e589932630551a08d2b1a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BlockSize</span></span></span><a class="headerlink" href="#_CPPv4N6Option9BlockSizeE" title="Link to this definition"></a><br /></dt>
+<dd><p>block size, &gt;= 1 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option13InnerBlockingE">
+<span id="_CPPv3N6Option13InnerBlockingE"></span><span id="_CPPv2N6Option13InnerBlockingE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa78fc353d89080d549ffd917ff688a3c9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InnerBlocking</span></span></span><a class="headerlink" href="#_CPPv4N6Option13InnerBlockingE" title="Link to this definition"></a><br /></dt>
+<dd><p>inner blocking size, &gt;= 1 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option15MaxPanelThreadsE">
+<span id="_CPPv3N6Option15MaxPanelThreadsE"></span><span id="_CPPv2N6Option15MaxPanelThreadsE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aaae6f02dd2c1fd23a8f149de7afed2a87"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MaxPanelThreads</span></span></span><a class="headerlink" href="#_CPPv4N6Option15MaxPanelThreadsE" title="Link to this definition"></a><br /></dt>
+<dd><p>max number of threads for panel, &gt;= 1 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option9ToleranceE">
+<span id="_CPPv3N6Option9ToleranceE"></span><span id="_CPPv2N6Option9ToleranceE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa38a4462de8ef7234a58e8f0798e29d04"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Tolerance</span></span></span><a class="headerlink" href="#_CPPv4N6Option9ToleranceE" title="Link to this definition"></a><br /></dt>
+<dd><p>tolerance for iterative methods, default epsilon </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option6TargetE">
+<span id="_CPPv3N6Option6TargetE"></span><span id="_CPPv2N6Option6TargetE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aac41a31890959544c6523af684561abe5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Target</span></span></span><a class="headerlink" href="#_CPPv4N6Option6TargetE" title="Link to this definition"></a><br /></dt>
+<dd><p>computation method ( </p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#group__enum_1gaf84c73d5e2cf203effad4b6cb3f96fb8"><span class="std std-ref">Target</span></a>) </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option18HoldLocalWorkspaceE">
+<span id="_CPPv3N6Option18HoldLocalWorkspaceE"></span><span id="_CPPv2N6Option18HoldLocalWorkspaceE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa0cdca1249e4bc245a1780ac21c2316b5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HoldLocalWorkspace</span></span></span><a class="headerlink" href="#_CPPv4N6Option18HoldLocalWorkspaceE" title="Link to this definition"></a><br /></dt>
+<dd><p>do not erase local workspace tiles for enabling resue of the tiles by the next routine </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option5DepthE">
+<span id="_CPPv3N6Option5DepthE"></span><span id="_CPPv2N6Option5DepthE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa675056ad1441b6375b2c5abd48c27ef1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Depth</span></span></span><a class="headerlink" href="#_CPPv4N6Option5DepthE" title="Link to this definition"></a><br /></dt>
+<dd><p>depth for the RBT solver </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option13MaxIterationsE">
+<span id="_CPPv3N6Option13MaxIterationsE"></span><span id="_CPPv2N6Option13MaxIterationsE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa89d18cc81de326d8fc836491777795e0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MaxIterations</span></span></span><a class="headerlink" href="#_CPPv4N6Option13MaxIterationsE" title="Link to this definition"></a><br /></dt>
+<dd><p>maximum iteration count </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option17UseFallbackSolverE">
+<span id="_CPPv3N6Option17UseFallbackSolverE"></span><span id="_CPPv2N6Option17UseFallbackSolverE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa08a7b22386b470b767f4ea475b0dffd4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">UseFallbackSolver</span></span></span><a class="headerlink" href="#_CPPv4N6Option17UseFallbackSolverE" title="Link to this definition"></a><br /></dt>
+<dd><p>whether to fallback to a robust solver if iterations do not converge </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option14PivotThresholdE">
+<span id="_CPPv3N6Option14PivotThresholdE"></span><span id="_CPPv2N6Option14PivotThresholdE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa4f30b34bb1728b7a84538b94f0bb03a4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PivotThreshold</span></span></span><a class="headerlink" href="#_CPPv4N6Option14PivotThresholdE" title="Link to this definition"></a><br /></dt>
+<dd><p>threshold for pivoting, &gt;= 0, &lt;= 1 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option12PrintVerboseE">
+<span id="_CPPv3N6Option12PrintVerboseE"></span><span id="_CPPv2N6Option12PrintVerboseE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa441f6e10d11dc5e06cc095ab0bdb4553"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PrintVerbose</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">50</span></span><a class="headerlink" href="#_CPPv4N6Option12PrintVerboseE" title="Link to this definition"></a><br /></dt>
+<dd><p>verbose, 0: no printing, verbose, 1: print metadata only (dimensions, uplo, etc.) verbose, 2: print first &amp; last PrintEdgeItems rows &amp; cols from the four corner tiles verbose, 3: print 4 corner elements of every tile verbose, 4: print full matrix </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option14PrintEdgeItemsE">
+<span id="_CPPv3N6Option14PrintEdgeItemsE"></span><span id="_CPPv2N6Option14PrintEdgeItemsE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aac068f2836b3a8699676edcf600f0dcfb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PrintEdgeItems</span></span></span><a class="headerlink" href="#_CPPv4N6Option14PrintEdgeItemsE" title="Link to this definition"></a><br /></dt>
+<dd><p>edgeitems: number of first &amp; last rows &amp; cols of matrix to print </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option10PrintWidthE">
+<span id="_CPPv3N6Option10PrintWidthE"></span><span id="_CPPv2N6Option10PrintWidthE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa0a7c6469c6b6c9f1db6a1acc87733fbe"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PrintWidth</span></span></span><a class="headerlink" href="#_CPPv4N6Option10PrintWidthE" title="Link to this definition"></a><br /></dt>
+<dd><p>width print format specifier </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option14PrintPrecisionE">
+<span id="_CPPv3N6Option14PrintPrecisionE"></span><span id="_CPPv2N6Option14PrintPrecisionE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa752cb56948813852e2168627568b1d55"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PrintPrecision</span></span></span><a class="headerlink" href="#_CPPv4N6Option14PrintPrecisionE" title="Link to this definition"></a><br /></dt>
+<dd><p>precision print format specifier For correct printing, PrintWidth = PrintPrecision + 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option12MethodCholQRE">
+<span id="_CPPv3N6Option12MethodCholQRE"></span><span id="_CPPv2N6Option12MethodCholQRE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aabe8df228b7f7880d5c1080704bca49eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MethodCholQR</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">60</span></span><a class="headerlink" href="#_CPPv4N6Option12MethodCholQRE" title="Link to this definition"></a><br /></dt>
+<dd><p>Select the algorithm to compute A^H A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option9MethodEigE">
+<span id="_CPPv3N6Option9MethodEigE"></span><span id="_CPPv2N6Option9MethodEigE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aad740020f36aad4fa56ec880b8e1f9338"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MethodEig</span></span></span><a class="headerlink" href="#_CPPv4N6Option9MethodEigE" title="Link to this definition"></a><br /></dt>
+<dd><p>Select the algorithm to compute eigenpairs of tridiagonal matrix. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option10MethodGelsE">
+<span id="_CPPv3N6Option10MethodGelsE"></span><span id="_CPPv2N6Option10MethodGelsE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa8339327132aba262f8e0e8b015bbc485"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MethodGels</span></span></span><a class="headerlink" href="#_CPPv4N6Option10MethodGelsE" title="Link to this definition"></a><br /></dt>
+<dd><p>Select the gels algorithm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option10MethodGemmE">
+<span id="_CPPv3N6Option10MethodGemmE"></span><span id="_CPPv2N6Option10MethodGemmE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa60d50a1d82776694cde8439ec95b1c0c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MethodGemm</span></span></span><a class="headerlink" href="#_CPPv4N6Option10MethodGemmE" title="Link to this definition"></a><br /></dt>
+<dd><p>Select the gemm algorithm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option10MethodHemmE">
+<span id="_CPPv3N6Option10MethodHemmE"></span><span id="_CPPv2N6Option10MethodHemmE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aabb37fc81fa94027bd7a2808505aa945a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MethodHemm</span></span></span><a class="headerlink" href="#_CPPv4N6Option10MethodHemmE" title="Link to this definition"></a><br /></dt>
+<dd><p>Select the hemm algorithm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option8MethodLUE">
+<span id="_CPPv3N6Option8MethodLUE"></span><span id="_CPPv2N6Option8MethodLUE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa57a1a9ff82ffd36423cca616e2305279"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MethodLU</span></span></span><a class="headerlink" href="#_CPPv4N6Option8MethodLUE" title="Link to this definition"></a><br /></dt>
+<dd><p>Select the LU (getrf) algorithm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option10MethodTrsmE">
+<span id="_CPPv3N6Option10MethodTrsmE"></span><span id="_CPPv2N6Option10MethodTrsmE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa330da8cf68f296aee0a375687ff344b5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MethodTrsm</span></span></span><a class="headerlink" href="#_CPPv4N6Option10MethodTrsmE" title="Link to this definition"></a><br /></dt>
+<dd><p>Select the trsm algorithm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N6Option9MethodSVDE">
+<span id="_CPPv3N6Option9MethodSVDE"></span><span id="_CPPv2N6Option9MethodSVDE"></span><span class="target" id="group__enum_1ggac97a2c5045464e6949b9a65a059b196aa8825ea8f3de8c5b9371da84c6d8b6d57"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MethodSVD</span></span></span><a class="headerlink" href="#_CPPv4N6Option9MethodSVDE" title="Link to this definition"></a><br /></dt>
+<dd><p>Select the algorithm to compute singular values of bidiagonal matrix. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="method-enumerations">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Method Enumerations</a><a class="headerlink" href="#method-enumerations" title="Link to this heading"></a></h2>
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate12MethodCholQRE">
+<span id="_CPPv3N5slate12MethodCholQRE"></span><span id="_CPPv2N5slate12MethodCholQRE"></span><span class="target" id="namespaceslate_1a39645f451d3af835d4968d395c67f12e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">MethodCholQR</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv4N5slate12MethodCholQRE" title="Link to this definition"></a><br /></dt>
+<dd><p>Algorithm to use for Cholesky QR. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate12MethodCholQR4AutoE">
+<span id="_CPPv3N5slate12MethodCholQR4AutoE"></span><span id="_CPPv2N5slate12MethodCholQR4AutoE"></span><span class="target" id="namespaceslate_1a39645f451d3af835d4968d395c67f12ea06b9281e396db002010bde1de57262eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Auto</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'*'</span></span><a class="headerlink" href="#_CPPv4N5slate12MethodCholQR4AutoE" title="Link to this definition"></a><br /></dt>
+<dd><p>Let SLATE decide. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate12MethodCholQR5GemmAE">
+<span id="_CPPv3N5slate12MethodCholQR5GemmAE"></span><span id="_CPPv2N5slate12MethodCholQR5GemmAE"></span><span class="target" id="namespaceslate_1a39645f451d3af835d4968d395c67f12ea2fa220c5dd81e333a887e5f8720ea263"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GemmA</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'A'</span></span><a class="headerlink" href="#_CPPv4N5slate12MethodCholQR5GemmAE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use gemm-A algorithm to compute A^H A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate12MethodCholQR5GemmCE">
+<span id="_CPPv3N5slate12MethodCholQR5GemmCE"></span><span id="_CPPv2N5slate12MethodCholQR5GemmCE"></span><span class="target" id="namespaceslate_1a39645f451d3af835d4968d395c67f12ea02e25c075691cde3e3cabefe30d005ea"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GemmC</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'C'</span></span><a class="headerlink" href="#_CPPv4N5slate12MethodCholQR5GemmCE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use gemm-C algorithm to compute A^H A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate12MethodCholQR5HerkAE">
+<span id="_CPPv3N5slate12MethodCholQR5HerkAE"></span><span id="_CPPv2N5slate12MethodCholQR5HerkAE"></span><span class="target" id="namespaceslate_1a39645f451d3af835d4968d395c67f12ea4b8917a631104f3d69856fa9e516e63c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HerkA</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'R'</span></span><a class="headerlink" href="#_CPPv4N5slate12MethodCholQR5HerkAE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use herk-A algorithm to compute A^H A; not yet implemented. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate12MethodCholQR5HerkCE">
+<span id="_CPPv3N5slate12MethodCholQR5HerkCE"></span><span id="_CPPv2N5slate12MethodCholQR5HerkCE"></span><span class="target" id="namespaceslate_1a39645f451d3af835d4968d395c67f12ea886f0063e50389f55b6d7e3b32abb50e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HerkC</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'K'</span></span><a class="headerlink" href="#_CPPv4N5slate12MethodCholQR5HerkCE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use herk-C algorithm to compute A^H A. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodGelsE">
+<span id="_CPPv3N5slate10MethodGelsE"></span><span id="_CPPv2N5slate10MethodGelsE"></span><span class="target" id="namespaceslate_1a0ce120bd6d3a722c5c7d0071712c85e8"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">MethodGels</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodGelsE" title="Link to this definition"></a><br /></dt>
+<dd><p>Algorithm to use for least squares (gels). </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodGels4AutoE">
+<span id="_CPPv3N5slate10MethodGels4AutoE"></span><span id="_CPPv2N5slate10MethodGels4AutoE"></span><span class="target" id="namespaceslate_1a0ce120bd6d3a722c5c7d0071712c85e8a06b9281e396db002010bde1de57262eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Auto</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'*'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodGels4AutoE" title="Link to this definition"></a><br /></dt>
+<dd><p>Let SLATE decide. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodGels2QRE">
+<span id="_CPPv3N5slate10MethodGels2QRE"></span><span id="_CPPv2N5slate10MethodGels2QRE"></span><span class="target" id="namespaceslate_1a0ce120bd6d3a722c5c7d0071712c85e8a66c35cd8077f7e1db5faefbc048a646a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">QR</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'Q'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodGels2QRE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use Householder QR factorization. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodGels6CholQRE">
+<span id="_CPPv3N5slate10MethodGels6CholQRE"></span><span id="_CPPv2N5slate10MethodGels6CholQRE"></span><span class="target" id="namespaceslate_1a0ce120bd6d3a722c5c7d0071712c85e8af38833ea0cba9e77c4af73a7079c8bf1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CholQR</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'C'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodGels6CholQRE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use Cholesky QR factorization; use when A is well-conditioned. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodGemmE">
+<span id="_CPPv3N5slate10MethodGemmE"></span><span id="_CPPv2N5slate10MethodGemmE"></span><span class="target" id="namespaceslate_1a178e68e28570df3fab1eb5de6c2bfe97"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">MethodGemm</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodGemmE" title="Link to this definition"></a><br /></dt>
+<dd><p>Algorithm to use for general matrix multiply (gemm). </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodGemm4AutoE">
+<span id="_CPPv3N5slate10MethodGemm4AutoE"></span><span id="_CPPv2N5slate10MethodGemm4AutoE"></span><span class="target" id="namespaceslate_1a178e68e28570df3fab1eb5de6c2bfe97a06b9281e396db002010bde1de57262eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Auto</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'*'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodGemm4AutoE" title="Link to this definition"></a><br /></dt>
+<dd><p>Let SLATE decide. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodGemm1AE">
+<span id="_CPPv3N5slate10MethodGemm1AE"></span><span id="_CPPv2N5slate10MethodGemm1AE"></span><span class="target" id="namespaceslate_1a178e68e28570df3fab1eb5de6c2bfe97a7fc56270e7a70fa81a5935b72eacbe29"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'A'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodGemm1AE" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> A is stationary, C is sent; use when C is small. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodGemm1CE">
+<span id="_CPPv3N5slate10MethodGemm1CE"></span><span id="_CPPv2N5slate10MethodGemm1CE"></span><span class="target" id="namespaceslate_1a178e68e28570df3fab1eb5de6c2bfe97a0d61f8370cad1d412f80b84d143e1257"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">C</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'C'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodGemm1CE" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> C is stationary, A is sent; use when C is large. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodHemmE">
+<span id="_CPPv3N5slate10MethodHemmE"></span><span id="_CPPv2N5slate10MethodHemmE"></span><span class="target" id="namespaceslate_1ae4118d4e3dd4efbd0103a733d6624fd3"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">MethodHemm</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodHemmE" title="Link to this definition"></a><br /></dt>
+<dd><p>Algorithm to use for Hermitian matrix multiply (hemm). </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodHemm4AutoE">
+<span id="_CPPv3N5slate10MethodHemm4AutoE"></span><span id="_CPPv2N5slate10MethodHemm4AutoE"></span><span class="target" id="namespaceslate_1ae4118d4e3dd4efbd0103a733d6624fd3a06b9281e396db002010bde1de57262eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Auto</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'*'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodHemm4AutoE" title="Link to this definition"></a><br /></dt>
+<dd><p>Let SLATE decide. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodHemm1AE">
+<span id="_CPPv3N5slate10MethodHemm1AE"></span><span id="_CPPv2N5slate10MethodHemm1AE"></span><span class="target" id="namespaceslate_1ae4118d4e3dd4efbd0103a733d6624fd3a7fc56270e7a70fa81a5935b72eacbe29"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'A'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodHemm1AE" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> A is stationary, C is sent; use when C is small. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodHemm1CE">
+<span id="_CPPv3N5slate10MethodHemm1CE"></span><span id="_CPPv2N5slate10MethodHemm1CE"></span><span class="target" id="namespaceslate_1ae4118d4e3dd4efbd0103a733d6624fd3a0d61f8370cad1d412f80b84d143e1257"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">C</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'C'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodHemm1CE" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> C is stationary, A is sent; use when C is large. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate8MethodLUE">
+<span id="_CPPv3N5slate8MethodLUE"></span><span id="_CPPv2N5slate8MethodLUE"></span><span class="target" id="namespaceslate_1aca16539a2a57b8f75e9f4cfbdee1f2c9"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">MethodLU</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv4N5slate8MethodLUE" title="Link to this definition"></a><br /></dt>
+<dd><p>Algorithm to use for LU factorization and solve. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate8MethodLU4AutoE">
+<span id="_CPPv3N5slate8MethodLU4AutoE"></span><span id="_CPPv2N5slate8MethodLU4AutoE"></span><span class="target" id="namespaceslate_1aca16539a2a57b8f75e9f4cfbdee1f2c9a06b9281e396db002010bde1de57262eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Auto</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'*'</span></span><a class="headerlink" href="#_CPPv4N5slate8MethodLU4AutoE" title="Link to this definition"></a><br /></dt>
+<dd><p>Let SLATE decide. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate8MethodLU10PartialPivE">
+<span id="_CPPv3N5slate8MethodLU10PartialPivE"></span><span id="_CPPv2N5slate8MethodLU10PartialPivE"></span><span class="target" id="namespaceslate_1aca16539a2a57b8f75e9f4cfbdee1f2c9a8c68ec62fed0facf71a10bb0d11d7126"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PartialPiv</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'P'</span></span><a class="headerlink" href="#_CPPv4N5slate8MethodLU10PartialPivE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use classical partial pivoting. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate8MethodLU4CALUE">
+<span id="_CPPv3N5slate8MethodLU4CALUE"></span><span id="_CPPv2N5slate8MethodLU4CALUE"></span><span class="target" id="namespaceslate_1aca16539a2a57b8f75e9f4cfbdee1f2c9ab92278fca29d246a70294aca9ed2f291"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CALU</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'C'</span></span><a class="headerlink" href="#_CPPv4N5slate8MethodLU4CALUE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use Communication Avoiding LU (CALU). </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate8MethodLU5NoPivE">
+<span id="_CPPv3N5slate8MethodLU5NoPivE"></span><span id="_CPPv2N5slate8MethodLU5NoPivE"></span><span class="target" id="namespaceslate_1aca16539a2a57b8f75e9f4cfbdee1f2c9ab08634a39b0cecfa4ff14d605b383697"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">NoPiv</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'N'</span></span><a class="headerlink" href="#_CPPv4N5slate8MethodLU5NoPivE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use no-pivoting LU. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate8MethodLU3RBTE">
+<span id="_CPPv3N5slate8MethodLU3RBTE"></span><span id="_CPPv2N5slate8MethodLU3RBTE"></span><span class="target" id="namespaceslate_1aca16539a2a57b8f75e9f4cfbdee1f2c9a1a6322929a26a007b90f4cf5f3e31382"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RBT</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'R'</span></span><a class="headerlink" href="#_CPPv4N5slate8MethodLU3RBTE" title="Link to this definition"></a><br /></dt>
+<dd><p>Use Random Butterfly Transform (RBT). </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate8MethodLU4BEAME">
+<span id="_CPPv3N5slate8MethodLU4BEAME"></span><span id="_CPPv2N5slate8MethodLU4BEAME"></span><span class="target" id="namespaceslate_1aca16539a2a57b8f75e9f4cfbdee1f2c9a59de9e0e05e51c206484b2350c3fa77a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">BEAM</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'B'</span></span><a class="headerlink" href="#_CPPv4N5slate8MethodLU4BEAME" title="Link to this definition"></a><br /></dt>
+<dd><p>Use BEAM LU factorization. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum-class">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodTrsmE">
+<span id="_CPPv3N5slate10MethodTrsmE"></span><span id="_CPPv2N5slate10MethodTrsmE"></span><span class="target" id="namespaceslate_1ab9f4b9a710ffc0b19a74ff29de939a81"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">slate</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">MethodTrsm</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodTrsmE" title="Link to this definition"></a><br /></dt>
+<dd><p>Algorithm to use for triangular solve (trsm). </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodTrsm4AutoE">
+<span id="_CPPv3N5slate10MethodTrsm4AutoE"></span><span id="_CPPv2N5slate10MethodTrsm4AutoE"></span><span class="target" id="namespaceslate_1ab9f4b9a710ffc0b19a74ff29de939a81a06b9281e396db002010bde1de57262eb"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Auto</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'*'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodTrsm4AutoE" title="Link to this definition"></a><br /></dt>
+<dd><p>Let SLATE decide. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodTrsm1AE">
+<span id="_CPPv3N5slate10MethodTrsm1AE"></span><span id="_CPPv2N5slate10MethodTrsm1AE"></span><span class="target" id="namespaceslate_1ab9f4b9a710ffc0b19a74ff29de939a81a7fc56270e7a70fa81a5935b72eacbe29"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'A'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodTrsm1AE" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> A is stationary, B is sent; use when B is small. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N5slate10MethodTrsm1BE">
+<span id="_CPPv3N5slate10MethodTrsm1BE"></span><span id="_CPPv2N5slate10MethodTrsm1BE"></span><span class="target" id="namespaceslate_1ab9f4b9a710ffc0b19a74ff29de939a81a9d5ed678fe57bcca610140957afab571"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">B</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="sc"><span class="pre">'B'</span></span><a class="headerlink" href="#_CPPv4N5slate10MethodTrsm1BE" title="Link to this definition"></a><br /></dt>
+<dd><p><a class="reference internal" href="matrices_api.html#classslate_1_1_matrix"><span class="std std-ref">Matrix</span></a> B is stationary, A is sent; use when B is large. </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="type-traits">
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">Type Traits</a><a class="headerlink" href="#type-traits" title="Link to this heading"></a></h2>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN5slate10is_complexE">
+<span id="_CPPv3I0EN5slate10is_complexE"></span><span id="_CPPv2I0EN5slate10is_complexE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structslate_1_1is__complex"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">is_complex</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">integral_constant</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv4I0EN5slate10is_complexE" title="Link to this definition"></a><br /></dt>
+<dd><p>True if T is std::complex&lt;T2&gt; for some type T2. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>T</strong> – Type to check. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4I0EN5slate8mpi_typeE">
+<span id="_CPPv3I0EN5slate8mpi_typeE"></span><span id="_CPPv2I0EN5slate8mpi_typeE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">scalar_t</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classslate_1_1mpi__type"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mpi_type</span></span></span><a class="headerlink" href="#_CPPv4I0EN5slate8mpi_typeE" title="Link to this definition"></a><br /></dt>
+<dd><p>Gives <a class="reference internal" href="#classslate_1_1mpi__type"><span class="std std-ref">mpi_type</span></a> based on actual scalar_t. </p>
+<p>Constants are initialized in src/core/types.cc </p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="matrices_api.html" class="btn btn-neutral float-left" title="Matrix Classes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../blaspp/index.html" class="btn btn-neutral float-right" title="blaspp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025, Innovative Computing Laboratory, University of Tennessee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

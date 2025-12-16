@@ -1,0 +1,754 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Handling of Precisions &mdash; SLATE 2023.11.05 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=c74a7515" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=4a0eadb2"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script>window.MathJax = {"tex": {"macros": {"RR": "\\mathbb{R}", "CC": "\\mathbb{C}"}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parallelism Model" href="06_parallelism.html" />
+    <link rel="prev" title="Handling of Side, Uplo, Trans, etc." href="04_side_uplo_trans.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SLATE
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">USER GUIDE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/overview.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/overview.html#design-goals">Design Goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/overview.html#software-requirements">Software Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/overview.html#project-resources">Project Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/getting_started.html#example-program-lu-solve">Example Program: LU Solve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/getting_started.html#understanding-the-example">Understanding the Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/getting_started.html#mpi-initialization">MPI Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/getting_started.html#creating-matrices">Creating Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/getting_started.html#allocating-tiles">Allocating Tiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/getting_started.html#solving-the-system">Solving the System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/getting_started.html#execution-options">Execution Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/getting_started.html#building-the-example">Building the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/getting_started.html#running-the-example">Running the Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/getting_started.html#simplifying-assumptions">Simplifying Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/getting_started.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#downloading-source">Downloading Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#makefile-build">Makefile Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#basic-configuration">Basic Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#build-and-install">Build and Install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#configuration-options">Configuration Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#cmake-build">CMake Build</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#basic-build">Basic Build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#cmake-options">CMake Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#example-with-mkl-and-cuda">Example with MKL and CUDA</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#spack-installation">Spack Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#install-spack">Install Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#install-slate">Install SLATE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#loading-slate">Loading SLATE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#gpu-aware-mpi">GPU-Aware MPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#verifying-installation">Verifying Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/installation.html#module-environment-hpc-systems">Module Environment (HPC Systems)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/matrices.html">Matrices in SLATE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#matrix-hierarchy">Matrix Hierarchy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#matrix-types">Matrix Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#creating-matrices">Creating Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#basic-creation">Basic Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#creating-from-existing-matrix-structure">Creating from Existing Matrix Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#allocating-tile-memory">Allocating Tile Memory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#cpu-host-memory">CPU Host Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#gpu-device-memory">GPU Device Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#user-provided-memory">User-Provided Memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#scalapack-layout">ScaLAPACK Layout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#accessing-matrix-elements">Accessing Matrix Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#tile-access">Tile Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#element-access">Element Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#matrix-properties">Matrix Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#matrix-conversions">Matrix Conversions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#transpose-and-conjugate-transpose">Transpose and Conjugate Transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#submatrices-and-slices">Submatrices and Slices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#tile-based-submatrices">Tile-Based Submatrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#element-based-slices">Element-Based Slices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#copying-matrices">Copying Matrices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#deep-copy">Deep Copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#precision-conversion">Precision Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#tile-layout-and-distribution">Tile Layout and Distribution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#data-distribution">Data Distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#tile-sizes">Tile Sizes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/matrices.html#memory-management">Memory Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/matrices.html#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/operations.html">SLATE Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#execution-options">Execution Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#common-options">Common Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#matrix-norms">Matrix Norms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#level-3-blas-operations">Level 3 BLAS Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#matrix-multiply-gemm">Matrix Multiply (gemm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#hermitian-symmetric-matrix-multiply-hemm-symm">Hermitian/Symmetric Matrix Multiply (hemm/symm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#rank-k-update-herk-syrk">Rank-k Update (herk/syrk)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#rank-2k-update-her2k-syr2k">Rank-2k Update (her2k/syr2k)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#triangular-multiply-trmm">Triangular Multiply (trmm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#triangular-solve-trsm">Triangular Solve (trsm)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#linear-systems">Linear Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#lu-factorization-general-matrices">LU Factorization (General Matrices)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#lu-pivoting-options">LU Pivoting Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#cholesky-factorization-positive-definite">Cholesky Factorization (Positive Definite)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#indefinite-solve-aasen-s-algorithm">Indefinite Solve (Aasen’s Algorithm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#band-matrix-solve">Band Matrix Solve</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#mixed-precision-iterative-refinement">Mixed-Precision Iterative Refinement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#least-squares">Least Squares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#qr-and-lq-factorizations">QR and LQ Factorizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#eigenvalue-problems">Eigenvalue Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#hermitian-symmetric-eigenvalues">Hermitian/Symmetric Eigenvalues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#eigenvalue-methods">Eigenvalue Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#generalized-eigenvalue-problem">Generalized Eigenvalue Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#singular-value-decomposition">Singular Value Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#auxiliary-operations">Auxiliary Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#matrix-add">Matrix Add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#matrix-copy">Matrix Copy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#matrix-set">Matrix Set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#matrix-scale">Matrix Scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#condition-number-estimate">Condition Number Estimate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/operations.html#matrix-print">Matrix Print</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/operations.html#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/testing.html">Testing and Tuning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/testing.html#slate-tester">SLATE Tester</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#single-process-testing">Single-Process Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#multi-process-testing">Multi-Process Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#tester-parameters">Tester Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#example-tester-output">Example Tester Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/testing.html#accuracy-verification">Accuracy Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#without-reference-ref-n">Without Reference (–ref=n)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#with-reference-ref-y">With Reference (–ref=y)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#norm-verification">Norm Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/testing.html#full-testing-suite">Full Testing Suite</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#custom-test-commands">Custom Test Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/testing.html#performance-tuning">Performance Tuning</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#tile-size">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#process-grid">Process Grid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#lookahead">Lookahead</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#panel-threads">Panel Threads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#multi-threaded-mpi-broadcast">Multi-threaded MPI Broadcast</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#gpu-aware-mpi">GPU-Aware MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#performance-examples">Performance Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/testing.html#unit-tests">Unit Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/testing.html#benchmark-suite">Benchmark Suite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/testing.html#troubleshooting-tests">Troubleshooting Tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/testing.html#debugging">Debugging</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/compatibility.html">ScaLAPACK Compatibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compatibility.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compatibility.html#lapack-compatibility-api">LAPACK Compatibility API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#using-the-api">Using the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#how-it-works">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#tile-size">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#available-routines">Available Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compatibility.html#scalapack-compatibility-api">ScaLAPACK Compatibility API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#id1">Using the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#id2">How It Works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#id3">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#supported-routines">Supported Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compatibility.html#matrix-layout-compatibility">Matrix Layout Compatibility</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#creating-from-scalapack-data">Creating from ScaLAPACK Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#grid-order">Grid Order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compatibility.html#migration-strategies">Migration Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#gradual-migration">Gradual Migration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#direct-migration">Direct Migration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compatibility.html#performance-considerations">Performance Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#id4">Tile Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/compatibility.html#gpu-acceleration">GPU Acceleration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compatibility.html#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/compatibility.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API REFERENCE</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/slate/index.html">slate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/slate/index.html#quick-reference">Quick Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/slate/index.html#contents">Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/slate/blas.html">BLAS and Auxiliary Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/blas.html#matrix-multiplication">Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/blas.html#triangular-matrix-multiplication">Triangular Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/blas.html#rank-updates">Rank Updates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/blas.html#triangular-solve">Triangular Solve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/blas.html#auxiliary-routines">Auxiliary Routines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/blas.html#standard-blas-routines">Standard BLAS Routines</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/slate/linear_systems.html">Linear Systems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/linear_systems.html#lu-factorization-general">LU Factorization (General)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/linear_systems.html#cholesky-factorization-positive-definite">Cholesky Factorization (Positive Definite)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/linear_systems.html#indefinite-factorization-symmetric-hermitian">Indefinite Factorization (Symmetric/Hermitian)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/slate/least_squares.html">Least Squares</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/least_squares.html#least-squares-solve">Least Squares Solve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/least_squares.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/least_squares.html#lq-factorization">LQ Factorization</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/slate/eigenvalues.html">Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/eigenvalues.html#symmetric-hermitian-eigenvalue-problems">Symmetric/Hermitian Eigenvalue Problems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/eigenvalues.html#generalized-symmetric-hermitian-eigenvalue-problems">Generalized Symmetric/Hermitian Eigenvalue Problems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/eigenvalues.html#tridiagonal-eigenvalue-solvers">Tridiagonal Eigenvalue Solvers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/slate/svd.html">Singular Value Decomposition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/svd.html#svd-functions">SVD Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/svd.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/slate/matrices_api.html">Matrix Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/matrices_api.html#general-matrices">General Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/matrices_api.html#structured-matrices">Structured Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/matrices_api.html#band-matrices">Band Matrices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/matrices_api.html#tiles">Tiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/matrices_api.html#auxiliary-classes">Auxiliary Classes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/slate/enums.html">Enumerations and Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/enums.html#core-enumerations">Core Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/enums.html#options">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/enums.html#method-enumerations">Method Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/slate/enums.html#type-traits">Type Traits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/slate/index.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/slate/index.html#common-parameters">Common Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/slate/index.html#_CPPv4I0E7routinevR6MatrixI8scalar_tERK7Options"><code class="docutils literal notranslate"><span class="pre">routine()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/slate/index.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/slate/index.html#header-files">Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/slate/index.html#c-and-fortran-apis">C and Fortran APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/slate/index.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/blaspp/index.html">blaspp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#organization">Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#contents">Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/level1.html">Level 1 BLAS (Vector Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/level1.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/level2.html">Level 2 BLAS (Matrix-Vector Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/level2.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/level3.html">Level 3 BLAS (Matrix-Matrix Operations)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/level3.html#operations">Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/util.html">Utilities and Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/util.html#enumerations">Enumerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/util.html#error-handling">Error Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/util.html#type-traits-and-safety-functions">Type Traits and Safety Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/device.html">Device (GPU) Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/device.html#queue-management">Queue Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/device.html#device-memory-and-batch-operations">Device Memory and Batch Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/performance.html">Performance Counting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/performance.html#papi-counter-integration">PAPI Counter Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/performance.html#flop-calculations">FLOP Calculations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/blaspp/performance.html#bandwidth-calculations">Bandwidth Calculations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#level-1-blas-vector-vector">Level 1 BLAS (Vector-Vector)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#level-2-blas-matrix-vector">Level 2 BLAS (Matrix-Vector)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#level-3-blas-matrix-matrix">Level 3 BLAS (Matrix-Matrix)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#basic-usage">Basic Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#cpu-host-operations">CPU (Host) Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#gpu-device-operations">GPU (Device) Operations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#common-parameters">Common Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#layout">Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#op">Op</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#uplo">Uplo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#diag">Diag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/blaspp/index.html#side">Side</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#data-types">Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#header-files">Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/blaspp/index.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/lapackpp/index.html">lapackpp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/util.html">Utilities and Enumerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/util.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/util.html#_CPPv4N6lapack5ErrorE"><code class="docutils literal notranslate"><span class="pre">lapack::Error</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/util.html#enumerations">Enumerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/util.html#version-information">Version Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/device.html">Device (GPU) Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/device.html#queue-management">Queue Management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/device.html#_CPPv4N6lapack5QueueE"><code class="docutils literal notranslate"><span class="pre">lapack::Queue</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/device.html#gpu-operations">GPU Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/device.html#cholesky-factorization">Cholesky Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/device.html#lu-factorization">LU Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/device.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/device.html#eigenvalue-decomposition">Eigenvalue Decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/device.html#device-memory-types">Device Memory Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/flops.html">Performance Counters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/flops.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/flops.html#flop-counting">FLOP Counting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/flops.html#_CPPv4I0EN6lapack5GflopE"><code class="docutils literal notranslate"><span class="pre">lapack::Gflop</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/flops.html#bandwidth-analysis">Bandwidth Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/flops.html#_CPPv4I0EN6lapack5GbyteE"><code class="docutils literal notranslate"><span class="pre">lapack::Gbyte</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/flops.html#usage-example">Usage Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/flops.html#supported-operations">Supported Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/flops.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/factorizations.html">Matrix Factorizations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#lu-factorization">LU Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#cholesky-factorization">Cholesky Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#lq-factorization">LQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#ql-factorization">QL Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#rq-factorization">RQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#symmetric-hermitian-factorizations">Symmetric/Hermitian Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#triangular-factorizations">Triangular Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#bidiagonal-reduction">Bidiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#tridiagonal-reduction">Tridiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#hessenberg-reduction">Hessenberg Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#example-usage">Example Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#factorization-algorithms">Factorization Algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#storage-efficiency">Storage Efficiency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#performance-characteristics">Performance Characteristics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#blocking-and-level-3-blas">Blocking and Level-3 BLAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#choosing-a-factorization">Choosing a Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/factorizations.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/linear_systems.html">Linear Systems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/linear_systems.html#general-non-symmetric-systems">General (Non-Symmetric) Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/linear_systems.html#symmetric-hermitian-positive-definite">Symmetric/Hermitian Positive Definite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/linear_systems.html#symmetric-hermitian-indefinite">Symmetric/Hermitian Indefinite</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/linear_systems.html#triangular-systems">Triangular Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/linear_systems.html#band-matrices">Band Matrices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/linear_systems.html#tridiagonal-systems">Tridiagonal Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/linear_systems.html#symmetric-positive-definite-tridiagonal">Symmetric Positive Definite Tridiagonal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/linear_systems.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/least_squares.html">Least Squares and Linear Regression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#qr-based-least-squares">QR-Based Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#qr-factorization">QR Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#lq-factorization">LQ Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#ql-and-rq-factorizations">QL and RQ Factorizations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#orthogonal-matrix-generation">Orthogonal Matrix Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#multiplication-by-q">Multiplication by Q</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#complete-orthogonal-factorization">Complete Orthogonal Factorization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#constrained-least-squares">Constrained Least Squares</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#rank-estimation">Rank Estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/least_squares.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/eigenvalues.html">Eigenvalue Problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#standard-eigenvalue-problems">Standard Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#symmetric-hermitian-eigenvalues">Symmetric/Hermitian Eigenvalues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#non-symmetric-eigenvalues">Non-Symmetric Eigenvalues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#tridiagonal-banded-eigenproblems">Tridiagonal/Banded Eigenproblems</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#generalized-eigenvalue-problems">Generalized Eigenvalue Problems</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#symmetric-hermitian">Symmetric/Hermitian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#non-symmetric-generalized-schur">Non-Symmetric (Generalized Schur)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#reduction-to-standard-form">Reduction to Standard Form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#auxiliary-reductions">Auxiliary Reductions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#schur-form-manipulation">Schur Form Manipulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#eigenvector-computation">Eigenvector Computation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#balancing">Balancing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/eigenvalues.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/svd.html">Singular Value Decomposition (SVD)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#standard-svd">Standard SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#specialized-svd-routines">Specialized SVD Routines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#bidiagonal-svd">Bidiagonal SVD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#bidiagonal-reduction">Bidiagonal Reduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#generalized-svd-gsvd">Generalized SVD (GSVD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#cs-decomposition-csd">CS Decomposition (CSD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#utility-functions">Utility Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#rank-and-pseudoinverse">Rank and Pseudoinverse</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#applications">Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/svd.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/auxiliary.html">Auxiliary Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#matrix-norms">Matrix Norms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#condition-number-estimation">Condition Number Estimation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#equilibration-and-scaling">Equilibration and Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#matrix-initialization-and-copying">Matrix Initialization and Copying</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#matrix-addition">Matrix Addition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#householder-transformations">Householder Transformations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#givens-rotations">Givens Rotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#matrix-multiplication-triangular">Matrix Multiplication (Triangular)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#special-matrix-operations">Special Matrix Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#permutations-and-sorting">Permutations and Sorting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#workspace-queries">Workspace Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#error-checking-and-diagnostics">Error Checking and Diagnostics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/lapackpp/auxiliary.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/index.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/lapackpp/index.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/building.html">Building Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/building.html#option-1-makefile">Option 1: Makefile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/building.html#option-2-cmake">Option 2: CMake</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex01_matrix.html">Example 01: Matrix Construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex01_matrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex01_matrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex02_conversion.html">Example 02: Matrix Type Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex02_conversion.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex02_conversion.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex03_submatrix.html">Example 03: Submatrices and Slicing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex03_submatrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex03_submatrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex04_norm.html">Example 04: Matrix Norms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex04_norm.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex04_norm.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex05_blas.html">Example 05: BLAS Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex05_blas.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex05_blas.html#c-example">C++ Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex05_blas.html#c-api-example">C API Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex05_blas.html#fortran-api-example">Fortran API Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex06_linear_system_lu.html">Example 06: Linear Systems (LU)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex06_linear_system_lu.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex06_linear_system_lu.html#c-example">C++ Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex06_linear_system_lu.html#c-api-example">C API Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex07_linear_system_cholesky.html">Example 07: Linear Systems (Cholesky)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex07_linear_system_cholesky.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex07_linear_system_cholesky.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex08_linear_system_indefinite.html">Example 08: Linear Systems (Indefinite)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex08_linear_system_indefinite.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex08_linear_system_indefinite.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex09_least_squares.html">Example 09: Least Squares</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex09_least_squares.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex09_least_squares.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex10_svd.html">Example 10: Singular Value Decomposition (SVD)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex10_svd.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex10_svd.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex11_hermitian_eig.html">Example 11: Hermitian Eigenvalue Problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex11_hermitian_eig.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex11_hermitian_eig.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex12_generalized_hermitian_eig.html">Example 12: Generalized Hermitian Eigenvalues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex12_generalized_hermitian_eig.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex12_generalized_hermitian_eig.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex13_non_uniform_block_size.html">Example 13: Non-uniform Block Sizes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex13_non_uniform_block_size.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex13_non_uniform_block_size.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex14_scalapack_gemm.html">Example 14: ScaLAPACK Compatibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex14_scalapack_gemm.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex14_scalapack_gemm.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/ex15_set_matrix.html">Example 15: Setting Matrix Elements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex15_set_matrix.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/ex15_set_matrix.html#c-example">C++ Example</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DEVELOPER GUIDE</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01_introduction.html#revision-notes">Revision Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02_api_layers.html">API Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_api_layers.html#drivers">Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_api_layers.html#computational-routines">Computational Routines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02_api_layers.html#comments-on-the-code">Comments on the Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_api_layers.html#template-dispatch">Template Dispatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02_api_layers.html#executing-multiple-internal-routines-on-devices">Executing Multiple Internal Routines on Devices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02_api_layers.html#internal-routines-for-major-parallel-tasks">Internal Routines for Major, Parallel Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02_api_layers.html#batched-gpu-tasks">Batched GPU Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02_api_layers.html#tile-operations-for-small-sequential-tasks">Tile Operations for Small, Sequential Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_api_layers.html#blas-batched-blas-and-lapack">BLAS++, Batched BLAS++, and LAPACK++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_api_layers.html#work-routines-for-actual-openmp-work">Work Routines for Actual OpenMP Work</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03_matrix_storage.html">Matrix Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="03_matrix_storage.html#tile-management">Tile Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_side_uplo_trans.html">Handling of Side, Uplo, Trans, etc.</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Handling of Precisions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_parallelism.html">Parallelism Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_communication.html">Message Passing Communication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_mosi.html">MOSI Coherency Protocol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="08_mosi.html#coherency-control">Coherency Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_mosi.html#tile-states">Tile States</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_mosi.html#mosi-api">MOSI API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_mosi.html#data-transfer">Data Transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_mosi.html#developer-hints">Developer Hints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="09_layout.html">Column Major and Row Major Layout</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="09_layout.html#layout-representation-and-api">Layout Representation and API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_layout.html#layout-conversion">Layout Conversion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="09_layout.html#layout-conversion-of-extended-tiles">Layout Conversion of Extended Tiles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10_bibliography.html">Bibliography</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ADDITIONAL INFO</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About SLATE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#project-information">Project Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about.html#version">Version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../license.html#bsd-3-clause-license">BSD 3-Clause License</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SLATE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Handling of Precisions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer_guide/05_precisions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="handling-of-precisions">
+<h1>Handling of Precisions<a class="headerlink" href="#handling-of-precisions" title="Link to this heading"></a></h1>
+<p>SLATE handles multiple precisions with C++ templating, so there is only one precision-independent version of the code, which is then instantiated for the desired precisions. Operations are defined to apply consistently across all precisions. For instance, <code class="docutils literal notranslate"><span class="pre">blas::conj</span></code> extends <code class="docutils literal notranslate"><span class="pre">std::conj</span></code> to apply to real precisions (float, double), where it is a no-op. Whereas <code class="docutils literal notranslate"><span class="pre">std::conj</span></code> applied to a real number returns <code class="docutils literal notranslate"><span class="pre">std::complex</span></code> with a zero imaginary part, which is not generally what is desired in linear algebra algorithms. For instance, <code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">=</span> <span class="pre">blas::conj(alpha);</span></code> works for real numbers, but <code class="docutils literal notranslate"><span class="pre">std::conj</span></code> would not work.</p>
+<p>SLATE’s BLAS++ component provides overloaded, precision-independent wrappers for all the underlying node-level BLAS, which SLATE’s PBLAS are built on top of. For instance, <code class="docutils literal notranslate"><span class="pre">blas::gemm</span></code> in BLAS++ maps to the classical <code class="docutils literal notranslate"><span class="pre">sgemm</span></code>, <code class="docutils literal notranslate"><span class="pre">dgemm</span></code>, <code class="docutils literal notranslate"><span class="pre">cgemm</span></code>, or <code class="docutils literal notranslate"><span class="pre">zgemm</span></code> BLAS, depending on the precision of its arguments. For real arithmetic, symmetric and Hermitian matrices are considered interchangeable, so <code class="docutils literal notranslate"><span class="pre">hemm</span></code> maps to <code class="docutils literal notranslate"><span class="pre">symm</span></code>, <code class="docutils literal notranslate"><span class="pre">herk</span></code> to <code class="docutils literal notranslate"><span class="pre">syrk</span></code>, and <code class="docutils literal notranslate"><span class="pre">her2k</span></code> to <code class="docutils literal notranslate"><span class="pre">syr2k</span></code>. This mapping aides in templating higher-level routines, such as Cholesky, which does a <code class="docutils literal notranslate"><span class="pre">herk</span></code> (mapped to <code class="docutils literal notranslate"><span class="pre">syrk</span></code> in real) to update the trailing matrix.</p>
+<p>Currently, the SLATE library has explicit instantiations of the four main data types: <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>, <code class="docutils literal notranslate"><span class="pre">std::complex&lt;float&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">std::complex&lt;double&gt;</span></code>. The SLATE code should accommodate other data types, such as half, double-double, or quad precision, given appropriate underlying node-level BLAS. For instance, Intel oneMKL, NVIDIA cuBLAS, and AMD rocBLAS provide half-precision <code class="docutils literal notranslate"><span class="pre">gemm</span></code> operations.</p>
+<p>SLATE also implements mixed-precision algorithms that factor a matrix in low precision, then use iterative refinement to attain a high-precision final result. These exploit the faster processing in low precision for the <span class="math notranslate nohighlight">\(O(n^3)\)</span> factorization work, while refinement in the slower high precision is only <span class="math notranslate nohighlight">\(O(n^2)\)</span> work. In SLATE, the low and high precisions are independently templated; currently we use the traditional single and double combination. However, recent interest in half precision has led to algorithms using it with either single or double. One could also go to higher precisions, using double-double or quad for the high precision.</p>
+<p>By adding the relevant underlying node-level BLAS operations in the desired precisions to BLAS++, the templated nature of SLATE greatly simplifies instantiating different combinations of precisions.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_side_uplo_trans.html" class="btn btn-neutral float-left" title="Handling of Side, Uplo, Trans, etc." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="06_parallelism.html" class="btn btn-neutral float-right" title="Parallelism Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2017-2025, Innovative Computing Laboratory, University of Tennessee.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
